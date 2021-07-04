@@ -8,6 +8,9 @@ namespace DefaultNamespace
         [SerializeField] private float _speed;
         [SerializeField] private Transform directionPoint;
         [SerializeField] private SwipeController _swipeController;
+
+        private float prevDeltaRight, prevDeltaLeft = 0;
+        
         private Vector3 direction => directionPoint.TransformPoint(directionPoint.position) -
                                      transform.TransformPoint(transform.position);
 
@@ -26,20 +29,28 @@ namespace DefaultNamespace
         {
             if (swipeType == SwipeController.SwipeType.LEFT)
             {
-                transform.position = new Vector3(-delta, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + prevDeltaLeft - delta, transform.position.y, transform.position.z);
                 Debug.Log("P position: " + transform.position);
+                prevDeltaLeft = delta;
+
+                if (prevDeltaRight > 0)
+                    prevDeltaRight = 0;
             }
             else
             {
-                transform.position = new Vector3(delta, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - prevDeltaRight + delta, transform.position.y, transform.position.z);
                 Debug.Log("P position: " + transform.position);
+                prevDeltaRight = delta;
+
+                if (prevDeltaLeft > 0)
+                    prevDeltaLeft = 0;
             }
         }
         
         private void Update()
         {
             Debug.DrawRay(transform.position, direction, Color.yellow);
-            transform.Translate(direction * Time.deltaTime * _speed);
+            transform.parent.Translate(direction * Time.deltaTime * _speed);
             //_meshScaner.Move(transform.position);
         }
     }

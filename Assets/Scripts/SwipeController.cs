@@ -78,19 +78,18 @@ public class SwipeController : MonoBehaviour
         {
             if (swipeDelta.x < 0)
             {
-                SwipeEvent(SwipeType.LEFT, Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime);
+                SwipeEvent(SwipeType.LEFT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
                 Debug.Log((tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime);
             }
 
             if (swipeDelta.x > 0)
             {
-                SwipeEvent(SwipeType.RIGHT, Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime); 
+                SwipeEvent(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10); 
                 Debug.Log((tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime);
             }
                 
         }
-        
-        
+
         prevMousePosition = curMousePosition;  
     }
 
@@ -99,5 +98,4 @@ public class SwipeController : MonoBehaviour
         isDragging = false;
         tapPoint = swipeDelta = Vector2.zero;
     }
-
 }
