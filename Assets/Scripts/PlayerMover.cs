@@ -10,6 +10,7 @@ namespace DefaultNamespace
         [SerializeField] private SwipeController _swipeController;
 
         private float prevDeltaRight, prevDeltaLeft = 0;
+        private float minMoveLimiter, maxMoveLimiter;
         
         private Vector3 direction => directionPoint.TransformPoint(directionPoint.position) -
                                      transform.TransformPoint(transform.position);
@@ -17,6 +18,9 @@ namespace DefaultNamespace
         private void Start()
         {
             _swipeController.SwipeEvent += Action;
+            minMoveLimiter = transform.position.x - 0.5f;
+            maxMoveLimiter = transform.position.x + 0.5f;
+            
             Debug.Log("Start position: " + transform.position);
         }
 
@@ -29,7 +33,7 @@ namespace DefaultNamespace
         {
             if (swipeType == SwipeController.SwipeType.LEFT)
             {
-                transform.position = new Vector3(transform.position.x + prevDeltaLeft - delta, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
                 Debug.Log("P position: " + transform.position);
                 prevDeltaLeft = delta;
 
@@ -38,7 +42,7 @@ namespace DefaultNamespace
             }
             else
             {
-                transform.position = new Vector3(transform.position.x - prevDeltaRight + delta, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
                 Debug.Log("P position: " + transform.position);
                 prevDeltaRight = delta;
 
