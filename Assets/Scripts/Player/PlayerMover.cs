@@ -9,6 +9,8 @@ namespace DefaultNamespace
         [SerializeField] private Transform directionPoint;
         [SerializeField] private SwipeController _swipeController;
 
+        private const float moveLimiter = 0.4f;
+        
         private float prevDeltaRight, prevDeltaLeft = 0;
         private float minMoveLimiter, maxMoveLimiter;
         
@@ -18,10 +20,8 @@ namespace DefaultNamespace
         private void Start()
         {
             _swipeController.SwipeEvent += Action;
-            minMoveLimiter = transform.position.x - 0.5f;
-            maxMoveLimiter = transform.position.x + 0.5f;
-            
-            Debug.Log("Start position: " + transform.position);
+            minMoveLimiter = transform.position.x - moveLimiter;
+            maxMoveLimiter = transform.position.x + moveLimiter;
         }
 
         public void Rotate(float angle)
@@ -33,8 +33,8 @@ namespace DefaultNamespace
         {
             if (swipeType == SwipeController.SwipeType.LEFT)
             {
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
-                Debug.Log("P position: " + transform.position);
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
+                    minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
                 prevDeltaLeft = delta;
 
                 if (prevDeltaRight > 0)
@@ -42,8 +42,8 @@ namespace DefaultNamespace
             }
             else
             {
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
-                Debug.Log("P position: " + transform.position);
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
+                    minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
                 prevDeltaRight = delta;
 
                 if (prevDeltaLeft > 0)
