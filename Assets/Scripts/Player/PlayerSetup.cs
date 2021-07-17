@@ -10,23 +10,13 @@ public class PlayerSetup : MonoBehaviour
 
     [Inject] private void Construct(StartingRoad startingRoad) => this.startingRoad = startingRoad;
 
-    private void Start()
+    public Vector3 UpdatePosition()
     {
-        playerMeshRenderer = GetComponent<MeshRenderer>();
-        transform.position = startingRoad.GetStartPosition(playerMeshRenderer);
-        var position = transform.position;
-        transform.position = new Vector3(position.x, position.y + GetBoxesOffset(), position.z);
+        var upperPosition = boxController.transform.GetChild(0).position;
+        var playerOffsetY = playerMeshRenderer.bounds.max.y - playerMeshRenderer.bounds.min.y;
+        return new Vector3(
+            startingRoad.GetStartPosition().x, 
+            upperPosition.y + playerOffsetY, 
+            startingRoad.GetStartPosition().z);
     }
-
-    public void UpdatePosition()
-    {
-        var position = transform.position;
-        
-        transform.position = new Vector3(position.x,
-            position.y + boxController.heightBox, position.z);
-        
-        boxController.CalculateBoxPositions();
-    }
-    
-    private float GetBoxesOffset() => boxController.heightBox * boxController.boxCount;
 }

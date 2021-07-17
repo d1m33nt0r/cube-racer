@@ -6,7 +6,7 @@ namespace DefaultNamespace
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private float _speed;
-        [SerializeField] private Transform directionPoint;
+ 
         [SerializeField] private SwipeController _swipeController;
 
         private const float moveLimiter = 0.4f;
@@ -14,8 +14,7 @@ namespace DefaultNamespace
         private float prevDeltaRight, prevDeltaLeft = 0;
         private float minMoveLimiter, maxMoveLimiter;
         
-        private Vector3 direction => directionPoint.TransformPoint(directionPoint.position) -
-                                     transform.TransformPoint(transform.position);
+
 
         private void Start()
         {
@@ -53,8 +52,8 @@ namespace DefaultNamespace
         
         private void Update()
         {
-            Debug.DrawRay(transform.position, direction, Color.yellow);
-            transform.parent.Translate(direction * Time.deltaTime * _speed);
+            Debug.DrawRay(transform.position, Vector3.forward, Color.yellow);
+            transform.parent.Translate(Vector3.forward * Time.deltaTime * _speed);
             //_meshScaner.Move(transform.position);
         }
     }

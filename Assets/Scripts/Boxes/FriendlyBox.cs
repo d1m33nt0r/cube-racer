@@ -1,51 +1,36 @@
-using DefaultNamespace;
 using UnityEngine;
 using Zenject;
 
 public class FriendlyBox : MonoBehaviour
 {
-    private Rigidbody rb;
     private BoxController boxController;
-    private PhysicsManipulator physicsManipulator;
-    
-    [Inject]
-    private void Construct(BoxController boxController, PhysicsManipulator physicsManipulator)
+
+    [Inject] private void Construct(BoxController boxController) => this.boxController = boxController;
+
+    private void OnCollisionEnter(Collision other)
     {
-        this.boxController = boxController;
-        this.physicsManipulator = physicsManipulator;
-    }
-    
-    private void Start() => rb = GetComponent<Rigidbody>();
+        if (!transform.parent || transform.parent.name != "Player")
+            return;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("FriendlyBox"))
-        {
-            other.tag = "Untagged";
-            boxController.AddBox(other.gameObject);
-        }
-
-        if (other.CompareTag("LetBox"))
-        {
-            transform.SetParent(null); 
-            physicsManipulator.EnablePhysics();
-        }
-
-        if (other.CompareTag("Untagged"))
-        {
-            rb.useGravity = false;
-            rb.velocity = new Vector3(0,0,0);
-            //rb.isKinematic = true;
-            //rb.isKinematic = false;
+        if (other.collider.CompareTag("Untagged"))
+            return;
             
+        if (other.collider.CompareTag("FriendlyBox"))
+        {
+            other.collider.tag = "Untagged";
+            boxController.AddBox(other.gameObject);
+            boxController.DisablePhysics();
         }
 
-        if (other.CompareTag("Ground"))
+        if (other.collider.CompareTag("LetBox"))
         {
-            rb.useGravity = false;
-            rb.velocity = new Vector3(0,0,0);
-            //rb.isKinematic = true;
-            //rb.isKinematic = false;
+            boxController.RemoveBox(gameObject);
+            boxController.EnablePhysics(true);
+        }
+
+        if (other.collider.CompareTag("Ground"))
+        {
+            boxController.UpdateTrailPosition();
         }
     }
 }
