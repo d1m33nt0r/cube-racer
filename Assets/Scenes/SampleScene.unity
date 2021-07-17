@@ -4056,9 +4056,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0dc646ecbfb6ec48a69003ba8533e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 809588676}
-  trail: {fileID: 1738283660}
   road: {fileID: 520452473}
+  trail: {fileID: 1738283660}
 --- !u!114 &564567667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4083,7 +4082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cab2d2066d74f419bc1490b3674cffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2.5
+  _speed: 2
   _swipeController: {fileID: 564567667}
 --- !u!1 &629825512
 GameObject:
