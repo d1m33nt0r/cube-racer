@@ -25,15 +25,51 @@ public class FaceDisplace : MonoBehaviour
         List<Vector3> faceVertices;
 
         if (sideSubdivision == Side.Up)
+        {
             faceVertices = GetUpFaceVertices(min, max);
-        else
+            
+            var zSize = Mathf.Abs(faceVertices[0].z - faceVertices[1].z);
+            var xSize = Mathf.Abs(faceVertices[3].x - faceVertices[0].x);
+        
+            CalculateSubdividedPositions(xSize, zSize, faceVertices);
+            CreateCustomSnapConnectors();
+        }
+        else if (sideSubdivision == Side.Down)
+        {
             faceVertices = GetDownFaceVertices(min, max);
+            
+            var zSize = Mathf.Abs(faceVertices[0].z - faceVertices[1].z);
+            var xSize = Mathf.Abs(faceVertices[3].x - faceVertices[0].x);
         
-        var zSize = Mathf.Abs(faceVertices[0].z - faceVertices[1].z);
-        var xSize = Mathf.Abs(faceVertices[3].x - faceVertices[0].x);
-        
-        CalculateSubdividedPositions(xSize, zSize, faceVertices);
-        CreateCustomSnapConnectors();
+            CalculateSubdividedPositions(xSize, zSize, faceVertices);
+            CreateCustomSnapConnectors();
+        }
+        else
+        {
+            for (var i = 0; i < 2; i++)
+            {
+                if (i == 0)
+                {
+                    faceVertices = GetUpFaceVertices(min, max);
+                
+                    var zzSize = Mathf.Abs(faceVertices[0].z - faceVertices[1].z);
+                    var xxSize = Mathf.Abs(faceVertices[3].x - faceVertices[0].x);
+                
+                    CalculateSubdividedPositions(xxSize, zzSize, faceVertices);
+                    CreateCustomSnapConnectors(); 
+                }
+                else
+                {
+                    faceVertices = GetDownFaceVertices(min, max);
+                
+                    var zzSize = Mathf.Abs(faceVertices[0].z - faceVertices[1].z);
+                    var xxSize = Mathf.Abs(faceVertices[3].x - faceVertices[0].x);
+                
+                    CalculateSubdividedPositions(xxSize, zzSize, faceVertices);
+                    CreateCustomSnapConnectors(); 
+                }
+            }
+        }
     }
 
     private void CreateCustomSnapConnectors()
@@ -155,6 +191,7 @@ public class FaceDisplace : MonoBehaviour
     private enum Side
     {
         Up,
-        Down
+        Down,
+        UpAndDown
     }
 }

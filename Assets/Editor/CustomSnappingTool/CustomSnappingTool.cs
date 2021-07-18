@@ -78,7 +78,7 @@ public class CustomSnappingTool : EditorTool
             }
         }
 
-        if (closesDistance < 0.1f)
+        if (closesDistance < 0.5f)
         {
             targetTransform.position = bestPosition;
         }
