@@ -12,11 +12,6 @@ public class CustomSnappingTool : EditorTool
     private Transform oldTarget;
     private CustomSnapConnector[] allPoints;
     private CustomSnapConnector[] targetPoints;
-    
-    private void OnEnable()
-    {
-        
-    }
 
     public override GUIContent toolbarIcon
     {
@@ -83,7 +78,7 @@ public class CustomSnappingTool : EditorTool
             }
         }
 
-        if (closesDistance < 0.5f)
+        if (closesDistance < 0.1f)
         {
             targetTransform.position = bestPosition;
         }
