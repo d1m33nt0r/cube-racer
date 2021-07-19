@@ -2058,6 +2058,8 @@ GameObject:
   - component: {fileID: 240323739}
   - component: {fileID: 240323738}
   - component: {fileID: 240323736}
+  - component: {fileID: 240323737}
+  - component: {fileID: 240323741}
   m_Layer: 7
   m_Name: DIamond (7)
   m_TagString: Untagged
@@ -2080,6 +2082,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &240323737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240323735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &240323738
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2136,13 +2151,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240323735}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.451, y: -0.82, z: 4.6800003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 20.396305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &240323741
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240323735}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &244954521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,6 +3411,8 @@ GameObject:
   - component: {fileID: 470390827}
   - component: {fileID: 470390826}
   - component: {fileID: 470390824}
+  - component: {fileID: 470390825}
+  - component: {fileID: 470390829}
   m_Layer: 7
   m_Name: DIamond (9)
   m_TagString: Untagged
@@ -3405,6 +3435,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &470390825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470390823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &470390826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3461,13 +3504,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470390823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.451, y: -0.82, z: 5.665}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 21.381306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &470390829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470390823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &481205468
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,6 +4736,8 @@ GameObject:
   - component: {fileID: 628601746}
   - component: {fileID: 628601745}
   - component: {fileID: 628601743}
+  - component: {fileID: 628601744}
+  - component: {fileID: 628601748}
   m_Layer: 7
   m_Name: DIamond (8)
   m_TagString: Untagged
@@ -4702,6 +4760,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &628601744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628601742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &628601745
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4758,13 +4829,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628601742}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.167, y: -0.82, z: 5.158}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.350702, y: -1.2942722, z: 20.874306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &628601748
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628601742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &629825512
 GameObject:
   m_ObjectHideFlags: 0
@@ -5986,6 +6070,8 @@ GameObject:
   - component: {fileID: 887051639}
   - component: {fileID: 887051638}
   - component: {fileID: 887051636}
+  - component: {fileID: 887051637}
+  - component: {fileID: 887051641}
   m_Layer: 7
   m_Name: DIamond (2)
   m_TagString: Untagged
@@ -6008,6 +6094,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &887051637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887051635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &887051638
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6064,13 +6163,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887051635}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.451, y: -0.82, z: 1.228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 16.944305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &887051641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887051635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &890241235
 GameObject:
   m_ObjectHideFlags: 0
@@ -9746,6 +9858,8 @@ GameObject:
   - component: {fileID: 1721997628}
   - component: {fileID: 1721997627}
   - component: {fileID: 1721997625}
+  - component: {fileID: 1721997626}
+  - component: {fileID: 1721997630}
   m_Layer: 7
   m_Name: DIamond (4)
   m_TagString: Untagged
@@ -9768,6 +9882,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &1721997626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721997624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &1721997627
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9824,13 +9951,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721997624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.451, y: -0.82, z: 2.85}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 18.566305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1721997630
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721997624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1723110400
 GameObject:
   m_ObjectHideFlags: 0
@@ -10511,6 +10651,8 @@ GameObject:
   - component: {fileID: 1744765193}
   - component: {fileID: 1744765192}
   - component: {fileID: 1744765190}
+  - component: {fileID: 1744765191}
+  - component: {fileID: 1744765195}
   m_Layer: 7
   m_Name: DIamond (5)
   m_TagString: Untagged
@@ -10533,6 +10675,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &1744765191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744765189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &1744765192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10589,13 +10744,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744765189}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.291, y: -0.82, z: 3.93}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.226702, y: -1.2942722, z: 19.646305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1744765195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744765189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1771027257
 GameObject:
   m_ObjectHideFlags: 0
@@ -10832,6 +11000,156 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1809121194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809121197}
+  - component: {fileID: 1809121196}
+  - component: {fileID: 1809121195}
+  m_Layer: 0
+  m_Name: DiamondsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1809121195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809121194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9999359858994727b28f082f304545ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1809121196
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809121194}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d5d3ed029d05ab144b09683a54967fa7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1809121197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809121194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.517702, y: 0.4742722, z: -15.716306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 543450652983343398}
+  - {fileID: 1836847539}
+  - {fileID: 887051640}
+  - {fileID: 2096139599}
+  - {fileID: 1721997629}
+  - {fileID: 1744765194}
+  - {fileID: 1961758851}
+  - {fileID: 240323740}
+  - {fileID: 628601747}
+  - {fileID: 470390828}
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813414782
 GameObject:
@@ -11226,6 +11544,8 @@ GameObject:
   - component: {fileID: 1836847538}
   - component: {fileID: 1836847537}
   - component: {fileID: 1836847535}
+  - component: {fileID: 1836847536}
+  - component: {fileID: 1836847540}
   m_Layer: 7
   m_Name: DIamond (1)
   m_TagString: Untagged
@@ -11248,6 +11568,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &1836847536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836847534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &1836847537
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11304,13 +11637,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836847534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.451, y: -0.82, z: -0.329}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 15.387306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1836847540
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836847534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1838599004
 GameObject:
   m_ObjectHideFlags: 0
@@ -11761,6 +12107,8 @@ GameObject:
   - component: {fileID: 1961758850}
   - component: {fileID: 1961758849}
   - component: {fileID: 1961758847}
+  - component: {fileID: 1961758848}
+  - component: {fileID: 1961758852}
   m_Layer: 7
   m_Name: DIamond (6)
   m_TagString: Untagged
@@ -11783,6 +12131,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &1961758848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961758846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &1961758849
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11839,13 +12200,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961758846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.749, y: -0.82, z: 4.4300003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.7687025, y: -1.2942722, z: 20.146305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1961758852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961758846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1962647027
 GameObject:
   m_ObjectHideFlags: 0
@@ -13000,6 +13374,8 @@ GameObject:
   - component: {fileID: 2096139598}
   - component: {fileID: 2096139597}
   - component: {fileID: 2096139595}
+  - component: {fileID: 2096139596}
+  - component: {fileID: 2096139600}
   m_Layer: 7
   m_Name: DIamond (3)
   m_TagString: Untagged
@@ -13022,6 +13398,19 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &2096139596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096139594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
 --- !u!23 &2096139597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13078,13 +13467,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096139594}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.651, y: -0.82, z: 3.421}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.866702, y: -1.2942722, z: 19.137306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2096139600
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096139594}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2099833199
 GameObject:
   m_ObjectHideFlags: 0
@@ -13634,12 +14036,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148797465500}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.451, y: -0.82, z: -1.34}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 14.376306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_Father: {fileID: 1809121197}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450653521367233
 Transform:
@@ -13771,6 +14173,8 @@ GameObject:
   - component: {fileID: 3469287836833396355}
   - component: {fileID: 1711813856262177353}
   - component: {fileID: 919132148797465501}
+  - component: {fileID: 919132148797465502}
+  - component: {fileID: 919132148797465503}
   m_Layer: 7
   m_Name: DIamond
   m_TagString: Untagged
@@ -13793,6 +14197,32 @@ MonoBehaviour:
   moveSpeed: 1.5
   distance: 0.1
   angle: 1.5
+--- !u!114 &919132148797465502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148797465500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
+--- !u!65 &919132148797465503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148797465500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &919132148913784062
 GameObject:
   m_ObjectHideFlags: 0
