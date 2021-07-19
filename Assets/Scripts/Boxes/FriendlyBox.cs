@@ -4,8 +4,14 @@ using Zenject;
 public class FriendlyBox : MonoBehaviour
 {
     private BoxController boxController;
-
-    [Inject] private void Construct(BoxController boxController) => this.boxController = boxController;
+    private BoxAudioController boxAudioController;
+    
+    [Inject] 
+    private void Construct(BoxController boxController, BoxAudioController boxAudioController)
+    { 
+        this.boxController = boxController;
+        this.boxAudioController = boxAudioController;
+    } 
 
     private void OnCollisionEnter(Collision other)
     {
@@ -20,12 +26,14 @@ public class FriendlyBox : MonoBehaviour
             other.collider.tag = "Untagged";
             boxController.AddBox(other.gameObject);
             boxController.DisablePhysics();
+            boxAudioController.PlayCollectSound();
         }
 
-        if (other.collider.CompareTag("LetBox"))
+        if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
         {
             boxController.RemoveBox(gameObject);
             boxController.EnablePhysics(true);
+            boxAudioController.PlayFailSound();
         }
 
         if (other.collider.CompareTag("Ground"))
