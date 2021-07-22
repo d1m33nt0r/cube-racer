@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class BoxController : MonoBehaviour
 {
+    public event Action BoxCountChanged;
+    
     //TODO refactor me
     [SerializeField] private GameObject road;
     [SerializeField] private Transform trail;
@@ -15,7 +18,7 @@ public class BoxController : MonoBehaviour
     private StartingRoad startingRoad;
     private Transform currentRoad;
 
-    
+    public int boxCount => transform.childCount - 1;
     public float heightBox => Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
     
     [Inject] private void Construct(StartingRoad startingRoad) => this.startingRoad = startingRoad;
@@ -37,12 +40,14 @@ public class BoxController : MonoBehaviour
         boxes.Add(box.GetComponent<FriendlyBox>());
         box.transform.SetParent(transform);
         CalculateBoxPositions();
+        BoxCountChanged?.Invoke();
     }
 
     public void RemoveBox(GameObject box)
     {
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
+        BoxCountChanged?.Invoke();
     }
 
     public void UpdateTrailPosition()

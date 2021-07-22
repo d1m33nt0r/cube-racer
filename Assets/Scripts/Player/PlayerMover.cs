@@ -14,8 +14,6 @@ namespace DefaultNamespace
         private float prevDeltaRight, prevDeltaLeft = 0;
         private float minMoveLimiter, maxMoveLimiter;
         
-
-
         private void Start()
         {
             _swipeController.SwipeEvent += Action;
