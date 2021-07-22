@@ -1,27 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class DiamondMover : MonoBehaviour
 {
-    [SerializeField] private GameObject diamondImagePrefab;
+    [SerializeField] private GameObject diamondIconPrefab;
     [SerializeField] private RectTransform parent;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private RectTransform diamondIcon;
+    [SerializeField] private RectTransform target;
     
-    private RectTransform target;
-    
-    public float speed = 1.0F;
-
-    private float startTime;
-    private float journeyLength;
+    private RectTransform diamondIconRectTransform;
     
     public void CreateDiamond(Vector2 screenPoint)
     {
-        target = Instantiate(diamondImagePrefab, parent).GetComponent<RectTransform>();
+        diamondIconRectTransform = Instantiate(diamondIconPrefab, parent).GetComponent<RectTransform>();
         SetStartPosition(screenPoint);
-    }
+        
+        var diamondIconController = diamondIconRectTransform.GetComponent<DiamondIconController>();
 
+        diamondIconRectTransform.DOAnchorMax(target.anchorMax, 0.8f);
+        diamondIconRectTransform.DOAnchorMin(target.anchorMin, 0.8f);
+        
+        diamondIconRectTransform
+            .DOAnchorPos(target.anchoredPosition, 0.8f)
+            .OnComplete(diamondIconController.SetMovingDone);
+    }
+    
     private void SetStartPosition(Vector2 screenPoint)
     {
         Vector2 anchoredPosition;
@@ -29,29 +32,6 @@ public class DiamondMover : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, screenPoint, mainCamera,
             out anchoredPosition);
         
-        target.anchoredPosition = anchoredPosition;
-
-        StartCoroutine(Moving());
-    }
-
-    private IEnumerator Moving()
-    {
-        var targetPosition = target.anchoredPosition;
-        
-        while (true)
-        {
-            var distCovered = (Time.time - startTime) * speed;
-            
-            var fractionOfJourney = distCovered / journeyLength;
-            
-            Vector2 anchoredPosition;
-        
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, Vector2.Lerp(targetPosition, 
-                    diamondIcon.anchoredPosition, fractionOfJourney), mainCamera,out anchoredPosition);
-        
-            target.anchoredPosition = anchoredPosition;
-
-            yield return null;
-        }
+        diamondIconRectTransform.anchoredPosition = anchoredPosition;
     }
 }
