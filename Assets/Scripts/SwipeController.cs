@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using Zenject;
 
 public class SwipeController : MonoBehaviour
 {
     private bool isDragging, isMobilePlatform;
     private Vector2 tapPoint, swipeDelta;
     private Vector2 curMousePosition, prevMousePosition = Vector2.zero;
-
+    private GameController gameController;
+    private bool enabledSwipeController;
+    
     public delegate void OnSwipeInput(SwipeType type, float delta);
     public event OnSwipeInput SwipeEvent;
 
@@ -15,6 +18,18 @@ public class SwipeController : MonoBehaviour
         RIGHT
     }
 
+    [Inject]
+    private void Construct(GameController gameController)
+    {
+        this.gameController = gameController;
+        gameController.StartedGame += EnableSwipeController;
+    }
+
+    private void EnableSwipeController()
+    {
+        enabledSwipeController = true;;
+    }
+    
     private void Awake() 
     {
         #if UNITY_EDITOR || UNITY_STANDALONE
@@ -26,6 +41,9 @@ public class SwipeController : MonoBehaviour
 
     private void Update()
     {
+        if(!enabledSwipeController)
+            return;
+
         if(!isMobilePlatform)
         {
             if(Input.GetMouseButtonDown(0))
@@ -56,7 +74,11 @@ public class SwipeController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate() 
+    {
+        if(!enabledSwipeController)
+            return;
+        
         CalculateSwipe();
     }
 

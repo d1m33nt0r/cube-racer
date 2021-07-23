@@ -1,26 +1,42 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 namespace DefaultNamespace
 {
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private float _speed;
- 
         [SerializeField] private SwipeController _swipeController;
 
+        private bool movingEnabled;
+        
         private const float moveLimiter = 0.4f;
         
         private float prevDeltaRight, prevDeltaLeft = 0;
         private float minMoveLimiter, maxMoveLimiter;
+
+        private GameController gameController;
+
+        [Inject]
+        private void Construct(GameController gameController)
+        {
+            this.gameController = gameController;
+        }
         
         private void Start()
         {
+            gameController.StartedGame += EnableMoving;
             _swipeController.SwipeEvent += Action;
             minMoveLimiter = transform.position.x - moveLimiter;
             maxMoveLimiter = transform.position.x + moveLimiter;
         }
 
+        private void EnableMoving()
+        {
+            movingEnabled = true;
+        }
+        
         public void Rotate(float angle)
         {
             transform.rotation = Quaternion.AngleAxis(angle - transform.rotation.eulerAngles.y, Vector3.up);
@@ -51,7 +67,9 @@ namespace DefaultNamespace
         private void Update()
         {
             Debug.DrawRay(transform.position, Vector3.forward, Color.yellow);
-            transform.parent.Translate(Vector3.forward * Time.deltaTime * _speed);
+            
+            if(movingEnabled)
+                transform.parent.Translate(Vector3.forward * Time.deltaTime * _speed);
             //_meshScaner.Move(transform.position);
         }
     }

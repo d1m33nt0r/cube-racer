@@ -23,7 +23,6 @@ public class FriendlyBox : MonoBehaviour
             
         if (other.collider.CompareTag("FriendlyBox"))
         {
-            other.collider.tag = "Untagged";
             boxController.AddBox(other.gameObject);
             boxController.DisablePhysics();
             boxAudioController.PlayCollectSound();

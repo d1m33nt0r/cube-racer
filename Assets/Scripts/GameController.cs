@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class GameController : MonoBehaviour
 {
@@ -10,15 +11,19 @@ public class GameController : MonoBehaviour
     public event Action PausedGame;
     public event Action ContinuedGame;
 
-    private void Start()
+    private HandController handController;
+    
+    [Inject]
+    private void Construct(HandController handController)
     {
-        StartGame();
+        this.handController = handController;
+        handController.Touched += StartGame;
     }
 
     public IEnumerator ExecuteForWait(float n)
     {
         yield return new WaitForSeconds(n);
-        FinishGame();
+        StartGame();
     }
 
     private void StartGame()
@@ -26,7 +31,7 @@ public class GameController : MonoBehaviour
         Debug.Log("Game Started");
         StartedGame?.Invoke();
     }
-    
+
     private void FinishGame()
     {
         Debug.Log("Game Finished");

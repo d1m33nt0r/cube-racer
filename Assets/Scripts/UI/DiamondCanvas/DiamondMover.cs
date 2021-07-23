@@ -17,11 +17,11 @@ public class DiamondMover : MonoBehaviour
         
         var diamondIconController = diamondIconRectTransform.GetComponent<DiamondIconController>();
 
-        diamondIconRectTransform.DOAnchorMax(target.anchorMax, 0.8f);
-        diamondIconRectTransform.DOAnchorMin(target.anchorMin, 0.8f);
+        diamondIconRectTransform.DOAnchorMax(target.anchorMax, 0.5f);
+        diamondIconRectTransform.DOAnchorMin(target.anchorMin, 0.5f);
         
         diamondIconRectTransform
-            .DOAnchorPos(target.anchoredPosition, 0.8f)
+            .DOAnchorPos(target.anchoredPosition, 0.5f)
             .OnComplete(diamondIconController.SetMovingDone);
     }
     

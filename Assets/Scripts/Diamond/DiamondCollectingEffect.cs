@@ -14,7 +14,7 @@ public class DiamondCollectingEffect : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Untagged"))
+        if (other.collider.CompareTag("DiamondCollector"))
         {
             audioSource.Play();
             diamondMover.CreateDiamond(camera.WorldToScreenPoint(transform.position));

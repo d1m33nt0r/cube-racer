@@ -19,7 +19,7 @@ public class BoxController : MonoBehaviour
     private Transform currentRoad;
 
     public int boxCount => transform.childCount - 1;
-    public float heightBox => Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
+    private float heightBox => Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
     
     [Inject] private void Construct(StartingRoad startingRoad) => this.startingRoad = startingRoad;
     
@@ -48,6 +48,7 @@ public class BoxController : MonoBehaviour
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
         BoxCountChanged?.Invoke();
+        UpdateBoxesTag();
     }
 
     public void UpdateTrailPosition()
@@ -75,19 +76,43 @@ public class BoxController : MonoBehaviour
         }
     }
 
-    public void CalculateBoxPositions()
+    private void UpdateBoxesTag()
     {
         for (var i = transform.childCount - 1; i >= 0; i--)
         {
             if (i == transform.childCount - 1)
             {
-                transform.GetChild(transform.childCount - 1).position = new Vector3(transform.position.x,
-                    road.transform.position.y + offsetYForGround + heightBox / 2, transform.position.z);
+                var box = transform.GetChild(transform.childCount - 1);
+                box.tag = "DiamondCollector";
             }
             else
             {
-                transform.GetChild(i).position = new Vector3(transform.position.x,
+                var box = transform.GetChild(i);
+                box.tag = "Untagged";
+            }
+        }
+    }
+    
+    private void CalculateBoxPositions()
+    {
+        for (var i = transform.childCount - 1; i >= 0; i--)
+        {
+            if (i == transform.childCount - 1)
+            {
+                var box = transform.GetChild(transform.childCount - 1);
+                box.position = new Vector3(transform.position.x,
+                    road.transform.position.y + offsetYForGround + heightBox / 2, transform.position.z);
+
+                box.tag = "DiamondCollector";
+
+            }
+            else
+            {
+                var box = transform.GetChild(i);
+                box.position = new Vector3(transform.position.x,
                     transform.GetChild(i + 1).position.y + heightBox, transform.position.z);
+
+                box.tag = "Untagged";
                 
                 UpdateTrailPosition();
             }
