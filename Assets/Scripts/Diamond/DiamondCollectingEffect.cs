@@ -12,9 +12,9 @@ public class DiamondCollectingEffect : MonoBehaviour
         this.audioSource = audioSource;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.collider.CompareTag("DiamondCollector"))
+        if (other.CompareTag("DiamondCollector"))
         {
             audioSource.Play();
             diamondMover.CreateDiamond(camera.WorldToScreenPoint(transform.position));

@@ -40,15 +40,16 @@ public class BoxController : MonoBehaviour
         boxes.Add(box.GetComponent<FriendlyBox>());
         box.transform.SetParent(transform);
         CalculateBoxPositions();
-        BoxCountChanged?.Invoke();
+        BoxCountChanged?.Invoke(); // for camera field view
     }
 
     public void RemoveBox(GameObject box)
     {
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
-        BoxCountChanged?.Invoke();
+        BoxCountChanged?.Invoke(); // for camera field view
         UpdateBoxesTag();
+        
     }
 
     public void UpdateTrailPosition()

@@ -5,47 +5,49 @@ namespace UI
 {
     public class UIController : MonoBehaviour
     {
-        [SerializeField] private GameObject GameOverUI;
-        [SerializeField] private GameObject HandUI;
-        [SerializeField] private GameObject DiamondUI;
-
-        private GameController gameController;
+        [SerializeField] private GameObject gameplayUI;
+        [SerializeField] private GameObject mainMenuUI;
+        [SerializeField] private GameObject gameOverUI;
         
         [Inject]
         private void Construct(GameController gameController)
         {
-            this.gameController = gameController;
-           
+            gameController.StartedGame += ShowGameplayUI;
+            gameController.StartedGame += HideMainMenu;
+            gameController.StartedGame += HideGameOverUI;
+            
+            gameController.FailedGame += ShowGameOverUI;
+            
         }
-        
+
         private void ShowGameOverUI()
         {
-            GameOverUI.SetActive(true);
+            gameOverUI.SetActive(true);
         }
 
         private void HideGameOverUI()
         {
-            GameOverUI.SetActive(false);
+            gameOverUI.SetActive(false);
         }
         
-        private void ShowHandUI()
+        private void ShowGameplayUI()
         {
-            HandUI.SetActive(true);
+            gameplayUI.SetActive(true);
         }
 
-        private void HideHandUI()
+        private void HideGameplayUI()
         {
-            HandUI.SetActive(false);
+            gameplayUI.SetActive(false);
         }
         
-        private void ShowDiamondUI()
+        private void ShowMainMenu()
         {
-            DiamondUI.SetActive(true);
+            mainMenuUI.SetActive(true);
         }
 
-        private void HideDiamondUI()
+        private void HideMainMenu()
         {
-            DiamondUI.SetActive(false);
+            mainMenuUI.SetActive(false);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 using Zenject;
 
 public class SwipeController : MonoBehaviour
@@ -6,7 +7,7 @@ public class SwipeController : MonoBehaviour
     private bool isDragging, isMobilePlatform;
     private Vector2 tapPoint, swipeDelta;
     private Vector2 curMousePosition, prevMousePosition = Vector2.zero;
-    private GameController gameController;
+    private GameplayStarter gameplayStarter;
     private bool enabledSwipeController;
     
     public delegate void OnSwipeInput(SwipeType type, float delta);
@@ -19,10 +20,10 @@ public class SwipeController : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(GameController gameController)
+    private void Construct(GameplayStarter gameplayStarter)
     {
-        this.gameController = gameController;
-        gameController.StartedGame += EnableSwipeController;
+        this.gameplayStarter = gameplayStarter;
+        gameplayStarter.ActivateSwipeControll += EnableSwipeController;
     }
 
     private void EnableSwipeController()

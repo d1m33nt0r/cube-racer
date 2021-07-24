@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private BoxAudioController boxAudioController;
     [SerializeField] private GameController gameController;
     [SerializeField] private HandController handController;
+    [SerializeField] private GameplayStarter gameplayStarter;
     
     public override void InstallBindings()
     {
@@ -16,8 +18,17 @@ public class GameplayInstaller : MonoInstaller
         BindBoxAudioController();
         BindGameController();
         BindHandController();
+        BindGameplayStarter();
     }
 
+    private void BindGameplayStarter()
+    {
+        Container
+            .Bind<GameplayStarter>()
+            .FromInstance(gameplayStarter)
+            .AsSingle();
+    }
+    
     private void BindHandController()
     {
         Container

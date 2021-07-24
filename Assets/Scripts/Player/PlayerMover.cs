@@ -27,6 +27,7 @@ namespace DefaultNamespace
         private void Start()
         {
             gameController.StartedGame += EnableMoving;
+            gameController.FailedGame += DisableMoving;
             _swipeController.SwipeEvent += Action;
             minMoveLimiter = transform.position.x - moveLimiter;
             maxMoveLimiter = transform.position.x + moveLimiter;
@@ -35,6 +36,11 @@ namespace DefaultNamespace
         private void EnableMoving()
         {
             movingEnabled = true;
+        }
+        
+        private void DisableMoving()
+        {
+            movingEnabled = false;
         }
         
         public void Rotate(float angle)
