@@ -36,6 +36,13 @@ public class FriendlyBox : MonoBehaviour
             boxAudioController.PlayFailSound();
         }
 
+        if (other.collider.CompareTag("LevelFinish") && transform.CompareTag("DiamondCollector"))
+        {
+            other.collider.tag = "Ground";
+            boxController.RemoveBox(gameObject);
+            boxAudioController.PlayFailSound();
+        }
+        
         if (other.collider.CompareTag("Ground"))
         {
             boxController.UpdateTrailPosition();

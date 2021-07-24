@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Services.ProgressController;
+using Services.ProgressController.Interfaces;
+using UnityEngine;
 using Zenject;
 
 namespace Installers
@@ -7,11 +9,24 @@ namespace Installers
     {
         [SerializeField] private GameObject fpsCounter;
 
+        private DiamondCountManager diamondCountManager;
+        private GameObject debug;
+        
         public override void InstallBindings()
         {
-            var debug = CreateDebugParent();
-
+            debug = CreateDebugParent();
+            diamondCountManager = new DiamondCountManager();
+            
+            BindDiamondCountManager();
             InitializeFpsCounter(debug);
+        }
+
+        private void BindDiamondCountManager()
+        {
+            Container
+                .Bind<DiamondCountManager>()
+                .FromInstance(diamondCountManager)
+                .AsSingle();
         }
 
         private static GameObject CreateDebugParent()

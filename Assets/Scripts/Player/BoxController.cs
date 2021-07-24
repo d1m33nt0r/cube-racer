@@ -10,7 +10,7 @@ public class BoxController : MonoBehaviour
     //TODO refactor me
     [SerializeField] private GameObject road;
     [SerializeField] private Transform trail;
-    
+    public float height;
     private List<FriendlyBox> boxes;
     private Bounds BoxBounds => transform.GetChild(1).GetComponent<MeshRenderer>().bounds;
     private Bounds GroundBounds => road.GetComponent<MeshRenderer>().bounds;
@@ -26,6 +26,7 @@ public class BoxController : MonoBehaviour
 
     private void Awake()
     {
+        height = heightBox;
         boxes = new List<FriendlyBox>();
 
         for (var i = 0; i < transform.childCount; i++)
@@ -49,7 +50,6 @@ public class BoxController : MonoBehaviour
         boxes.Remove(box.GetComponent<FriendlyBox>());
         BoxCountChanged?.Invoke(); // for camera field view
         UpdateBoxesTag();
-        
     }
 
     public void UpdateTrailPosition()

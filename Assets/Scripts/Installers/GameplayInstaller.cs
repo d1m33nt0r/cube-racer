@@ -1,4 +1,5 @@
 using UI;
+using UI.GlobalUI.DiamondCounter;
 using UnityEngine;
 using Zenject;
 
@@ -10,7 +11,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private GameController gameController;
     [SerializeField] private HandController handController;
     [SerializeField] private GameplayStarter gameplayStarter;
-    
+    [SerializeField] private DiamondCounter diamondCounter;
     public override void InstallBindings()
     {
         BindBoxController();
@@ -19,6 +20,15 @@ public class GameplayInstaller : MonoInstaller
         BindGameController();
         BindHandController();
         BindGameplayStarter();
+        BindDiamondCounter();
+    }
+
+    private void BindDiamondCounter()
+    {
+        Container
+            .Bind<DiamondCounter>()
+            .FromInstance(diamondCounter)
+            .AsSingle();
     }
 
     private void BindGameplayStarter()

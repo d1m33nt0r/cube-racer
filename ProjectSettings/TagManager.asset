@@ -8,6 +8,7 @@ TagManager:
   - LetBox
   - Ground
   - DiamondCollector
+  - LevelFinish
   layers:
   - Default
   - TransparentFX
