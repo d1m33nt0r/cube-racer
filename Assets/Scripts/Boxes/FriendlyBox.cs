@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +7,7 @@ public class FriendlyBox : MonoBehaviour
     private BoxAudioController boxAudioController;
     
     [Inject] 
-    private void Construct(BoxController boxController, BoxAudioController boxAudioController)
+    public void Construct(BoxController boxController, BoxAudioController boxAudioController)
     { 
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;

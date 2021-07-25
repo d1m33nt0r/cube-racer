@@ -1,12 +1,13 @@
 ﻿using System;
 using Services.DiamondCountManager;
+using Services.ProgressController.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace UI.GlobalUI.DiamondCounter
 {
-    public class DiamondCounter : MonoBehaviour
+    public class DiamondCounter : MonoBehaviour, IDataUpdatable
     {
         [SerializeField] private Text text;
 
@@ -17,6 +18,7 @@ namespace UI.GlobalUI.DiamondCounter
         private void Construct(DiamondCountManager diamondCountManager)
         {
             this.diamondCountManager = diamondCountManager;
+            diamondCountManager.AddListener(this);
             text.text = this.diamondCountManager.GetData().ToString();
         }
 
@@ -27,6 +29,8 @@ namespace UI.GlobalUI.DiamondCounter
             text.text = Convert.ToString(count);
         }
 
+        
+        
         public void MinusDiamonds(int count)
         {
             var newCount = diamondCount - count;
@@ -37,6 +41,11 @@ namespace UI.GlobalUI.DiamondCounter
         public void WriteData()
         {
             diamondCountManager.WriteData();
+        }
+
+        public void UpdateData()
+        {
+            text.text = Convert.ToString(diamondCountManager.GetData());
         }
     }
 }

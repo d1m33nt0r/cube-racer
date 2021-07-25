@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Services.StartBoxCountManager;
 using UnityEngine;
 using Zenject;
 
@@ -8,13 +9,16 @@ public class BoxController : MonoBehaviour
     public delegate void BoxChanged(bool finish);
     public event Action AddedBox;
     public event BoxChanged RemovedBox;
+
+    private int startCountBoxes;
     
     //TODO refactor me
+    [SerializeField] private GameObject friendlyBox;
     [SerializeField] private GameObject road;
     [SerializeField] private Transform trail;
     public float height;
     private List<FriendlyBox> boxes;
-    private Bounds BoxBounds => transform.GetChild(1).GetComponent<MeshRenderer>().bounds;
+    private Bounds BoxBounds => friendlyBox.GetComponent<MeshRenderer>().bounds;
     private Bounds GroundBounds => road.GetComponent<MeshRenderer>().bounds;
     private float offsetYForGround => Mathf.Abs(GroundBounds.max.y - GroundBounds.center.y);
     
@@ -24,16 +28,28 @@ public class BoxController : MonoBehaviour
     public int boxCount => transform.childCount - 1;
     private float heightBox => Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
 
+    private BoxAudioController boxAudioController;
+    private StartBoxCountManager startBoxCountManager;
     [Inject]
-    private void Construct(StartingRoad startingRoad)
+    private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, StartBoxCountManager startBoxCountManager)
     {
         this.startingRoad = startingRoad;
+        this.boxAudioController = boxAudioController;
+        this.startBoxCountManager = startBoxCountManager;
     }
 
     private void Awake()
     {
         height = heightBox;
         boxes = new List<FriendlyBox>();
+        startCountBoxes = startBoxCountManager.GetData();
+        
+        for (var i = 0; i < startCountBoxes; i++)
+        {
+            var instance = Instantiate(friendlyBox);
+            instance.transform.SetParent(transform);
+            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController);
+        }
 
         for (var i = 0; i < transform.childCount; i++)
             AddBox(transform.GetChild(i).gameObject);
@@ -42,6 +58,14 @@ public class BoxController : MonoBehaviour
             transform.position.y, startingRoad.GetStartPosition().z);
     }
 
+    public void InstantiateNewBox()
+    {
+        var instance = Instantiate(friendlyBox);
+        instance.transform.SetParent(transform);
+        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController);
+        AddBox(instance);
+    }
+    
     public void AddBox(GameObject box)
     {
         boxes.Add(box.GetComponent<FriendlyBox>());

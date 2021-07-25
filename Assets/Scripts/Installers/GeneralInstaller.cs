@@ -1,5 +1,6 @@
 ﻿using Services.DiamondCountManager;
 using Services.LevelProgressManager;
+using Services.StartBoxCountManager;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +15,8 @@ namespace Installers
         private DiamondCountManager diamondCountManager;
         private LevelProgressManager levelProgressManager;
         private SceneLoader sceneLoader;
-
+        private StartBoxCountManager startBoxCountManager;
+        
         private GameObject debugParent;
         private GameObject servicesParent;
 
@@ -26,14 +28,23 @@ namespace Installers
             diamondCountManager = new DiamondCountManager();
             levelProgressManager = new LevelProgressManager();
             sceneLoader = new SceneLoader(levelProgressManager);
-
+            startBoxCountManager = new StartBoxCountManager();
+            
             BindDiamondCountManager();
             BindLevelProgressManager();
             BindSceneLoader();
-
+            BindStartBoxCountManager();
             
             BindDiamondUI();
             InstantiateFpsCounter(debugParent);
+        }
+
+        private void BindStartBoxCountManager()
+        {
+            Container
+                .Bind<StartBoxCountManager>()
+                .FromInstance(startBoxCountManager)
+                .AsSingle();
         }
 
         private void BindSceneLoader()
