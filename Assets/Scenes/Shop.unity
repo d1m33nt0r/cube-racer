@@ -2184,7 +2184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295612575bb57534cb69203c492aef67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  osj: 0
+  type: 3
   speed: 0.15
 --- !u!114 &1231602446
 MonoBehaviour:
@@ -3944,7 +3944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295612575bb57534cb69203c492aef67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  osj: 1
+  type: 1
   speed: 0.75
 --- !u!4 &8751745034764726590
 Transform:

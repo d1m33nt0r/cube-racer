@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using Diamond;
 using UI;
 using UI.GlobalUI.DiamondCounter;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private HandController handController;
     [SerializeField] private GameplayStarter gameplayStarter;
     [SerializeField] private Level level;
-    
+    [SerializeField] private DiamondAudioController diamondAudioController;
     
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
@@ -35,7 +36,17 @@ public class GameplayInstaller : MonoInstaller
         BindGameplayStarter();
         BindDiamondCounter();
 
+        BindDiamondAudioController();
+        
         BindLevel();
+    }
+
+    private void BindDiamondAudioController()
+    {
+        Container
+            .Bind<DiamondAudioController>()
+            .FromInstance(diamondAudioController)
+            .AsSingle();
     }
 
     private void BindLevel()

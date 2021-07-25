@@ -2,6 +2,7 @@
 using Services.DiamondCountManager;
 using Services.LevelProgressManager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace UI
@@ -30,6 +31,7 @@ namespace UI
             levelProgressManager.WriteData();
             diamondCountManager.WriteData();
             sceneLoader.SetNextScene(level.NextLevel);
+            SceneManager.LoadScene("Loader");
         }
     }
 }

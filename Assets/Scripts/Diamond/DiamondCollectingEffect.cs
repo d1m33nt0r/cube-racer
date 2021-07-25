@@ -1,3 +1,4 @@
+using Diamond;
 using UI.GlobalUI.DiamondCounter;
 using UnityEngine;
 using Zenject;
@@ -10,24 +11,21 @@ public class DiamondCollectingEffect : MonoBehaviour
     private AudioSource audioSource;
     private DiamondCounter diamondCounter;
     private DiamondUI diamondUI;
+    private DiamondAudioController diamondsAudioController;
     
     [Inject]
-    private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI)
+    private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI, DiamondAudioController diamondsAudioController)
     {
         this.diamondCounter = diamondCounter;
         this.diamondUI = diamondUI;
-    }
-    
-    public void BindAudioSource(AudioSource audioSource)
-    {
-        this.audioSource = audioSource;
+        this.diamondsAudioController = diamondsAudioController;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("DiamondCollector"))
         {
-            audioSource.Play();
+            diamondsAudioController.Play();
             diamondCounter.AddDiamond();
             diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
