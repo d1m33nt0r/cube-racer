@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
         this.boxController = boxController;
         
         gameplayStarter.Touched += StartGame;
-        boxController.BoxCountChanged += CheckBoxCount;
+        boxController.RemovedBox += CheckBoxCount;
     }
 
     public IEnumerator ExecuteForWait(float n)
@@ -31,11 +31,16 @@ public class GameController : MonoBehaviour
         StartGame();
     }
 
-    private void CheckBoxCount()
+    private void CheckBoxCount(bool finish)
     {
-        if (boxController.boxCount == 0)
+        if (boxController.boxCount == 0 && !finish)
         {
             FailGame();
+        }
+        
+        if (boxController.boxCount == 0 && finish)
+        {
+            FinishGame();
         }
     }
 

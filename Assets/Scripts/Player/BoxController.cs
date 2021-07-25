@@ -5,7 +5,9 @@ using Zenject;
 
 public class BoxController : MonoBehaviour
 {
-    public event Action BoxCountChanged;
+    public delegate void BoxChanged(bool finish);
+    public event Action AddedBox;
+    public event BoxChanged RemovedBox;
     
     //TODO refactor me
     [SerializeField] private GameObject road;
@@ -15,14 +17,18 @@ public class BoxController : MonoBehaviour
     private Bounds BoxBounds => transform.GetChild(1).GetComponent<MeshRenderer>().bounds;
     private Bounds GroundBounds => road.GetComponent<MeshRenderer>().bounds;
     private float offsetYForGround => Mathf.Abs(GroundBounds.max.y - GroundBounds.center.y);
+    
     private StartingRoad startingRoad;
     private Transform currentRoad;
 
     public int boxCount => transform.childCount - 1;
     private float heightBox => Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
-    
-    [Inject] private void Construct(StartingRoad startingRoad) => this.startingRoad = startingRoad;
-    
+
+    [Inject]
+    private void Construct(StartingRoad startingRoad)
+    {
+        this.startingRoad = startingRoad;
+    }
 
     private void Awake()
     {
@@ -41,14 +47,14 @@ public class BoxController : MonoBehaviour
         boxes.Add(box.GetComponent<FriendlyBox>());
         box.transform.SetParent(transform);
         CalculateBoxPositions();
-        BoxCountChanged?.Invoke(); // for camera field view
+        AddedBox?.Invoke(); // for camera field view
     }
 
-    public void RemoveBox(GameObject box)
+    public void RemoveBox(GameObject box, bool finish)
     {
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
-        BoxCountChanged?.Invoke(); // for camera field view
+        RemovedBox?.Invoke(finish); // for camera field view
         UpdateBoxesTag();
     }
 

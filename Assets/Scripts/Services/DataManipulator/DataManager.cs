@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Services.ProgressController;
+using Services.DiamondCountManager;
 using Services.ProgressController.Interfaces;
 
 public class DataManager<T> where T: IDataManipulator

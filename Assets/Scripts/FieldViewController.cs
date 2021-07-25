@@ -23,7 +23,7 @@ public class FieldViewController : MonoBehaviour
     private void Construct(BoxController boxController)
     {
         this.boxController = boxController;
-        boxController.BoxCountChanged += ChangeFieldView;
+        boxController.AddedBox += ChangeFieldView;
     }
 
     private void ChangeFieldView()

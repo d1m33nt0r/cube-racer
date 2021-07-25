@@ -1,7 +1,7 @@
 ﻿using Services.ProgressController.Interfaces;
 using UnityEngine;
 
-namespace Services.ProgressController
+namespace Services.DiamondCountManager
 {
     public class DiamondCountManager : IDataManipulator
     {

@@ -5,16 +5,17 @@ using Zenject;
 public class DiamondCollectingEffect : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
-    [SerializeField] private DiamondMover diamondMover;
     [SerializeField] private Camera camera;
     
     private AudioSource audioSource;
     private DiamondCounter diamondCounter;
+    private DiamondUI diamondUI;
     
     [Inject]
-    private void Construct(DiamondCounter diamondCounter)
+    private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI)
     {
         this.diamondCounter = diamondCounter;
+        this.diamondUI = diamondUI;
     }
     
     public void BindAudioSource(AudioSource audioSource)
@@ -28,7 +29,7 @@ public class DiamondCollectingEffect : MonoBehaviour
         {
             audioSource.Play();
             diamondCounter.AddDiamond();
-            diamondMover.CreateDiamond(camera.WorldToScreenPoint(transform.position));
+            diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
             Instantiate(effect).transform.position = transform.position;
             Destroy(gameObject);

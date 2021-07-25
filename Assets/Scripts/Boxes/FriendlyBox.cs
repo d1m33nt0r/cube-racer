@@ -31,7 +31,7 @@ public class FriendlyBox : MonoBehaviour
 
         if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
         {
-            boxController.RemoveBox(gameObject);
+            boxController.RemoveBox(gameObject, false);
             boxController.EnablePhysics(true);
             boxAudioController.PlayFailSound();
         }
@@ -39,7 +39,7 @@ public class FriendlyBox : MonoBehaviour
         if (other.collider.CompareTag("LevelFinish") && transform.CompareTag("DiamondCollector"))
         {
             other.collider.tag = "Ground";
-            boxController.RemoveBox(gameObject);
+            boxController.RemoveBox(gameObject, true);
             boxAudioController.PlayFailSound();
         }
         

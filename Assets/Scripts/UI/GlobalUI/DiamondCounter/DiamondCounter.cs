@@ -1,5 +1,5 @@
 ﻿using System;
-using Services.ProgressController;
+using Services.DiamondCountManager;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,7 +10,7 @@ namespace UI.GlobalUI.DiamondCounter
     {
         [SerializeField] private Text text;
 
-        private int diamondCount => Convert.ToInt32(text.text);
+        private int diamondCount => text.text != "" ? Convert.ToInt32(text.text) : 0;
         private DiamondCountManager diamondCountManager;
         
         [Inject]

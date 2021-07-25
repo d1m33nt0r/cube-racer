@@ -28,6 +28,8 @@ namespace DefaultNamespace
         {
             gameController.StartedGame += EnableMoving;
             gameController.FailedGame += DisableMoving;
+            gameController.FinishedGame += DisableMoving;
+            
             _swipeController.SwipeEvent += Action;
             minMoveLimiter = transform.position.x - moveLimiter;
             maxMoveLimiter = transform.position.x + moveLimiter;

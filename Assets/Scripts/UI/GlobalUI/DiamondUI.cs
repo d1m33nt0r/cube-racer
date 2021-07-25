@@ -1,14 +1,47 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
-public class DiamondMover : MonoBehaviour
+public class DiamondUI : MonoBehaviour
 {
     [SerializeField] private GameObject diamondIconPrefab;
     [SerializeField] private RectTransform parent;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private RectTransform target;
+    [SerializeField] private GameObject settingsButton;
+    [SerializeField] private GameObject closeButton;
     
     private RectTransform diamondIconRectTransform;
+    private Canvas canvas;
+
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        canvas = GetComponent<Canvas>();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        if (scene.name == "Loader")
+        {
+            canvas.enabled = false;
+        }
+        else
+        {
+            canvas.enabled = true;
+            
+            if (scene.name == "Shop")
+            {
+                settingsButton.SetActive(false);
+                closeButton.SetActive(true);
+            }
+            else
+            {
+                settingsButton.SetActive(true);
+                closeButton.SetActive(false);
+            }
+        }
+    }
     
     public void CreateDiamond(Vector2 screenPoint)
     {
@@ -29,7 +62,7 @@ public class DiamondMover : MonoBehaviour
     {
         Vector2 anchoredPosition;
         
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, screenPoint, mainCamera,
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, screenPoint, Camera.main, 
             out anchoredPosition);
         
         diamondIconRectTransform.anchoredPosition = anchoredPosition;

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UI;
 using UI.GlobalUI.DiamondCounter;
 using UnityEngine;
@@ -11,7 +12,19 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private GameController gameController;
     [SerializeField] private HandController handController;
     [SerializeField] private GameplayStarter gameplayStarter;
-    [SerializeField] private DiamondCounter diamondCounter;
+    [SerializeField] private Level level;
+    
+    
+    private DiamondUI diamondUI;
+    private DiamondCounter diamondCounter => 
+        diamondUI.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<DiamondCounter>();
+
+    [Inject]
+    private void Construct(DiamondUI diamondUI)
+    {
+        this.diamondUI = diamondUI;
+    }
+    
     public override void InstallBindings()
     {
         BindBoxController();
@@ -21,6 +34,16 @@ public class GameplayInstaller : MonoInstaller
         BindHandController();
         BindGameplayStarter();
         BindDiamondCounter();
+
+        BindLevel();
+    }
+
+    private void BindLevel()
+    {
+        Container
+            .Bind<Level>()
+            .FromInstance(level)
+            .AsSingle();
     }
 
     private void BindDiamondCounter()
