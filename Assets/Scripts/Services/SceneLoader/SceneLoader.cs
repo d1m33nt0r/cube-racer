@@ -1,15 +1,20 @@
+using DefaultNamespace;
+using Services.LevelProgressManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class SceneLoader
 {
     private string nextScene = "";
-
-    public SceneLoader()
+    private LevelProgressManager levelProgressManager;
+    
+    public SceneLoader(LevelProgressManager levelProgressManager)
     {
+        this.levelProgressManager = levelProgressManager;
         SetNextScene();
     }
-    
+
     public void SetNextScene(string nextScene = null)
     {
         if (nextScene != null)
@@ -17,9 +22,9 @@ public class SceneLoader
             this.nextScene = nextScene;
             return;
         }
-        
-        if (PlayerPrefs.HasKey("current_level"))
-            this.nextScene = PlayerPrefs.GetString("current_level");
+
+        if (levelProgressManager.GetData() != "")
+            this.nextScene = levelProgressManager.GetData();
         else
             this.nextScene = "Level_0";
     }

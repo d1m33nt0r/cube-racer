@@ -5,13 +5,13 @@ namespace Services.LevelProgressManager
 {
     public class LevelProgressManager : IDataManipulator
     {
-        private string currentLevel;
+        private string currentLevel = "";
         private string key = "current_level";
 
         public LevelProgressManager()
         {
             if (!PlayerPrefs.HasKey(key))
-                PlayerPrefs.SetInt(key, 0);
+                PlayerPrefs.SetString(key, "Level_0");
             
             ReadData();
         }

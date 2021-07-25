@@ -1,6 +1,5 @@
 ﻿using Services.DiamondCountManager;
 using Services.LevelProgressManager;
-using UI.GlobalUI.DiamondCounter;
 using UnityEngine;
 using Zenject;
 
@@ -26,7 +25,7 @@ namespace Installers
 
             diamondCountManager = new DiamondCountManager();
             levelProgressManager = new LevelProgressManager();
-            sceneLoader = new SceneLoader();
+            sceneLoader = new SceneLoader(levelProgressManager);
 
             BindDiamondCountManager();
             BindLevelProgressManager();
