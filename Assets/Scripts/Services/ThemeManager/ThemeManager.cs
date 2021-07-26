@@ -12,6 +12,8 @@ namespace DefaultNamespace.ThemeManager
         
         [SerializeField] private List<BoxTheme> boxThemes;
 
+        public BoxTheme CurrentBoxTheme => currentBoxTheme;
+        
         public List<BoxTheme> BoxThemes => boxThemes;
         
         private void Awake()
@@ -43,6 +45,10 @@ namespace DefaultNamespace.ThemeManager
         public void BuyCubeTheme(string key)
         {
             PlayerPrefs.SetInt(key, 1);
+        }
+
+        public void SetCurrentTheme(string key)
+        {
             currentBoxTheme = boxThemes.FirstOrDefault(theme => theme.key == key);
             PlayerPrefs.SetString("current_box_theme", key);
         }
