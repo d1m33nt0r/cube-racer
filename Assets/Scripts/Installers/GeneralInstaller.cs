@@ -1,4 +1,5 @@
-﻿using Services.DiamondCountManager;
+﻿using DefaultNamespace.ThemeManager;
+using Services.DiamondCountManager;
 using Services.LevelProgressManager;
 using Services.StartBoxCountManager;
 using UnityEngine;
@@ -10,7 +11,8 @@ namespace Installers
     {
         [SerializeField] private GameObject fpsCounter;
         [SerializeField] private DiamondUI diamondUI;
-
+        [SerializeField] private ThemeManager themeManager;
+        
         // services
         private DiamondCountManager diamondCountManager;
         private LevelProgressManager levelProgressManager;
@@ -34,9 +36,19 @@ namespace Installers
             BindLevelProgressManager();
             BindSceneLoader();
             BindStartBoxCountManager();
-            
+            BindThemeManager();
             BindDiamondUI();
             InstantiateFpsCounter(debugParent);
+        }
+
+        private void BindThemeManager()
+        {
+            var themeManager = Container.InstantiatePrefab(this.themeManager);
+            
+            Container
+                .Bind<ThemeManager>()
+                .FromInstance(themeManager.GetComponent<ThemeManager>())
+                .AsSingle();
         }
 
         private void BindStartBoxCountManager()

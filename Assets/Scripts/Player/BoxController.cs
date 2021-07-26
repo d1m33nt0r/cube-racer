@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace.ThemeManager;
 using Services.StartBoxCountManager;
 using UnityEngine;
 using Zenject;
@@ -30,12 +31,15 @@ public class BoxController : MonoBehaviour
 
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
+    private ThemeManager themeManager;
+    
     [Inject]
-    private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, StartBoxCountManager startBoxCountManager)
+    private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, StartBoxCountManager startBoxCountManager, ThemeManager themeManager)
     {
         this.startingRoad = startingRoad;
         this.boxAudioController = boxAudioController;
         this.startBoxCountManager = startBoxCountManager;
+        this.themeManager = themeManager;
     }
 
     private void Awake()
@@ -48,7 +52,7 @@ public class BoxController : MonoBehaviour
         {
             var instance = Instantiate(friendlyBox);
             instance.transform.SetParent(transform);
-            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController);
+            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager);
         }
 
         for (var i = 0; i < transform.childCount; i++)
@@ -62,7 +66,7 @@ public class BoxController : MonoBehaviour
     {
         var instance = Instantiate(friendlyBox);
         instance.transform.SetParent(transform);
-        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController);
+        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager);
         AddBox(instance);
     }
     

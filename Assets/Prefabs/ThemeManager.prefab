@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5057403134975180341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7096329471938465615}
+  - component: {fileID: 3609743187205978093}
+  m_Layer: 0
+  m_Name: ThemeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7096329471938465615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5057403134975180341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.9530606, y: -1.7664831, z: -11.695373}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3609743187205978093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5057403134975180341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20d2ca71abb47f0a124f7dcff2fa61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxThemes:
+  - key: default_box_theme
+    material: {fileID: 2100000, guid: 23f79862e97c8f943a6d0620b0cfe215, type: 2}
+    bought: 1
+  - key: 2_box_theme
+    material: {fileID: 2100000, guid: 3f0ff360674daf743bbec40f4ffbfd20, type: 2}
+    bought: 0
+  - key: 3_box_theme
+    material: {fileID: 2100000, guid: ea00e852d98795e408eb3c9892569e53, type: 2}
+    bought: 0
+  - key: 4_box_theme
+    material: {fileID: 2100000, guid: 0e89f09ba1f2b3242ae1abdc9c63f9a2, type: 2}
+    bought: 0
+  - key: 5_box_theme
+    material: {fileID: 2100000, guid: 238f211644fb0474f81aa7fbdc6898f8, type: 2}
+    bought: 0
+  - key: 6_box_theme
+    material: {fileID: 2100000, guid: 62b4fe659a1310847bd7a808cfb841b9, type: 2}
+    bought: 0
+  - key: 7_box_theme
+    material: {fileID: 2100000, guid: 980ad8b7e2ce83244af4539522781db3, type: 2}
+    bought: 0
+  - key: 8_box_theme
+    material: {fileID: 2100000, guid: 323e10fd87158d244a72e78a40fb0ba5, type: 2}
+    bought: 0
+  - key: 9_box_theme
+    material: {fileID: 2100000, guid: b0e5c467a934fae40a1d0921c714b576, type: 2}
+    bought: 0

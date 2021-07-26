@@ -1,3 +1,5 @@
+using System;
+using DefaultNamespace.ThemeManager;
 using UnityEngine;
 using Zenject;
 
@@ -5,13 +7,25 @@ public class FriendlyBox : MonoBehaviour
 {
     private BoxController boxController;
     private BoxAudioController boxAudioController;
+    private ThemeManager themeManager;
     
     [Inject] 
-    public void Construct(BoxController boxController, BoxAudioController boxAudioController)
+    public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager)
     { 
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
-    } 
+        this.themeManager = themeManager;
+    }
+
+    private void Start()
+    {
+        GetCurrentMaterial();
+    }
+
+    private void GetCurrentMaterial()
+    {
+        GetComponent<Renderer>().material = themeManager.GetTheme();
+    }
 
     private void OnCollisionEnter(Collision other)
     {
