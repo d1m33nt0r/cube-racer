@@ -1,8 +1,5 @@
-using DefaultNamespace;
 using Services.LevelProgressManager;
-using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 public class SceneLoader
 {
@@ -29,8 +26,11 @@ public class SceneLoader
             this.nextScene = "Level_0";
     }
 
-    public void LoadNextScene()
+    public void LoadNextScene(bool currentScene = false)
     {
-        SceneManager.LoadSceneAsync(nextScene);
+        if (!currentScene)
+            SceneManager.LoadSceneAsync(nextScene);
+        else
+            SceneManager.LoadScene(levelProgressManager.GetData());
     }
 }

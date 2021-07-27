@@ -1,4 +1,3 @@
-using System;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
 using Zenject;
@@ -10,11 +9,16 @@ public class FriendlyBox : MonoBehaviour
     private ThemeManager themeManager;
     
     [Inject] 
-    public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager)
+    public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager, GameController gameController)
     { 
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
         this.themeManager = themeManager;
+        
+        gameController.FinishedGame += () =>
+        {
+            Destroy(gameObject);
+        };
     }
 
     private void Start()
@@ -44,7 +48,7 @@ public class FriendlyBox : MonoBehaviour
 
         if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
         {
-            boxController.RemoveBox(gameObject, false);
+            boxController.RemoveBox(gameObject, false, 1);
             boxController.EnablePhysics(true);
             boxAudioController.PlayFailSound();
         }
@@ -52,7 +56,7 @@ public class FriendlyBox : MonoBehaviour
         if (other.collider.CompareTag("LevelFinish") && transform.CompareTag("DiamondCollector"))
         {
             other.collider.tag = "Ground";
-            boxController.RemoveBox(gameObject, true);
+            boxController.RemoveBox(gameObject, true, 1);
             boxAudioController.PlayFailSound();
         }
         

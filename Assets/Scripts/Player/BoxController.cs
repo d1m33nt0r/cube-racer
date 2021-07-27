@@ -7,7 +7,7 @@ using Zenject;
 
 public class BoxController : MonoBehaviour
 {
-    public delegate void BoxChanged(bool finish);
+    public delegate void BoxChanged(bool finish, int multiplier);
     public event Action AddedBox;
     public event BoxChanged RemovedBox;
 
@@ -32,14 +32,17 @@ public class BoxController : MonoBehaviour
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
     private ThemeManager themeManager;
+    private GameController gameController;
     
     [Inject]
-    private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, StartBoxCountManager startBoxCountManager, ThemeManager themeManager)
+    private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, 
+        StartBoxCountManager startBoxCountManager, ThemeManager themeManager, GameController gameController)
     {
         this.startingRoad = startingRoad;
         this.boxAudioController = boxAudioController;
         this.startBoxCountManager = startBoxCountManager;
         this.themeManager = themeManager;
+        this.gameController = gameController;
     }
 
     private void Awake()
@@ -52,7 +55,7 @@ public class BoxController : MonoBehaviour
         {
             var instance = Instantiate(friendlyBox);
             instance.transform.SetParent(transform);
-            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager);
+            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
         }
 
         for (var i = 0; i < transform.childCount; i++)
@@ -62,11 +65,29 @@ public class BoxController : MonoBehaviour
             transform.position.y, startingRoad.GetStartPosition().z);
     }
 
+    public void ClearBoxes()
+    {
+        var gameObjects = new List<GameObject>();
+        
+        for (var i = 1; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+
+        foreach (var box in gameObjects)
+        {
+            Destroy(box);
+            //box.transform.SetParent(null);
+            //boxes.Remove(box.GetComponent<FriendlyBox>());
+            
+        }
+    }
+    
     public void InstantiateNewBox()
     {
         var instance = Instantiate(friendlyBox);
         instance.transform.SetParent(transform);
-        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager);
+        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
         AddBox(instance);
     }
     
@@ -78,11 +99,11 @@ public class BoxController : MonoBehaviour
         AddedBox?.Invoke(); // for camera field view
     }
 
-    public void RemoveBox(GameObject box, bool finish)
+    public void RemoveBox(GameObject box, bool finish, int multiplier)
     {
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
-        RemovedBox?.Invoke(finish); // for camera field view
+        RemovedBox?.Invoke(finish, multiplier); // for camera field view
         UpdateBoxesTag();
     }
 

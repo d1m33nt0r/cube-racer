@@ -12,13 +12,16 @@ public class DiamondCollectingEffect : MonoBehaviour
     private DiamondCounter diamondCounter;
     private DiamondUI diamondUI;
     private DiamondAudioController diamondsAudioController;
+    private SessionDiamondCounter sessionDiamondCounter;
     
     [Inject]
-    private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI, DiamondAudioController diamondsAudioController)
+    private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI, 
+        DiamondAudioController diamondsAudioController, SessionDiamondCounter sessionDiamondCounter)
     {
         this.diamondCounter = diamondCounter;
         this.diamondUI = diamondUI;
         this.diamondsAudioController = diamondsAudioController;
+        this.sessionDiamondCounter = sessionDiamondCounter;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,6 +30,7 @@ public class DiamondCollectingEffect : MonoBehaviour
         {
             diamondsAudioController.Play();
             diamondCounter.AddDiamond();
+            sessionDiamondCounter.AddDiamond();
             diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
             Instantiate(effect).transform.position = transform.position;

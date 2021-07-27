@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -14,34 +13,33 @@ public class GameController : MonoBehaviour
 
     private GameplayStarter gameplayStarter;
     private BoxController boxController;
+    private SessionDiamondCounter sessionDiamondCounter;
     
     [Inject]
-    private void Construct(GameplayStarter gameplayStarter, BoxController boxController)
+    private void Construct(GameplayStarter gameplayStarter, BoxController boxController, SessionDiamondCounter sessionDiamondCounter)
     {
         this.gameplayStarter = gameplayStarter;
         this.boxController = boxController;
+        this.sessionDiamondCounter = sessionDiamondCounter;
         
         gameplayStarter.Touched += StartGame;
         boxController.RemovedBox += CheckBoxCount;
     }
 
-    public IEnumerator ExecuteForWait(float n)
-    {
-        yield return new WaitForSeconds(n);
-        StartGame();
-    }
-
-    private void CheckBoxCount(bool finish)
+    private void CheckBoxCount(bool finish, int multiplier)
     {
         if (boxController.boxCount == 0 && !finish)
         {
             FailGame();
+            boxController.ClearBoxes();
         }
         
         if (boxController.boxCount == 0 && finish)
         {
             FinishGame();
+            boxController.ClearBoxes();
         }
+        
     }
 
     private void StartGame()
@@ -50,7 +48,7 @@ public class GameController : MonoBehaviour
         StartedGame?.Invoke();
     }
 
-    private void FinishGame()
+    public void FinishGame()
     {
         Debug.Log("Game Finished");
         FinishedGame?.Invoke();

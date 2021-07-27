@@ -29,12 +29,23 @@ namespace DefaultNamespace
             gameController.StartedGame += EnableMoving;
             gameController.FailedGame += DisableMoving;
             gameController.FinishedGame += DisableMoving;
-            
+
             _swipeController.SwipeEvent += Action;
             minMoveLimiter = transform.position.x - moveLimiter;
             maxMoveLimiter = transform.position.x + moveLimiter;
         }
 
+        private void EnablePhysics()
+        {
+            transform.GetChild(0).GetComponent<Rigidbody>().useGravity = true;
+        }
+        
+        private void DisablePhysics()
+        {
+            transform.GetChild(0).GetComponent<Rigidbody>().useGravity = false;
+            transform.GetChild(0).GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        
         private void EnableMoving()
         {
             movingEnabled = true;
@@ -43,6 +54,7 @@ namespace DefaultNamespace
         private void DisableMoving()
         {
             movingEnabled = false;
+            EnablePhysics();
         }
         
         public void Rotate(float angle)
@@ -78,6 +90,8 @@ namespace DefaultNamespace
             
             if(movingEnabled)
                 transform.parent.Translate(Vector3.forward * Time.deltaTime * _speed);
+            
+            
             //_meshScaner.Move(transform.position);
         }
     }

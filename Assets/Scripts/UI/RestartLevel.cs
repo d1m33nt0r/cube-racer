@@ -19,7 +19,7 @@ namespace UI
         {
             diamondCountManager.WriteData();
             
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("Loader");
         }
     }
 }

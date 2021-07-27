@@ -15,7 +15,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private GameplayStarter gameplayStarter;
     [SerializeField] private Level level;
     [SerializeField] private DiamondAudioController diamondAudioController;
-    
+
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
         diamondUI.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<DiamondCounter>();
@@ -35,10 +35,30 @@ public class GameplayInstaller : MonoInstaller
         BindHandController();
         BindGameplayStarter();
         BindDiamondCounter();
-
         BindDiamondAudioController();
-        
+        BindSessionDiamondCounter();
+        BindDiamondMultiplier();
         BindLevel();
+    }
+
+    private void BindDiamondMultiplier()
+    {
+        var diamondMultiplier = new DiamondMultiplier();
+
+        Container
+            .Bind<DiamondMultiplier>()
+            .FromInstance(diamondMultiplier)
+            .AsSingle();
+    }
+
+    private void BindSessionDiamondCounter()
+    {
+        var sessionDiamondCounter = new SessionDiamondCounter();
+        
+        Container
+            .Bind<SessionDiamondCounter>()
+            .FromInstance(sessionDiamondCounter)
+            .AsSingle();
     }
 
     private void BindDiamondAudioController()
