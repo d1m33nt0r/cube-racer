@@ -9,6 +9,8 @@ namespace UI
 {
     public class NextLevelButton : MonoBehaviour
     {
+        [SerializeField] private bool balloon;
+        
         private LevelProgressManager levelProgressManager;
         private DiamondCountManager diamondCountManager;
         private SceneLoader sceneLoader;
@@ -30,7 +32,12 @@ namespace UI
             levelProgressManager.UpdateData(level.NextLevel);
             levelProgressManager.WriteData();
             diamondCountManager.WriteData();
-            sceneLoader.SetNextScene(level.NextLevel);
+            
+            if (balloon)
+                sceneLoader.SetNextScene("Balloon");
+            else
+                sceneLoader.SetNextScene(level.NextLevel);
+            
             SceneManager.LoadScene("Loader");
         }
     }

@@ -5,10 +5,13 @@ namespace UI
 {
     public class UIController : MonoBehaviour
     {
+        [SerializeField] private bool balloonOnFinished;
+        
         [SerializeField] private GameObject gameplayUI;
         [SerializeField] private GameObject mainMenuUI;
         [SerializeField] private GameObject gameOverUI;
         [SerializeField] private GameObject finishUI;
+        [SerializeField] private GameObject balloonUI;
         
         [Inject]
         private void Construct(GameController gameController)
@@ -17,12 +20,30 @@ namespace UI
             gameController.StartedGame += HideMainMenu;
             gameController.StartedGame += HideGameOverUI;
             gameController.StartedGame += HideFinishUI;
-
-            gameController.FinishedGame += ShowFinishUI;
+            
+            gameController.FinishedGame += ShowFinish;
             gameController.FailedGame += ShowGameOverUI;
             
         }
 
+        private void ShowFinish()
+        {
+            if (balloonOnFinished)
+                ShowBalloonUI();
+            else
+                ShowFinishUI();
+        }
+        
+        private void ShowBalloonUI()
+        {
+            balloonUI.SetActive(true);
+        }
+        
+        private void HideBalloonUI()
+        {
+            balloonUI.SetActive(false);
+        }
+        
         private void ShowFinishUI()
         {
             finishUI.SetActive(true);

@@ -18,7 +18,7 @@ public class GameplayInstaller : MonoInstaller
 
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
-        diamondUI.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<DiamondCounter>();
+        diamondUI.transform.GetComponentInChildren<DiamondCounter>();
 
     [Inject]
     private void Construct(DiamondUI diamondUI)
