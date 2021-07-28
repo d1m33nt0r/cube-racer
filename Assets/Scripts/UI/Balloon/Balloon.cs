@@ -15,6 +15,8 @@ public class Balloon : MonoBehaviour
 
     private DiamondUI diamondUI;
     private Animator animator;
+    
+    [SerializeField] private Image image;
     [SerializeField] private Text text;
     
     [Inject]
@@ -44,7 +46,7 @@ public class Balloon : MonoBehaviour
     public void SpawnParticleEffect()
     {
         SpawnDiamonds();
-        
+        EnablePrize();
         var imageColor = GetComponent<Image>().color;
         var newColor = new Color(imageColor.r, imageColor.g, imageColor.b, 0);
         GetComponent<Image>().color = newColor;
@@ -53,6 +55,12 @@ public class Balloon : MonoBehaviour
             transform.position.y, transform.position.z - 0.2f);
     }
 
+    private void EnablePrize()
+    {
+        text.gameObject.SetActive(true);
+        image.gameObject.SetActive(true);
+    }
+    
     private void SpawnDiamonds()
     {
         var chastka = countDiamonds / transform.childCount;
