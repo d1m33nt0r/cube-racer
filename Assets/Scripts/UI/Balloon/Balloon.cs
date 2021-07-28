@@ -18,11 +18,14 @@ public class Balloon : MonoBehaviour
     
     [SerializeField] private Image image;
     [SerializeField] private Text text;
+
+    private OpenBalloonsCounter openBalloonsCounter;
     
     [Inject]
-    private void Construct(DiamondUI diamondUI)
+    private void Construct(DiamondUI diamondUI, OpenBalloonsCounter openBalloonsCounter)
     {
         this.diamondUI = diamondUI;
+        this.openBalloonsCounter = openBalloonsCounter;
     }
     
     private void Start()
@@ -40,6 +43,10 @@ public class Balloon : MonoBehaviour
 
     public void PlayAnimationDestroyBalloon()
     {
+        if (openBalloonsCounter.GetCount() == 3)
+            return;
+        
+        openBalloonsCounter.AddOne();
         animator.Play("DestroyAnimation");
     }
 
@@ -71,7 +78,7 @@ public class Balloon : MonoBehaviour
             var worldPoint = transform.GetChild(i).TransformPoint(transform.position);
             var screenPoint = Camera.main.WorldToScreenPoint(worldPoint);
             
-            if(i == transform.childCount - 1)
+            if (i == transform.childCount - 1)
                 diamondUI.CreateDiamondAndMoveWithDelay(screenPoint, chastka2);
             else
                 diamondUI.CreateDiamondAndMoveWithDelay(screenPoint, chastka);

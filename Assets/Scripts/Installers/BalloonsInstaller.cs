@@ -1,8 +1,9 @@
+using UnityEngine;
 using Zenject;
 
 public class BalloonsInstaller : MonoInstaller
 {
-    private OpenBalloonsCounter openBalloonsCounter;
+    [SerializeField] private OpenBalloonsCounter openBalloonsCounter;
     
     public override void InstallBindings()
     {
@@ -11,11 +12,9 @@ public class BalloonsInstaller : MonoInstaller
 
     private void BindBalloondsCounter()
     {
-        var balloonsCounter = new OpenBalloonsCounter();
-
         Container
             .Bind<OpenBalloonsCounter>()
-            .FromInstance(balloonsCounter)
+            .FromInstance(openBalloonsCounter)
             .AsSingle();
     }
 }

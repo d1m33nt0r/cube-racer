@@ -9,8 +9,16 @@ public class OpenBalloonsCounter : MonoBehaviour
     public void AddOne()
     {
         count++;
+        
+        if (count == 3)
+            GetComponent<Animator>().Play("ShowUI");
     }
 
+    public int GetCount()
+    {
+        return count;
+    }
+    
     public void ResetCounter()
     {
         count = 0;
