@@ -37,7 +37,7 @@ namespace Installers
             BindSceneLoader();
             BindStartBoxCountManager();
             BindThemeManager();
-            BindDiamondUI();
+            BindDiamondUI(diamondCountManager);
             InstantiateFpsCounter(debugParent);
         }
 
@@ -67,10 +67,11 @@ namespace Installers
                 .AsSingle();
         }
 
-        private void BindDiamondUI()
+        private void BindDiamondUI(DiamondCountManager diamondCountManager)
         {
             var diamondUI = Container.InstantiatePrefab(this.diamondUI);
-
+            diamondUI.GetComponent<DiamondUI>().Construct(diamondCountManager);
+            
             Container
                 .Bind<DiamondUI>()
                 .FromInstance(diamondUI.GetComponent<DiamondUI>())

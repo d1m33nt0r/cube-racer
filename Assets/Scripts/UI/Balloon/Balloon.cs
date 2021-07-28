@@ -53,12 +53,20 @@ public class Balloon : MonoBehaviour
             transform.position.y, transform.position.z - 0.2f);
     }
 
-    public void SpawnDiamonds()
+    private void SpawnDiamonds()
     {
+        var chastka = countDiamonds / transform.childCount;
+        var chastka2 = countDiamonds - chastka * (transform.childCount - 1);
+        
         for (var i = 0; i < transform.childCount; i++)
         {
-            diamondUI
-                .CreateDiamondAndMoveWithDelay(Camera.main.WorldToViewportPoint(transform.position), 1f);
+            var worldPoint = transform.GetChild(i).TransformPoint(transform.position);
+            var screenPoint = Camera.main.WorldToScreenPoint(worldPoint);
+            
+            if(i == transform.childCount - 1)
+                diamondUI.CreateDiamondAndMoveWithDelay(screenPoint, chastka2);
+            else
+                diamondUI.CreateDiamondAndMoveWithDelay(screenPoint, chastka);
         }
     }
 }
