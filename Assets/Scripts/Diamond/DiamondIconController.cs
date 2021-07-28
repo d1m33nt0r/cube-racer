@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Services.DiamondCountManager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DiamondIconController : MonoBehaviour
 {
@@ -53,8 +54,11 @@ public class DiamondIconController : MonoBehaviour
     {
         yield return new WaitUntil(() => isMovingDone);
         
-        diamondCountManager.UpdateData(diamondCountManager.GetData() + countDiamonds);
-        diamondCountManager.WriteData();
+        if (SceneManager.GetActiveScene().name == "Balloon")
+        {
+            diamondCountManager.UpdateData(diamondCountManager.GetData() + countDiamonds);
+            diamondCountManager.WriteData();
+        }
         
         Destroy(gameObject);
     }
