@@ -11,14 +11,12 @@ public class FriendlyBox : MonoBehaviour
     [Inject] 
     public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager, GameController gameController)
     { 
+        
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
         this.themeManager = themeManager;
         
-        gameController.FinishedGame += () =>
-        {
-            Destroy(gameObject);
-        };
+        
     }
 
     private void Start()
@@ -49,6 +47,13 @@ public class FriendlyBox : MonoBehaviour
         if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
         {
             boxController.RemoveBox(gameObject, false, 1);
+            boxController.EnablePhysics(true);
+            boxAudioController.PlayFailSound();
+        }
+
+        if (other.collider.CompareTag("Hole"))
+        {
+            boxController.RemoveBox(gameObject, false, 1, true);
             boxController.EnablePhysics(true);
             boxAudioController.PlayFailSound();
         }

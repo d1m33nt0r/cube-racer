@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - DiamondCollector
   - LevelFinish
+  - Hole
   layers:
   - Default
   - TransparentFX

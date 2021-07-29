@@ -99,12 +99,15 @@ public class BoxController : MonoBehaviour
         AddedBox?.Invoke(); // for camera field view
     }
 
-    public void RemoveBox(GameObject box, bool finish, int multiplier)
+    public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)
     {
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
         RemovedBox?.Invoke(finish, multiplier); // for camera field view
         UpdateBoxesTag();
+        
+        if(destroy)
+            Destroy(box);
     }
 
     public void UpdateTrailPosition()
