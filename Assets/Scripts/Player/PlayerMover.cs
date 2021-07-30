@@ -14,7 +14,8 @@ namespace DefaultNamespace
         private const float moveLimiter = 0.4f;
         
         private float prevDeltaRight, prevDeltaLeft = 0;
-        private float minMoveLimiter, maxMoveLimiter;
+        private float minMoveLimiter => transform.position.x - moveLimiter;
+        private float maxMoveLimiter => transform.position.x + moveLimiter;
 
         private GameController gameController;
 
@@ -31,8 +32,6 @@ namespace DefaultNamespace
             gameController.FinishedGame += DisableMoving;
 
             _swipeController.SwipeEvent += Action;
-            minMoveLimiter = transform.position.x - moveLimiter;
-            maxMoveLimiter = transform.position.x + moveLimiter;
         }
 
         private void EnablePhysics()

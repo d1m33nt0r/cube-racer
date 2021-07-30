@@ -45,10 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxThemes:
   - key: default_box_theme
-    material: {fileID: 2100000, guid: 2e7a635e1cb34304db72a42ef6628829, type: 2}
+    material: {fileID: 2100000, guid: 2b4fb1fcc9a24984f96b9690fdf27f25, type: 2}
     bought: 1
   - key: 2_box_theme
-    material: {fileID: 2100000, guid: 3f0ff360674daf743bbec40f4ffbfd20, type: 2}
+    material: {fileID: 2100000, guid: 3fb8db78c47f247428d3b7aead095d60, type: 2}
     bought: 0
   - key: 3_box_theme
     material: {fileID: 2100000, guid: ea00e852d98795e408eb3c9892569e53, type: 2}

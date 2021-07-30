@@ -28,8 +28,8 @@ public class CameraController : MonoBehaviour
         var difference = boxController.boxCount - previousCount;
         if (maxCount >= boxController.boxCount && boxController.boxCount > startValue)
         {
-            camera.transform.DOMoveY(transform.position.y + 0.075f, 0.25f);
-            camera.DOFieldOfView(camera.fieldOfView + 0.75f, 0.25f);
+            camera.transform.DOMoveY(transform.position.y + 0.05f, 0.25f);
+            camera.DOFieldOfView(camera.fieldOfView + 0.05f, 0.25f);
         }
         previousCount = boxController.boxCount;
     }
@@ -40,8 +40,8 @@ public class CameraController : MonoBehaviour
         
         if (startValue < boxController.boxCount && !finish)
         {
-            camera.transform.DOMoveY(transform.position.y - 0.075f, 0.25f);
-            camera.DOFieldOfView(camera.fieldOfView - 0.75f, 0.25f);
+            camera.transform.DOMoveY(transform.position.y - 0.05f, 0.25f);
+            camera.DOFieldOfView(camera.fieldOfView - 0.05f, 0.25f);
         }
 
         if (startValue == boxController.boxCount && !finish)
