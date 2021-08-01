@@ -86,7 +86,6 @@ public class SwipeController : MonoBehaviour
     private void CalculateSwipe()
     {
         curMousePosition = (Vector2)Input.mousePosition;
-
         swipeDelta = Vector2.zero;
 
         if(isDragging)
@@ -108,7 +107,6 @@ public class SwipeController : MonoBehaviour
             {
                 SwipeEvent(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
             }
-                
         }
 
         prevMousePosition = curMousePosition;  

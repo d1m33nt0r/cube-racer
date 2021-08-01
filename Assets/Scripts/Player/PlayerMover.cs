@@ -46,9 +46,10 @@ namespace DefaultNamespace
             transform.GetChild(0).GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         
-        private void EnableMoving()
+        public void EnableMoving()
         {
             movingEnabled = true;
+            SubscribeSwipes();
         }
         
         public void DisableMoving()

@@ -19,6 +19,8 @@ namespace DefaultNamespace
         private Vector3 centerPoint;
         private float previousZ, previousX;
 
+        private float t3;
+        private float speed = 2f;
         private float prevDeltaLeft, prevDeltaRight;
         
         private void Start()
@@ -31,13 +33,11 @@ namespace DefaultNamespace
         {
             if (swipeType == SwipeController.SwipeType.LEFT)
             {
-                
                 t2 = Mathf.Clamp(t2 + prevDeltaLeft - delta, minLimiter, maxLimiter);
                 prevDeltaLeft = delta;
 
                 if (prevDeltaRight > 0)
-                    prevDeltaLeft = 0;
-                
+                    prevDeltaRight = 0;
             }
             else
             {
@@ -45,7 +45,7 @@ namespace DefaultNamespace
                 prevDeltaRight = delta;
 
                 if (prevDeltaLeft > 0)
-                    prevDeltaRight = 0;
+                    prevDeltaLeft = 0;
             }
         }
         
@@ -56,6 +56,9 @@ namespace DefaultNamespace
             
             if (moving)
             {
+                t = Mathf.Lerp(0,1, t3);
+                t3 += speed * Time.deltaTime;
+                
                 targetTransform.position = Bezier.GetPoint(P0.position, P1.position, P2.position, P3.position, t);
                 targetTransform.rotation = Quaternion
                     .LookRotation(Bezier.GetFirstDerivative(P0.position, P1.position, P2.position, P3.position, t));

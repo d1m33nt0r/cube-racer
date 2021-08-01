@@ -9,7 +9,7 @@ public class FriendlyBox : MonoBehaviour
     private BoxController boxController;
     private BoxAudioController boxAudioController;
     private ThemeManager themeManager;
-    
+
     [Inject] 
     public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager, GameController gameController)
     {
@@ -80,13 +80,22 @@ public class FriendlyBox : MonoBehaviour
         {
             var playerMover = transform.parent.GetComponent<PlayerMover>();
             var playerTurnListener = transform.parent.GetComponent<PlayerTurnListener>();
-            
-            playerMover.DisableMoving();
-            
             var rotationObserver = other.transform.parent.GetChild(0).GetComponent<RotationOberver>();
-            playerMover.transform.SetParent(rotationObserver.transform);
-            rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(true);
-            //playerTurnListener.Subscribe(rotationObserver);
+
+            if (other.name == "StartTrigger")
+            {
+                playerMover.DisableMoving();
+                playerMover.transform.SetParent(rotationObserver.transform);
+                rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(true);
+                //playerTurnListener.Subscribe(rotationObserver);
+            }
+
+            if (other.name == "FinishTrigger")
+            {
+                playerMover.EnableMoving();
+                playerMover.transform.SetParent(GameObject.Find("PlayerContainer").transform);
+                rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(false);
+            }
         }
     }
 }

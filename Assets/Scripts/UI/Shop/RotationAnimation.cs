@@ -26,7 +26,7 @@ public class RotationAnimation : MonoBehaviour
         switch (type)
         {
             case Rotation.Y:
-                transform.rotation = Quaternion.AngleAxis(rotation += speed, Vector3.up + Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(rotation += speed, Vector3.up);
                 break;
             case Rotation.X:
                 transform.rotation = Quaternion.AngleAxis(rotation += speed, Vector3.right);
@@ -45,9 +45,6 @@ public class RotationAnimation : MonoBehaviour
                 break;
             
         }
-
-        
-        
     }
 
     public enum Rotation
