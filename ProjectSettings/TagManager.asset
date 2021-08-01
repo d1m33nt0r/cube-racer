@@ -10,6 +10,7 @@ TagManager:
   - DiamondCollector
   - LevelFinish
   - Hole
+  - Turn
   layers:
   - Default
   - TransparentFX

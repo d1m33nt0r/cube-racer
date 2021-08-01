@@ -1,3 +1,5 @@
+using System;
+using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
 using Zenject;
@@ -10,13 +12,10 @@ public class FriendlyBox : MonoBehaviour
     
     [Inject] 
     public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager, GameController gameController)
-    { 
-        
+    {
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
         this.themeManager = themeManager;
-        
-        
     }
 
     private void Start()
@@ -36,7 +35,7 @@ public class FriendlyBox : MonoBehaviour
 
         if (other.collider.CompareTag("Untagged"))
             return;
-            
+
         if (other.collider.CompareTag("FriendlyBox"))
         {
             boxController.AddBox(other.gameObject);
@@ -68,6 +67,26 @@ public class FriendlyBox : MonoBehaviour
         if (other.collider.CompareTag("Ground"))
         {
             boxController.UpdateTrailPosition();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (!transform.CompareTag("DiamondCollector"))
+            return;
+        
+        if (other.CompareTag("Turn"))
+        {
+            var playerMover = transform.parent.GetComponent<PlayerMover>();
+            var playerTurnListener = transform.parent.GetComponent<PlayerTurnListener>();
+            
+            playerMover.DisableMoving();
+            
+            var rotationObserver = other.transform.parent.GetChild(0).GetComponent<RotationOberver>();
+            playerMover.transform.SetParent(rotationObserver.transform);
+            rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(true);
+            //playerTurnListener.Subscribe(rotationObserver);
         }
     }
 }

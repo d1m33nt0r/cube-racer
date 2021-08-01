@@ -30,7 +30,7 @@ namespace DefaultNamespace
             gameController.FailedGame += DisableMoving;
             gameController.FinishedGame += DisableMoving;
 
-            _swipeController.SwipeEvent += Action;
+            SubscribeSwipes();
             minMoveLimiter = transform.position.x - moveLimiter;
             maxMoveLimiter = transform.position.x + moveLimiter;
         }
@@ -51,9 +51,10 @@ namespace DefaultNamespace
             movingEnabled = true;
         }
         
-        private void DisableMoving()
+        public void DisableMoving()
         {
             movingEnabled = false;
+            UnsubscribeSwipes();
             EnablePhysics();
         }
         
@@ -82,6 +83,16 @@ namespace DefaultNamespace
                 if (prevDeltaLeft > 0)
                     prevDeltaLeft = 0;
             }
+        }
+
+        public void SubscribeSwipes()
+        {
+            _swipeController.SwipeEvent += Action;
+        }
+        
+        public void UnsubscribeSwipes()
+        {
+            _swipeController.SwipeEvent -= Action;
         }
         
         private void Update()
