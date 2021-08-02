@@ -39,11 +39,8 @@ public class RotationAnimation : MonoBehaviour
                 vector = vector.normalized;
                 q = new Quaternion(Mathf.Sin(angle1 / 2) * vector.x, Mathf.Sin(angle1 / 2) * vector.y,
                     Mathf.Sin(angle1 / 2) * vector.z, Mathf.Cos(angle1 / 2));
-
                 transform.rotation = transform.rotation * q;
-                
                 break;
-            
         }
     }
 

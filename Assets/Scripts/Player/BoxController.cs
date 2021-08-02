@@ -113,7 +113,7 @@ public class BoxController : MonoBehaviour
     public void UpdateTrailPosition()
     {
         trail.position = new Vector3(transform.position.x,
-            road.transform.position.y + offsetYForGround, transform.position.z);
+            road.transform.position.y + offsetYForGround + 0.01f, transform.position.z);
     }
 
     public void DisablePhysics()

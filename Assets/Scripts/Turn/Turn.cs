@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Zenject;
+using Zenject.SpaceFighter;
 
 namespace DefaultNamespace
 {
@@ -20,8 +22,15 @@ namespace DefaultNamespace
         private float previousZ, previousX;
 
         private float t3;
-        private float speed = 2f;
+        private float speed = 3f;
         private float prevDeltaLeft, prevDeltaRight;
+        private PlayerContainer playerContainer;
+        
+        [Inject]
+        private void Construct(PlayerContainer playerContainer)
+        {
+            this.playerContainer = playerContainer;
+        }
         
         private void Start()
         {
@@ -68,6 +77,7 @@ namespace DefaultNamespace
         public void SetMoving(bool moving)
         {
             this.moving = moving;
+          
         }
 
         private void OnDrawGizmos() 
@@ -78,7 +88,8 @@ namespace DefaultNamespace
             var sigmentsNumber = 20;
             var preveousePoint = P0.position;
 
-            for (var i = 0; i < sigmentsNumber + 1; i++) {
+            for (var i = 0; i < sigmentsNumber + 1; i++) 
+            {
                 var paremeter = (float)i / sigmentsNumber;
                 var point = Bezier.GetPoint(P0.position, P1.position, P2.position, P3.position, paremeter);
                 Debug.DrawLine(preveousePoint, point, Color.black);

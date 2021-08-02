@@ -8,14 +8,11 @@ namespace DefaultNamespace
     {
         [SerializeField] private float _speed;
         [SerializeField] private SwipeController _swipeController;
-
+        [SerializeField] private Transform leftLimiter;
+        [SerializeField] private Transform rightLimiter;
+        
         private bool movingEnabled;
-        
-        private const float moveLimiter = 0.4f;
-        
         private float prevDeltaRight, prevDeltaLeft = 0;
-        private float minMoveLimiter, maxMoveLimiter;
-
         private GameController gameController;
 
         [Inject]
@@ -31,8 +28,6 @@ namespace DefaultNamespace
             gameController.FinishedGame += DisableMoving;
 
             SubscribeSwipes();
-            minMoveLimiter = transform.position.x - moveLimiter;
-            maxMoveLimiter = transform.position.x + moveLimiter;
         }
 
         private void EnablePhysics()
@@ -58,18 +53,13 @@ namespace DefaultNamespace
             UnsubscribeSwipes();
             EnablePhysics();
         }
-        
-        public void Rotate(float angle)
-        {
-            transform.rotation = Quaternion.AngleAxis(angle - transform.rotation.eulerAngles.y, Vector3.up);
-        }
 
         private void Action(SwipeController.SwipeType swipeType, float delta)
         {
             if (swipeType == SwipeController.SwipeType.LEFT)
             {
                 transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
-                    minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
+                    leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
                 prevDeltaLeft = delta;
 
                 if (prevDeltaRight > 0)
@@ -78,7 +68,7 @@ namespace DefaultNamespace
             else
             {
                 transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
-                    minMoveLimiter, maxMoveLimiter), transform.position.y, transform.position.z);
+                    leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
                 prevDeltaRight = delta;
 
                 if (prevDeltaLeft > 0)
@@ -86,25 +76,20 @@ namespace DefaultNamespace
             }
         }
 
-        public void SubscribeSwipes()
+        private void SubscribeSwipes()
         {
             _swipeController.SwipeEvent += Action;
         }
         
-        public void UnsubscribeSwipes()
+        private void UnsubscribeSwipes()
         {
             _swipeController.SwipeEvent -= Action;
         }
         
         private void Update()
         {
-            Debug.DrawRay(transform.position, Vector3.forward, Color.yellow);
-            
-            if(movingEnabled)
+            if (movingEnabled)
                 transform.parent.Translate(Vector3.forward * Time.deltaTime * _speed);
-            
-            
-            //_meshScaner.Move(transform.position);
         }
     }
 }

@@ -11,7 +11,8 @@ public class FriendlyBox : MonoBehaviour
     private ThemeManager themeManager;
 
     [Inject] 
-    public void Construct(BoxController boxController, BoxAudioController boxAudioController, ThemeManager themeManager, GameController gameController)
+    public void Construct(BoxController boxController, BoxAudioController boxAudioController, 
+        ThemeManager themeManager, GameController gameController)
     {
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
@@ -79,20 +80,20 @@ public class FriendlyBox : MonoBehaviour
         if (other.CompareTag("Turn"))
         {
             var playerMover = transform.parent.GetComponent<PlayerMover>();
-            var playerTurnListener = transform.parent.GetComponent<PlayerTurnListener>();
             var rotationObserver = other.transform.parent.GetChild(0).GetComponent<RotationOberver>();
 
             if (other.name == "StartTrigger")
             {
                 playerMover.DisableMoving();
                 playerMover.transform.SetParent(rotationObserver.transform);
+                GameObject.Find("PlayerContainer").transform.SetParent(playerMover.transform);
                 rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(true);
-                //playerTurnListener.Subscribe(rotationObserver);
             }
 
             if (other.name == "FinishTrigger")
             {
                 playerMover.EnableMoving();
+                GameObject.Find("PlayerContainer").transform.SetParent(null);
                 playerMover.transform.SetParent(GameObject.Find("PlayerContainer").transform);
                 rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(false);
             }
