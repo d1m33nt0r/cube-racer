@@ -74,7 +74,6 @@ public class FriendlyBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
         if (!transform.CompareTag("DiamondCollector"))
             return;
         
