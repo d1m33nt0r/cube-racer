@@ -13,6 +13,7 @@ namespace DefaultNamespace
         [SerializeField] private Transform targetTransform;
         [SerializeField] private bool moving;
         [SerializeField] private SwipeController swipeController;
+        [SerializeField] private TurnState.State state;
         
         [Range(0, 1)] [SerializeField] private float t;
         [Range(-0.4f, 0.4f)] [SerializeField] private float t2;
@@ -25,6 +26,7 @@ namespace DefaultNamespace
         private float speed = 3f;
         private float prevDeltaLeft, prevDeltaRight;
         private PlayerContainer playerContainer;
+        private bool moving2;
         
         [Inject]
         private void Construct(PlayerContainer playerContainer)
@@ -65,19 +67,30 @@ namespace DefaultNamespace
             
             if (moving)
             {
+                if (t == 1)
+                {
+                    moving = false;
+                    moving2 = true;
+                }
+                
                 t = Mathf.Lerp(0,1, t3);
                 t3 += speed * Time.deltaTime;
-                
+
                 targetTransform.position = Bezier.GetPoint(P0.position, P1.position, P2.position, P3.position, t);
                 targetTransform.rotation = Quaternion
                     .LookRotation(Bezier.GetFirstDerivative(P0.position, P1.position, P2.position, P3.position, t));
+            }
+
+            if (moving2)
+            {
+                
             }
         }
 
         public void SetMoving(bool moving)
         {
             this.moving = moving;
-          
+            TurnState.state = state;
         }
 
         private void OnDrawGizmos() 

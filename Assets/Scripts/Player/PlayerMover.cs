@@ -57,25 +57,59 @@ namespace DefaultNamespace
         private void Action(SwipeController.SwipeType swipeType, float delta)
         {
             if (swipeType == SwipeController.SwipeType.LEFT)
-            {
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
-                    leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
-                prevDeltaLeft = delta;
-
-                if (prevDeltaRight > 0)
-                    prevDeltaRight = 0;
-            }
+                LeftSwipe(delta);
             else
-            {
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
-                    leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
-                prevDeltaRight = delta;
+                RightSwipe(delta);
+        }
 
-                if (prevDeltaLeft > 0)
-                    prevDeltaLeft = 0;
+        private void LeftSwipe(float delta)
+        {
+            switch (TurnState.state)
+            {
+                case TurnState.State.Forward:
+                    transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
+                        leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
+                    prevDeltaLeft = delta;
+
+                    if (prevDeltaRight > 0)
+                        prevDeltaRight = 0;
+                    break;
+                case TurnState.State.Left:
+                    transform.position = new Vector3(transform.position.x, transform.position.y, 
+                        Mathf.Clamp(transform.position.z + prevDeltaLeft - delta, 
+                            leftLimiter.position.z, rightLimiter.position.z));
+                    prevDeltaLeft = delta;
+
+                    if (prevDeltaRight > 0)
+                        prevDeltaRight = 0;
+                    break;
             }
         }
 
+        private void RightSwipe(float delta)
+        {
+            switch (TurnState.state)
+            {
+                case TurnState.State.Forward:
+                    transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
+                        leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
+                    prevDeltaRight = delta;
+
+                    if (prevDeltaLeft > 0)
+                        prevDeltaLeft = 0;
+                    break;
+                case TurnState.State.Left:
+                    transform.position = new Vector3(transform.position.x, transform.position.y, 
+                        Mathf.Clamp(transform.position.z - prevDeltaRight + delta, 
+                            leftLimiter.position.z, rightLimiter.position.z));
+                    prevDeltaRight = delta;
+
+                    if (prevDeltaLeft > 0)
+                        prevDeltaLeft = 0;
+                    break;
+            }
+        }
+        
         private void SubscribeSwipes()
         {
             _swipeController.SwipeEvent += Action;
