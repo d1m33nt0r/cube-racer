@@ -44,13 +44,11 @@ namespace DefaultNamespace
         public void EnableMoving()
         {
             movingEnabled = true;
-            SubscribeSwipes();
         }
         
         public void DisableMoving()
         {
             movingEnabled = false;
-            UnsubscribeSwipes();
             EnablePhysics();
         }
 
@@ -64,50 +62,26 @@ namespace DefaultNamespace
 
         private void LeftSwipe(float delta)
         {
-            switch (TurnState.state)
-            {
-                case TurnState.State.Forward:
-                    transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
-                        leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
-                    prevDeltaLeft = delta;
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
+                leftLimiter.position.x, rightLimiter.position.x), transform.position.y, 
+                Mathf.Clamp(transform.position.z + prevDeltaLeft - delta, 
+                leftLimiter.position.z, rightLimiter.position.z));
+            prevDeltaLeft = delta;
 
-                    if (prevDeltaRight > 0)
-                        prevDeltaRight = 0;
-                    break;
-                case TurnState.State.Left:
-                    transform.position = new Vector3(transform.position.x, transform.position.y, 
-                        Mathf.Clamp(transform.position.z + prevDeltaLeft - delta, 
-                            leftLimiter.position.z, rightLimiter.position.z));
-                    prevDeltaLeft = delta;
-
-                    if (prevDeltaRight > 0)
-                        prevDeltaRight = 0;
-                    break;
-            }
+            if (prevDeltaRight > 0)
+                prevDeltaRight = 0;
         }
 
         private void RightSwipe(float delta)
         {
-            switch (TurnState.state)
-            {
-                case TurnState.State.Forward:
-                    transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
-                        leftLimiter.position.x, rightLimiter.position.x), transform.position.y, transform.position.z);
-                    prevDeltaRight = delta;
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
+                leftLimiter.position.x, rightLimiter.position.x), transform.position.y, 
+                Mathf.Clamp(transform.position.z - prevDeltaRight + delta, 
+                leftLimiter.position.z, rightLimiter.position.z));
+            prevDeltaRight = delta;
 
-                    if (prevDeltaLeft > 0)
-                        prevDeltaLeft = 0;
-                    break;
-                case TurnState.State.Left:
-                    transform.position = new Vector3(transform.position.x, transform.position.y, 
-                        Mathf.Clamp(transform.position.z - prevDeltaRight + delta, 
-                            leftLimiter.position.z, rightLimiter.position.z));
-                    prevDeltaRight = delta;
-
-                    if (prevDeltaLeft > 0)
-                        prevDeltaLeft = 0;
-                    break;
-            }
+            if (prevDeltaLeft > 0)
+                prevDeltaLeft = 0;
         }
         
         private void SubscribeSwipes()

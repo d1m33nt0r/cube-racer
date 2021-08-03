@@ -100,12 +100,12 @@ public class SwipeController : MonoBehaviour
         {
             if (swipeDelta.x < 0)
             {
-                SwipeEvent(SwipeType.LEFT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
+                SwipeEvent?.Invoke(SwipeType.LEFT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
             }
 
             if (swipeDelta.x > 0)
             {
-                SwipeEvent(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
+                SwipeEvent?.Invoke(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
             }
         }
 

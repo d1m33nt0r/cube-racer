@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Zenject;
-using Zenject.SpaceFighter;
 
 namespace DefaultNamespace
 {
@@ -14,7 +13,8 @@ namespace DefaultNamespace
         [SerializeField] private bool moving;
         [SerializeField] private SwipeController swipeController;
         [SerializeField] private TurnState.State state;
-        
+        [SerializeField] private float speed = 3f;
+
         [Range(0, 1)] [SerializeField] private float t;
         [Range(-0.4f, 0.4f)] [SerializeField] private float t2;
 
@@ -23,21 +23,11 @@ namespace DefaultNamespace
         private float previousZ, previousX;
 
         private float t3;
-        private float speed = 3f;
         private float prevDeltaLeft, prevDeltaRight;
-        private PlayerContainer playerContainer;
-        private bool moving2;
-        
-        [Inject]
-        private void Construct(PlayerContainer playerContainer)
-        {
-            this.playerContainer = playerContainer;
-        }
         
         private void Start()
         {
             centerPoint = transform.position;
-            swipeController.SwipeEvent += Action;
         }
 
         private void Action(SwipeController.SwipeType swipeType, float delta)
@@ -67,23 +57,12 @@ namespace DefaultNamespace
             
             if (moving)
             {
-                if (t == 1)
-                {
-                    moving = false;
-                    moving2 = true;
-                }
-                
                 t = Mathf.Lerp(0,1, t3);
                 t3 += speed * Time.deltaTime;
 
                 targetTransform.position = Bezier.GetPoint(P0.position, P1.position, P2.position, P3.position, t);
                 targetTransform.rotation = Quaternion
                     .LookRotation(Bezier.GetFirstDerivative(P0.position, P1.position, P2.position, P3.position, t));
-            }
-
-            if (moving2)
-            {
-                
             }
         }
 

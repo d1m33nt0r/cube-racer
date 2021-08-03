@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
@@ -85,17 +86,16 @@ public class FriendlyBox : MonoBehaviour
             if (other.name == "StartTrigger")
             {
                 playerMover.DisableMoving();
-                playerMover.transform.SetParent(rotationObserver.transform);
-                GameObject.Find("PlayerContainer").transform.SetParent(playerMover.transform);
+                playerMover.transform.parent.SetParent(rotationObserver.transform);
                 rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(true);
             }
 
             if (other.name == "FinishTrigger")
             {
                 playerMover.EnableMoving();
-                GameObject.Find("PlayerContainer").transform.SetParent(null);
-                playerMover.transform.SetParent(GameObject.Find("PlayerContainer").transform);
+                playerMover.transform.parent.SetParent(null);
                 rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(false);
+                playerMover.transform.parent.rotation = Quaternion.Euler(0, -90, 0);
             }
         }
     }
