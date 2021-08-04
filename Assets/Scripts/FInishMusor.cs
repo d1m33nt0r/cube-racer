@@ -23,10 +23,10 @@ namespace DefaultNamespace
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.collider.CompareTag("Player") || other.collider.CompareTag("Untagged") || other.collider.CompareTag("DiamondCollector"))
+            if (other.collider.CompareTag("DiamondCollector"))
             {
                 GetComponent<BoxCollider>().enabled = false;
-                
+                other.collider.transform.parent.GetComponent<PlayerEffector>().ActivateDiamondEffect();
                 gameController.FinishGame();
             }
         }

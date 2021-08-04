@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
         if (boxController.boxCount == 0 && finish)
         {
             FinishGame();
+            boxController.transform.GetComponent<PlayerEffector>().ActivateDiamondEffect();
             boxController.ClearBoxes();
         }
         
