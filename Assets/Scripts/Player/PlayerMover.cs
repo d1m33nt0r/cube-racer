@@ -6,11 +6,12 @@ namespace DefaultNamespace
 {
     public class PlayerMover : MonoBehaviour
     {
-        [SerializeField] private float _speed;
-        [SerializeField] private SwipeController _swipeController;
+        [SerializeField] private float defaultSpeed;
+        [SerializeField] private float speed;
+        [SerializeField] private SwipeController swipeController;
         [SerializeField] private Transform leftLimiter;
         [SerializeField] private Transform rightLimiter;
-        
+
         private bool movingEnabled;
         private float prevDeltaRight, prevDeltaLeft = 0;
         private GameController gameController;
@@ -19,6 +20,16 @@ namespace DefaultNamespace
         private void Construct(GameController gameController)
         {
             this.gameController = gameController;
+        }
+
+        public void IncreaseSpeed(float miltiplierSpeed)
+        {
+            speed += miltiplierSpeed;
+        }
+
+        public void SetDefaultSpeed()
+        {
+            speed = defaultSpeed;
         }
         
         private void Start()
@@ -86,18 +97,18 @@ namespace DefaultNamespace
         
         private void SubscribeSwipes()
         {
-            _swipeController.SwipeEvent += Action;
+            swipeController.SwipeEvent += Action;
         }
         
         private void UnsubscribeSwipes()
         {
-            _swipeController.SwipeEvent -= Action;
+            swipeController.SwipeEvent -= Action;
         }
         
         private void Update()
         {
             if (movingEnabled)
-                transform.parent.Translate(Vector3.forward * Time.deltaTime * _speed);
+                transform.parent.Translate(Vector3.forward * Time.deltaTime * speed);
         }
     }
 }
