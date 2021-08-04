@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -54,5 +55,19 @@ public class CameraController : MonoBehaviour
         
         if (finish)
             camera.transform.DOMoveY(transform.position.y + 0.15f, 0.25f);
+    }
+
+    public void RotateAround(Transform target)
+    {
+        StartCoroutine(Rotation(target));
+    }
+
+    private IEnumerator Rotation(Transform target)
+    {
+        while (true)
+        {
+            transform.RotateAround(target.position, Vector3.up, 20 * Time.deltaTime);
+            yield return null;
+        }
     }
 }

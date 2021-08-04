@@ -32,6 +32,8 @@ namespace UI
                 ShowBalloonUI();
             else
                 ShowFinishUI();
+            
+            GameObject.Find("Main Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
         }
         
         private void ShowBalloonUI()

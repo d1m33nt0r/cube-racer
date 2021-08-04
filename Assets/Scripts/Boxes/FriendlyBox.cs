@@ -7,6 +7,8 @@ using Zenject;
 
 public class FriendlyBox : MonoBehaviour
 {
+    [SerializeField] private GameObject effect;
+    
     private BoxController boxController;
     private BoxAudioController boxAudioController;
     private ThemeManager themeManager;
@@ -40,9 +42,14 @@ public class FriendlyBox : MonoBehaviour
 
         if (other.collider.CompareTag("FriendlyBox"))
         {
+            var previousCountBoxes = boxController.boxCount;
             boxController.AddBox(other.gameObject);
+            var currentCountBoxes = boxController.boxCount;
             boxController.DisablePhysics();
             boxAudioController.PlayCollectSound();
+            var effectPosition = new Vector3(other.transform.position.x, 
+                other.transform.position.y + boxController.height * previousCountBoxes, other.transform.position.z);
+            Instantiate(effect).transform.position = effectPosition;
         }
 
         if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
@@ -64,6 +71,7 @@ public class FriendlyBox : MonoBehaviour
             other.collider.tag = "Ground";
             boxController.RemoveBox(gameObject, true, 1);
             boxAudioController.PlayFailSound();
+            boxController.EnablePhysics();
         }
         
         if (other.collider.CompareTag("Ground"))

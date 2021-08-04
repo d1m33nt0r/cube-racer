@@ -26,7 +26,7 @@ namespace DefaultNamespace
             gameController.StartedGame += EnableMoving;
             gameController.FailedGame += DisableMoving;
             gameController.FinishedGame += DisableMoving;
-
+            
             SubscribeSwipes();
         }
 
