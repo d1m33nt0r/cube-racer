@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace DefaultNamespace
@@ -11,6 +10,7 @@ namespace DefaultNamespace
         [SerializeField] private SwipeController swipeController;
         [SerializeField] private Transform leftLimiter;
         [SerializeField] private Transform rightLimiter;
+        [SerializeField] private ParticleSystem nitroEffect;
 
         private bool movingEnabled;
         private float prevDeltaRight, prevDeltaLeft = 0;
@@ -25,11 +25,13 @@ namespace DefaultNamespace
         public void IncreaseSpeed(float miltiplierSpeed)
         {
             speed += miltiplierSpeed;
+            nitroEffect.Play();
         }
 
         public void SetDefaultSpeed()
         {
             speed = defaultSpeed;
+            nitroEffect.Stop();
         }
         
         private void Start()
