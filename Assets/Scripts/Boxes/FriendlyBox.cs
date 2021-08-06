@@ -104,6 +104,13 @@ public class FriendlyBox : MonoBehaviour
                 rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(false);
                 playerMover.transform.parent.rotation = Quaternion.Euler(0, -90, 0);
             }
+
+            if (other.name == "FinishTriggerForPovorotNeTuda")
+            {
+                playerMover.EnableMoving();
+                playerMover.transform.parent.SetParent(null);
+                playerMover.transform.parent.rotation = Quaternion.Euler(0, -90, 0);
+            }
         }
     }
 }
