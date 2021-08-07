@@ -5,12 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - FriendlyBox
-  - LetBox
-  - Ground
-  - DiamondCollector
   - LevelFinish
+  - Ground
+  - ship
+  - LetBox
+  - asteroid
   - Hole
   - Turn
+  - DiamondCollector
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Effects
-  - Diamonds
-  - Background
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -45,12 +47,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: back
-    uniqueID: 1909785773
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI
-    uniqueID: 1485767641
     locked: 0
