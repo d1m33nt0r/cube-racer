@@ -23,7 +23,6 @@ namespace UI
             
             gameController.FinishedGame += ShowFinish;
             gameController.FailedGame += ShowGameOverUI;
-            
         }
 
         private void ShowFinish()
@@ -34,6 +33,7 @@ namespace UI
                 ShowFinishUI();
             
             GameObject.Find("Main Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
+            GameObject.Find("Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
         }
         
         private void ShowBalloonUI()
