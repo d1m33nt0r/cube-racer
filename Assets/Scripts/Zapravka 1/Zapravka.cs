@@ -25,7 +25,6 @@ public class Zapravka : MonoBehaviour
             playerMover.UnsubscribeSwipes();
             playerMover.DisablePhysics();
             pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
-            //pathFollower.GetComponent<PathFollower>().MoveFinished += playerMover.SetCurrentDirection;
             pathFollower.GetComponent<PathFollower>().enabled = true;
             StartCoroutine(Finish());
         }
@@ -35,7 +34,8 @@ public class Zapravka : MonoBehaviour
             playerMover.EnablePhysics();
             pathFollower.GetComponent<PathFollower>().Moving -= playerMover.CustomMove;
             playerMover.SetCurrentDirection();
-            //pathFollower.GetComponent<PathFollower>().MoveFinished += playerMover.SetCurrentDirection;
+            playerMover.EnableMoving();
+            playerMover.SubscribeSwipes();
             pathFollower.GetComponent<PathFollower>().enabled = false;
         }
     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 using Zenject;
 
 namespace DefaultNamespace
@@ -24,9 +25,18 @@ namespace DefaultNamespace
 
         private float t3;
         private float prevDeltaLeft, prevDeltaRight;
+        private PlayerContainer playerContainer;
+        
+        
+        [Inject]
+        private void Construct(PlayerContainer playerContainer)
+        {
+            this.playerContainer = playerContainer;
+        }
         
         private void Start()
         {
+            TurnState.prevState = TurnState.State.Forward;
             centerPoint = transform.position;
         }
 
@@ -69,7 +79,12 @@ namespace DefaultNamespace
         public void SetMoving(bool moving)
         {
             this.moving = moving;
-            TurnState.state = state;
+            TurnState.SetState(state);
+            if (moving)
+                playerContainer.LightParent();
+            else
+                playerContainer.LightUnParent();
+
         }
 
         private void OnDrawGizmos() 

@@ -45,9 +45,17 @@ namespace DefaultNamespace
 
         public void SetCurrentDirection()
         {
-            EnableMoving();
-            SubscribeSwipes();
-            transform.parent.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            
+            if (TurnState.state == TurnState.State.Forward)
+                transform.parent.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            else if(TurnState.state == TurnState.State.Left)
+                transform.parent.rotation = Quaternion.AngleAxis(-90, Vector3.up);
+            else if(TurnState.state == TurnState.State.Right)
+                transform.parent.rotation = Quaternion.AngleAxis(+90, Vector3.up);
+            else if(TurnState.state == TurnState.State.Back)
+                transform.parent.rotation = Quaternion.AngleAxis(-180, Vector3.up);
+            //EnableMoving();
+            //SubscribeSwipes();
         }
         
         public void EnablePhysics()

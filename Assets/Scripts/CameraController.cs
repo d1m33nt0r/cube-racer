@@ -47,8 +47,8 @@ public class CameraController : MonoBehaviour
 
         if (startValue == boxController.boxCount && !finish)
         {
-            transform.DOLocalMoveY(15.59f, 0.25f);
-            camera.DOFieldOfView(57, 0.25f);
+            transform.DOLocalMoveY(19, 0.25f);
+            camera.DOFieldOfView(60, 0.25f);
         }
         
         previousCount = boxController.boxCount;

@@ -11,5 +11,12 @@
         }
 
         public static State state;
+        public static State prevState;
+        
+        public static void SetState(State _state)
+        {
+            prevState = state;
+            state = _state;
+        }
     }
 }
