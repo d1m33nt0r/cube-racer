@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PathCreation.Examples
 {
@@ -6,10 +7,18 @@ namespace PathCreation.Examples
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollower : MonoBehaviour
     {
+        public delegate void MovingAction(Vector3 positionXZ, Quaternion rotation);
+        public event Action MoveFinished;
+        public event MovingAction Moving;
+        
+        
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
         float distanceTravelled;
+
+        private bool finished;
+        private Vector3 previousPosition;
 
         void Start() {
             if (pathCreator != null)
@@ -21,12 +30,22 @@ namespace PathCreation.Examples
 
         void Update()
         {
-            if (pathCreator != null)
+            if (pathCreator != null && !finished)
             {
                 distanceTravelled += speed * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                Moving?.Invoke(transform.position, transform.rotation);
             }
+
+            if (previousPosition - transform.position == Vector3.zero && !finished)
+            {
+                MoveFinished?.Invoke();
+                Moving = null;
+                finished = true;
+            }
+            
+            previousPosition = transform.position;
         }
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path

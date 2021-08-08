@@ -43,12 +43,19 @@ namespace DefaultNamespace
             SubscribeSwipes();
         }
 
-        private void EnablePhysics()
+        public void SetCurrentDirection()
+        {
+            EnableMoving();
+            SubscribeSwipes();
+            transform.parent.rotation = Quaternion.AngleAxis(0, Vector3.up);
+        }
+        
+        public void EnablePhysics()
         {
             transform.GetChild(0).GetComponent<Rigidbody>().useGravity = true;
         }
         
-        private void DisablePhysics()
+        public void DisablePhysics()
         {
             transform.GetChild(0).GetComponent<Rigidbody>().useGravity = false;
             transform.GetChild(0).GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -96,13 +103,19 @@ namespace DefaultNamespace
             if (prevDeltaLeft > 0)
                 prevDeltaLeft = 0;
         }
+
+        public void CustomMove(Vector3 positionXZ, Quaternion rotation)
+        {
+            transform.parent.position = new Vector3(positionXZ.x, transform.parent.position.y, positionXZ.z);
+            transform.parent.rotation = Quaternion.Euler(transform.parent.rotation.x, rotation.eulerAngles.y, transform.parent.rotation.z);
+        }
         
-        private void SubscribeSwipes()
+        public void SubscribeSwipes()
         {
             swipeController.SwipeEvent += Action;
         }
         
-        private void UnsubscribeSwipes()
+        public void UnsubscribeSwipes()
         {
             swipeController.SwipeEvent -= Action;
         }
