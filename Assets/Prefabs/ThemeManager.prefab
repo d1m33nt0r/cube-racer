@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxThemes:
   - key: default_box_theme
-    material: {fileID: 2100000, guid: 2e7a635e1cb34304db72a42ef6628829, type: 2}
+    material: {fileID: 2100000, guid: 8ae5f51ffc1ae194381c3c8edff220da, type: 2}
     bought: 1
   - key: 2_box_theme
     material: {fileID: 2100000, guid: 3f0ff360674daf743bbec40f4ffbfd20, type: 2}
