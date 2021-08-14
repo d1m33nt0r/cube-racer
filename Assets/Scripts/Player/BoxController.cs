@@ -112,12 +112,6 @@ public class BoxController : MonoBehaviour
             Destroy(box);
     }
 
-    public void UpdateTrailPosition()
-    {
-        trail.position = new Vector3(transform.position.x,
-            road.transform.position.y + offsetYForGround + 0.01f, transform.position.z);
-    }
-
     public void DisablePhysics()
     {
         for (var i = transform.childCount - 1; i >= 0; i--)
@@ -165,7 +159,7 @@ public class BoxController : MonoBehaviour
                     road.transform.position.y + offsetYForGround + heightBox / 2, transform.position.z);
 
                 box.tag = "DiamondCollector";
-
+                
             }
             else
             {
@@ -175,7 +169,7 @@ public class BoxController : MonoBehaviour
 
                 box.tag = "Untagged";
                 
-                UpdateTrailPosition();
+                
             }
         }
     }

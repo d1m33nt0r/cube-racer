@@ -84,11 +84,6 @@ public class FriendlyBox : MonoBehaviour
             boxAudioController.PlayFailSound();
             boxController.EnablePhysics();
         }
-        
-        if (other.collider.CompareTag("Ground"))
-        {
-            boxController.UpdateTrailPosition();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
