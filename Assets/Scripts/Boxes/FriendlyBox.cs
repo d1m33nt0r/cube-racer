@@ -8,6 +8,7 @@ using Zenject;
 public class FriendlyBox : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
+    [SerializeField] private GameObject plusOne;
     
     private BoxController boxController;
     private BoxAudioController boxAudioController;
@@ -49,7 +50,17 @@ public class FriendlyBox : MonoBehaviour
             boxAudioController.PlayCollectSound();
             var effectPosition = new Vector3(other.transform.position.x, 
                 other.transform.position.y + boxController.height * previousCountBoxes, other.transform.position.z);
-            Instantiate(effect).transform.position = effectPosition;
+            
+            var effect2 = Instantiate(effect);
+            effect2.transform.position = effectPosition;
+            effect2.transform.SetParent(transform);
+
+            var effectText = Instantiate(plusOne);
+            effectText.transform.position =
+                new Vector3(effectPosition.x, effectPosition.y, effectPosition.z);
+            effectText.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+                transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            effectText.transform.SetParent(transform);
         }
 
         if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)

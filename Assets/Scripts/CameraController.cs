@@ -30,6 +30,9 @@ public class CameraController : MonoBehaviour
         if (maxCount >= boxController.boxCount && boxController.boxCount > startValue)
         {
             camera.transform.DOMoveY(transform.position.y + 0.075f, 0.25f);
+            camera.transform.DORotate(
+                new Vector3(transform.rotation.eulerAngles.x + 1f, transform.rotation.eulerAngles.y,
+                    transform.rotation.eulerAngles.z), 0.5f);
             camera.DOFieldOfView(camera.fieldOfView + 0.75f, 0.25f);
         }
         previousCount = boxController.boxCount;
@@ -42,6 +45,9 @@ public class CameraController : MonoBehaviour
         if (startValue < boxController.boxCount && !finish)
         {
             camera.transform.DOMoveY(transform.position.y - 0.075f, 0.25f);
+            camera.transform.DORotate(
+                new Vector3(transform.rotation.eulerAngles.x - 1f, transform.rotation.eulerAngles.y,
+                    transform.rotation.eulerAngles.z), 0.5f);
             camera.DOFieldOfView(camera.fieldOfView - 0.75f, 0.25f);
         }
 
