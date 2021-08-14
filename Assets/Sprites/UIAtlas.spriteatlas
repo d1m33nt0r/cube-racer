@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 2
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 1dfe7f4349be8f0409c41c6e73e58956, type: 3}
+    - {fileID: 2800000, guid: 0b8e79a8a8510a04c9363d5be3815cba, type: 3}
+    - {fileID: 2800000, guid: bc02a58893a223c4fa5d95293ffc368e, type: 3}
+    - {fileID: 2800000, guid: 2da0b96615f968749ab27f8c5e05a8b8, type: 3}
+    - {fileID: 2800000, guid: 227dd4fc94b585b4cbf4b08b1b5af464, type: 3}
+    - {fileID: 2800000, guid: 46584343369f9d94e8838616a7b42cc1, type: 3}
+    - {fileID: 2800000, guid: 4c08f618922d47345a6a191b7e84bb6d, type: 3}
+    - {fileID: 2800000, guid: fcf17a352eb5cf349a5c17a0f488b951, type: 3}
+    - {fileID: 2800000, guid: 9ca8f83b198a4c14f9c45af34729a180, type: 3}
+    - {fileID: 2800000, guid: 3b9a123b5d7b80f41afedf3e94fc34b1, type: 3}
+    - {fileID: 2800000, guid: 1a9a95f2fc1c68247b63846c919a9f91, type: 3}
+    - {fileID: 2800000, guid: 190d1854d0aed30458c61212b1f9c272, type: 3}
+    - {fileID: 2800000, guid: 4b4920fabfeaf734896d98558f0f8793, type: 3}
+    - {fileID: 2800000, guid: 28d10bcd9f1b1e04abc25a5bce54a0d6, type: 3}
+    - {fileID: 2800000, guid: 1b633de0d37e26a4c85c4b0a7aceb175, type: 3}
+    - {fileID: 2800000, guid: d5b25266fa5baa041938acdcdb042557, type: 3}
+    - {fileID: 2800000, guid: 2fef5c0bb61ca7e43897f5961568bb28, type: 3}
+    - {fileID: 2800000, guid: d89fe33293d9563438dad5b9a97b2b3f, type: 3}
+    - {fileID: 2800000, guid: 1a2ccb0ba0cd7c44881f83598c24a20b, type: 3}
+    - {fileID: 2800000, guid: 191f294528cce6545a6af6beb03bd1ef, type: 3}
+    - {fileID: 2800000, guid: da72b968d88233e4d925780a88afdb36, type: 3}
+    - {fileID: 2800000, guid: 9e15be476a83e3544b0f0d0ff021f6eb, type: 3}
+    - {fileID: 2800000, guid: 3f040e8ab1f107144b2c2baf460ea80a, type: 3}
+    - {fileID: 2800000, guid: ba36906c8469e8c4a95e62f417c3fd58, type: 3}
+    - {fileID: 2800000, guid: 2b554bec34f47c34897f5541f6f42072, type: 3}
+    - {fileID: 2800000, guid: 8ed42087c7fbd414fabb96cac36691a8, type: 3}
+    - {fileID: 2800000, guid: 366f47f190fd5ec429b2663c80e029da, type: 3}
+    - {fileID: 2800000, guid: 29080de830abba94d9db0f59ecd45396, type: 3}
+    - {fileID: 2800000, guid: 8a321d03073a25242b4acc48e0aafb1b, type: 3}
+    - {fileID: 2800000, guid: 9091ee0f45f869e4c85a5453cb0df053, type: 3}
+    - {fileID: 2800000, guid: 6aacce99f1b83a345857adafb21856c5, type: 3}
+    - {fileID: 2800000, guid: 6ce81c8c4821c7c49a0a6e2c9fd5fe77, type: 3}
+    - {fileID: 2800000, guid: 954835d7ed0edba448546cde9f7c0ede, type: 3}
+    - {fileID: 2800000, guid: 8e6e21dbb8ffd3f4f839d4fb6a7dee39, type: 3}
+    - {fileID: 2800000, guid: f77b18ff01e21dc4a95e02f12b9731ae, type: 3}
+    - {fileID: 2800000, guid: 6c8bcb26194b5da4ab2efd521bcd9328, type: 3}
+    - {fileID: 2800000, guid: cb36eb71fa345c54db0d6a91f341f6bb, type: 3}
+    - {fileID: 2800000, guid: b9e07bed3fb96ae4b929c99cd683e9c6, type: 3}
+    totalSpriteSurfaceArea: 4801726
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1b633de0d37e26a4c85c4b0a7aceb175, type: 3}
+  - {fileID: 21300000, guid: cb36eb71fa345c54db0d6a91f341f6bb, type: 3}
+  - {fileID: 21300000, guid: 366f47f190fd5ec429b2663c80e029da, type: 3}
+  - {fileID: 21300000, guid: d89fe33293d9563438dad5b9a97b2b3f, type: 3}
+  - {fileID: 21300000, guid: 1a9a95f2fc1c68247b63846c919a9f91, type: 3}
+  - {fileID: 21300000, guid: 8a321d03073a25242b4acc48e0aafb1b, type: 3}
+  - {fileID: 21300000, guid: 46584343369f9d94e8838616a7b42cc1, type: 3}
+  - {fileID: 21300000, guid: 1dfe7f4349be8f0409c41c6e73e58956, type: 3}
+  - {fileID: 21300000, guid: 190d1854d0aed30458c61212b1f9c272, type: 3}
+  - {fileID: 21300000, guid: fcf17a352eb5cf349a5c17a0f488b951, type: 3}
+  - {fileID: 21300000, guid: 191f294528cce6545a6af6beb03bd1ef, type: 3}
+  - {fileID: 21300000, guid: 6c8bcb26194b5da4ab2efd521bcd9328, type: 3}
+  - {fileID: 21300000, guid: d5b25266fa5baa041938acdcdb042557, type: 3}
+  - {fileID: 21300000, guid: 2da0b96615f968749ab27f8c5e05a8b8, type: 3}
+  - {fileID: 21300000, guid: 9e15be476a83e3544b0f0d0ff021f6eb, type: 3}
+  - {fileID: 21300000, guid: 8ed42087c7fbd414fabb96cac36691a8, type: 3}
+  - {fileID: 21300000, guid: 954835d7ed0edba448546cde9f7c0ede, type: 3}
+  - {fileID: 21300000, guid: 4c08f618922d47345a6a191b7e84bb6d, type: 3}
+  - {fileID: 21300000, guid: da72b968d88233e4d925780a88afdb36, type: 3}
+  - {fileID: 21300000, guid: bc02a58893a223c4fa5d95293ffc368e, type: 3}
+  - {fileID: 21300000, guid: 0b8e79a8a8510a04c9363d5be3815cba, type: 3}
+  - {fileID: 21300000, guid: 29080de830abba94d9db0f59ecd45396, type: 3}
+  - {fileID: 21300000, guid: 6aacce99f1b83a345857adafb21856c5, type: 3}
+  - {fileID: 21300000, guid: 3f040e8ab1f107144b2c2baf460ea80a, type: 3}
+  - {fileID: 21300000, guid: 4b4920fabfeaf734896d98558f0f8793, type: 3}
+  - {fileID: 21300000, guid: 1a2ccb0ba0cd7c44881f83598c24a20b, type: 3}
+  - {fileID: 21300000, guid: 2fef5c0bb61ca7e43897f5961568bb28, type: 3}
+  - {fileID: 21300000, guid: 3b9a123b5d7b80f41afedf3e94fc34b1, type: 3}
+  - {fileID: 21300000, guid: 9ca8f83b198a4c14f9c45af34729a180, type: 3}
+  - {fileID: 21300000, guid: 8e6e21dbb8ffd3f4f839d4fb6a7dee39, type: 3}
+  - {fileID: 21300000, guid: ba36906c8469e8c4a95e62f417c3fd58, type: 3}
+  - {fileID: 21300000, guid: 6ce81c8c4821c7c49a0a6e2c9fd5fe77, type: 3}
+  - {fileID: 21300000, guid: 2b554bec34f47c34897f5541f6f42072, type: 3}
+  - {fileID: 21300000, guid: 227dd4fc94b585b4cbf4b08b1b5af464, type: 3}
+  - {fileID: 21300000, guid: 28d10bcd9f1b1e04abc25a5bce54a0d6, type: 3}
+  - {fileID: 21300000, guid: b9e07bed3fb96ae4b929c99cd683e9c6, type: 3}
+  - {fileID: 21300000, guid: 9091ee0f45f869e4c85a5453cb0df053, type: 3}
+  - {fileID: 21300000, guid: f77b18ff01e21dc4a95e02f12b9731ae, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - HandArrow
+  - SwitchPanel
+  - PovorotNeTuda
+  - Loader
+  - Diamond2
+  - SelectedItem
+  - BalloonRowPanel
+  - AdsIcon
+  - Gift
+  - Close
+  - NoAdsPalka
+  - SwitchOn
+  - LevelIcon
+  - BalloonButton
+  - OffRightSide
+  - Panel2
+  - ShopItem
+  - BlueButton
+  - OffLeftSide
+  - Balloon
+  - ArrowUp
+  - RetryButton
+  - ShopAnim
+  - OnLeftSide
+  - GreenButton
+  - NoAdsButton
+  - LevelIconConnecgor
+  - Diamond
+  - CubeSmile
+  - ShopPanel
+  - OnRightSide
+  - ShopButton
+  - Panel
+  - BalloonPanel
+  - Hand
+  - VioletButton
+  - SettingsButton
+  - SwitchOff
+  m_Tag: UIAtlas
+  m_IsVariant: 0
