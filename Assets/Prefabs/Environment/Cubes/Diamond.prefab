@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2095140671873139593}
   - component: {fileID: 2095140671873139592}
   m_Layer: 7
-  m_Name: DIamond
+  m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095140671873139595}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.066702, y: -1.2942722, z: 14.376306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095140671873139595}
-  m_Mesh: {fileID: 2401994324257950250, guid: 36055a2464923654f9c24b05e38a5b06, type: 3}
+  m_Mesh: {fileID: 2401994324257950250, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c, type: 3}
 --- !u!23 &437855384965177950
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58,11 +58,10 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16fc20e2f3eb2b6409bcd0e892dbc3b7, type: 2}
+  - {fileID: 2100000, guid: 2e7a635e1cb34304db72a42ef6628829, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,7 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2095140671873139594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
-  diamondMover: {fileID: 0}
   camera: {fileID: 0}
 --- !u!65 &2095140671873139592
 BoxCollider:
