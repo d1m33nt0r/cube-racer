@@ -22,11 +22,22 @@ namespace UI
             this.diamondMultiplier = diamondMultiplier;
             this.diamondCountManager = diamondCountManager;
         }
-        
+
         public void GetCountDiamonds()
         {
             multiplierText.text = "x" + Convert.ToString(diamondMultiplier.GetMultiplier());
-            diamondCount.text = Convert.ToString(diamondMultiplier.GetMultiplier() * sessionDiamondCounter.GetCount() - sessionDiamondCounter.GetCount());
+            var multiplier = diamondMultiplier.GetMultiplier();
+            var sessionDiamondCount = sessionDiamondCounter.GetCount();
+            var text = "";
+            if (multiplier > 1)
+            {
+                text = Convert.ToString(multiplier * sessionDiamondCount - sessionDiamondCount);
+            }
+            else
+            {
+                text = Convert.ToString(multiplier * sessionDiamondCount);
+            }
+            diamondCount.text = text;
             diamondCountManager.UpdateData(Convert.ToInt32(diamondCount.text) + diamondCountManager.GetData());
         }
     }
