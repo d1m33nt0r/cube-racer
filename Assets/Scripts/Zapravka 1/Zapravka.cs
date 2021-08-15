@@ -8,6 +8,9 @@ public class Zapravka : MonoBehaviour
 {
     [SerializeField] private GameObject pathFollower;
 
+    [SerializeField] private BoxCollider startBoxCollider;
+    [SerializeField] private BoxCollider finishBoxCollider;
+
     private bool finish;
     private PlayerMover playerMover;
 
@@ -26,6 +29,7 @@ public class Zapravka : MonoBehaviour
             playerMover.DisablePhysics();
             pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
             pathFollower.GetComponent<PathFollower>().enabled = true;
+            finishBoxCollider.enabled = true;
             StartCoroutine(Finish());
         }
         
