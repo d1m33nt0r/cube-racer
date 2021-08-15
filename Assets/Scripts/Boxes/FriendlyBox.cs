@@ -14,6 +14,8 @@ public class FriendlyBox : MonoBehaviour
     private BoxAudioController boxAudioController;
     private ThemeManager themeManager;
 
+    private int prevCount, curCount;
+    
     [Inject] 
     public void Construct(BoxController boxController, BoxAudioController boxAudioController, 
         ThemeManager themeManager, GameController gameController)
@@ -43,24 +45,12 @@ public class FriendlyBox : MonoBehaviour
 
         if (other.collider.CompareTag("FriendlyBox"))
         {
-            var previousCountBoxes = boxController.boxCount;
+            prevCount = boxController.boxCount;
             boxController.AddBox(other.gameObject);
-            var currentCountBoxes = boxController.boxCount;
+            curCount = boxController.boxCount;
             boxController.DisablePhysics();
             boxAudioController.PlayCollectSound();
-            var effectPosition = new Vector3(other.transform.position.x, 
-                other.transform.position.y + boxController.height * previousCountBoxes, other.transform.position.z);
-            
-            var effect2 = Instantiate(effect);
-            effect2.transform.position = effectPosition;
-            effect2.transform.SetParent(transform);
-
-            var effectText = Instantiate(plusOne);
-            effectText.transform.position =
-                new Vector3(effectPosition.x, effectPosition.y, effectPosition.z);
-            effectText.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-            effectText.transform.SetParent(transform);
+            SpawnEffects();
         }
 
         if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
@@ -84,6 +74,24 @@ public class FriendlyBox : MonoBehaviour
             boxAudioController.PlayFailSound();
             boxController.EnablePhysics();
         }
+    }
+
+    private void SpawnEffects()
+    {
+        var effectPosition = new Vector3(transform.position.x,
+            transform.position.y , transform.position.z);
+
+        var effect2 = Instantiate(effect);
+        effect2.transform.position = effectPosition;
+        effect2.transform.SetParent(transform);
+
+        var effectText = Instantiate(plusOne);
+        effectText.transform.position =
+            new Vector3(effectPosition.x, effectPosition.y, effectPosition.z);
+        effectText.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
+            transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        effectText.transform.SetParent(transform);
+        
     }
 
     private void OnTriggerEnter(Collider other)

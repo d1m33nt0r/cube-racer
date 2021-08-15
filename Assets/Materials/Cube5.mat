@@ -139,7 +139,7 @@ Material:
     - _1st_ShadeColor_Feather: 0.427
     - _1st_ShadeColor_Step: 0.854
     - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0.148
+    - _2nd_ShadeColor_Step: 0.803
     - _ARSampler_AlphaOn: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
@@ -229,7 +229,7 @@ Material:
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.148
+    - _ShadeColor_Step: 0.803
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

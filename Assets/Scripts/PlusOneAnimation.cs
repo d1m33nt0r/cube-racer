@@ -14,16 +14,15 @@ public class PlusOneAnimation : MonoBehaviour
 
     public IEnumerator IncreaseSizeAndRunFadeOut()
     {
-        transform.DOScale(1.3f, 0.1f);
-        yield return new WaitForSeconds(0.1f);
+        transform.DOScale(1.5f, 0.08f);
+        yield return new WaitForSeconds(0.08f);
         StartCoroutine(FadeOutAndDestroy());
-
     }
 
     public IEnumerator FadeOutAndDestroy()
     {
-        transform.DOScale(0.1f, 0.2f);
-        yield return new WaitForSeconds(0.2f);
+        transform.DOScale(0.1f, 0.1f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(transform.gameObject);
     }
 }

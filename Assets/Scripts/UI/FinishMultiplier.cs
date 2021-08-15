@@ -14,7 +14,7 @@ namespace UI
         private DiamondMultiplier diamondMultiplier;
         private SessionDiamondCounter sessionDiamondCounter;
         private DiamondCountManager diamondCountManager;
-        
+
         [Inject]
         private void Construct(DiamondMultiplier diamondMultiplier, SessionDiamondCounter sessionDiamondCounter, DiamondCountManager diamondCountManager)
         {

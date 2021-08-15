@@ -159,7 +159,6 @@ public class BoxController : MonoBehaviour
                     road.transform.position.y + offsetYForGround + heightBox / 2, transform.position.z);
 
                 box.tag = "DiamondCollector";
-                
             }
             else
             {
@@ -168,8 +167,6 @@ public class BoxController : MonoBehaviour
                     transform.GetChild(i + 1).position.y + heightBox, transform.position.z);
 
                 box.tag = "Untagged";
-                
-                
             }
         }
     }
