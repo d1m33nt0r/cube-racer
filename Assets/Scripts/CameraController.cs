@@ -14,6 +14,9 @@ public class CameraController : MonoBehaviour
     private BoxController boxController;
     private Coroutine coroutine;
 
+    private Vector3 startRotation;
+    private float startYPosition;
+    
     [Inject]
     private void Construct(BoxController boxController)
     {
@@ -21,6 +24,8 @@ public class CameraController : MonoBehaviour
         previousCount = boxController.boxCount;
         boxController.AddedBox += IncreaseY;
         boxController.RemovedBox += DecreaseY;
+        startRotation = transform.localRotation.eulerAngles;
+        startYPosition = transform.localPosition.y;
     }
 
 
@@ -30,9 +35,9 @@ public class CameraController : MonoBehaviour
         if (maxCount >= boxController.boxCount && boxController.boxCount > startValue)
         {
             camera.transform.DOMoveY(transform.position.y + 0.075f, 0.25f);
-            camera.transform.DORotate(
-                new Vector3(transform.rotation.eulerAngles.x + 1f, transform.rotation.eulerAngles.y,
-                    transform.rotation.eulerAngles.z), 0.5f);
+            camera.transform.DOLocalRotate(
+                new Vector3(transform.localRotation.eulerAngles.x + 1f, transform.localRotation.eulerAngles.y,
+                    transform.localRotation.eulerAngles.z), 0.5f);
             camera.DOFieldOfView(camera.fieldOfView + 0.75f, 0.25f);
         }
         previousCount = boxController.boxCount;
@@ -45,15 +50,16 @@ public class CameraController : MonoBehaviour
         if (startValue < boxController.boxCount && !finish)
         {
             camera.transform.DOMoveY(transform.position.y - 0.075f, 0.25f);
-            camera.transform.DORotate(
-                new Vector3(transform.rotation.eulerAngles.x - 1f, transform.rotation.eulerAngles.y,
-                    transform.rotation.eulerAngles.z), 0.5f);
+            camera.transform.DOLocalRotate(
+                new Vector3(transform.localRotation.eulerAngles.x - 1f, transform.localRotation.eulerAngles.y,
+                    transform.localRotation.eulerAngles.z), 0.5f);
             camera.DOFieldOfView(camera.fieldOfView - 0.75f, 0.25f);
         }
 
-        if (startValue == boxController.boxCount && !finish)
+        if (startValue >= boxController.boxCount && !finish)
         {
-            transform.DOLocalMoveY(19, 0.25f);
+            transform.DOLocalMoveY(startYPosition, 0.25f);
+            camera.transform.DOLocalRotate(startRotation, 0.5f);
             camera.DOFieldOfView(60, 0.25f);
         }
         

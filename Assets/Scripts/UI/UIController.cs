@@ -12,6 +12,7 @@ namespace UI
         [SerializeField] private GameObject gameOverUI;
         [SerializeField] private GameObject finishUI;
         [SerializeField] private GameObject balloonUI;
+        [SerializeField] private GameObject diamondBonusUIEffect;
         
         [Inject]
         private void Construct(GameController gameController)
@@ -25,6 +26,16 @@ namespace UI
             gameController.FailedGame += ShowGameOverUI;
         }
 
+        public void ShowDimondBonusUIEffect()
+        {
+            diamondBonusUIEffect.SetActive(true);
+        }
+
+        public void HideDimondBonusUIEffect()
+        {
+            diamondBonusUIEffect.SetActive(false);
+        }
+        
         private void ShowFinish()
         {
             if (balloonOnFinished)

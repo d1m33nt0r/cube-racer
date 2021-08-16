@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class FriendlyBox : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
     [SerializeField] private GameObject plusOne;
+    [SerializeField] private bool isBoxBonus;
+    [SerializeField] private GameObject boxes;
     
     private BoxController boxController;
     private BoxAudioController boxAudioController;
@@ -37,42 +40,53 @@ public class FriendlyBox : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!transform.parent || transform.parent.name != "Player")
-            return;
-
-        if (other.collider.CompareTag("Untagged"))
-            return;
-
-        if (other.collider.CompareTag("FriendlyBox"))
+        if (!isBoxBonus)
         {
-            prevCount = boxController.boxCount;
-            boxController.AddBox(other.gameObject);
-            curCount = boxController.boxCount;
-            boxController.DisablePhysics();
-            boxAudioController.PlayCollectSound();
-            SpawnEffects();
+            if (!transform.parent || transform.parent.name != "Player")
+                return;
+
+            if (other.collider.CompareTag("Untagged"))
+                return;
+
+            if (other.collider.CompareTag("FriendlyBox"))
+            {
+                prevCount = boxController.boxCount;
+                boxController.AddBox(other.gameObject);
+                curCount = boxController.boxCount;
+                //boxController.DisablePhysics();
+                boxAudioController.PlayCollectSound();
+                SpawnEffects();
+            }
+
+            if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
+            {
+                boxController.RemoveBox(gameObject, false, 1);
+                boxController.EnablePhysics(true);
+                boxAudioController.PlayFailSound();
+            }
+
+            if (other.collider.CompareTag("Hole"))
+            {
+                boxController.RemoveBox(gameObject, false, 1, true);
+                boxController.EnablePhysics(true);
+                boxAudioController.PlayFailSound();
+            }
+
+            if (other.collider.CompareTag("LevelFinish") && transform.CompareTag("DiamondCollector"))
+            {
+                other.collider.tag = "Ground";
+                boxController.RemoveBox(gameObject, true, 1);
+                boxAudioController.PlayFailSound();
+                boxController.EnablePhysics();
+            }
         }
-
-        if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
+        else
         {
-            boxController.RemoveBox(gameObject, false, 1);
-            boxController.EnablePhysics(true);
-            boxAudioController.PlayFailSound();
-        }
-
-        if (other.collider.CompareTag("Hole"))
-        {
-            boxController.RemoveBox(gameObject, false, 1, true);
-            boxController.EnablePhysics(true);
-            boxAudioController.PlayFailSound();
-        }
-
-        if (other.collider.CompareTag("LevelFinish") && transform.CompareTag("DiamondCollector"))
-        {
-            other.collider.tag = "Ground";
-            boxController.RemoveBox(gameObject, true, 1);
-            boxAudioController.PlayFailSound();
-            boxController.EnablePhysics();
+            for (int i = 0; i < boxes.transform.childCount; i++)
+            {
+                boxController.SpecialAddBox(boxes.transform.GetChild(i).gameObject);
+            }
+            Destroy(gameObject);
         }
     }
 

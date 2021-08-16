@@ -17,7 +17,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private DiamondAudioController diamondAudioController;
     [SerializeField] private PlayerContainer playerContainer;
     [SerializeField] private PlayerMover playerMover;
-    
+    [SerializeField] private UIController uiController;
     
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
@@ -44,6 +44,15 @@ public class GameplayInstaller : MonoInstaller
         BindPlayerContainer();
         BindLevel();
         BindPlayerMover();
+        BindUiController();
+    }
+
+    private void BindUiController()
+    {
+        Container
+            .Bind<UIController>()
+            .FromInstance(uiController)
+            .AsSingle();
     }
 
     private void BindPlayerMover()

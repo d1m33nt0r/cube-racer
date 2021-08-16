@@ -6,6 +6,11 @@
     {
         count++;
     }
+
+    public void AddDiamond(int count)
+    {
+        this.count += count;
+    }
     
     public int GetCount()
     {

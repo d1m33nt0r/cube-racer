@@ -13,6 +13,8 @@ TagManager:
   - Hole
   - Turn
   - DiamondCollector
+  - DiamondBonus
+  - BoxBonus
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Zapravochka
+  - 
   - 
   - 
   - 

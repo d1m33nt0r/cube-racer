@@ -91,6 +91,15 @@ public class BoxController : MonoBehaviour
         AddBox(instance);
     }
     
+    public void SpecialAddBox(GameObject box)
+    {
+        boxes.Add(box.GetComponent<FriendlyBox>());
+        box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
+            transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
+        box.transform.SetParent(transform);
+        CalculateBoxPositions();
+    }
+    
     public void AddBox(GameObject box)
     {
         boxes.Add(box.GetComponent<FriendlyBox>());

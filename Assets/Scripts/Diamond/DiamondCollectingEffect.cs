@@ -1,4 +1,6 @@
+using System.Collections;
 using Diamond;
+using UI;
 using UI.GlobalUI.DiamondCounter;
 using UnityEngine;
 using Zenject;
@@ -13,20 +15,32 @@ public class DiamondCollectingEffect : MonoBehaviour
     private DiamondUI diamondUI;
     private DiamondAudioController diamondsAudioController;
     private SessionDiamondCounter sessionDiamondCounter;
+    private UIController uiController;
     
     [Inject]
     private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI, 
-        DiamondAudioController diamondsAudioController, SessionDiamondCounter sessionDiamondCounter)
+        DiamondAudioController diamondsAudioController, SessionDiamondCounter sessionDiamondCounter,
+        UIController uiController)
     {
         this.diamondCounter = diamondCounter;
         this.diamondUI = diamondUI;
         this.diamondsAudioController = diamondsAudioController;
         this.sessionDiamondCounter = sessionDiamondCounter;
+        this.uiController = uiController;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DiamondCollector"))
+        if (transform.CompareTag("DiamondBonus") && other.CompareTag("DiamondCollector"))
+        {
+            uiController.ShowDimondBonusUIEffect();
+            diamondsAudioController.Play();
+            diamondCounter.AddDiamond(1000);
+            sessionDiamondCounter.AddDiamond(1000);
+            Destroy(gameObject);
+        }
+
+        if (!transform.CompareTag("DiamondBonus") && other.CompareTag("DiamondCollector"))
         {
             diamondsAudioController.Play();
             diamondCounter.AddDiamond();

@@ -29,6 +29,13 @@ namespace UI.GlobalUI.DiamondCounter
             text.text = Convert.ToString(count);
         }
         
+        public void AddDiamond(int count)
+        {
+            var count2 = diamondCount + count;
+            diamondCountManager.UpdateData(count2);
+            text.text = Convert.ToString(count2);
+        }
+        
         public void MinusDiamonds(int count)
         {
             var newCount = diamondCount - count;
