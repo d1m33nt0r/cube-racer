@@ -51,6 +51,7 @@ public class BoxController : MonoBehaviour
         boxes = new List<FriendlyBox>();
         startCountBoxes = startBoxCountManager.GetData();
         
+        
         for (var i = 0; i < startCountBoxes; i++)
         {
             var instance = Instantiate(friendlyBox);
@@ -63,6 +64,8 @@ public class BoxController : MonoBehaviour
 
         transform.position = new Vector3(startingRoad.GetStartPosition().x,
             transform.position.y, startingRoad.GetStartPosition().z);
+        
+        EnablePhysics();
     }
 
     public void ClearBoxes()
@@ -103,8 +106,8 @@ public class BoxController : MonoBehaviour
     public void AddBox(GameObject box)
     {
         boxes.Add(box.GetComponent<FriendlyBox>());
-        box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
-            transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
+        //box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
+            //transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
         box.transform.SetParent(transform);
         CalculateBoxPositions();
         AddedBox?.Invoke(); // for camera field view
