@@ -35,7 +35,7 @@ public class FriendlyBox : MonoBehaviour
 
     private void GetCurrentMaterial()
     {
-        GetComponent<Renderer>().material = themeManager.GetTheme();
+        GetComponent<MeshFilter>().sharedMesh = themeManager.GetTheme();
     }
 
     private void OnCollisionEnter(Collision other)

@@ -45,7 +45,7 @@ namespace UI.Shop
         public void ActiveDemoCube()
         {
             if (transform.childCount > 0) Destroy(transform.GetChild(0).gameObject);
-            CUBE_DEMO.GetComponent<Renderer>().material = themeManager.GetTheme();
+            CUBE_DEMO.GetComponent<MeshFilter>().sharedMesh = themeManager.GetTheme();
             cubeDemo.SetActive(true);
         }
 

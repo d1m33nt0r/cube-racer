@@ -27729,7 +27729,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 7605148753653709955, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c,
+      objectReference: {fileID: -5495902117074765545, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c,
         type: 3}
     - target: {fileID: 7937681345008153761, guid: c1730245408c8ce4f825f486c427a20e,
         type: 3}
@@ -61037,7 +61037,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e7a635e1cb34304db72a42ef6628829, type: 2}
+  - {fileID: 2100000, guid: 0cc9c3bd49ce08e4b9f325a8b9854123, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -61164,7 +61164,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937681344312965179}
-  m_Mesh: {fileID: 7605148753653709955, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c, type: 3}
+  m_Mesh: {fileID: -5495902117074765545, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c, type: 3}
 --- !u!95 &7937681344312965184
 Animator:
   serializedVersion: 3

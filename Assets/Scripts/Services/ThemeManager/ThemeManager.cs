@@ -53,9 +53,9 @@ namespace DefaultNamespace.ThemeManager
             PlayerPrefs.SetString("current_box_theme", key);
         }
         
-        public Material GetTheme()
+        public Mesh GetTheme()
         {
-            return boxThemes.FirstOrDefault(theme => theme.key == PlayerPrefs.GetString("current_box_theme"))?.material;
+            return boxThemes.FirstOrDefault(theme => theme.key == PlayerPrefs.GetString("current_box_theme"))?.mesh;
         }
     }
 }
