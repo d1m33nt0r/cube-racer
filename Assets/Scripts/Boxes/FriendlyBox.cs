@@ -82,10 +82,7 @@ public class FriendlyBox : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < boxes.transform.childCount; i++)
-            {
-                boxController.SpecialAddBox(boxes.transform.GetChild(i).gameObject);
-            }
+            boxController.SpecialAddBox(5);
             Destroy(gameObject);
         }
     }
