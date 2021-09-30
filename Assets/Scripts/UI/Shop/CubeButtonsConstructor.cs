@@ -12,7 +12,6 @@ namespace UI.Shop
         [SerializeField] private Sprite selectedButton;
         [SerializeField] private Sprite unSelectedButton;
         
-        
         public List<CubeThemeButton> ThemeButtons => themeButtons;
         
         private ThemeManager themeManager;
@@ -28,12 +27,9 @@ namespace UI.Shop
             SetCurrentTheme();
 
             foreach (var themeButton in themeButtons)
-            {
                 themeButton.Bind(this);
-            }
         }
-
-
+        
         public void SetCurrentTheme()
         {
             var i = 0;
@@ -43,13 +39,9 @@ namespace UI.Shop
                 themeButtons[i].Construct(themeButton, themeManager);
                 
                 if (themeManager.CurrentBoxTheme.key == themeButtons[i].boxTheme.key)
-                {
                     themeButtons[i].GetComponent<Image>().sprite = selectedButton;
-                }
                 else
-                {
                     themeButtons[i].GetComponent<Image>().sprite = unSelectedButton;
-                }
                 
                 i++;
             }

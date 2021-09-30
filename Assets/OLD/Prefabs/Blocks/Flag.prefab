@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   point: {fileID: 4211568245207153991}
   effect: {fileID: 2333842326520987971, guid: 339e45a8675e6b042b2595ee4d98df23, type: 3}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!82 &4211568244329862951
 AudioSource:
   m_ObjectHideFlags: 0
