@@ -26,8 +26,8 @@ public class BoxController : MonoBehaviour
     private StartingRoad startingRoad;
     private Transform currentRoad;
 
-    public int boxCount => transform.childCount - 1;
-    private float heightBox => Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
+    public int boxCount => transform.childCount - 2;
+    private float heightBox => 0.2f;//Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
 
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
@@ -58,28 +58,20 @@ public class BoxController : MonoBehaviour
             instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
         }
 
-        for (var i = 0; i < transform.childCount; i++)
+        for (var i = 1; i < transform.childCount; i++)
             AddBox(transform.GetChild(i).gameObject);
 
+        CalculateBoxPositions();
+        
         transform.position = new Vector3(startingRoad.GetStartPosition().x,
             transform.position.y, startingRoad.GetStartPosition().z);
     }
 
     public void ClearBoxes()
     {
-        var gameObjects = new List<GameObject>();
-        
         for (var i = 1; i < transform.childCount; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
-        }
-
-        foreach (var box in gameObjects)
-        {
-            Destroy(box);
-            //box.transform.SetParent(null);
-            //boxes.Remove(box.GetComponent<FriendlyBox>());
-            
         }
     }
     
@@ -112,7 +104,6 @@ public class BoxController : MonoBehaviour
         box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
             transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
         box.transform.SetParent(transform);
-        CalculateBoxPositions();
         AddedBox?.Invoke(); // for camera field view
     }
 
@@ -138,7 +129,7 @@ public class BoxController : MonoBehaviour
 
     public void EnablePhysics(bool resetVelocity = false)
     {
-        for (var i = transform.childCount - 1; i >= 0; i--)
+        for (var i = transform.childCount - 1; i >= 1; i--)
         {
             transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
             if (resetVelocity)
@@ -148,12 +139,12 @@ public class BoxController : MonoBehaviour
 
     private void UpdateBoxesTag()
     {
-        for (var i = transform.childCount - 1; i >= 0; i--)
+        for (var i = transform.childCount - 1; i >= 1; i--)
         {
             if (i == transform.childCount - 1)
             {
                 var box = transform.GetChild(transform.childCount - 1);
-                box.tag = "DiamondCollector";
+                box.tag = "Untagged";
             }
             else
             {
@@ -162,10 +153,15 @@ public class BoxController : MonoBehaviour
             }
         }
     }
-    
-    private void CalculateBoxPositions()
+
+    public Vector3 GetBoxPositionXZ()
     {
-        for (var i = transform.childCount - 1; i >= 0; i--)
+        return boxes[boxes.Count - 1].transform.position;
+    }
+    
+    public void CalculateBoxPositions()
+    {
+        for (var i = transform.childCount - 1; i >= 1; i--)
         {
             if (i == transform.childCount - 1)
             {
@@ -173,13 +169,14 @@ public class BoxController : MonoBehaviour
                 box.position = new Vector3(transform.position.x,
                     road.transform.position.y + offsetYForGround + heightBox / 2, transform.position.z);
 
-                box.tag = "DiamondCollector";
+                box.tag = "Untagged";
             }
             else
             {
+                var prevBoxIndex = i + 1;
                 var box = transform.GetChild(i);
                 box.position = new Vector3(transform.position.x,
-                    transform.GetChild(i + 1).position.y + heightBox, transform.position.z);
+                    transform.GetChild(prevBoxIndex).position.y + heightBox, transform.position.z);
 
                 box.tag = "Untagged";
             }

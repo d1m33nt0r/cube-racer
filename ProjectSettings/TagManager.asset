@@ -15,6 +15,7 @@ TagManager:
   - DiamondCollector
   - DiamondBonus
   - BoxBonus
+  - BoxGroup
   layers:
   - Default
   - TransparentFX

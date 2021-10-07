@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
 
 public class PlusOneAnimation : MonoBehaviour
@@ -12,14 +9,14 @@ public class PlusOneAnimation : MonoBehaviour
         StartCoroutine(IncreaseSizeAndRunFadeOut());
     }
 
-    public IEnumerator IncreaseSizeAndRunFadeOut()
+    private IEnumerator IncreaseSizeAndRunFadeOut()
     {
         transform.DOScale(1.5f, 0.08f);
         yield return new WaitForSeconds(0.08f);
         StartCoroutine(FadeOutAndDestroy());
     }
 
-    public IEnumerator FadeOutAndDestroy()
+    private IEnumerator FadeOutAndDestroy()
     {
         transform.DOScale(0.1f, 0.1f);
         yield return new WaitForSeconds(0.1f);

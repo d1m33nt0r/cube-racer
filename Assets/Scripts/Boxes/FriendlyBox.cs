@@ -17,8 +17,6 @@ public class FriendlyBox : MonoBehaviour
     private BoxAudioController boxAudioController;
     private ThemeManager themeManager;
 
-    private int prevCount, curCount;
-    
     [Inject] 
     public void Construct(BoxController boxController, BoxAudioController boxAudioController, 
         ThemeManager themeManager, GameController gameController)
@@ -48,16 +46,19 @@ public class FriendlyBox : MonoBehaviour
             if (other.collider.CompareTag("Untagged"))
                 return;
 
-            if (other.collider.CompareTag("FriendlyBox"))
-            {
-                prevCount = boxController.boxCount;
-                boxController.AddBox(other.gameObject);
-                curCount = boxController.boxCount;
-                //boxController.DisablePhysics();
-                boxAudioController.PlayCollectSound();
-                SpawnEffects();
-            }
+            //if (other.collider.CompareTag("FriendlyBox"))
+            //{
+            //    boxController.AddBox(other.gameObject);
+            //    ////boxController.DisablePhysics();
+            //    boxAudioController.PlayCollectSound();
+           //     SpawnEffects();
+           // }
 
+           //if (other.collider.CompareTag("BoxGroup") && transform.CompareTag("DiamondCollector"))
+           //{
+               
+           //}
+           
             if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
             {
                 boxController.RemoveBox(gameObject, false, 1);
@@ -102,33 +103,5 @@ public class FriendlyBox : MonoBehaviour
         effectText.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
             transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         effectText.transform.SetParent(transform);
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!transform.CompareTag("DiamondCollector"))
-            return;
-        
-        if (other.CompareTag("Turn"))
-        {
-            var playerMover = transform.parent.GetComponent<PlayerMover>();
-            var rotationObserver = other.transform.parent.GetChild(0).GetComponent<RotationOberver>();
-
-            if (other.name == "StartTrigger")
-            {
-                playerMover.DisableMoving();
-                playerMover.transform.parent.SetParent(rotationObserver.transform);
-                rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(true);
-            }
-
-            if (other.name == "FinishTrigger")
-            {
-                playerMover.EnableMoving();
-                playerMover.transform.parent.SetParent(null);
-                rotationObserver.transform.parent.GetComponent<Turn>().SetMoving(false);
-                playerMover.SetCurrentDirection();
-            }
-        }
     }
 }

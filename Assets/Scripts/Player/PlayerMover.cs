@@ -45,7 +45,6 @@ namespace DefaultNamespace
 
         public void SetCurrentDirection()
         {
-            
             if (TurnState.state == TurnState.State.Forward)
                 transform.parent.rotation = Quaternion.AngleAxis(0, Vector3.up);
             else if(TurnState.state == TurnState.State.Left)
@@ -60,13 +59,13 @@ namespace DefaultNamespace
         
         public void EnablePhysics()
         {
-            transform.GetChild(0).GetComponent<Rigidbody>().useGravity = true;
+            transform.GetChild(1).GetComponent<Rigidbody>().useGravity = true;
         }
         
         public void DisablePhysics()
         {
-            transform.GetChild(0).GetComponent<Rigidbody>().useGravity = false;
-            transform.GetChild(0).GetComponent<Rigidbody>().velocity = Vector3.zero;
+            transform.GetChild(1).GetComponent<Rigidbody>().useGravity = false;
+            transform.GetChild(1).GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         
         public void EnableMoving()
