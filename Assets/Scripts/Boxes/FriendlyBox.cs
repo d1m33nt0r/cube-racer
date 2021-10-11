@@ -43,9 +43,6 @@ public class FriendlyBox : MonoBehaviour
             if (!transform.parent || transform.parent.name != "Player")
                 return;
 
-            if (other.collider.CompareTag("Untagged"))
-                return;
-
             //if (other.collider.CompareTag("FriendlyBox"))
             //{
             //    boxController.AddBox(other.gameObject);
@@ -73,7 +70,7 @@ public class FriendlyBox : MonoBehaviour
                 boxAudioController.PlayFailSound();
             }
 
-            if (other.collider.CompareTag("LevelFinish") && transform.CompareTag("DiamondCollector"))
+            if (other.collider.CompareTag("LevelFinish") && boxController.IsLastElement(GetComponent<FriendlyBox>()))
             {
                 other.collider.tag = "Ground";
                 boxController.RemoveBox(gameObject, true, 1);
@@ -81,7 +78,13 @@ public class FriendlyBox : MonoBehaviour
                 boxController.EnablePhysics();
             }
         }
-        else
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isBoxBonus) return;
+        
+        if (other.CompareTag("DiamondCollector"))
         {
             boxController.SpecialAddBox(5);
             Destroy(gameObject);

@@ -21,12 +21,12 @@ namespace DefaultNamespace
             this.diamondMultiplier = diamondMultiplier;
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.collider.CompareTag("DiamondCollector"))
+            if (other.CompareTag("DiamondCollector"))
             {
                 GetComponent<BoxCollider>().enabled = false;
-                other.collider.transform.parent.GetComponent<PlayerEffector>().ActivateDiamondEffect();
+                other.transform.parent.GetComponent<PlayerEffector>().ActivateDiamondEffect();
                 gameController.FinishGame();
             }
         }

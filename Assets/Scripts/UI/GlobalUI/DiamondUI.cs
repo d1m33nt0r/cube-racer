@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
 using Services.DiamondCountManager;
@@ -8,6 +11,7 @@ using Zenject;
 public class DiamondUI : MonoBehaviour
 {
     [SerializeField] private GameObject diamondIconPrefab;
+    [SerializeField] private GameObject plusOnePrefab;
     [SerializeField] private RectTransform parent;
     [SerializeField] private RectTransform target;
     [SerializeField] private GameObject settingsButton;
@@ -15,7 +19,8 @@ public class DiamondUI : MonoBehaviour
     
     private RectTransform diamondIconRectTransform;
     private Canvas canvas;
-
+    private RectTransform plusOneRectTransform;
+    
     public RectTransform DiamondPanel => target;
     private DiamondCountManager diamondCountManager;
     
@@ -62,14 +67,14 @@ public class DiamondUI : MonoBehaviour
     {
         diamondIconRectTransform = Instantiate(diamondIconPrefab, parent).GetComponent<RectTransform>();
         diamondIconRectTransform.GetComponent<DiamondIconController>().Construct(diamondCountManager, countDiamonds);
-        SetStartPosition(screenPoint);
+        SetStartPosition(diamondIconRectTransform, screenPoint);
         diamondIconRectTransform.GetComponent<DiamondIconController>().Move(target);
     }
 
     public void CreateDiamond(Vector2 screenPoint)
     {
         diamondIconRectTransform = Instantiate(diamondIconPrefab, parent).GetComponent<RectTransform>();
-        SetStartPosition(screenPoint);
+        SetStartPosition(diamondIconRectTransform, screenPoint);
         
         var diamondIconController = diamondIconRectTransform.GetComponent<DiamondIconController>();
 
@@ -81,10 +86,76 @@ public class DiamondUI : MonoBehaviour
             .OnComplete(diamondIconController.SetMovingDone);
     }
     
-    private void SetStartPosition(Vector2 screenPoint)
+    private void SetStartPosition(RectTransform rectTransform, Vector2 screenPoint)
     {
-        diamondIconRectTransform.anchorMax = Camera.main.ScreenToViewportPoint(screenPoint);
-        diamondIconRectTransform.anchorMin = Camera.main.ScreenToViewportPoint(screenPoint);
-        diamondIconRectTransform.anchoredPosition = Camera.main.ScreenToViewportPoint(screenPoint);
+        rectTransform.anchorMax = Camera.main.ScreenToViewportPoint(screenPoint);
+        rectTransform.anchorMin = Camera.main.ScreenToViewportPoint(screenPoint);
+        rectTransform.anchoredPosition = Camera.main.ScreenToViewportPoint(screenPoint);
+    }
+    
+    private void SetStartPosition(List<RectTransform> rectTransform, List<Vector2> screenPoints)
+    {
+        for (var i = 0; i < screenPoints.Count; i++)
+        {
+            rectTransform[i].anchorMax = Camera.main.ScreenToViewportPoint(new Vector2(screenPoints[i].x + 130, screenPoints[i].y + 50));
+            rectTransform[i].anchorMin = Camera.main.ScreenToViewportPoint(new Vector2(screenPoints[i].x + 130, screenPoints[i].y + 50));
+            rectTransform[i].anchoredPosition = Camera.main.ScreenToViewportPoint(new Vector2(screenPoints[i].x + 130, screenPoints[i].y + 50));
+        }
+    }
+    
+    public void CreatePlusOneEffect(List<Vector2> screenPoints)
+    {
+        var transforms = new List<RectTransform>();
+        var startScale = new Vector3(0.8f, 0.8f, 0.8f);
+        
+        for (var i = 0; i < screenPoints.Count; i++)
+        {
+            transforms.Add(Instantiate(plusOnePrefab, parent).GetComponent<RectTransform>());
+            transforms.Last().localScale = startScale;
+        }
+        
+        SetStartPosition(transforms, screenPoints);
+        
+        PlusOneEffectAnimation(transforms);
+    }
+    
+    private async void PlusOneEffectAnimation(List<RectTransform> transforms)
+    {
+        var timeToUpScale = 0.25f;
+        var timeToDownScale = 0.35f;
+        
+        var upScale = new Vector3(1.1f, 1.1f, 1.1f);
+        var downScale = Vector3.zero;
+        
+        await ScaleUp(upScale, timeToUpScale, transforms);
+        
+        foreach (var trans in transforms)
+            trans.DOScale(downScale, timeToDownScale);
+    }
+
+    private Task ScaleUp(Vector3 upScale, float timeToUpScale, List<RectTransform> transforms)
+    {
+        foreach (var trans in transforms)
+            trans.DOScale(upScale, timeToUpScale);
+        
+        return Task.Delay(300);
+    }
+    
+    private async void PlusOneEffectAnimation()
+    {
+        var timeToUpScale = 0.3f;
+        var timeToDownScale = 0.5f;
+
+        var upScale = new Vector3(1.2f, 1.2f, 1.2f);
+        var downScale = Vector3.zero;
+
+        await ScaleUp(upScale, timeToUpScale);
+        plusOneRectTransform.DOScale(downScale, timeToDownScale);
+    }
+
+    private Task ScaleUp(Vector3 upScale, float timeToUpScale)
+    {
+        plusOneRectTransform.DOScale(upScale, timeToUpScale);
+        return Task.Delay(300);
     }
 }

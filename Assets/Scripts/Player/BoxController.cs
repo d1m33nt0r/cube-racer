@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace.ThemeManager;
 using Services.StartBoxCountManager;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class BoxController : MonoBehaviour
     [SerializeField] private Transform trail;
     public float height;
     private List<FriendlyBox> boxes;
+    public List<FriendlyBox> Boxes => boxes;
     private Bounds BoxBounds => friendlyBox.GetComponent<MeshRenderer>().bounds;
     private Bounds GroundBounds => road.GetComponent<MeshRenderer>().bounds;
     private float offsetYForGround => Mathf.Abs(GroundBounds.max.y - GroundBounds.center.y);
@@ -27,7 +29,7 @@ public class BoxController : MonoBehaviour
     private Transform currentRoad;
 
     public int boxCount => transform.childCount - 2;
-    private float heightBox => 0.2f;//Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
+    private float heightBox => 0.21f; //Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
 
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
@@ -67,6 +69,13 @@ public class BoxController : MonoBehaviour
             transform.position.y, startingRoad.GetStartPosition().z);
     }
 
+    public bool IsLastElement(FriendlyBox _friendlyBox)
+    {
+        if (boxes.Last() == _friendlyBox) return true;
+        
+        return false;
+    }
+    
     public void ClearBoxes()
     {
         for (var i = 1; i < transform.childCount; i++)

@@ -22,36 +22,26 @@ namespace DefaultNamespace.Boxes
         {
             if (other.CompareTag("DiamondCollector"))
             {
-                List<Vector3> collectBoxEffectPositions = new List<Vector3>();
+                
                 List<Vector3> plusOneBoxTextEffect = new List<Vector3>();
 
                 var boxController = other.transform.parent.GetComponent<BoxController>();
-                var effectSpawner = boxController.GetComponent<PlusOneFriendlyBoxAnimationController>();
+                var effectSpawner = boxController.GetComponent<BoxEffectSpawner>();
                 var boxCount = boxController.boxCount;
 
-                var pos = boxController.GetBoxPositionXZ();
-                var pos2 = boxController.transform.TransformPoint(StartPoint.startPoint);
-                var position = boxController.transform.TransformPoint(pos);
-                
-                //foreach (var box in boxes)
-                //{
-                    
-                //    collectBoxEffectPositions.Add(new Vector3(position.x, pos2.y + boxCount * 0.2f, position.z));
-                //}
                 
                 foreach (var box in boxes)
                 {
                     other.transform.parent.GetComponent<BoxController>().AddBox(box.gameObject);
                 }
 
-                ///foreach (var effectPosition in collectBoxEffectPositions)
-                ///{
-                ///    effectSpawner.SpawnEffect(effectPosition);
-                //}
+                
 
                 boxAudioController.PlayCollectSound();
                 
                 boxController.CalculateBoxPositions();
+                
+                effectSpawner.Cal(boxController.boxCount - boxCount);
                 
                 Debug.Log("Add " + countBoxes + " boxes");
             }
