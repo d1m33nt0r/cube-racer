@@ -16,6 +16,8 @@ TagManager:
   - DiamondBonus
   - BoxBonus
   - BoxGroup
+  - Magnit
+  - MagnitPlayer
   layers:
   - Default
   - TransparentFX

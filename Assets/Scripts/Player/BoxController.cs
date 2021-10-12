@@ -35,7 +35,9 @@ public class BoxController : MonoBehaviour
     private StartBoxCountManager startBoxCountManager;
     private ThemeManager themeManager;
     private GameController gameController;
-    
+
+    private MagnitPlayer magnitPlayerEffect;
+
     [Inject]
     private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, 
         StartBoxCountManager startBoxCountManager, ThemeManager themeManager, GameController gameController)
@@ -49,6 +51,7 @@ public class BoxController : MonoBehaviour
 
     private void Awake()
     {
+        magnitPlayerEffect = transform.parent.GetComponentInChildren<MagnitPlayer>();
         height = heightBox;
         boxes = new List<FriendlyBox>();
         startCountBoxes = startBoxCountManager.GetData();
@@ -129,7 +132,7 @@ public class BoxController : MonoBehaviour
 
     public void DisablePhysics()
     {
-        for (var i = transform.childCount - 1; i >= 0; i--)
+        for (var i = transform.childCount - 1; i >= 1; i--)
         {
             transform.GetChild(i).GetComponent<Rigidbody>().useGravity = false;
             transform.GetChild(i).GetComponent<Rigidbody>().velocity = Vector3.zero;
