@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections;
+using UI;
 using UnityEngine;
+using Zenject;
 
 public class GameController : MonoBehaviour
 {
@@ -10,15 +11,36 @@ public class GameController : MonoBehaviour
     public event Action PausedGame;
     public event Action ContinuedGame;
 
-    private void Start()
+    private GameplayStarter gameplayStarter;
+    private BoxController boxController;
+    private SessionDiamondCounter sessionDiamondCounter;
+    
+    [Inject]
+    private void Construct(GameplayStarter gameplayStarter, BoxController boxController, SessionDiamondCounter sessionDiamondCounter)
     {
-        StartGame();
+        this.gameplayStarter = gameplayStarter;
+        this.boxController = boxController;
+        this.sessionDiamondCounter = sessionDiamondCounter;
+        
+        gameplayStarter.Touched += StartGame;
+        boxController.RemovedBox += CheckBoxCount;
     }
 
-    public IEnumerator ExecuteForWait(float n)
+    private void CheckBoxCount(bool finish, int multiplier)
     {
-        yield return new WaitForSeconds(n);
-        FinishGame();
+        if (boxController.boxCount == 0 && !finish)
+        {
+            FailGame();
+            boxController.ClearBoxes();
+        }
+        
+        if (boxController.boxCount == 0 && finish)
+        {
+            FinishGame();
+            boxController.transform.GetComponent<PlayerEffector>().ActivateDiamondEffect();
+            boxController.ClearBoxes();
+        }
+        
     }
 
     private void StartGame()
@@ -26,8 +48,8 @@ public class GameController : MonoBehaviour
         Debug.Log("Game Started");
         StartedGame?.Invoke();
     }
-    
-    private void FinishGame()
+
+    public void FinishGame()
     {
         Debug.Log("Game Finished");
         FinishedGame?.Invoke();

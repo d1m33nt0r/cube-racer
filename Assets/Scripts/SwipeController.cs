@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
+using Zenject;
 
 public class SwipeController : MonoBehaviour
 {
     private bool isDragging, isMobilePlatform;
     private Vector2 tapPoint, swipeDelta;
     private Vector2 curMousePosition, prevMousePosition = Vector2.zero;
-
+    private GameplayStarter gameplayStarter;
+    private bool enabledSwipeController;
+    
     public delegate void OnSwipeInput(SwipeType type, float delta);
     public event OnSwipeInput SwipeEvent;
 
@@ -15,6 +19,18 @@ public class SwipeController : MonoBehaviour
         RIGHT
     }
 
+    [Inject]
+    private void Construct(GameplayStarter gameplayStarter)
+    {
+        this.gameplayStarter = gameplayStarter;
+        gameplayStarter.ActivateSwipeControll += EnableSwipeController;
+    }
+
+    private void EnableSwipeController()
+    {
+        enabledSwipeController = true;;
+    }
+    
     private void Awake() 
     {
         #if UNITY_EDITOR || UNITY_STANDALONE
@@ -26,6 +42,9 @@ public class SwipeController : MonoBehaviour
 
     private void Update()
     {
+        if(!enabledSwipeController)
+            return;
+
         if(!isMobilePlatform)
         {
             if(Input.GetMouseButtonDown(0))
@@ -56,14 +75,17 @@ public class SwipeController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate() 
+    {
+        if(!enabledSwipeController)
+            return;
+        
         CalculateSwipe();
     }
 
     private void CalculateSwipe()
     {
         curMousePosition = (Vector2)Input.mousePosition;
-
         swipeDelta = Vector2.zero;
 
         if(isDragging)
@@ -78,14 +100,13 @@ public class SwipeController : MonoBehaviour
         {
             if (swipeDelta.x < 0)
             {
-                SwipeEvent(SwipeType.LEFT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
+                SwipeEvent?.Invoke(SwipeType.LEFT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
             }
 
             if (swipeDelta.x > 0)
             {
-                SwipeEvent(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
+                SwipeEvent?.Invoke(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
             }
-                
         }
 
         prevMousePosition = curMousePosition;  

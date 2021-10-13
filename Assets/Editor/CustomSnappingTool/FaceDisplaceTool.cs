@@ -4,8 +4,6 @@ using UnityEngine;
 [CustomEditor(typeof(FaceDisplace))]
 public class FaceDisplaceTool : Editor
 {
-    private FaceDisplace faceDisplace;
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

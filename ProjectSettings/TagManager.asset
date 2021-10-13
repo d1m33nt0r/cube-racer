@@ -5,9 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - FriendlyBox
-  - LetBox
+  - LevelFinish
   - Ground
-  - Diamond
+  - ship
+  - LetBox
+  - asteroid
+  - Hole
+  - Turn
+  - DiamondCollector
+  - DiamondBonus
+  - BoxBonus
+  - BoxGroup
+  - Magnit
+  - MagnitPlayer
   layers:
   - Default
   - TransparentFX
@@ -15,8 +25,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Effects
-  - Diamonds
+  - 
+  - 
   - 
   - 
   - 
@@ -42,12 +52,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: back
-    uniqueID: 1909785773
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI
-    uniqueID: 1485767641
     locked: 0

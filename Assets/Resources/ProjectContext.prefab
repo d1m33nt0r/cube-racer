@@ -74,3 +74,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsCounter: {fileID: 4356882640965383735, guid: 4e57c837cea7ca041b02ddb707c6ce37, type: 3}
+  diamondUI: {fileID: 7070604699820005856, guid: a092505ed03bb524dbf490027c2b3819, type: 3}
+  themeManager: {fileID: 3609743187205978093, guid: d3afeb7c85b98f24481a3beeb7f117de, type: 3}

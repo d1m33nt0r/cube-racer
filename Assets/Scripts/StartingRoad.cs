@@ -1,8 +1,14 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class StartingRoad : MonoBehaviour
 {
     [SerializeField] private MeshRenderer meshRenderer;
+
+    private void Start()
+    {
+        StartPoint.SetStartPoint(GetStartPosition());
+    }
 
     public Vector3 GetStartPosition()
     {
