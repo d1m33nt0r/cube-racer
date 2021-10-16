@@ -47,6 +47,7 @@ public class CameraController : MonoBehaviour
         minCount = 4;
         this.boxController = boxController;
         boxController.AddedBoxes += IncreaseY;
+        boxController.SpecialAddedBox += IncreaseY;
         boxController.RemovedBox += DecreaseY;
         startRotation = transform.localRotation.eulerAngles;
         startYPosition = transform.position.y;
@@ -58,7 +59,7 @@ public class CameraController : MonoBehaviour
         for (var i = maxCount - (maxCount - minCount); i < maxCount; i++)
         {
             var multiplier = i - (maxCount - (maxCount - minCount));
-            var pos = new Vector3(transform.position.x, transform.position.y + yPositionValue * multiplier, transform.position.z);
+            var pos = new Vector3(transform.position.x, transform.position.y + yPositionValue * multiplier, transform.position.z + zOffsetValue * multiplier);
             var rot = new Vector3(transform.localRotation.eulerAngles.x + xRotateValue * multiplier, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
             var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
             camPoints.Add(i, new CamPoint(pos, rot, fieldView));
@@ -77,7 +78,7 @@ public class CameraController : MonoBehaviour
         return false;
     }
 
-    private void IncreaseY(int countBoxes)
+    private void IncreaseY()
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
         
@@ -97,15 +98,13 @@ public class CameraController : MonoBehaviour
         
         if (pointIsExist)
         {
-            camera.transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
+            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration);
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
         }
         
-
-
         if (finish)
             camera.transform.DOMoveY(transform.position.y + 0.15f, 0.25f);
     }
