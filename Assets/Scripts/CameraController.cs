@@ -1,78 +1,111 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
+public class CamPoint
+{
+    public Vector3 position;
+    public Vector3 rotation;
+    public float fieldView;
+
+    public CamPoint(Vector3 pos, Vector3 rot, float fieldView)
+    {
+        position = pos;
+        rotation = rot;
+        this.fieldView = fieldView;
+    }
+}
+
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private int maxCount;
-    [SerializeField] private int startValue;
+    [SerializeField] private int minCount;
     [SerializeField] private Camera camera;
-
+    
     [SerializeField] private float yPositionValue = 0.75f;
     [SerializeField] private float verticalMoveDuration = 0.25f;
-    [SerializeField] private float xRotateValue = 1;
+    [SerializeField] private float xRotateValue = 0.1f;
     [SerializeField] private float rotationDuration = 0.5f;
     [SerializeField] private float fieldViewValue = 0.75f;
     [SerializeField] private float fieldViewDuration = 0.25f;
     [SerializeField] private float zOffsetValue;
     [SerializeField] private float zOffsetDuration;
     
-    private int previousCount;
     private BoxController boxController;
-    private Coroutine coroutine;
-
+    
     private Vector3 startRotation;
     private float startYPosition;
-    
+
+    private Dictionary<int, CamPoint> camPoints = new Dictionary<int, CamPoint>();
+
     [Inject]
     private void Construct(BoxController boxController)
     {
+        maxCount = 25;
+        minCount = 4;
         this.boxController = boxController;
-        previousCount = boxController.boxCount;
-        boxController.AddedBox += IncreaseY;
+        boxController.AddedBoxes += IncreaseY;
         boxController.RemovedBox += DecreaseY;
         startRotation = transform.localRotation.eulerAngles;
-        startYPosition = transform.localPosition.y;
+        startYPosition = transform.position.y;
+        FillCameraPoints();
     }
-    
-    private void IncreaseY()
+
+    private void FillCameraPoints()
     {
-        var difference = boxController.boxCount - previousCount;
-        if (maxCount >= boxController.boxCount && boxController.boxCount > startValue)
+        for (var i = maxCount - (maxCount - minCount); i < maxCount; i++)
         {
-            camera.transform.DOMoveY(transform.position.y + yPositionValue, verticalMoveDuration);
-            camera.transform.DOLocalRotate(
-                new Vector3(transform.localRotation.eulerAngles.x + xRotateValue, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), rotationDuration);
-            camera.DOFieldOfView(camera.fieldOfView + fieldViewValue, fieldViewDuration);
+            var multiplier = i - (maxCount - (maxCount - minCount));
+            var pos = new Vector3(transform.position.x, transform.position.y + yPositionValue * multiplier, transform.position.z);
+            var rot = new Vector3(transform.localRotation.eulerAngles.x + xRotateValue * multiplier, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
+            var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
+            camPoints.Add(i, new CamPoint(pos, rot, fieldView));
         }
-        previousCount = boxController.boxCount;
+    }
+
+    private bool TryGetPoint<T>(int countBoxes, out CamPoint value)
+    {
+        if (camPoints.ContainsKey(countBoxes))
+        {
+            value = camPoints[countBoxes];
+            return true;
+        }
+
+        value = null;
+        return false;
+    }
+
+    private void IncreaseY(int countBoxes)
+    {
+        var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
+        
+        if (pointIsExist)
+        {
+            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
+            camera.transform.DOLocalRotate(
+                new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
+                    transform.localRotation.eulerAngles.z), rotationDuration);
+            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
+        }
     }
 
     private void DecreaseY(bool finish, int multiplier)
     {
-        var difference = boxController.boxCount - previousCount;
+        var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
         
-        if (startValue < boxController.boxCount && !finish)
+        if (pointIsExist)
         {
-            camera.transform.DOMoveY(transform.position.y - yPositionValue, verticalMoveDuration);
+            camera.transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
             camera.transform.DOLocalRotate(
-                new Vector3(transform.localRotation.eulerAngles.x - xRotateValue, transform.localRotation.eulerAngles.y,
+                new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration);
-            camera.DOFieldOfView(camera.fieldOfView - fieldViewValue, fieldViewDuration);
+            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
         }
+        
 
-        if (startValue >= boxController.boxCount && !finish)
-        {
-            transform.DOLocalMoveY(startYPosition, 0.25f);
-            camera.transform.DOLocalRotate(startRotation, 0.5f);
-            camera.DOFieldOfView(60, 0.25f);
-        }
-        
-        previousCount = boxController.boxCount;
-        
+
         if (finish)
             camera.transform.DOMoveY(transform.position.y + 0.15f, 0.25f);
     }

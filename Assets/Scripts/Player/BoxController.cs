@@ -9,7 +9,7 @@ using Zenject;
 public class BoxController : MonoBehaviour
 {
     public delegate void BoxChanged(bool finish, int multiplier);
-    public event Action AddedBox;
+    public event Action<int> AddedBoxes;
     public event BoxChanged RemovedBox;
 
     private int startCountBoxes;
@@ -109,14 +109,18 @@ public class BoxController : MonoBehaviour
         
         CalculateBoxPositions();
     }
-    
+
+    public void BoxGroupAdded(int countBoxes)
+    {
+        AddedBoxes?.Invoke(countBoxes); // for camera field view
+    }
+
     public void AddBox(GameObject box)
     {
         boxes.Add(box.GetComponent<FriendlyBox>());
         box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
             transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
-        box.transform.SetParent(transform);
-        AddedBox?.Invoke(); // for camera field view
+        box.transform.SetParent(transform); 
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)

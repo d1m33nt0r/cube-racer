@@ -5,7 +5,8 @@ namespace DefaultNamespace
     public class PlayerContainer : MonoBehaviour
     {
         [SerializeField] private Transform directionalLight;
-
+        [SerializeField] private Transform camera;
+        
         private float previousYRotation;
         private bool rotating;
         
@@ -39,9 +40,19 @@ namespace DefaultNamespace
             directionalLight.SetParent(transform);
         }
 
+        public void CameraParent()
+        {
+            camera.SetParent(transform);
+        }
+
         public void LightUnParent()
         {
             directionalLight.SetParent(null);
+        }
+        
+        public void CameraUnParent()
+        {
+            camera.SetParent(null);
         }
         
         public void SetRotation(bool rotating)

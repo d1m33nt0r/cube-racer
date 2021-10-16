@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace DefaultNamespace
@@ -26,7 +25,6 @@ namespace DefaultNamespace
         private float t3;
         private float prevDeltaLeft, prevDeltaRight;
         private PlayerContainer playerContainer;
-        
         
         [Inject]
         private void Construct(PlayerContainer playerContainer)
@@ -81,10 +79,15 @@ namespace DefaultNamespace
             this.moving = moving;
             TurnState.SetState(state);
             if (moving)
+            {
                 playerContainer.LightParent();
+                //playerContainer.CameraParent();
+            }
             else
-                playerContainer.LightUnParent();
-
+            {
+                playerContainer.LightUnParent();  
+                //playerContainer.CameraUnParent();
+            }
         }
 
         private void OnDrawGizmos() 
@@ -92,15 +95,15 @@ namespace DefaultNamespace
             if (P0 == null)
                 return;
 
-            var sigmentsNumber = 20;
-            var preveousePoint = P0.position;
+            var segmentsNumber = 20;
+            var previousPoint = P0.position;
 
-            for (var i = 0; i < sigmentsNumber + 1; i++) 
+            for (var i = 0; i < segmentsNumber + 1; i++) 
             {
-                var paremeter = (float)i / sigmentsNumber;
+                var paremeter = (float)i / segmentsNumber;
                 var point = Bezier.GetPoint(P0.position, P1.position, P2.position, P3.position, paremeter);
-                Debug.DrawLine(preveousePoint, point, Color.black);
-                preveousePoint = point;
+                Debug.DrawLine(previousPoint, point, Color.black);
+                previousPoint = point;
             }
         }
     }

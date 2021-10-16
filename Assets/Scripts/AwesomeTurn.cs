@@ -46,7 +46,7 @@ namespace DefaultNamespace
 
         private IEnumerator Finish()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.1f);
 
             finish = true;
         }

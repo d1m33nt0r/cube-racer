@@ -22,27 +22,22 @@ namespace DefaultNamespace.Boxes
         {
             if (other.CompareTag("DiamondCollector"))
             {
-                
                 List<Vector3> plusOneBoxTextEffect = new List<Vector3>();
 
                 var boxController = other.transform.parent.GetComponent<BoxController>();
                 var effectSpawner = boxController.GetComponent<BoxEffectSpawner>();
                 var boxCount = boxController.boxCount;
-
                 
                 foreach (var box in boxes)
-                {
-                    other.transform.parent.GetComponent<BoxController>().AddBox(box.gameObject);
-                }
+                    boxController.AddBox(box.gameObject);
 
-                
+                boxController.BoxGroupAdded(countBoxes);
 
                 boxAudioController.PlayCollectSound();
                 
                 boxController.CalculateBoxPositions();
                 
                 effectSpawner.Cal(boxController.boxCount - boxCount);
-                
                 Debug.Log("Add " + countBoxes + " boxes");
             }
         }

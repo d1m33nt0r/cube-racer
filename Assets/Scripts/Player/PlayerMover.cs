@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace DefaultNamespace
@@ -16,6 +17,8 @@ namespace DefaultNamespace
         private float prevDeltaRight, prevDeltaLeft = 0;
         private GameController gameController;
 
+        private Vector3 prevPos, curPos;
+        
         [Inject]
         private void Construct(GameController gameController)
         {
@@ -129,8 +132,13 @@ namespace DefaultNamespace
         
         private void Update()
         {
-            if (movingEnabled)
-                transform.parent.Translate(Vector3.forward * Time.deltaTime * speed);
+            if (!movingEnabled) return;
+
+            prevPos = transform.parent.position;
+            
+            transform.parent.Translate(Vector3.forward * Time.deltaTime * speed);
+
+            curPos = transform.parent.position;
         }
     }
 }
