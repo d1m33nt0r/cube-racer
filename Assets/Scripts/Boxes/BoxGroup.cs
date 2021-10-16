@@ -28,6 +28,8 @@ namespace DefaultNamespace.Boxes
                 var effectSpawner = boxController.GetComponent<BoxEffectSpawner>();
                 var boxCount = boxController.boxCount;
                 
+                boxController.prevBoxCount = boxCount;
+                
                 foreach (var box in boxes)
                     boxController.AddBox(box.gameObject);
 

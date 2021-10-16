@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e90ff928b75a94183cb28149d7e5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplierSpeed: 0.05
-  duration: 2.5
+  multiplierSpeed: 2
+  duration: 2
 --- !u!82 &6889339510226437783
 AudioSource:
   m_ObjectHideFlags: 0

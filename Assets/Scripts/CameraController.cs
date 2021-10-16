@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour
         minCount = 4;
         this.boxController = boxController;
         boxController.AddedBoxes += IncreaseY;
-        boxController.SpecialAddedBox += IncreaseY;
+        boxController.SpecialAddedBox += Increase;
         boxController.RemovedBox += DecreaseY;
         startRotation = transform.localRotation.eulerAngles;
         startYPosition = transform.position.y;
@@ -84,11 +84,25 @@ public class CameraController : MonoBehaviour
         
         if (pointIsExist)
         {
-            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
+            transform.DOMoveY(camPoint.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), rotationDuration);
-            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
+                    transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
+            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration * (boxController.boxCount - boxController.prevBoxCount));
+        }
+    }
+    
+    private void Increase()
+    {
+        var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
+        
+        if (pointIsExist)
+        {
+            transform.DOMoveY(camPoint.position.y, 2f);
+            camera.transform.DOLocalRotate(
+                new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
+                    transform.localRotation.eulerAngles.z), 2f);
+            camera.DOFieldOfView(camPoint.fieldView, 2f);
         }
     }
 

@@ -39,6 +39,8 @@ public class BoxController : MonoBehaviour
 
     private MagnitPlayer magnitPlayerEffect;
 
+    public int prevBoxCount;
+    
     [Inject]
     private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, 
         StartBoxCountManager startBoxCountManager, ThemeManager themeManager, GameController gameController)
@@ -98,6 +100,8 @@ public class BoxController : MonoBehaviour
     
     public void SpecialAddBox(int count)
     {
+        prevBoxCount = boxCount;
+        
         for (var i = 0; i < count; i++)
         {
             var instance = Instantiate(friendlyBox);
@@ -109,6 +113,7 @@ public class BoxController : MonoBehaviour
         }
         
         CalculateBoxPositions();
+        
         SpecialAddedBox?.Invoke();
     }
 
