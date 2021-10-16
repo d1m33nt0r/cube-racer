@@ -6,6 +6,8 @@ namespace DefaultNamespace
 {
     public class PlayerMover : MonoBehaviour
     {
+        public static event Action<Vector3> ChangedPosition;
+        
         [SerializeField] private float defaultSpeed;
         [SerializeField] private float speed;
         [SerializeField] private SwipeController swipeController;
@@ -139,6 +141,8 @@ namespace DefaultNamespace
             transform.parent.Translate(Vector3.forward * Time.deltaTime * speed);
 
             curPos = transform.parent.position;
+            
+            ChangedPosition?.Invoke(curPos - prevPos);
         }
     }
 }
