@@ -13,6 +13,7 @@ namespace UI
         [SerializeField] private GameObject finishUI;
         [SerializeField] private GameObject balloonUI;
         [SerializeField] private GameObject diamondBonusUIEffect;
+        [SerializeField] private GameObject levelProgressUI;
         
         [Inject]
         private void Construct(GameController gameController)
@@ -50,6 +51,7 @@ namespace UI
         private void ShowBalloonUI()
         {
             balloonUI.SetActive(true);
+            levelProgressUI.SetActive(false);
         }
         
         private void HideBalloonUI()
@@ -60,6 +62,7 @@ namespace UI
         private void ShowFinishUI()
         {
             finishUI.SetActive(true);
+            levelProgressUI.SetActive(false);
         }
 
         private void HideFinishUI()
@@ -70,6 +73,7 @@ namespace UI
         private void ShowGameOverUI()
         {
             gameOverUI.SetActive(true);
+            levelProgressUI.SetActive(false);
         }
 
         private void HideGameOverUI()
@@ -80,6 +84,7 @@ namespace UI
         private void ShowGameplayUI()
         {
             gameplayUI.SetActive(true);
+            levelProgressUI.SetActive(true);
         }
 
         private void HideGameplayUI()

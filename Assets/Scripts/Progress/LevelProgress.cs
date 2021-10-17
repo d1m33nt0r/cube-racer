@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace.Progress
 {
@@ -7,10 +8,13 @@ namespace DefaultNamespace.Progress
     {
         [SerializeField] private List<Transform> checkpoints;
         [SerializeField] private List<TurnState.State> _states;
+        [SerializeField] private Slider slider;
         
         private Dictionary<Transform, TurnState.State> points;
         private float generalDistance = 0;
         private float currentDistance = 0;
+        
+        
         
         private void Start()
         {
@@ -81,7 +85,15 @@ namespace DefaultNamespace.Progress
 
         private void DebugLog()
         {
-            Debug.Log(currentDistance);
+            //Debug.Log(currentDistance);
+            slider.value = GetProgressProcent();
+        }
+        
+        
+
+        private float GetProgressProcent()
+        {
+            return currentDistance / generalDistance;
         }
     }
 }
