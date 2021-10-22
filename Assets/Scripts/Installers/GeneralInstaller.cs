@@ -1,4 +1,5 @@
-﻿using DefaultNamespace.ThemeManager;
+﻿using DefaultNamespace.Services.AdsManager;
+using DefaultNamespace.ThemeManager;
 using Services.DiamondCountManager;
 using Services.LevelProgressManager;
 using Services.StartBoxCountManager;
@@ -12,6 +13,7 @@ namespace Installers
         [SerializeField] private GameObject fpsCounter;
         [SerializeField] private DiamondUI diamondUI;
         [SerializeField] private ThemeManager themeManager;
+        [SerializeField] private GameObject adsCamera;
         
         // services
         private DiamondCountManager diamondCountManager;
@@ -39,6 +41,7 @@ namespace Installers
             BindThemeManager();
             BindDiamondUI(diamondCountManager);
             InstantiateFpsCounter(debugParent);
+            BindAdsCamera();
         }
 
         private void BindThemeManager()
@@ -51,6 +54,11 @@ namespace Installers
                 .AsSingle();
         }
 
+        private void BindAdsCamera()
+        {
+            Container.InstantiatePrefab(adsCamera);
+        }
+        
         private void BindStartBoxCountManager()
         {
             Container

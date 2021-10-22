@@ -88,7 +88,7 @@ public class SwipeController : MonoBehaviour
         curMousePosition = (Vector2)Input.mousePosition;
         swipeDelta = Vector2.zero;
 
-        if(isDragging)
+        if (isDragging)
         {
             if(!isMobilePlatform && Input.GetMouseButton(0))
                 swipeDelta = (Vector2)Input.mousePosition - tapPoint;
@@ -96,16 +96,17 @@ public class SwipeController : MonoBehaviour
                 swipeDelta = Input.touches[0].position - tapPoint;
         }
 
-        if(true)
+        if (true)
         {
+            // TODO fix player position
             if (swipeDelta.x < 0)
             {
-                SwipeEvent?.Invoke(SwipeType.LEFT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
+                SwipeEvent?.Invoke(SwipeType.LEFT, Mathf.Abs(tapPoint.x - curMousePosition.x) / 40);
             }
 
             if (swipeDelta.x > 0)
             {
-                SwipeEvent?.Invoke(SwipeType.RIGHT, (Mathf.Abs(tapPoint.x - curMousePosition.x) * Time.fixedDeltaTime) / 10);
+                SwipeEvent?.Invoke(SwipeType.RIGHT, Mathf.Abs(tapPoint.x - curMousePosition.x)  / 40);
             }
         }
 

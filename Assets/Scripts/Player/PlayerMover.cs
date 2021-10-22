@@ -94,10 +94,35 @@ namespace DefaultNamespace
 
         private void LeftSwipe(float delta)
         {
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x + prevDeltaLeft - delta, 
-                leftLimiter.position.x, rightLimiter.position.x), transform.position.y, 
-                Mathf.Clamp(transform.position.z + prevDeltaLeft - delta, 
-                leftLimiter.position.z, rightLimiter.position.z));
+            var clampedCoordinate = Mathf.Clamp(transform.localPosition.x + prevDeltaLeft - delta,
+                leftLimiter.localPosition.x, rightLimiter.localPosition.x);
+            transform.localPosition = new Vector3(clampedCoordinate, transform.localPosition.y, transform.localPosition.z);
+            
+            /*
+            float clampedCoordinate;
+            switch (TurnState.state)
+            {
+                case TurnState.State.Forward:
+                    clampedCoordinate = Mathf.Clamp(transform.position.x + prevDeltaLeft - delta,
+                        leftLimiter.position.x, rightLimiter.position.x);
+                    transform.position = new Vector3(clampedCoordinate, transform.position.y, transform.position.z);
+                    break;
+                case TurnState.State.Left:
+                    clampedCoordinate = Mathf.Clamp(transform.position.z + prevDeltaLeft - delta, 
+                        leftLimiter.position.z, rightLimiter.position.z);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, clampedCoordinate);
+                    break;
+                case TurnState.State.Right:
+                    clampedCoordinate = Mathf.Clamp(transform.localPosition.x - prevDeltaLeft + delta, 
+                        leftLimiter.localPosition.x, rightLimiter.localPosition.x);
+                    transform.position = new Vector3(clampedCoordinate, transform.position.y, clampedCoordinate);
+                    break;
+                case TurnState.State.Back:
+                    
+                    break;
+            }
+            */
+
             prevDeltaLeft = delta;
 
             if (prevDeltaRight > 0)
@@ -106,10 +131,35 @@ namespace DefaultNamespace
 
         private void RightSwipe(float delta)
         {
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x - prevDeltaRight + delta, 
-                leftLimiter.position.x, rightLimiter.position.x), transform.position.y, 
-                Mathf.Clamp(transform.position.z - prevDeltaRight + delta, 
-                leftLimiter.position.z, rightLimiter.position.z));
+            var clampedCoordinate = Mathf.Clamp(transform.localPosition.x - prevDeltaRight + delta,
+                leftLimiter.localPosition.x, rightLimiter.localPosition.x);
+            transform.localPosition = new Vector3(clampedCoordinate, transform.localPosition.y, transform.localPosition.z);
+            
+            /*
+            float clampedCoordinate;
+            switch (TurnState.state)
+            {
+                case TurnState.State.Forward:
+                    clampedCoordinate = Mathf.Clamp(transform.position.x - prevDeltaRight + delta,
+                        leftLimiter.position.x, rightLimiter.position.x);
+                    transform.position = new Vector3(clampedCoordinate, transform.position.y, transform.position.z);
+                    break;
+                case TurnState.State.Left:
+                    clampedCoordinate = Mathf.Clamp(transform.position.z - prevDeltaRight + delta,
+                        leftLimiter.position.z, rightLimiter.position.z);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, clampedCoordinate);
+                    break;
+                case TurnState.State.Right:
+                    clampedCoordinate = Mathf.Clamp(transform.position.z + prevDeltaRight - delta,
+                        leftLimiter.position.z, rightLimiter.position.z);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, clampedCoordinate);
+                    break;
+                case TurnState.State.Back:
+                    
+                    break;
+            }
+            */
+
             prevDeltaRight = delta;
 
             if (prevDeltaLeft > 0)

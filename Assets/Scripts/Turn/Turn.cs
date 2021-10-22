@@ -57,15 +57,15 @@ namespace DefaultNamespace
                     prevDeltaLeft = 0;
             }
         }
-        
+
         private void Update()
         {
             transform.position = new Vector3(centerPoint.x + t2, transform.position.y,
                 centerPoint.z + t2);
-            
+
             if (moving)
             {
-                t = Mathf.Lerp(0,1, t3);
+                t = Mathf.Lerp(0, 1, t3);
                 t3 += speed * Time.deltaTime;
 
                 targetTransform.position = Bezier.GetPoint(P0.position, P1.position, P2.position, P3.position, t);

@@ -12,7 +12,6 @@ namespace DefaultNamespace.Services.AdsManager
             InterstitialAds.Initialize();
             InterstitialAds.LoadAds();
             BannerAds.Initialize();
-            DontDestroyOnLoad(this);
             SceneManager.sceneLoaded += ShowBanner;
         }
 
