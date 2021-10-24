@@ -216,10 +216,12 @@ Material:
     - _Offset_Z: 0
     - _Outline_Width: 0
     - _Parallax: 0.02
+    - _RimAmount: 0.716
     - _RimLight: 1
     - _RimLight_FeatherOff: 1
     - _RimLight_InsideMask: 0.003
     - _RimLight_Power: 0.336
+    - _RimThreshold: 0.1
     - _Rotate_EmissiveUV: 2.5
     - _Rotate_MatCapUV: 1
     - _Rotate_NormalMapForMatCapUV: 0
@@ -266,6 +268,7 @@ Material:
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _AmbientColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
     - _AngelRing_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
     - _Ap_RimLightColor: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -276,5 +279,7 @@ Material:
     - _HighColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightColor: {r: 0.16037738, g: 0.15205592, b: 0.15205592, a: 1}
+    - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
