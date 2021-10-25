@@ -123,11 +123,11 @@ public class CameraController : MonoBehaviour
         
         if (pointIsExist)
         {
-            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
+            transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), rotationDuration);
-            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
+                    transform.localRotation.eulerAngles.z), rotationDuration  * 2);
+            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration  * 2);
         }
     }
 
