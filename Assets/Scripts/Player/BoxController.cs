@@ -30,7 +30,7 @@ public class BoxController : MonoBehaviour
     private Transform currentRoad;
 
     public int boxCount => transform.childCount - 2;
-    private float heightBox => 0.21f; //Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
+    private float heightBox => 0.2105f; //Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
 
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
@@ -61,7 +61,7 @@ public class BoxController : MonoBehaviour
         
         for (var i = 0; i < startCountBoxes; i++)
         {
-            var instance = Instantiate(friendlyBox);
+            var instance = Instantiate(friendlyBox, Vector3.zero, Quaternion.AngleAxis(90, Vector3.up));
             instance.transform.SetParent(transform);
             instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
         }
@@ -114,20 +114,23 @@ public class BoxController : MonoBehaviour
         
         CalculateBoxPositions();
         
+        DisablePhysics();
         SpecialAddedBox?.Invoke();
     }
 
     public void BoxGroupAdded(int countBoxes)
     {
+        DisablePhysics();
         AddedBoxes?.Invoke(); // for camera field view
     }
 
     public void AddBox(GameObject box)
     {
+        DisablePhysics();
         boxes.Add(box.GetComponent<FriendlyBox>());
         box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
             transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
-        box.transform.SetParent(transform); 
+        box.transform.SetParent(transform);
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)
@@ -136,7 +139,7 @@ public class BoxController : MonoBehaviour
         boxes.Remove(box.GetComponent<FriendlyBox>());
         RemovedBox?.Invoke(finish, multiplier); // for camera field view
         UpdateBoxesTag();
-        
+        EnablePhysics();
         if(destroy)
             Destroy(box);
     }
