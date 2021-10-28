@@ -17,7 +17,7 @@ public class PhysicsTrigger : MonoBehaviour
     private static void CalculatePositionsAndDisable(Collider other)
     {
         var boxController = other.transform.parent.GetComponent<BoxController>();
-        boxController.CalculateBoxPositions();
-        //boxController.DisablePhysics();
+        boxController.CalculateBoxPositions(); 
+        boxController.DisablePhysics();
     }
 }

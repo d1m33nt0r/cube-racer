@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 7937681345008153763}
   - component: {fileID: 4122251747804405606}
   - component: {fileID: 8708578181835634725}
-  - component: {fileID: 4773659065566842966}
   m_Layer: 0
   m_Name: FriendlyBox
   m_TagString: FriendlyBox
@@ -228,7 +227,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4f0195aad277d64aaba262dd58cd1b7, type: 2}
+  - {fileID: 2100000, guid: 2d694ee24286e4345bf06b9f7fbb6c32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,7 +269,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937681345008153764}
   serializedVersion: 2
-  m_Mass: 0.01
+  m_Mass: 0.025
   m_Drag: 0.1
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -290,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d58f6d30faa154f80e84ddf6b37b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 4210704835721733797, guid: 0413d0a455002c44bb2e9352768c6e9c, type: 3}
+  effect: {fileID: 4210704835721733797, guid: 92414116f205f644094649b40768f907, type: 3}
   plusOne: {fileID: 3351950589542875098, guid: 2d43f8fa3b36f9d4b8b604e5f40ed438, type: 3}
   isBoxBonus: 0
   boxes: {fileID: 0}
@@ -334,20 +333,6 @@ MonoBehaviour:
   countSubdivisionZ: 1
   countSubdivisionX: 1
   sideSubdivision: 2
---- !u!64 &4773659065566842966
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937681345008153764}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c, type: 3}
 --- !u!1 &8345776544536342783
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7097988391194043369}
   - component: {fileID: 7097988391194043374}
   m_Layer: 0
-  m_Name: LeftTurn
+  m_Name: ForwardToLeft
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 78e27eb7f900c1b44b9f77126218cd7d, type: 2}
+  - {fileID: 2100000, guid: 46c982c0fde50ed49ab0e9bbc677da2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

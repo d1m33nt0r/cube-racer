@@ -28,9 +28,9 @@ public class MagnitPlayer : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("FriendlyBox") && !other.transform.parent.CompareTag("Player"))
+        if (other.CompareTag("BoxGroup"))
         {
-            MoveBoxIntoPlayer(other.transform.parent);
+            MoveBoxIntoPlayer(other.transform);
         }
     }
 
