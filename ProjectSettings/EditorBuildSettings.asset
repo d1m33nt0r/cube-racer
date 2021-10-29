@@ -26,4 +26,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Levels/New Folder/Level_3.unity
     guid: e8525c943fb2d0149b940e461e9f8bf9
+  - enabled: 0
+    path: Assets/JMO Assets/Toony Colors Pro/Demo TCP2/Demo TCP2 Cat.unity
+    guid: ee01dcde20404d24085806cf87ef861d
+  - enabled: 0
+    path: Assets/JMO Assets/Toony Colors Pro/Demo TCP2/Demo TCP2 ShaderGenerator
+      2.unity
+    guid: e5c62462609a8894093b0836f4b99bdb
   m_configObjects: {}
