@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  speed: -1.5
+  speed: -0.5
   angle: 0.25
   vector: {x: 0, y: 1, z: 0}
 --- !u!1 &269234902
@@ -4140,7 +4140,7 @@ GameObject:
   - component: {fileID: 1768165877}
   m_Layer: 0
   m_Name: Main Camera (1)
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

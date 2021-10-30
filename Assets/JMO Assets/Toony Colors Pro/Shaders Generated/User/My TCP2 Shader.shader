@@ -5,47 +5,62 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 {
 	Properties
 	{
-		[TCP2HelpBox(Warning,Make sure that the Camera renders the depth texture for this material to work properly.    You can use the script __TCP2_CameraDepth__ for this.)]
 	[TCP2HeaderHelp(BASE, Base Properties)]
 		//TOONY COLORS
-		_HColor ("Highlight Color", Color) = (0.6,0.6,0.6,1.0)
-		_SColor ("Shadow Color", Color) = (0.3,0.3,0.3,1.0)
+		_Color ("Color", Color) = (1,1,1,1)
+		_HColor ("Highlight Color", Color) = (0.785,0.785,0.785,1.0)
+		_SColor ("Shadow Color", Color) = (0.195,0.195,0.195,1.0)
 
 		//DIFFUSE
-		_MainTex ("Main Texture (RGB)", 2D) = "white" {}
+		_MainTex ("Main Texture", 2D) = "white" {}
+		_DiffTint ("Diffuse Tint", Color) = (0.7,0.8,1,1)
 	[TCP2Separator]
 
 		//TOONY COLORS RAMP
+		[TCP2Header(RAMP SETTINGS)]
+
 		_RampThreshold ("Ramp Threshold", Range(0,1)) = 0.5
 		_RampSmooth ("Ramp Smoothing", Range(0.001,1)) = 0.1
 	[TCP2Separator]
-	[TCP2HeaderHelp(WATER)]
-		_Color ("Water Color", Color) = (0.5,0.5,0.5,1.0)
 
-		[Header(Depth Color)]
-		_DepthColor ("Depth Color", Color) = (0.5,0.5,0.5,1.0)
-		[PowerSlider(5.0)] _DepthDistance ("Depth Distance", Range(0.01,3)) = 0.5
-
-		[Header(Foam)]
-		_FoamSpread ("Foam Spread", Range(0.01,5)) = 2
-		_FoamStrength ("Foam Strength", Range(0.01,1)) = 0.8
-		_FoamColor ("Foam Color (RGB) Opacity (A)", Color) = (0.9,0.9,0.9,1.0)
+	[Header(Masks)]
 		[NoScaleOffset]
-		_FoamTex ("Foam (RGB)", 2D) = "white" {}
-		_FoamSpeed ("Foam Speed", Vector) = (2,2,2,2)
+		_Mask1 ("Mask 1 (MatCap,Diffuse Tint)", 2D) = "black" {}
 	[TCP2Separator]
+
+	[TCP2HeaderHelp(MATCAP, MatCap)]
+		//MATCAP
+		[NoScaleOffset] _MatCap ("MatCap (RGB)", 2D) = "black" {}
+		_MatCapColor ("MatCap Color (RGB) Strength (Alpha)", Color) = (1,1,1,1)
+	[TCP2Separator]
+
+	[TCP2HeaderHelp(CUSTOM AMBIENT)]
+		_TCP2_AMBIENT_RIGHT ("Right", Color) = (0,0,0,1)
+		_TCP2_AMBIENT_LEFT ("Left", Color) = (0,0,0,1)
+		_TCP2_AMBIENT_TOP ("Top", Color) = (0,0,0,1)
+		_TCP2_AMBIENT_BOTTOM ("Bottom", Color) = (0,0,0,1)
+		_TCP2_AMBIENT_FRONT ("Front", Color) = (0,0,0,1)
+		_TCP2_AMBIENT_BACK ("Back", Color) = (0,0,0,1)
+	[TCP2Separator]
+
+	[TCP2HeaderHelp(VERTICAL FOG)]
+		_VerticalFogMin ("Y Min", Float) = -1.0
+		_VerticalFogMax ("Y Max", Float) = 1.0
+	[TCP2Separator]
+
+
 		//Avoid compile error if the properties are ending with a drawer
 		[HideInInspector] __dummy__ ("unused", Float) = 0
 	}
 
 	SubShader
 	{
-		Tags {"Queue"="Geometry" "RenderType"="Opaque"}
 
+		Tags { "RenderType"="Opaque" }
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsWater keepalpha vertex:vert 
+		#pragma surface surf ToonyColorsCustom noambient vertex:vert exclude_path:deferred exclude_path:prepass
 		#pragma target 3.0
 
 		//================================================================
@@ -53,32 +68,31 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 
 		fixed4 _Color;
 		sampler2D _MainTex;
-		float4 _MainTex_ST;
-		sampler2D_float _CameraDepthTexture;
-		fixed4 _DepthColor;
-		half _DepthDistance;
-		half4 _FoamSpeed;
-		half _FoamSpread;
-		half _FoamStrength;
-		sampler2D _FoamTex;
-		fixed4 _FoamColor;
+		sampler2D _Mask1;
+		half _VerticalFogMin;
+		half _VerticalFogMax;
+		sampler2D _MatCap;
+		fixed4 _MatCapColor;
 
-
+		#define UV_MAINTEX uv_MainTex
 
 		struct Input
 		{
-			float2 texcoord;
-			float4 sPos;
+			half2 uv_MainTex;
+			float3 worldPos;
+			half2 matcap;
+			fixed3 ambient;
 		};
 
 		//================================================================
 		// CUSTOM LIGHTING
 
 		//Lighting-related variables
-		half4 _HColor;
-		half4 _SColor;
+		fixed4 _HColor;
+		fixed4 _SColor;
 		half _RampThreshold;
 		half _RampSmooth;
+		fixed4 _DiffTint;
 
 		// Instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -88,17 +102,23 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		//Custom SurfaceOutput
-		struct SurfaceOutputWater
+		struct SurfaceOutputCustom
 		{
 			half atten;
 			fixed3 Albedo;
 			fixed3 Normal;
 			fixed3 Emission;
+			half Specular;
+			fixed Gloss;
 			fixed Alpha;
+			fixed DiffTintMask;
+			float3 WorldPos;
 		};
 
-		inline half4 LightingToonyColorsWater (inout SurfaceOutputWater s, half3 viewDir, UnityGI gi)
+		inline half4 LightingToonyColorsCustom (inout SurfaceOutputCustom s, half3 viewDir, UnityGI gi)
 		{
+		#define IN_NORMAL s.Normal
+	
 			half3 lightDir = gi.light.dir;
 		#if defined(UNITY_PASS_FORWARDBASE)
 			half3 lightColor = _LightColor0.rgb;
@@ -108,9 +128,10 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 			half atten = 1;
 		#endif
 
-			s.Normal = normalize(s.Normal);			
-			fixed ndl = max(0, dot(s.Normal, lightDir));
+			IN_NORMAL = normalize(IN_NORMAL);
+			fixed ndl = max(0, dot(IN_NORMAL, lightDir) * 0.5 + 0.5);
 			#define NDL ndl
+
 			#define		RAMP_THRESHOLD	_RampThreshold
 			#define		RAMP_SMOOTH		_RampSmooth
 
@@ -118,11 +139,16 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 		#if !(POINT) && !(SPOT)
 			ramp *= atten;
 		#endif
-		#if !defined(UNITY_PASS_FORWARDBASE)
+		// Note: we consider that a directional light with a cookie is supposed to be the main one (even though Unity renders it as an additional light).
+		// Thus when using a main directional light AND another directional light with a cookie, then the shadow color might be applied twice.
+		// You can remove the DIRECTIONAL_COOKIE check below the prevent that.
+		#if !defined(UNITY_PASS_FORWARDBASE) && !defined(DIRECTIONAL_COOKIE)
 			_SColor = fixed4(0,0,0,1);
 		#endif
 			_SColor = lerp(_HColor, _SColor, _SColor.a);	//Shadows intensity through alpha
 			ramp = lerp(_SColor.rgb, _HColor.rgb, ramp);
+			fixed3 wrappedLight = saturate(_DiffTint.rgb + saturate(dot(IN_NORMAL, lightDir)));
+			ramp = lerp(ramp, ramp * wrappedLight, s.DiffTintMask);
 			fixed4 c;
 			c.rgb = s.Albedo * lightColor.rgb * ramp;
 			c.a = s.Alpha;
@@ -130,21 +156,24 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 		#ifdef UNITY_LIGHT_FUNCTION_APPLY_INDIRECT
 			c.rgb += s.Albedo * gi.indirect.diffuse;
 		#endif
+
+			//Vertical Fog
+			half vertFogThreshold = s.WorldPos.y;
+			vertFogThreshold -= _WorldSpaceCameraPos.y;
+			c.rgb = lerp(unity_FogColor, c.rgb, smoothstep(_VerticalFogMin, _VerticalFogMax, vertFogThreshold));
+
 			return c;
 		}
 
-		void LightingToonyColorsWater_GI(inout SurfaceOutputWater s, UnityGIInput data, inout UnityGI gi)
+		void LightingToonyColorsCustom_GI(inout SurfaceOutputCustom s, UnityGIInput data, inout UnityGI gi)
 		{
-			gi = UnityGlobalIllumination(data, 1.0, s.Normal);
+			gi = UnityGlobalIllumination(data, 1.0, IN_NORMAL);
 
-			gi.light.color = _LightColor0.rgb;	//remove attenuation
 			s.atten = data.atten;	//transfer attenuation to lighting function
+			gi.light.color = _LightColor0.rgb;	//remove attenuation
 		}
 
-		//================================================================
-		// VERTEX FUNCTION
-
-
+		//Vertex input
 		struct appdata_tcp2
 		{
 			float4 vertex : POSITION;
@@ -152,68 +181,80 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader"
 			float4 texcoord : TEXCOORD0;
 			float4 texcoord1 : TEXCOORD1;
 			float4 texcoord2 : TEXCOORD2;
-	#if !defined(LIGHTMAP_OFF) && defined(DIRLIGHTMAP_COMBINED)
+		#if defined(LIGHTMAP_ON) && defined(DIRLIGHTMAP_COMBINED)
 			float4 tangent : TANGENT;
-	#endif
+		#endif
 	#if UNITY_VERSION >= 550
 			UNITY_VERTEX_INPUT_INSTANCE_ID
 	#endif
 		};
 
-			#define TIME (_Time.y)
+		//================================================================
+		// VERTEX FUNCTION
+
+		fixed4 _TCP2_AMBIENT_RIGHT;
+		fixed4 _TCP2_AMBIENT_LEFT;
+		fixed4 _TCP2_AMBIENT_TOP;
+		fixed4 _TCP2_AMBIENT_BOTTOM;
+		fixed4 _TCP2_AMBIENT_FRONT;
+		fixed4 _TCP2_AMBIENT_BACK;
+
+		half3 DirAmbient (half3 normal)
+		{
+			fixed3 retColor =
+				saturate( normal.x * _TCP2_AMBIENT_LEFT) +
+				saturate(-normal.x * _TCP2_AMBIENT_RIGHT) +
+				saturate( normal.y * _TCP2_AMBIENT_TOP) +
+				saturate(-normal.y * _TCP2_AMBIENT_BOTTOM) +
+				saturate( normal.z * _TCP2_AMBIENT_FRONT) +
+				saturate(-normal.z * _TCP2_AMBIENT_BACK);
+			return retColor * UNITY_LIGHTMODEL_AMBIENT.a;
+		}
 
 		void vert(inout appdata_tcp2 v, out Input o)
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, o);
+			float3 worldN = UnityObjectToWorldNormal(v.normal);
 
-			//Main texture UVs
-			half2 mainTexcoords = v.texcoord.xy;
-			o.texcoord.xy = TRANSFORM_TEX(mainTexcoords.xy, _MainTex);
-			float4 pos = UnityObjectToClipPos(v.vertex);
-			o.sPos = ComputeScreenPos(pos);
-			COMPUTE_EYEDEPTH(o.sPos.z);
+			//MatCap
+			float3 worldNorm = normalize(unity_WorldToObject[0].xyz * v.normal.x + unity_WorldToObject[1].xyz * v.normal.y + unity_WorldToObject[2].xyz * v.normal.z);
+			worldNorm = mul((float3x3)UNITY_MATRIX_V, worldNorm);
+			o.matcap.xy = worldNorm.xy * 0.5 + 0.5;
+
+	#if defined(UNITY_PASS_FORWARDBASE)
+			o.ambient = DirAmbient(worldN);
+	#endif
 		}
 
 		//================================================================
 		// SURFACE FUNCTION
 
-		void surf(Input IN, inout SurfaceOutputWater o)
+		void surf(Input IN, inout SurfaceOutputCustom o)
 		{
-			fixed4 mainTex = tex2D(_MainTex, IN.texcoord.xy);
-			float sceneZ = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(IN.sPos));
-			if(unity_OrthoParams.w > 0)
-			{
-				//orthographic camera
-			#if defined(UNITY_REVERSED_Z)
-				sceneZ = 1.0f - sceneZ;
-			#endif
-				sceneZ = (sceneZ * _ProjectionParams.z) + _ProjectionParams.y;
-			}
-			else
-				//perspective camera
-				sceneZ = LinearEyeDepth(sceneZ);
-			float partZ = IN.sPos.z;
-			float depthDiff = abs(sceneZ - partZ);
-			//Depth-based foam
-			half2 foamUV = IN.texcoord.xy;
-			foamUV.xy += TIME.xx*_FoamSpeed.xy*0.05;
-			fixed4 foam = tex2D(_FoamTex, foamUV);
-			foamUV.xy += TIME.xx*_FoamSpeed.zw*0.05;
-			fixed4 foam2 = tex2D(_FoamTex, foamUV);
-			foam = (foam + foam2) / 2;
-			float foamDepth = saturate(_FoamSpread * depthDiff);
-			half foamTerm = (step(foam.rgb, saturate(_FoamStrength - foamDepth)) * saturate(_FoamStrength - foamDepth)) * _FoamColor.a;
-			//Alter color based on depth buffer (soft particles technique)
-			mainTex.rgb = lerp(_DepthColor.rgb, mainTex.rgb, saturate(_DepthDistance * depthDiff));	//N.V corrects the result based on view direction (depthDiff tends to not look consistent depending on view angle)));
-			o.Albedo = lerp(mainTex.rgb * _Color.rgb, _FoamColor.rgb, foamTerm);
+			fixed4 mainTex = tex2D(_MainTex, IN.UV_MAINTEX);
+
+			//Masks
+			fixed4 mask1 = tex2D(_Mask1, IN.UV_MAINTEX);
+			o.Albedo = mainTex.rgb * _Color.rgb;
 			o.Alpha = mainTex.a * _Color.a;
-			o.Alpha = lerp(o.Alpha, _FoamColor.a, foamTerm);
+			o.DiffTintMask = mask1.a;
+
+			//MatCap
+			fixed3 matcap = tex2D(_MatCap, IN.matcap).rgb;
+
+			o.Emission += matcap.rgb * mask1.a * _MatCapColor.rgb * _MatCapColor.a;
+
+			//Custom Ambient
+			half3 customAmbient = IN.ambient;	//either Dir_Ambient or regular Unity SH ambient
+			o.Emission += customAmbient * o.Albedo;
+
+			//Vertical Fog
+			o.WorldPos = IN.worldPos;
 		}
 
 		ENDCG
-
 	}
 
-	//Fallback "Diffuse"
+	Fallback "Diffuse"
 	CustomEditor "TCP2_MaterialInspector_SG"
 }

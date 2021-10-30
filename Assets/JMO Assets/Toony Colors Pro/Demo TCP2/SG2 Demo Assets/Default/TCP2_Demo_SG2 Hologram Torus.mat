@@ -85,6 +85,8 @@ Material:
     - _MyFloat: 1
     - _NDVMaxFrag: 0.45
     - _NDVMinFrag: 0
+    - _NormalsSource: 0
+    - _NormalsUVType: 0
     - _OcclusionStrength: 1
     - _OutlineWidth: 2
     - _Parallax: 0.02
