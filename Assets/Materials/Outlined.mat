@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Outlined
   m_Shader: {fileID: 4800000, guid: ef3178aabaab247448c46c904e37bf43, type: 3}
-  m_ShaderKeywords: TCP2_MOBILE TCP2_OCCLUSION TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR
-    TCP2_SHADOW_TEXTURE TCP2_UV2_AS_NORMALS TCP2_UV_NORMALS_FULL
+  m_ShaderKeywords: TCP2_MOBILE TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_TEXTURE TCP2_UV2_AS_NORMALS
+    TCP2_UV_NORMALS_FULL _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: c12b275df9efda64e93b417cd2e085b9, type: 3}
+        m_Texture: {fileID: 2800000, guid: b479e7856f3ce244cb16b46dd31d6e1b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -77,7 +77,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowBaseMap:
-        m_Texture: {fileID: 2800000, guid: c12b275df9efda64e93b417cd2e085b9, type: 3}
+        m_Texture: {fileID: 2800000, guid: b479e7856f3ce244cb16b46dd31d6e1b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -86,7 +86,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _Cull: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DirectIntensityOutline: 1
@@ -124,16 +124,16 @@ Material:
     - _RampBandsSmoothing: 0
     - _RampOffset: 0
     - _RampScale: 1
-    - _RampSmoothing: 0.404
-    - _RampThreshold: 1
+    - _RampSmoothing: 1
+    - _RampThreshold: 0.814
     - _RampType: 0
-    - _ReceiveShadowsOff: 1
+    - _ReceiveShadowsOff: 0
     - _ReflectionMapType: 0
     - _ReflectionSmoothness: 0.5
     - _RenderingMode: 0
     - _RimMax: 1
     - _RimMin: 0.5
-    - _ShadowColorLightAtten: 1
+    - _ShadowColorLightAtten: 0
     - _SingleIndirectColor: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -153,7 +153,7 @@ Material:
     - _UseMatCapMask: 0
     - _UseMobileMode: 1
     - _UseNormalMap: 0
-    - _UseOcclusion: 1
+    - _UseOcclusion: 0
     - _UseOutline: 1
     - _UseReflections: 0
     - _UseRim: 0
@@ -163,7 +163,7 @@ Material:
     - _ZSmooth: -0.5
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}

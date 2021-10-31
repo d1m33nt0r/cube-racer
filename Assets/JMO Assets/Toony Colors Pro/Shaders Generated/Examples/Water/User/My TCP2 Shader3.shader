@@ -40,6 +40,11 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 		 _DisplacementStrength ("Displacement Strength", Range(-1,1)) = 0.01
 		[TCP2Separator]
 		
+		[TCP2HeaderHelp(Normal Mapping)]
+		[Toggle(_NORMALMAP)] _UseNormalMap ("Enable Normal Mapping", Float) = 0
+		[NoScaleOffset] _BumpMap ("Normal Map", 2D) = "bump" {}
+		[TCP2Separator]
+		
 		[Toggle(TCP2_TEXTURED_THRESHOLD)] _UseTexturedThreshold ("Enable Textured Threshold", Float) = 0
 		_StylizedThreshold ("Stylized Threshold", 2D) = "gray" {}
 		[TCP2Separator]
@@ -66,6 +71,7 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 
 		// Shader Properties
 		sampler2D _DisplacementTex;
+		sampler2D _BumpMap;
 		sampler2D _MainTex;
 		sampler2D _StylizedThreshold;
 		sampler2D _DiffuseTintMask;
@@ -119,6 +125,7 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 		#pragma shader_feature TCP2_VERTEX_DISPLACEMENT
 		#pragma shader_feature TCP2_AMBIENT
 		#pragma shader_feature TCP2_MATCAP
+		#pragma shader_feature _NORMALMAP
 		#pragma shader_feature TCP2_TEXTURED_THRESHOLD
 
 		//================================================================
@@ -132,14 +139,13 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 			float4 texcoord0 : TEXCOORD0;
 			float4 texcoord1 : TEXCOORD1;
 			float4 texcoord2 : TEXCOORD2;
-		#if defined(LIGHTMAP_ON) && defined(DIRLIGHTMAP_COMBINED)
 			half4 tangent : TANGENT;
-		#endif
 			UNITY_VERTEX_INPUT_INSTANCE_ID
 		};
 
 		struct Input
 		{
+			half3 tangent;
 			half3 worldNormal; INTERNAL_DATA
 			half2 matcap;
 			float2 texcoord0;
@@ -165,6 +171,7 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 			//Screen Position
 			float4 screenPos = ComputeScreenPos(clipPos);
 
+			output.tangent = mul(unity_ObjectToWorld, float4(v.tangent.xyz, 0)).xyz;
 			#if defined(TCP2_MATCAP)
 			//MatCap
 			float3 worldNorm = normalize(unity_WorldToObject[0].xyz * v.normal.x + unity_WorldToObject[1].xyz * v.normal.y + unity_WorldToObject[2].xyz * v.normal.z);
@@ -189,6 +196,7 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 			half Specular;
 			half Gloss;
 			half Alpha;
+			float3 normalTS;
 
 			Input input;
 			
@@ -210,7 +218,11 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 
 		void surf(Input input, inout SurfaceOutputCustom output)
 		{
+
+			input.worldNormal = WorldNormalVector(input, output.Normal);
+
 			// Shader Properties Sampling
+			float4 __normalMap = ( tex2D(_BumpMap, input.texcoord0.xy).rgba );
 			float4 __albedo = ( tex2D(_MainTex, input.texcoord0.xy).rgba );
 			float4 __mainColor = ( _Color.rgba );
 			float __alpha = ( __albedo.a * __mainColor.a );
@@ -227,6 +239,14 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 			output.__ambientIntensity = ( 1.0 );
 
 			output.input = input;
+
+			#if defined(_NORMALMAP)
+			half4 normalMap = half4(0,0,0,0);
+			normalMap = __normalMap;
+			output.Normal = UnpackNormal(normalMap);
+			output.normalTS = output.Normal;
+
+			#endif
 
 			half3 worldNormal = WorldNormalVector(input, output.Normal);
 			output.worldNormal = worldNormal;
@@ -335,5 +355,5 @@ Shader "Toony Colors Pro 2/User/My TCP2 Shader3"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","WRAPPED_LIGHTING_HALF","MATCAP","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","MATCAP_ADD","DIRAMBIENT","CUBE_AMBIENT","OCCLUSION","AMBIENT_SHADER_FEATURE","VERTEX_DISPLACEMENT","VERTEX_DISP_SHADER_FEATURE","TEXTURED_THRESHOLD","TT_SHADER_FEATURE","DIFFUSE_TINT","DIFFUSE_TINT_MASK"];flags:list["noambient","noforwardadd"];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH 4bf981bc5d6a5fd17b31abc282282e9b */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","WRAPPED_LIGHTING_HALF","MATCAP","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","MATCAP_ADD","DIRAMBIENT","CUBE_AMBIENT","OCCLUSION","AMBIENT_SHADER_FEATURE","VERTEX_DISPLACEMENT","VERTEX_DISP_SHADER_FEATURE","TEXTURED_THRESHOLD","TT_SHADER_FEATURE","DIFFUSE_TINT","DIFFUSE_TINT_MASK","BUMP","BUMP_SHADER_FEATURE"];flags:list["noambient","noforwardadd"];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH 3a43e4ae3ed4297557a71fcb3aaecf8b */
