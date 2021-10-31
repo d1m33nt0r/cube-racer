@@ -104,10 +104,8 @@ public class BoxController : MonoBehaviour
         {
             var instance = Instantiate(friendlyBox);
             instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
-            boxes.Add(instance.GetComponent<FriendlyBox>());
-            instance.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
-                transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
-            instance.transform.SetParent(transform);
+            
+            AddBox(instance);
         }
 
         SpecialAddedBox?.Invoke();

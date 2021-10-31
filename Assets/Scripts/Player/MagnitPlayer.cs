@@ -7,7 +7,7 @@ public class MagnitPlayer : MonoBehaviour
     [SerializeField] private BoxCollider magnitCollider;
     [SerializeField] private ParticleSystem effect;
     [SerializeField] private GameObject magnit;
-
+    
     public void EnableMagnitPlayerAndDestroyMagnitOnMap(GameObject gameObject)
     {
         Destroy(gameObject);
@@ -37,6 +37,6 @@ public class MagnitPlayer : MonoBehaviour
     private void MoveBoxIntoPlayer(Transform box)
     {
         var movePosition = transform.parent.parent.GetComponentInChildren<BoxController>().GetBoxPositionXZ();
-        box.DOMove(new Vector3(movePosition.x, box.position.y, movePosition.z), 0.01f);
+        box.DOMove(new Vector3(movePosition.x, box.position.y, movePosition.z), 0);
     }
 }
