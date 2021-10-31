@@ -59,14 +59,14 @@ public class FriendlyBox : MonoBehaviour
             if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
             {
                 boxController.RemoveBox(gameObject, false, 1);
-                boxController.EnablePhysics(true);
+                //boxController.EnablePhysics(true);
                 boxAudioController.PlayFailSound();
             }
 
             if (other.collider.CompareTag("Hole"))
             {
                 boxController.RemoveBox(gameObject, false, 1, true);
-                boxController.EnablePhysics(true);
+                //boxController.EnablePhysics(true);
                 boxAudioController.PlayFailSound();
             }
 
@@ -75,7 +75,7 @@ public class FriendlyBox : MonoBehaviour
                 other.collider.tag = "Ground";
                 boxController.RemoveBox(gameObject, true, 1);
                 boxAudioController.PlayFailSound();
-                boxController.EnablePhysics();
+                //boxController.EnablePhysics();
             }
         }
     }

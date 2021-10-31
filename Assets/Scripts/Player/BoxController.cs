@@ -28,9 +28,9 @@ public class BoxController : MonoBehaviour
     
     private StartingRoad startingRoad;
     private Transform currentRoad;
-
+    [SerializeField] private GameObject playerRenderer;
     public int boxCount => transform.childCount - 2;
-    private float heightBox => 0.2105f; //Mathf.Abs(BoxBounds.max.y - BoxBounds.min.y);
+    private float heightBox => 0.2105f; 
 
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
@@ -64,17 +64,13 @@ public class BoxController : MonoBehaviour
             var instance = Instantiate(friendlyBox, Vector3.zero, Quaternion.AngleAxis(90, Vector3.up));
             instance.transform.SetParent(transform);
             instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
+            AddBox(instance);
         }
-
-        for (var i = 1; i < transform.childCount; i++)
-            AddBox(transform.GetChild(i).gameObject);
 
         CalculateBoxPositions();
         
         transform.position = new Vector3(startingRoad.GetStartPosition().x,
             transform.position.y, startingRoad.GetStartPosition().z);
-        
-        EnablePhysics();
     }
 
     public bool IsLastElement(FriendlyBox _friendlyBox)
@@ -113,10 +109,7 @@ public class BoxController : MonoBehaviour
                 transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
             instance.transform.SetParent(transform);
         }
-        
-        CalculateBoxPositions();
-        
-        DisablePhysics();
+
         SpecialAddedBox?.Invoke();
     }
 
@@ -128,12 +121,25 @@ public class BoxController : MonoBehaviour
 
     public void AddBox(GameObject box)
     {
-        DisablePhysics();
-        boxes.Add(box.GetComponent<FriendlyBox>());
         box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
             transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
         box.transform.SetParent(transform);
-        EnablePhysics();
+        
+        Vector3 tempPos;
+        if (boxes.Count == 0)
+        {
+            tempPos = new Vector3(road.transform.position.x, 
+                road.transform.position.y + offsetYForGround + heightBox / 2, road.transform.position.z);
+        }
+        else
+        {
+            tempPos = boxes[boxes.Count - 1].transform.position;
+        }
+        
+        box.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox, tempPos.z);
+        boxes.Add(box.GetComponent<FriendlyBox>());
+        
+        playerRenderer.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox * 2, tempPos.z);
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)
@@ -141,46 +147,9 @@ public class BoxController : MonoBehaviour
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
         RemovedBox?.Invoke(finish, multiplier); // for camera field view
-        UpdateBoxesTag();
-        EnablePhysics();
+   
         if(destroy)
             Destroy(box);
-    }
-
-    public void DisablePhysics()
-    {
-        for (var i = transform.childCount - 1; i >= 1; i--)
-        {
-            transform.GetChild(i).GetComponent<Rigidbody>().useGravity = false;
-            transform.GetChild(i).GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-    }
-
-    public void EnablePhysics(bool resetVelocity = false)
-    {
-        for (var i = transform.childCount - 1; i >= 1; i--)
-        {
-            transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
-            if (resetVelocity)
-                transform.GetChild(i).GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-    }
-
-    private void UpdateBoxesTag()
-    {
-        for (var i = transform.childCount - 1; i >= 1; i--)
-        {
-            if (i == transform.childCount - 1)
-            {
-                var box = transform.GetChild(transform.childCount - 1);
-                box.tag = "Untagged";
-            }
-            else
-            {
-                var box = transform.GetChild(i);
-                box.tag = "Untagged";
-            }
-        }
     }
 
     public Vector3 GetBoxPositionXZ()

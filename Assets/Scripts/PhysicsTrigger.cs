@@ -8,16 +8,16 @@ public class PhysicsTrigger : MonoBehaviour
     {
         if (!other.CompareTag("DiamondCollector")) return;
         
-        if (isDisableTrigger)
-            CalculatePositionsAndDisable(other);
-        else
-            other.transform.parent.GetComponent<BoxController>().EnablePhysics();
+        //if (isDisableTrigger)
+          //  CalculatePositionsAndDisable(other);
+        //else
+        //   other.transform.parent.GetComponent<BoxController>().EnablePhysics();
     }
 
     private static void CalculatePositionsAndDisable(Collider other)
     {
         var boxController = other.transform.parent.GetComponent<BoxController>();
-        boxController.CalculateBoxPositions(); 
-        boxController.DisablePhysics();
+        //boxController.CalculateBoxPositions(); 
+        //boxController.DisablePhysics();
     }
 }

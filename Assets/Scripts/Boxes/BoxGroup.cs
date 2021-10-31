@@ -38,9 +38,7 @@ namespace DefaultNamespace.Boxes
                 boxController.BoxGroupAdded(countBoxes);
 
                 boxAudioController.PlayCollectSound();
-                
-                boxController.CalculateBoxPositions();
-                
+
                 effectSpawner.Cal(boxController.boxCount - boxCount);
                 Debug.Log("Add " + countBoxes + " boxes");
             }
