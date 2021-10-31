@@ -16,8 +16,8 @@ namespace DefaultNamespace
         public void Initialize()
         {
             countCubesInColumn = new List<int>();
-            InitializeCubesCountList();
             letCubes = new SerializableCubeLetsDictionary();
+            InitializeCubesCountList();
             isInitialized = true;
         }
 
@@ -26,6 +26,7 @@ namespace DefaultNamespace
             for (var i = 0; i < 5; i++)
             {
                 countCubesInColumn.Add(0);
+                letCubes.Add(i, new List<GameObject>());
             }
         }
     }

@@ -73,6 +73,8 @@ public class BoxController : MonoBehaviour
         
         transform.position = new Vector3(startingRoad.GetStartPosition().x,
             transform.position.y, startingRoad.GetStartPosition().z);
+        
+        EnablePhysics();
     }
 
     public bool IsLastElement(FriendlyBox _friendlyBox)
@@ -120,7 +122,7 @@ public class BoxController : MonoBehaviour
 
     public void BoxGroupAdded(int countBoxes)
     {
-        DisablePhysics();
+        //DisablePhysics();
         AddedBoxes?.Invoke(); // for camera field view
     }
 
@@ -131,6 +133,7 @@ public class BoxController : MonoBehaviour
         box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
             transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
         box.transform.SetParent(transform);
+        EnablePhysics();
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)

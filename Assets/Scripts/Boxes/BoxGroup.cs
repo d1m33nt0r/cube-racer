@@ -11,49 +11,15 @@ namespace DefaultNamespace.Boxes
 
         private BoxAudioController boxAudioController;
         private int countBoxes => boxes.Count;
-
-        private StartingRoad startingRoad;
+        
         private float heightBox = 0.2105f;
-        
-        private Bounds GroundBounds => startingRoad.GetComponent<MeshRenderer>().bounds;
-        private float offsetYForGround => Mathf.Abs(GroundBounds.max.y - GroundBounds.center.y);
-        
+
         [Inject]
         private void Construct(BoxAudioController boxAudioController)
         {
             this.boxAudioController = boxAudioController;
         }
-
-        private void Awake()
-        {
-            startingRoad = FindObjectOfType<StartingRoad>();
-            CalculatePositions();
-        }
-
-        private void CalculatePositions()
-        {
-            for (var i = transform.childCount - 1; i >= 0; i--)
-            {
-                if (i == transform.childCount - 1)
-                {
-                    var box = transform.GetChild(transform.childCount - 1);
-                    box.position = new Vector3(transform.position.x,
-                        startingRoad.transform.position.y + offsetYForGround + heightBox / 2, transform.position.z);
-
-                    box.tag = "Untagged";
-                }
-                else
-                {
-                    var prevBoxIndex = i + 1;
-                    var box = transform.GetChild(i);
-                    box.position = new Vector3(transform.position.x,
-                        transform.GetChild(prevBoxIndex).position.y + heightBox, transform.position.z);
-
-                    box.tag = "Untagged";
-                }
-            }
-        }
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("DiamondCollector"))
