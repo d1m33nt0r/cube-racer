@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
 using Services.StartBoxCountManager;
 using UnityEngine;
@@ -36,20 +37,21 @@ public class BoxController : MonoBehaviour
     private StartBoxCountManager startBoxCountManager;
     private ThemeManager themeManager;
     private GameController gameController;
-
+    private Vibrator vibrator;
     private MagnitPlayer magnitPlayerEffect;
 
     public int prevBoxCount;
     
     [Inject]
     private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, 
-        StartBoxCountManager startBoxCountManager, ThemeManager themeManager, GameController gameController)
+        StartBoxCountManager startBoxCountManager, ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
     {
         this.startingRoad = startingRoad;
         this.boxAudioController = boxAudioController;
         this.startBoxCountManager = startBoxCountManager;
         this.themeManager = themeManager;
         this.gameController = gameController;
+        vibrator = _vibrator;
     }
 
     private void Awake()
@@ -63,7 +65,7 @@ public class BoxController : MonoBehaviour
         {
             var instance = Instantiate(friendlyBox, Vector3.zero, Quaternion.AngleAxis(90, Vector3.up));
             instance.transform.SetParent(transform);
-            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
+            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
             AddBox(instance);
         }
 
@@ -92,8 +94,16 @@ public class BoxController : MonoBehaviour
     {
         var instance = Instantiate(friendlyBox);
         instance.transform.SetParent(transform);
-        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
+        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
         AddBox(instance);
+    }
+
+    public void DisablePhysics()
+    {
+        foreach (var box in boxes)
+        {
+            box.GetComponent<Rigidbody>().useGravity = false;
+        }
     }
     
     public void SpecialAddBox(int count)
@@ -103,7 +113,7 @@ public class BoxController : MonoBehaviour
         for (var i = 0; i < count; i++)
         {
             var instance = Instantiate(friendlyBox);
-            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController);
+            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
             
             AddBox(instance);
         }

@@ -12,18 +12,21 @@ public class FriendlyBox : MonoBehaviour
     [SerializeField] private GameObject plusOne;
     [SerializeField] private bool isBoxBonus;
     [SerializeField] private GameObject boxes;
+    [SerializeField] private GameObject lavaEffect;
     
     private BoxController boxController;
     private BoxAudioController boxAudioController;
     private ThemeManager themeManager;
+    private Vibrator vibrator;
 
     [Inject] 
     public void Construct(BoxController boxController, BoxAudioController boxAudioController, 
-        ThemeManager themeManager, GameController gameController)
+        ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
     {
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
         this.themeManager = themeManager;
+        vibrator = _vibrator;
     }
 
     private void Start()
@@ -65,15 +68,18 @@ public class FriendlyBox : MonoBehaviour
 
             if (other.collider.CompareTag("Hole"))
             {
+                Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
                 //boxController.EnablePhysics(true);
                 boxAudioController.PlayFailSound();
+                vibrator.VibrateLava();
             }
 
-            if (other.collider.CompareTag("LevelFinish") && boxController.IsLastElement(GetComponent<FriendlyBox>()))
+            if (other.collider.CompareTag("LevelFinish"))
             {
                 other.collider.tag = "Ground";
                 boxController.RemoveBox(gameObject, true, 1);
+                boxController.DisablePhysics();
                 boxAudioController.PlayFailSound();
                 //boxController.EnablePhysics();
             }

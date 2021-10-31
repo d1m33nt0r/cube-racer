@@ -1,4 +1,5 @@
-﻿using DefaultNamespace.Services.AdsManager;
+﻿using DefaultNamespace;
+using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.ThemeManager;
 using Services.DiamondCountManager;
 using Services.LevelProgressManager;
@@ -14,6 +15,7 @@ namespace Installers
         [SerializeField] private DiamondUI diamondUI;
         [SerializeField] private ThemeManager themeManager;
         [SerializeField] private GameObject adsCamera;
+        [SerializeField] private Vibrator vibrator;
         
         // services
         private DiamondCountManager diamondCountManager;
@@ -33,7 +35,7 @@ namespace Installers
             levelProgressManager = new LevelProgressManager();
             sceneLoader = new SceneLoader(levelProgressManager);
             startBoxCountManager = new StartBoxCountManager();
-            
+
             BindDiamondCountManager();
             BindLevelProgressManager();
             BindSceneLoader();
@@ -42,6 +44,17 @@ namespace Installers
             BindDiamondUI(diamondCountManager);
             InstantiateFpsCounter(debugParent);
             BindAdsCamera();
+            BindVibrator();
+        }
+        
+        private void BindVibrator()
+        {
+            var vibrator = Container.InstantiatePrefab(this.vibrator);
+            
+            Container
+                .Bind<Vibrator>()
+                .FromInstance(vibrator.GetComponent<Vibrator>())
+                .AsSingle();
         }
 
         private void BindThemeManager()

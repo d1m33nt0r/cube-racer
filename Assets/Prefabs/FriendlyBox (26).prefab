@@ -250,6 +250,8 @@ MonoBehaviour:
   plusOne: {fileID: 3351950589542875098, guid: 2d43f8fa3b36f9d4b8b604e5f40ed438, type: 3}
   isBoxBonus: 0
   boxes: {fileID: 0}
+  lavaEffect: {fileID: 1376264765723848097, guid: 171d108c9a1622540a717133dde0ea86,
+    type: 3}
 --- !u!65 &7431084798382590737
 BoxCollider:
   m_ObjectHideFlags: 0
