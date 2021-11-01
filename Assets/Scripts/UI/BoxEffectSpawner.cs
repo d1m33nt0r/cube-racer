@@ -23,7 +23,7 @@ namespace UI
             var rotation = transform.parent.rotation;
             
             foreach (var position in effectPositions)
-                Instantiate(effect, new Vector3(position.x, position.y - 0.1f, position.z), rotation, transform);
+                Instantiate(effect, new Vector3(position.x, position.y, position.z), rotation, transform);
 
             diamondUI.CreatePlusOneEffect(ConvertListWorldPositionsToScreenPositions(effectPositions));
         }
@@ -48,12 +48,10 @@ namespace UI
             List<Vector3> collectBoxEffectPositions = new List<Vector3>();
 
             var boxController = GetComponent<BoxController>();
-            
-            var pos = boxController.GetBoxPositionXZ();
-            var pos2 = StartPoint.startPoint;
+            var pos = boxController.GetBoxPositionXYZ();
 
-            for (var i = 1; i < countEffects + 1; i++)
-                collectBoxEffectPositions.Add(new Vector3(pos.x, (pos2.y + (boxController.boxCount - countEffects) * 0.2f) + 0.2f * i, pos.z));
+            for (var i = 0; i < countEffects; i++)
+                collectBoxEffectPositions.Add(new Vector3(pos.x, pos.y + i * boxController.heightBox, pos.z));
 
             SpawnEffect(collectBoxEffectPositions);
         }

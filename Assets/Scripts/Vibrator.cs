@@ -15,17 +15,17 @@ namespace DefaultNamespace
         #if UNITY_ANDROID
         public void VibrateBoxes()
         {
-            MMVibrationManager.Haptic(HapticTypes.Warning, false, true, this);
+            MMVibrationManager.TransientHaptic(0.1f, 0.1f);
         }
 
         public void VibrateDiamond()
         {
-            MMVibrationManager.Haptic(HapticTypes.Failure, false, true, this);
+            MMVibrationManager.TransientHaptic(0.1f, 0.2f);
         }
 
         public void VibrateLava()
         {
-            MMVibrationManager.Haptic(HapticTypes.LightImpact, false, true, this);
+            MMVibrationManager.TransientHaptic(0.2f, 0.5f);
         }
         #endif
     }

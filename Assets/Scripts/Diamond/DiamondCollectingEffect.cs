@@ -34,8 +34,8 @@ public class DiamondCollectingEffect : MonoBehaviour
         {
             uiController.ShowDimondBonusUIEffect();
             diamondsAudioController.Play();
-            diamondCounter.AddDiamond(1000);
-            sessionDiamondCounter.AddDiamond(1000);
+            diamondCounter.AddDiamond(1500);
+            sessionDiamondCounter.AddDiamond(1500);
             Destroy(gameObject);
         }
 

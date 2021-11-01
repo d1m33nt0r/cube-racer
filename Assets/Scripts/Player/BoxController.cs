@@ -20,7 +20,7 @@ public class BoxController : MonoBehaviour
     [SerializeField] private GameObject friendlyBox;
     [SerializeField] private GameObject road;
     [SerializeField] private Transform trail;
-    public float height;
+   
     private List<FriendlyBox> boxes;
     public List<FriendlyBox> Boxes => boxes;
     private Bounds BoxBounds => friendlyBox.GetComponent<MeshRenderer>().bounds;
@@ -31,7 +31,7 @@ public class BoxController : MonoBehaviour
     private Transform currentRoad;
     [SerializeField] private GameObject playerRenderer;
     public int boxCount => transform.childCount - 2;
-    private float heightBox => 0.2105f; 
+    public float heightBox => 0.2105f; 
 
     private BoxAudioController boxAudioController;
     private StartBoxCountManager startBoxCountManager;
@@ -57,7 +57,6 @@ public class BoxController : MonoBehaviour
     private void Awake()
     {
         magnitPlayerEffect = transform.parent.GetComponentInChildren<MagnitPlayer>();
-        height = heightBox;
         boxes = new List<FriendlyBox>();
         startCountBoxes = startBoxCountManager.GetData();
         
@@ -160,7 +159,7 @@ public class BoxController : MonoBehaviour
             Destroy(box);
     }
 
-    public Vector3 GetBoxPositionXZ()
+    public Vector3 GetBoxPositionXYZ()
     {
         return boxes[boxes.Count - 1].transform.position;
     }
