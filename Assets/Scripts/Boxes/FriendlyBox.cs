@@ -75,17 +75,19 @@ public class FriendlyBox : MonoBehaviour
                 vibrator.VibrateLava();
             }
 
-            if (other.collider.CompareTag("LevelFinish"))
+            if (other.collider.CompareTag("LevelFinish") && Mathf.Abs( transform.TransformPoint(other.collider.GetComponent<CenterPointGetter>().GetCenterPoint()).y - transform.TransformPoint(transform.position).y) < 0.1f)
             {
                 other.collider.tag = "Ground";
                 boxController.RemoveBox(gameObject, true, 1);
-                boxController.DisablePhysics();
+                //boxController.DisablePhysics();
                 boxAudioController.PlayFailSound();
                 //boxController.EnablePhysics();
             }
         }
     }
 
+    
+    
     private void OnTriggerEnter(Collider other)
     {
         if (!isBoxBonus) return;
