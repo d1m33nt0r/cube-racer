@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Diamond;
 using UI;
 using UI.GlobalUI.DiamondCounter;
@@ -15,17 +16,18 @@ public class DiamondCollectingEffect : MonoBehaviour
     private DiamondUI diamondUI;
     private DiamondAudioController diamondsAudioController;
     private SessionDiamondCounter sessionDiamondCounter;
-
+    private Vibrator vibrator;
     
     [Inject]
     private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI, 
         DiamondAudioController diamondsAudioController, SessionDiamondCounter sessionDiamondCounter,
-        UIController uiController)
+        UIController uiController, Vibrator _vibrator)
     {
         this.diamondCounter = diamondCounter;
         this.diamondUI = diamondUI;
         this.diamondsAudioController = diamondsAudioController;
         this.sessionDiamondCounter = sessionDiamondCounter;
+        vibrator = _vibrator;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +49,7 @@ public class DiamondCollectingEffect : MonoBehaviour
             diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
             Instantiate(effect).transform.position = transform.position;
+            vibrator.VibrateDiamond();
             Destroy(gameObject);
         }
     }

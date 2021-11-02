@@ -15,12 +15,12 @@ namespace DefaultNamespace
         #if UNITY_ANDROID
         public void VibrateBoxes()
         {
-            MMVibrationManager.TransientHaptic(0.1f, 0.1f);
+            MMVibrationManager.TransientHaptic(0.01f, 0.05f);
         }
 
         public void VibrateDiamond()
         {
-            MMVibrationManager.TransientHaptic(0.1f, 0.2f);
+            MMVibrationManager.TransientHaptic(0.05f, 0.1f);
         }
 
         public void VibrateLava()

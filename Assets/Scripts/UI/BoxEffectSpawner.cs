@@ -11,7 +11,7 @@ namespace UI
         [SerializeField] private GameObject effect;
 
         private DiamondUI diamondUI;
-        
+
         [Inject]
         private void Construct(DiamondUI _diamondUI)
         {
