@@ -71,7 +71,7 @@ namespace UI.Shop
 
                     cubeThemeButtons[randNum].GetComponent<Image>().sprite = selectedSprite;
                     themeManager.BuyCubeTheme(cubeThemeButtons[randNum].boxTheme.key);
-                    themeManager.SetCurrentTheme(cubeThemeButtons[randNum].boxTheme.key);
+                    themeManager.SetCurrentBoxTheme(cubeThemeButtons[randNum].boxTheme.key);
                     cubeThemeButtons[randNum].boxTheme.bought = true;
                     cubeThemeButtons[randNum].ActiveDemoCube();
                 }

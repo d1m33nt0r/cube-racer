@@ -33,16 +33,17 @@ namespace DefaultNamespace.Boxes
                 var boxCount = boxController.boxCount;
                 
                 boxController.prevBoxCount = boxCount;
-                
-                foreach (var box in boxes)
-                    boxController.AddBox(box.gameObject);
 
-                boxController.BoxGroupAdded(countBoxes);
+                foreach (var box in boxes)
+                {
+                    boxController.AddBox(box.gameObject);
+                }
                 vibrator.VibrateBoxes();
+                
+                boxController.BoxGroupAdded(countBoxes);
                 boxAudioController.PlayCollectSound();
 
                 effectSpawner.Cal(boxController.boxCount - boxCount);
-                Debug.Log("Add " + countBoxes + " boxes");
             }
         }
     }

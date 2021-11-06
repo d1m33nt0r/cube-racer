@@ -9,8 +9,6 @@ namespace UI.Shop
     {
         [SerializeField] private GameObject CUBE_DEMO;
         [SerializeField] private GameObject cubeDemo;
-        [SerializeField] private bool first;
-        [SerializeField] private RectTransform point;
         
         private CubeButtonsConstructor cubeButtonsConstructor;
         private ThemeManager themeManager;
@@ -21,12 +19,6 @@ namespace UI.Shop
         public void Bind(CubeButtonsConstructor cubeButtonsConstructor)
         {
             this.cubeButtonsConstructor = cubeButtonsConstructor;
-        }
-
-        private void Start()
-        {
-            
-
         }
 
         public void Construct(BoxTheme boxTheme, ThemeManager themeManager)
@@ -41,7 +33,7 @@ namespace UI.Shop
         public void ActiveDemoCube()
         {
             if (transform.childCount > 0) Destroy(transform.GetChild(0).gameObject);
-            CUBE_DEMO.GetComponent<MeshFilter>().sharedMesh = themeManager.GetTheme();
+            CUBE_DEMO.GetComponent<MeshFilter>().sharedMesh = themeManager.GetCurrentBoxTheme();
             cubeDemo.SetActive(true);
         }
 
@@ -49,7 +41,7 @@ namespace UI.Shop
         {
             if (boxTheme.bought)
             {
-                themeManager.SetCurrentTheme(boxTheme.key);
+                themeManager.SetCurrentBoxTheme(boxTheme.key);
                 cubeButtonsConstructor.SetCurrentTheme();   
             }
         }
