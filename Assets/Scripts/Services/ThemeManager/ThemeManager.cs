@@ -18,6 +18,7 @@ namespace DefaultNamespace.ThemeManager
         public BoxTheme CurrentBoxTheme => currentBoxTheme;
         
         public List<BoxTheme> BoxThemes => boxThemes;
+        public List<CharacterTheme> CharacterThemes => characterThemes;
         
         private void Awake()
         {

@@ -34,7 +34,7 @@ namespace UI.Shop
         {
             var i = 0;
             
-            foreach (var themeButton in themeManager.BoxThemes)
+            foreach (var themeButton in themeManager.CharacterThemes)
             {
                 themeButtons[i].Construct(themeButton, themeManager);
                 
