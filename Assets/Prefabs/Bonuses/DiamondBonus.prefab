@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7257279173004451881}
-  m_Mesh: {fileID: 2401994324257950250, guid: 36762a19aaf6d8c4a9991f9fe0c27c1c, type: 3}
+  m_Mesh: {fileID: 2401994324257950250, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
 --- !u!23 &9203093216435028476
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16fc20e2f3eb2b6409bcd0e892dbc3b7, type: 2}
+  - {fileID: 2100000, guid: e4f0195aad277d64aaba262dd58cd1b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
   camera: {fileID: 0}
+  uiController: {fileID: 0}
 --- !u!65 &7257279173004451882
 BoxCollider:
   m_ObjectHideFlags: 0

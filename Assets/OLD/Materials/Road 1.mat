@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Road 1
-  m_Shader: {fileID: 4800000, guid: 89116374a9b372a489098a5b96664ee4, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 14bac925968db4443843704e0a35e1c3, type: 3}
+  m_ShaderKeywords: TCP2_RAMPTEXT TCP2_RIM
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -48,6 +48,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 2800000, guid: c0577e3653d126c44a34d58a663db466, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -61,6 +65,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 398e2aa5b6132c1428aea67ce16f2047, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -99,28 +107,42 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Offset1: 0
+    - _Offset2: 0
+    - _Outline: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
+    - _RampSmooth: 0.1
+    - _RampThreshold: 0.5
     - _ReceiveShadows: 1
     - _RimAmount: 0.301
+    - _RimMax: 0.757
+    - _RimMin: 0.105
     - _RimThreshold: 1
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.05
     - _SpecSource: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _TexLod: 5
     - _UVSec: 0
     - _WorkflowMode: 1
+    - _ZSmooth: -0.5
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0.512728, g: 0.43137255, b: 0.7176471, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 0.73720485, b: 0.6933962, a: 1}
+    - _Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.9339623, g: 0.21586865, b: 0.21586865, a: 1}
+    - _HColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _RimColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+    - _RimDir: {r: 0, g: 0, b: 1, a: 0}
+    - _SColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _SpecularColor: {r: 0.74509805, g: 0.5176471, b: 0.63673925, a: 1}
 --- !u!114 &811281421046008067

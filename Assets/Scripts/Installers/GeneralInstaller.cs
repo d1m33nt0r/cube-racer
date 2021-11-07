@@ -42,7 +42,7 @@ namespace Installers
             BindStartBoxCountManager();
             BindThemeManager();
             BindDiamondUI(diamondCountManager);
-            InstantiateFpsCounter(debugParent);
+            //InstantiateFpsCounter(debugParent);
             BindAdsCamera();
             BindVibrator();
         }
