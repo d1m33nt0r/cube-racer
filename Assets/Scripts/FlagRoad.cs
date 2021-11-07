@@ -9,6 +9,7 @@ public class FlagRoad : MonoBehaviour
     {
         if (other.collider.CompareTag("DiamondCollector") || other.collider.CompareTag("Untagged"))
         {
+            animator.enabled = true;
             animator.Play("FlagAnim");
             audioSource.Play();
         }
