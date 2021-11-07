@@ -1,5 +1,4 @@
-﻿using System;
-using DefaultNamespace.Services.ShopData;
+﻿using DefaultNamespace.Services.ShopData;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
 

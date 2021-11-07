@@ -24,14 +24,14 @@ namespace UI.Shop
             this.themeManager = themeManager;
         }
 
-        public void ByRandomCube()
+        public void BuyRandomCharacter()
         {
-            var themeButtons = buttons.Where(button => !button.boxTheme.bought).ToList();
+            var themeButtons = buttons.Where(button => !button.characterTheme.bought).ToList();
             var randNum = Random.Range(0, themeButtons.Count - 1);
             StartCoroutine(Randomize(themeButtons));
         }
 
-        private IEnumerator Randomize(List<CharacterThemeButton> cubeThemeButtons)
+        private IEnumerator Randomize(List<CharacterThemeButton> characterThemeButtons)
         {
             var pointer = new PointerEventData(EventSystem.current);
             var randNum = 0;
@@ -40,7 +40,7 @@ namespace UI.Shop
 
             while (i < 12)
             {
-                if (cubeThemeButtons.Count < 2)
+                if (characterThemeButtons.Count < 2)
                 {
                     randNum = 0;
                 }
@@ -48,16 +48,16 @@ namespace UI.Shop
                 {
                     while (prevNum == randNum)
                     {
-                        randNum = Random.Range(0, cubeThemeButtons.Count);
+                        randNum = Random.Range(0, characterThemeButtons.Count);
                     }
                 }
 
-                foreach (var button in cubeThemeButtons)
+                foreach (var button in characterThemeButtons)
                 {
                     ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerUpHandler);
                 }
 
-                if (cubeThemeButtons.Count < 2)
+                if (characterThemeButtons.Count < 2)
                 {
                     i = 11;
                 }
@@ -69,15 +69,15 @@ namespace UI.Shop
                         button.GetComponent<Image>().sprite = notSelectedSprite;
                     }
 
-                    cubeThemeButtons[randNum].GetComponent<Image>().sprite = selectedSprite;
-                    themeManager.BuyCubeTheme(cubeThemeButtons[randNum].boxTheme.key);
-                    themeManager.SetCurrentBoxTheme(cubeThemeButtons[randNum].boxTheme.key);
-                    cubeThemeButtons[randNum].boxTheme.bought = true;
-                    cubeThemeButtons[randNum].ActiveDemoCharacter();
+                    characterThemeButtons[randNum].GetComponent<Image>().sprite = selectedSprite;
+                    themeManager.BuyCharacterTheme(characterThemeButtons[randNum].characterTheme.key);
+                    themeManager.SetCurrentCharacterTheme(characterThemeButtons[randNum].characterTheme.key);
+                    characterThemeButtons[randNum].characterTheme.bought = true;
+                    characterThemeButtons[randNum].ActiveDemoCharacter();
                 }
                 else
                 {
-                    ExecuteEvents.Execute(cubeThemeButtons[randNum].gameObject, pointer,
+                    ExecuteEvents.Execute(characterThemeButtons[randNum].gameObject, pointer,
                         ExecuteEvents.pointerDownHandler);
                 }
 

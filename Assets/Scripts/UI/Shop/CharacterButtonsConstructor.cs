@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +21,9 @@ namespace UI.Shop
         private void Construct(ThemeManager themeManager)
         {
             this.themeManager = themeManager;
+            
         }
+
 
         private void Awake()
         {
@@ -29,7 +32,7 @@ namespace UI.Shop
             foreach (var themeButton in themeButtons)
                 themeButton.Bind(this);
         }
-        
+
         public void SetCurrentTheme()
         {
             var i = 0;
@@ -38,7 +41,7 @@ namespace UI.Shop
             {
                 themeButtons[i].Construct(themeButton, themeManager);
                 
-                if (themeManager.CurrentBoxTheme.key == themeButtons[i].boxTheme.key)
+                if (themeManager.CurrentCharacterTheme.key == themeButtons[i].characterTheme.key)
                     themeButtons[i].GetComponent<Image>().sprite = selectedButton;
                 else
                     themeButtons[i].GetComponent<Image>().sprite = unSelectedButton;

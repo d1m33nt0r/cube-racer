@@ -1,6 +1,7 @@
 ﻿using DefaultNamespace.Services.ShopData;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
+using Zenject;
 
 namespace UI.Shop
 {
@@ -12,20 +13,20 @@ namespace UI.Shop
         private CharacterButtonsConstructor characterButtonsConstructor;
         private ThemeManager themeManager;
         
-        public CharacterTheme boxTheme;
-        public CharacterTheme BoxTheme => boxTheme;
+        public CharacterTheme characterTheme;
+        public CharacterTheme CharacterTheme => characterTheme;
         
         public void Bind(CharacterButtonsConstructor characterButtonsConstructor)
         {
             this.characterButtonsConstructor = characterButtonsConstructor;
         }
 
-        public void Construct(CharacterTheme boxTheme, ThemeManager themeManager)
+        public void Construct(CharacterTheme characterTheme, ThemeManager themeManager)
         {
-            this.boxTheme = boxTheme;
+            this.characterTheme = characterTheme;
             this.themeManager = themeManager;
             
-            if (boxTheme.bought)
+            if (characterTheme.bought)
                 ActiveDemoCharacter();
         }
 
@@ -38,9 +39,9 @@ namespace UI.Shop
 
         public void SelectTheme()
         {
-            if (boxTheme.bought)
+            if (characterTheme.bought)
             {
-                themeManager.SetCurrentBoxTheme(boxTheme.key);
+                themeManager.SetCurrentBoxTheme(characterTheme.key);
                 characterButtonsConstructor.SetCurrentTheme();   
             }
         }

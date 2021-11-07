@@ -71,3 +71,31 @@ MonoBehaviour:
   - key: 9_box_theme
     mesh: {fileID: 7205848843528026542, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
     bought: 0
+  characterThemes:
+  - key: default_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 1
+  - key: 2_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 3_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 4_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 5_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 6_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 7_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 8_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0
+  - key: 9_character_theme
+    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    bought: 0

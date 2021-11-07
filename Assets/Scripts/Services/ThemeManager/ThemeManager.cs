@@ -31,24 +31,21 @@ namespace DefaultNamespace.ThemeManager
             if (!PlayerPrefs.HasKey("current_character_theme"))
             {
                 PlayerPrefs.SetString("current_character_theme", "default_character_theme");
-                currentCharacterTheme = characterThemes.FirstOrDefault(theme => theme.key == "default_character_theme");
+                currentCharacterTheme = characterThemes.FirstOrDefault(theme => 
+                    theme.key == "default_character_theme");
             }
             else
             {
-                currentCharacterTheme =
-                    characterThemes.FirstOrDefault(theme => theme.key == PlayerPrefs.GetString("current_character_theme"));
+                currentCharacterTheme = characterThemes.FirstOrDefault(theme => 
+                    theme.key == PlayerPrefs.GetString("current_character_theme"));
             }
 
-            foreach (var theme in boxThemes)
+            foreach (var theme in characterThemes)
             {
                 if (!PlayerPrefs.HasKey(theme.key))
-                {
                     PlayerPrefs.SetInt(theme.key, Convert.ToInt32(theme.bought));
-                }
                 else
-                {
                     theme.bought = Convert.ToBoolean(PlayerPrefs.GetInt(theme.key));
-                }
             }
         }
 
@@ -68,13 +65,9 @@ namespace DefaultNamespace.ThemeManager
             foreach (var theme in boxThemes)
             {
                 if (!PlayerPrefs.HasKey(theme.key))
-                {
                     PlayerPrefs.SetInt(theme.key, Convert.ToInt32(theme.bought));
-                }
                 else
-                {
                     theme.bought = Convert.ToBoolean(PlayerPrefs.GetInt(theme.key));
-                }
             }
         }
 
@@ -91,7 +84,8 @@ namespace DefaultNamespace.ThemeManager
         
         public Mesh GetCurrentCharacterTheme()
         {
-            return boxThemes.FirstOrDefault(theme => theme.key == PlayerPrefs.GetString("current_box_theme"))?.mesh;
+            return characterThemes.FirstOrDefault(theme => 
+                theme.key == PlayerPrefs.GetString("current_character_theme"))?.mesh;
         }
         
         public void BuyCubeTheme(string key)
@@ -107,7 +101,8 @@ namespace DefaultNamespace.ThemeManager
         
         public Mesh GetCurrentBoxTheme()
         {
-            return boxThemes.FirstOrDefault(theme => theme.key == PlayerPrefs.GetString("current_box_theme"))?.mesh;
+            return boxThemes.FirstOrDefault(theme => 
+                theme.key == PlayerPrefs.GetString("current_box_theme"))?.mesh;
         }
     }
 }
