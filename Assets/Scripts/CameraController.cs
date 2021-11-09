@@ -60,7 +60,7 @@ public class CameraController : MonoBehaviour
             var multiplier = i - (maxCount - (maxCount - minCount));
             
             var pos = new Vector3(transform.position.x, transform.position.y + yPositionValue * multiplier, 
-                transform.position.z + zOffsetValue * multiplier);
+                transform.position.z - zOffsetValue * multiplier);
             
             var rot = new Vector3(transform.localRotation.eulerAngles.x + xRotateValue * multiplier, 
                 transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
-            camera.transform.DOLocalRotate(
+            transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration * (boxController.boxCount - boxController.prevBoxCount));

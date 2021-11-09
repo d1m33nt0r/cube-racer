@@ -46,23 +46,9 @@ public class FriendlyBox : MonoBehaviour
             if (!transform.parent || transform.parent.name != "Player")
                 return;
 
-            //if (other.collider.CompareTag("FriendlyBox"))
-            //{
-            //    boxController.AddBox(other.gameObject);
-            //    ////boxController.DisablePhysics();
-            //    boxAudioController.PlayCollectSound();
-           //     SpawnEffects();
-           // }
-
-           //if (other.collider.CompareTag("BoxGroup") && transform.CompareTag("DiamondCollector"))
-           //{
-               
-           //}
-           
             if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
             {
                 boxController.RemoveBox(gameObject, false, 1);
-                //boxController.EnablePhysics(true);
                 boxAudioController.PlayFailSound();
             }
 
@@ -70,18 +56,19 @@ public class FriendlyBox : MonoBehaviour
             {
                 Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
-                //boxController.EnablePhysics(true);
                 boxAudioController.PlayFailSound();
                 vibrator.VibrateLava();
             }
-
-            if (other.collider.CompareTag("LevelFinish") && Mathf.Abs( transform.TransformPoint(other.collider.GetComponent<CenterPointGetter>().GetCenterPoint()).y - transform.TransformPoint(transform.position).y) < 0.1f)
+            
+            if(other == null || other.collider == null || transform == null || other.collider.GetComponent<CenterPointGetter>() == null) return;
+            
+            if (other.collider.CompareTag("LevelFinish") && 
+                Mathf.Abs( transform.TransformPoint(other.collider.GetComponent<CenterPointGetter>()
+                    .GetCenterPoint()).y - transform.TransformPoint(transform.position).y) < 0.1f)
             {
                 other.collider.tag = "Ground";
                 boxController.RemoveBox(gameObject, true, 1);
-                //boxController.DisablePhysics();
                 boxAudioController.PlayFailSound();
-                //boxController.EnablePhysics();
             }
         }
     }

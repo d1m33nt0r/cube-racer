@@ -15,7 +15,7 @@ namespace DefaultNamespace
         #if UNITY_ANDROID
         public void VibrateBoxes()
         {
-            MMVibrationManager.Haptic(HapticTypes.SoftImpact);
+            MMVibrationManager.Haptic(HapticTypes.LightImpact);
         }
 
         public void VibrateDiamond()
@@ -25,7 +25,7 @@ namespace DefaultNamespace
 
         public void VibrateLava()
         {
-            MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
+            MMVibrationManager.Haptic(HapticTypes.SoftImpact);
         }
         #endif
     }
