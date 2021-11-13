@@ -21,9 +21,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TestRoad 2
-  m_Shader: {fileID: 20, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF _IS_ANGELRING_OFF
-    _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
+  m_Shader: {fileID: 4800000, guid: 14bac925968db4443843704e0a35e1c3, type: 3}
+  m_ShaderKeywords: TCP2_RAMPTEXT TCP2_RIM _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF
+    _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -122,6 +122,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -168,6 +172,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: a54a836f027df3f4a8d894236589b700, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_1st_ShadePosition:
@@ -313,11 +321,15 @@ Material:
     - _Outline_Width: 0
     - _Parallax: 0.02
     - _QueueOffset: 0
+    - _RampSmooth: 0.507
+    - _RampThreshold: 0
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
+    - _RimMax: 0
+    - _RimMin: 1
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
@@ -327,7 +339,7 @@ Material:
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0
-    - _Shininess: 0.078125
+    - _Shininess: 0.169
     - _Smoothness: 0
     - _Smoothness0: 0.5
     - _Smoothness1: 0.5
@@ -335,6 +347,7 @@ Material:
     - _Smoothness3: 0.5
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.05
     - _SpecSource: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 1
@@ -377,16 +390,20 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 0.4669811, g: 0.88115, b: 1, a: 0.078125}
+    - _Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _HColor: {r: 1, g: 0.60856897, b: 0.4470588, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _ReflectColor: {r: 0.22614807, g: 0.47925714, b: 0.6226415, a: 0.5}
+    - _RimColor: {r: 0.735849, g: 0.6976682, b: 0.6976682, a: 0.6}
+    - _RimDir: {r: -4.7, g: 0.6, b: -0.55, a: 5.1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+    - _SpecColor: {r: 0.754717, g: 0.5731577, b: 0.5731577, a: 0}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

@@ -83,7 +83,7 @@ public class BoxController : MonoBehaviour
     
     public void ClearBoxes()
     {
-        for (var i = 1; i < transform.childCount; i++)
+        for (var i = 2; i < transform.childCount; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
         }

@@ -31,8 +31,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float fieldViewValue = 0.75f;
     [SerializeField] private float fieldViewDuration = 0.25f;
     [SerializeField] private float zOffsetValue;
-
+    [SerializeField] private float zMoveDuration;
+    
     private BoxController boxController;
+
+    private float currentZValue;
     
     private Vector3 startRotation;
     private float startYPosition;
@@ -55,6 +58,7 @@ public class CameraController : MonoBehaviour
 
     private void FillCameraPoints()
     {
+        var j = 0;
         for (var i = maxCount - (maxCount - minCount); i < maxCount; i++)
         {
             var multiplier = i - (maxCount - (maxCount - minCount));
@@ -90,6 +94,7 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
+            transform.DOLocalMoveZ(transform.localPosition.z - zOffsetValue, zMoveDuration);
             transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
@@ -100,14 +105,15 @@ public class CameraController : MonoBehaviour
     private void Increase()
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
-        
+
         if (pointIsExist)
         {
-            transform.DOMoveY(camPoint.position.y, 2f);
+            transform.DOMoveY(camPoint.position.y, 1f);
+            transform.DOLocalMoveZ(transform.localPosition.z - zOffsetValue * (boxController.boxCount - boxController.prevBoxCount), 1f);
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), 2f);
-            camera.DOFieldOfView(camPoint.fieldView, 2f);
+                    transform.localRotation.eulerAngles.z), 1f);
+            camera.DOFieldOfView(camPoint.fieldView, 1f);
         }
     }
 
@@ -124,6 +130,7 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
+            transform.DOLocalMoveZ(transform.localPosition.z + zOffsetValue, 0.2f);
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration  * 2);

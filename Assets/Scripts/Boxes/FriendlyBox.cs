@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
@@ -13,6 +10,8 @@ public class FriendlyBox : MonoBehaviour
     [SerializeField] private bool isBoxBonus;
     [SerializeField] private GameObject boxes;
     [SerializeField] private GameObject lavaEffect;
+    [SerializeField] private GameObject wowsomeCanvas;
+    
     
     private BoxController boxController;
     private BoxAudioController boxAudioController;
@@ -73,8 +72,6 @@ public class FriendlyBox : MonoBehaviour
         }
     }
 
-    
-    
     private void OnTriggerEnter(Collider other)
     {
         if (!isBoxBonus) return;
@@ -82,6 +79,7 @@ public class FriendlyBox : MonoBehaviour
         if (other.CompareTag("DiamondCollector"))
         {
             boxController.SpecialAddBox(5);
+            wowsomeCanvas.SetActive(true);
             Destroy(gameObject);
         }
     }
