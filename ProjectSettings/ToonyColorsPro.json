@@ -1,7 +1,7 @@
 {
     "AutoNames": true,
     "SubFolders": true,
-    "OverwriteConfig": false,
+    "OverwriteConfig": true,
     "LoadAllShaders": false,
     "CustomOutputPath": "JMO Assets\\Toony Colors Pro\\Shaders Generated\\Examples\\Water",
     "LastImplementationExportImportPath": "C:/Users/fallentorch/Voodoo/Cuberacer/Assets",

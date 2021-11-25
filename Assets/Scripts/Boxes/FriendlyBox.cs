@@ -1,5 +1,6 @@
 using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +12,8 @@ public class FriendlyBox : MonoBehaviour
     [SerializeField] private GameObject boxes;
     [SerializeField] private GameObject lavaEffect;
     [SerializeField] private GameObject wowsomeCanvas;
-    
+    [SerializeField] private ParticleSystem wowsoneParticle;
+    [SerializeField] private Light _light;
     
     private BoxController boxController;
     private BoxAudioController boxAudioController;
@@ -80,6 +82,16 @@ public class FriendlyBox : MonoBehaviour
         {
             boxController.SpecialAddBox(5);
             wowsomeCanvas.SetActive(true);
+            wowsoneParticle.Play();
+            _light.enabled = true;
+            _light.DOIntensity(6f, 0.25f).onComplete = () =>
+            {
+                _light.DOIntensity(0, 1f).onComplete = () =>
+                {
+                    _light.enabled = false;
+                };
+            };
+            
             Destroy(gameObject);
         }
     }

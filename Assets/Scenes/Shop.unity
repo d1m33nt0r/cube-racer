@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 1521058130}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 632863441}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -2027,7 +2027,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.75
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 99405111}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -2604,7 +2604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 1995744709}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -3302,7 +3302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 1502696976}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -3450,7 +3450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 1641231365}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -4104,7 +4104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 815581353}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -5872,7 +5872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 1679200733}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
@@ -7627,7 +7627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CHARACTER_DEMO: {fileID: 1218179150}
   characterDemo: {fileID: 467466680}
-  boxTheme:
+  characterTheme:
     key: 
     mesh: {fileID: 0}
     bought: 0
