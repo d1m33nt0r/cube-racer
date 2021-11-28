@@ -9,14 +9,14 @@ public class CamPoint
     public Vector3 position;
     public Vector3 rotation;
     public float fieldView;
-    public float zDistance;
+    public float distanceZFromPlayer;
     
     public CamPoint(Vector3 pos, Vector3 rot, float fieldView, float zDistance)
     {
         position = pos;
         rotation = rot;
         this.fieldView = fieldView;
-        this.zDistance = zDistance;
+        this.distanceZFromPlayer = zDistance;
     }
 }
 
@@ -72,10 +72,10 @@ public class CameraController : MonoBehaviour
                 transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
             
             var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
+
+            var zDistance = Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z) + 1 * multiplier;
             
-            
-            
-            camPoints.Add(i, new CamPoint(pos, rot, fieldView));
+            camPoints.Add(i, new CamPoint(pos, rot, fieldView, zDistance));
         }
     }
 
