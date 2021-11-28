@@ -24,6 +24,8 @@ public class BoxController : MonoBehaviour
     [SerializeField] private Transform trail;
     [SerializeField] private Color emissionColorEffect;
     [SerializeField] private Color emissionStartColorEffect;
+
+    public Vector3 LocalPosition => transform.localPosition;
     
     private List<FriendlyBox> boxes;
     public List<FriendlyBox> Boxes => boxes;

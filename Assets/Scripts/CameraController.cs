@@ -73,7 +73,7 @@ public class CameraController : MonoBehaviour
             
             var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
 
-            var zDistance = Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z) + 1 * multiplier;
+            var zDistance = Mathf.Abs(boxController.LocalPosition.z - transform.localPosition.z) + boxController.LocalPosition.z - 1 * multiplier;
             
             camPoints.Add(i, new CamPoint(pos, rot, fieldView, zDistance));
         }
@@ -98,12 +98,19 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
-            transform.DOLocalMoveZ(transform.localPosition.z - zOffsetValue, zMoveDuration);
+            IncreaseZ(camPoint);
             transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration * (boxController.boxCount - boxController.prevBoxCount));
         }
+    }
+
+    private void IncreaseZ(CamPoint _camPoint)
+    {
+        var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
+        var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
+        transform.DOLocalMoveZ(transform.localPosition.z - difference, zMoveDuration);
     }
     
     private void Increase()
@@ -134,7 +141,7 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
-            transform.DOLocalMoveZ(transform.localPosition.z + zOffsetValue, 0.2f);
+            transform.DOLocalMoveZ(transform.localPosition.z + zOffsetValue, 2);
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration  * 2);
