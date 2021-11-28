@@ -113,6 +113,13 @@ public class CameraController : MonoBehaviour
         transform.DOLocalMoveZ(transform.localPosition.z - difference, zMoveDuration);
     }
     
+    private void DecreaseZ(CamPoint _camPoint)
+    {
+        var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
+        var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
+        transform.DOLocalMoveZ(transform.localPosition.z + difference, 0.2f);
+    }
+    
     private void Increase()
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
@@ -120,7 +127,10 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, 1f);
-            transform.DOLocalMoveZ(transform.localPosition.z - zOffsetValue * (boxController.boxCount - boxController.prevBoxCount), 1f);
+            //transform.DOLocalMoveZ(transform.localPosition.z - zOffsetValue * (boxController.boxCount - boxController.prevBoxCount), 1f);
+            
+            IncreaseZ(camPoint);
+            
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), 1f);
@@ -141,7 +151,7 @@ public class CameraController : MonoBehaviour
         if (pointIsExist)
         {
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
-            transform.DOLocalMoveZ(transform.localPosition.z + zOffsetValue, 2);
+            DecreaseZ(camPoint);
             camera.transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), rotationDuration  * 2);
