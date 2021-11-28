@@ -47,12 +47,12 @@ public class CameraController : MonoBehaviour
     [Inject]
     private void Construct(BoxController boxController)
     {
-        maxCount = 25;
+        maxCount = 30;
         minCount = 4;
         this.boxController = boxController;
-        boxController.AddedBoxes += IncreaseY;
-        boxController.SpecialAddedBox += Increase;
-        boxController.RemovedBox += DecreaseY;
+        boxController.AddedBoxes += Increase;
+        boxController.SpecialAddedBox += SpecialIncrease;
+        boxController.RemovedBox += Decrease;
         startRotation = transform.localRotation.eulerAngles;
         startYPosition = transform.position.y;
         FillCameraPoints();
@@ -91,8 +91,10 @@ public class CameraController : MonoBehaviour
         return false;
     }
 
-    private void IncreaseY()
+    private void Increase()
     {
+        transform.DOKill();
+        camera.DOKill();
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
         
         if (pointIsExist)
@@ -117,11 +119,14 @@ public class CameraController : MonoBehaviour
     {
         var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
         var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
-        transform.DOLocalMoveZ(transform.localPosition.z + difference, 0.2f);
+        transform.DOLocalMoveZ(transform.localPosition.z + difference, 0.5f);
     }
     
-    private void Increase()
+    private void SpecialIncrease()
     {
+        transform.DOKill();
+        camera.DOKill();
+        
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
 
         if (pointIsExist)
@@ -131,15 +136,16 @@ public class CameraController : MonoBehaviour
             
             IncreaseZ(camPoint);
             
-            camera.transform.DOLocalRotate(
+            transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
                     transform.localRotation.eulerAngles.z), 1f);
             camera.DOFieldOfView(camPoint.fieldView, 1f);
         }
     }
 
-    private void DecreaseY(bool finish, int multiplier)
+    private void Decrease(bool finish, int multiplier)
     {
+        transform.DOKill();
         if (finish)
         {
             camera.transform.DOMoveY(transform.position.y + 0.15f, 0.25f);
@@ -150,6 +156,7 @@ public class CameraController : MonoBehaviour
         
         if (pointIsExist)
         {
+            
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
             DecreaseZ(camPoint);
             camera.transform.DOLocalRotate(
