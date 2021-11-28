@@ -7,7 +7,7 @@ namespace DefaultNamespace.Services.ShopData
     public class BoxTheme
     {
         public string key;
-        public Mesh mesh;
+        public Material material;
         public bool bought;
     }
 }

@@ -125,8 +125,8 @@ namespace DefaultNamespace
 
             prevDeltaLeft = delta;
 
-            if (prevDeltaRight > 0)
-                prevDeltaRight = 0;
+           
+            prevDeltaRight = 0;
         }
 
         private void RightSwipe(float delta)
@@ -162,8 +162,8 @@ namespace DefaultNamespace
 
             prevDeltaRight = delta;
 
-            if (prevDeltaLeft > 0)
-                prevDeltaLeft = 0;
+            
+            prevDeltaLeft = 0;
         }
 
         public void CustomMove(Vector3 positionXZ, Quaternion rotation)

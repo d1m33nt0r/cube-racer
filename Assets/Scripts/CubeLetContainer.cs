@@ -9,6 +9,10 @@ namespace DefaultNamespace
         [SerializeField, HideInInspector] private SerializableCubeLetsDictionary letCubes;
         [SerializeField, HideInInspector] private List<int> countCubesInColumn;
         [SerializeField, HideInInspector] private bool isInitialized;
+
+        public Material material;
+        public Mesh mesh;
+        
         public List<int> CountCubesInColumn => countCubesInColumn;
         public bool IsInitialized => isInitialized;
         public SerializableCubeLetsDictionary LetCubes => letCubes;
@@ -28,6 +32,40 @@ namespace DefaultNamespace
                 countCubesInColumn.Add(0);
                 letCubes.Add(i, new List<GameObject>());
             }
+        }
+
+        private void ChangeMaterialForChildrenObjects()
+        {
+            if (material == null)
+            {
+                Debug.LogError("Material is not assigned!");
+                return;
+            }
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<MeshRenderer>().sharedMaterial = material;
+            }
+        }
+
+        private void ChangeMeshForChildrenObjects()
+        {
+            if (mesh == null)
+            {
+                Debug.LogError("Mesh is not assigned!");
+                return;
+            }
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<MeshFilter>().sharedMesh = mesh;
+            }
+        }
+
+        public void ChangeComponents()
+        {
+            ChangeMaterialForChildrenObjects();
+            ChangeMeshForChildrenObjects();
         }
     }
 }

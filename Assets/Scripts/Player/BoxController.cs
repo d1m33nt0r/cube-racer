@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
+using DG.Tweening;
 using Services.StartBoxCountManager;
 using UnityEngine;
 using Zenject;
@@ -20,7 +22,9 @@ public class BoxController : MonoBehaviour
     [SerializeField] private GameObject friendlyBox;
     [SerializeField] private GameObject road;
     [SerializeField] private Transform trail;
-   
+    [SerializeField] private Color emissionColorEffect;
+    [SerializeField] private Color emissionStartColorEffect;
+    
     private List<FriendlyBox> boxes;
     public List<FriendlyBox> Boxes => boxes;
     private Bounds BoxBounds => friendlyBox.GetComponent<MeshRenderer>().bounds;
@@ -117,9 +121,66 @@ public class BoxController : MonoBehaviour
             AddBox(instance);
         }
 
+        //AnimateEmission();
         SpecialAddedBox?.Invoke();
     }
 
+    private void AnimateEmission()
+    {
+        var originalMaterial = friendlyBox.GetComponent<Renderer>().sharedMaterial;
+        var copyMaterial = new Material(originalMaterial.shader);
+        var targetRenderers = new Renderer[boxes.Count];
+        
+        for (var i = 0; i < boxes.Count; i++)
+        {
+            boxes[i].GetComponent<Renderer>().sharedMaterial = copyMaterial;
+            targetRenderers[i] = boxes[i].GetComponent<Renderer>();
+        }
+        
+        var hasEmissionProperty = copyMaterial.HasProperty("_Emission");
+        if (!hasEmissionProperty) return;
+        
+        
+        
+        StartCoroutine(Animate(copyMaterial, originalMaterial, targetRenderers, 
+            (_material, _renderers) =>
+        {
+            foreach (var renderer in _renderers)
+            {
+                renderer.sharedMaterial = _material;
+            }
+            Debug.Log("Animation is finished");
+        }));
+        
+        Debug.Log("Emission found");
+    }
+
+    public delegate void ChangeMaterial(Material _material, Renderer[] _targetRenderers);
+    
+    private IEnumerator Animate(Material _copyMaterial, Material _originalMaterial, Renderer[] _targetRenderers, ChangeMaterial _changeDefaultMaterialAction)
+    {
+        var emissionColor = emissionStartColorEffect;
+        var targetColor = emissionColorEffect;
+
+        float t = 0.0f;
+        
+        while (t < 1f)
+        {
+            _copyMaterial.SetColor("_Emission", new Color(
+                Mathf.Lerp(emissionColor.r, targetColor.r, t), 
+                Mathf.Lerp(emissionColor.g, targetColor.g, t), 
+                Mathf.Lerp(emissionColor.b, targetColor.b, t),
+                Mathf.Lerp(emissionColor.a, targetColor.a, t)
+                ));
+            
+            t += 0.5f * Time.deltaTime;
+
+            yield return null;
+        }
+        
+        _changeDefaultMaterialAction?.Invoke(_originalMaterial, _targetRenderers);
+    }
+    
     public void BoxGroupAdded(int countBoxes)
     {
         //DisablePhysics();

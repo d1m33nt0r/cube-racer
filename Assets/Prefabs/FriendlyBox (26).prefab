@@ -165,7 +165,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7431084798382590742}
-  m_Mesh: {fileID: -7223342404779674428, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+  m_Mesh: {fileID: -5325783083582083158, guid: 52e1990cd4794cb48a00546431b8bacc, type: 3}
 --- !u!23 &7431084798382590741
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4f0195aad277d64aaba262dd58cd1b7, type: 2}
+  - {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
     type: 3}
   wowsomeCanvas: {fileID: 0}
   wowsoneParticle: {fileID: 0}
+  _light: {fileID: 0}
 --- !u!65 &7431084798382590737
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,12 +9,14 @@ public class CamPoint
     public Vector3 position;
     public Vector3 rotation;
     public float fieldView;
-
-    public CamPoint(Vector3 pos, Vector3 rot, float fieldView)
+    public float zDistance;
+    
+    public CamPoint(Vector3 pos, Vector3 rot, float fieldView, float zDistance)
     {
         position = pos;
         rotation = rot;
         this.fieldView = fieldView;
+        this.zDistance = zDistance;
     }
 }
 
@@ -70,6 +72,8 @@ public class CameraController : MonoBehaviour
                 transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
             
             var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
+            
+            
             
             camPoints.Add(i, new CamPoint(pos, rot, fieldView));
         }

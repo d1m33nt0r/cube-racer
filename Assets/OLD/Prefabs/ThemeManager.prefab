@@ -45,31 +45,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxThemes:
   - key: default_box_theme
-    mesh: {fileID: -7223342404779674428, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 1
   - key: 2_box_theme
-    mesh: {fileID: -5008144657809703978, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: e5184dedf930cf14393606becc50d181, type: 2}
     bought: 0
   - key: 3_box_theme
-    mesh: {fileID: 1714632391224913822, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: e4f0195aad277d64aaba262dd58cd1b7, type: 2}
     bought: 0
   - key: 4_box_theme
-    mesh: {fileID: -6664464838598539153, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   - key: 5_box_theme
-    mesh: {fileID: 7744868180701969367, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   - key: 6_box_theme
-    mesh: {fileID: 3812346104641209702, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   - key: 7_box_theme
-    mesh: {fileID: -8795069310934329342, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   - key: 8_box_theme
-    mesh: {fileID: -4093105283390667597, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   - key: 9_box_theme
-    mesh: {fileID: 7205848843528026542, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   characterThemes:
   - key: default_character_theme

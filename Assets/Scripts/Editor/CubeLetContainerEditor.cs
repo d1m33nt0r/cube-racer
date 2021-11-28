@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    [CustomEditor(typeof(CubeLetContainer))]
+    [CustomEditor(typeof(CubeLetContainer)), CanEditMultipleObjects]
     public class CubeLetContainerEditor : Editor
     {
         private GameObject cubeLetPrefab;
@@ -35,6 +35,15 @@ namespace DefaultNamespace
             
             var style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;
+
+            EditorGUILayout.BeginVertical();
+            targetObject.material = (Material) EditorGUILayout.ObjectField(targetObject.material, typeof(Material), true);
+            targetObject.mesh = (Mesh) EditorGUILayout.ObjectField(targetObject.mesh, typeof(Mesh), true);
+            if (GUILayout.Button("Change graphics"))
+            {
+                targetObject.ChangeComponents();
+            }
+            EditorGUILayout.EndVertical();
             
             EditorGUILayout.BeginHorizontal();
             var i = 0;

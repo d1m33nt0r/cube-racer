@@ -37,7 +37,7 @@ public class FriendlyBox : MonoBehaviour
 
     private void GetCurrentMaterial()
     {
-        GetComponent<MeshFilter>().sharedMesh = themeManager.GetCurrentBoxTheme();
+        GetComponent<MeshRenderer>().sharedMaterial = themeManager.GetCurrentBoxTheme();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -83,14 +83,15 @@ public class FriendlyBox : MonoBehaviour
             boxController.SpecialAddBox(5);
             wowsomeCanvas.SetActive(true);
             wowsoneParticle.Play();
-            _light.enabled = true;
-            _light.DOIntensity(6f, 0.25f).onComplete = () =>
+            
+            /*_light.enabled = true;
+            _light.DOIntensity(4f, 0.05f).onComplete = () =>
             {
-                _light.DOIntensity(0, 1f).onComplete = () =>
+                _light.DOIntensity(0, 0.25f).onComplete = () =>
                 {
                     _light.enabled = false;
                 };
-            };
+            };*/
             
             Destroy(gameObject);
         }

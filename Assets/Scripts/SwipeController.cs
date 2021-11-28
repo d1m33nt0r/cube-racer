@@ -73,6 +73,8 @@ public class SwipeController : MonoBehaviour
                 }
             }
         }
+        
+        CalculateSwipe();
     }
 
     private void FixedUpdate() 
@@ -80,7 +82,7 @@ public class SwipeController : MonoBehaviour
         if(!enabledSwipeController)
             return;
         
-        CalculateSwipe();
+        
     }
 
     private void CalculateSwipe()
@@ -90,14 +92,11 @@ public class SwipeController : MonoBehaviour
 
         if (isDragging)
         {
-            if(!isMobilePlatform && Input.GetMouseButton(0))
-                swipeDelta = (Vector2)Input.mousePosition - tapPoint;
-            else if(Input.touchCount > 0)
+            if (!isMobilePlatform && Input.GetMouseButton(0))
+                swipeDelta = (Vector2) Input.mousePosition - tapPoint;
+            else if (Input.touchCount > 0)
                 swipeDelta = Input.touches[0].position - tapPoint;
-        }
 
-        if (true)
-        {
             // TODO fix player position
             if (swipeDelta.x < 0)
             {
@@ -106,11 +105,13 @@ public class SwipeController : MonoBehaviour
 
             if (swipeDelta.x > 0)
             {
-                SwipeEvent?.Invoke(SwipeType.RIGHT, Mathf.Abs(tapPoint.x - curMousePosition.x)  / 40);
+                SwipeEvent?.Invoke(SwipeType.RIGHT, Mathf.Abs(tapPoint.x - curMousePosition.x) / 40);
             }
+            
+            prevMousePosition = curMousePosition;  
         }
 
-        prevMousePosition = curMousePosition;  
+       
     }
 
     private void ResetSwipe()
