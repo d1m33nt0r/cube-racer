@@ -667,7 +667,7 @@ ParticleSystem:
     radiusThickness: 0
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: -72.07, y: 38.04, z: 0}
+    m_Rotation: {x: -70.92, y: 30.07, z: 0}
     m_Scale: {x: 5, y: 5, z: 8}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -866,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 300
       minScalar: 10
       maxCurve:
         serializedVersion: 2
