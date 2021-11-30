@@ -32,6 +32,7 @@ public class DiamondUI : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
         canvas = GetComponent<Canvas>();
     }
 
@@ -62,7 +63,17 @@ public class DiamondUI : MonoBehaviour
             }
         }
     }
-    
+
+    private void OnActiveSceneChanged(Scene _current, Scene _next)
+    {
+        
+    }
+
+    public void DisableSettingsButton()
+    {
+        settingsButton.SetActive(false);
+    }
+
     public void CreateDiamondAndMoveWithDelay(Vector2 screenPoint, int countDiamonds)
     {
         diamondIconRectTransform = Instantiate(diamondIconPrefab, parent).GetComponent<RectTransform>();

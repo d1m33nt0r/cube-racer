@@ -14,14 +14,15 @@ public class GameController : MonoBehaviour
     private GameplayStarter gameplayStarter;
     private BoxController boxController;
     private SessionDiamondCounter sessionDiamondCounter;
+    private DiamondUI m_DiamondUI;
     
     [Inject]
-    private void Construct(GameplayStarter gameplayStarter, BoxController boxController, SessionDiamondCounter sessionDiamondCounter)
+    private void Construct(GameplayStarter gameplayStarter, BoxController boxController, SessionDiamondCounter sessionDiamondCounter, DiamondUI _diamondUI)
     {
         this.gameplayStarter = gameplayStarter;
         this.boxController = boxController;
         this.sessionDiamondCounter = sessionDiamondCounter;
-        
+        m_DiamondUI = _diamondUI;
         gameplayStarter.Touched += StartGame;
         boxController.RemovedBox += CheckBoxCount;
     }
@@ -47,6 +48,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Game Started");
         StartedGame?.Invoke();
+        //m_DiamondUI.DisableSettingsButton();
     }
 
     public void FinishGame()
