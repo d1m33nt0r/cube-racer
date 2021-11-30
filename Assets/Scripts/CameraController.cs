@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using DG.Tweening.Core;
 using UnityEngine;
 using Zenject;
 
@@ -93,12 +94,13 @@ public class CameraController : MonoBehaviour
 
     private void Increase()
     {
-        //transform.DOKill();
-        //camera.DOKill();
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
         
         if (pointIsExist)
         {
+            transform.DOKill();
+            camera.DOKill();
+            
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
             IncreaseZ(camPoint);
             transform.DOLocalRotate(
@@ -124,29 +126,24 @@ public class CameraController : MonoBehaviour
     
     private void SpecialIncrease()
     {
-        //transform.DOKill();
-        //camera.DOKill();
-        
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
 
         if (pointIsExist)
         {
-            transform.DOMoveY(camPoint.position.y, 1f);
-            //transform.DOLocalMoveZ(transform.localPosition.z - zOffsetValue * (boxController.boxCount - boxController.prevBoxCount), 1f);
+            transform.DOKill();
+            camera.DOKill();
             
+            transform.DOMoveY(camPoint.position.y, 1.5f);
             IncreaseZ(camPoint);
-            
             transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), 1f);
-            camera.DOFieldOfView(camPoint.fieldView, 1f);
+                    transform.localRotation.eulerAngles.z), 1.5f);
+            camera.DOFieldOfView(camPoint.fieldView, 1.5f);
         }
     }
 
     private void Decrease(bool finish, int multiplier)
     {
-       // transform.DOKill();
-       //camera.DOKill();
         if (finish)
         {
             camera.transform.DOMoveY(transform.position.y + 0.15f, 0.25f);
@@ -157,6 +154,8 @@ public class CameraController : MonoBehaviour
         
         if (pointIsExist)
         {
+            transform.DOKill();
+            camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
             DecreaseZ(camPoint);

@@ -217,7 +217,9 @@ public class BoxController : MonoBehaviour
         box.transform.SetParent(null);
         boxes.Remove(box.GetComponent<FriendlyBox>());
         RemovedBox?.Invoke(finish, multiplier); // for camera field view
-   
+
+        box.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        
         if(destroy)
             Destroy(box);
     }
