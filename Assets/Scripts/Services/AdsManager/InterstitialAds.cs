@@ -1,4 +1,5 @@
-﻿using GoogleMobileAds.Api;
+﻿using System;
+using GoogleMobileAds.Api;
 
 namespace DefaultNamespace.Services.AdsManager
 {
@@ -25,7 +26,10 @@ namespace DefaultNamespace.Services.AdsManager
         public static void Show()
         {
             if (interstitialAd.IsLoaded())
+            {
                 interstitialAd.Show();
+                interstitialAd.OnAdClosed += (_sender, _args) => LoadAds();
+            }
         }
     }
 }

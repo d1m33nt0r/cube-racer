@@ -9,11 +9,13 @@ namespace DefaultNamespace.Services.AdsManager
 
         private static string bannerUnitId = "ca-app-pub-3940256099942544/6300978111";
 
+        public static bool IsReadyToUse;
+        
         public static void Initialize()
         {
             MobileAds.Initialize(initStatus => { });
             RequestBanner();
-            bannerView.OnAdLoaded += Show;
+            bannerView.OnAdLoaded += (_sender, _args) => { IsReadyToUse = true; };
         }
         
         private static void RequestBanner()
@@ -28,7 +30,7 @@ namespace DefaultNamespace.Services.AdsManager
             bannerView.LoadAd(request);
         }
 
-        public static void Show(object sender, EventArgs args)
+        public static void Show()
         {
             bannerView.Show();
         }

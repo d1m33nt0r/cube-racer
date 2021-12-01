@@ -7,12 +7,12 @@
     "LastImplementationExportImportPath": "C:/Users/fallentorch/Voodoo/Cuberacer/Assets",
     "OpenedFoldouts": [
         "SPECIAL EFFECTS",
-        "SURFACE",
         "TRANSPARENCY/BLENDING",
         "SHADER STATES",
         "STYLIZATION",
         "OPTIONS",
-        "LIGHTING"
+        "LIGHTING",
+        "THIRD PARTY PLUGINS"
     ],
     "UseCustomFont": true,
     "CustomFont": {

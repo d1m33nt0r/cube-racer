@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,28 +8,38 @@ namespace DefaultNamespace.Services.AdsManager
 {
     public class AdsManager : MonoBehaviour
     {
-        private void Awake()
+        private void Start()
         {
-            InterstitialAds.Initialize();
-            InterstitialAds.LoadAds();
-            BannerAds.Initialize();
-            SceneManager.sceneLoaded += ShowBanner;
+            
         }
 
-        private static void ShowBanner(Scene scene, LoadSceneMode mode)
+        public void BannerShow()
         {
-            BannerAds.Show(null, EventArgs.Empty);
+            StartCoroutine(WaitForInitializationAndShowBannerAds());
+        }
+        
+        private IEnumerator WaitForInitializationAndShowBannerAds()
+        {
+            while (!BannerAds.IsReadyToUse)
+                yield return null;
+            
+            ShowBanner();
+        }
+        
+        private void ShowBanner()
+        {
+            BannerAds.Show();
         }
 
-        private static void HideBanner()
+        private void HideBanner()
         {
             BannerAds.Hide();
         }
 
-        public static void ShowInterstitial()
+        public void ShowInterstitial()
         {
-            InterstitialAds.Show();
             HideBanner();
+            InterstitialAds.Show();
         }
     }
 }

@@ -10,17 +10,19 @@ namespace UI
     public class RestartLevel : MonoBehaviour
     {
         private DiamondCountManager diamondCountManager;
-
+        private AdsManager adsManager;
+        
         [Inject]
-        private void Construct(DiamondCountManager diamondCountManager)
+        private void Construct(DiamondCountManager diamondCountManager, AdsManager _adsManager)
         {
             this.diamondCountManager = diamondCountManager;
+            adsManager = _adsManager;
         }
 
         public void ReloadCurrentScene()
         {
             diamondCountManager.WriteData();
-            AdsManager.ShowInterstitial();
+            adsManager.ShowInterstitial();
             InterstitialAds.InterstitialAd.OnAdClosed += HandleOnAdClosed;
         }
 

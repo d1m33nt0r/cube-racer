@@ -14,15 +14,14 @@ namespace Installers
         [SerializeField] private GameObject fpsCounter;
         [SerializeField] private DiamondUI diamondUI;
         [SerializeField] private ThemeManager themeManager;
-        [SerializeField] private GameObject adsCamera;
         [SerializeField] private Vibrator vibrator;
-        
+
         // services
         private DiamondCountManager diamondCountManager;
         private LevelProgressManager levelProgressManager;
         private SceneLoader sceneLoader;
         private StartBoxCountManager startBoxCountManager;
-        
+
         private GameObject debugParent;
         private GameObject servicesParent;
 
@@ -43,14 +42,14 @@ namespace Installers
             BindThemeManager();
             BindDiamondUI(diamondCountManager);
             InstantiateFpsCounter(debugParent);
-            BindAdsCamera();
+            InitializeAds();
             BindVibrator();
         }
-        
+
         private void BindVibrator()
         {
             var vibrator = Container.InstantiatePrefab(this.vibrator);
-            
+
             Container
                 .Bind<Vibrator>()
                 .FromInstance(vibrator.GetComponent<Vibrator>())
@@ -60,18 +59,19 @@ namespace Installers
         private void BindThemeManager()
         {
             var themeManager = Container.InstantiatePrefab(this.themeManager);
-            
+
             Container
                 .Bind<ThemeManager>()
                 .FromInstance(themeManager.GetComponent<ThemeManager>())
                 .AsSingle();
         }
 
-        private void BindAdsCamera()
+        private void InitializeAds()
         {
-            Container.InstantiatePrefab(adsCamera);
+            InterstitialAds.Initialize();
+                    InterstitialAds.LoadAds();
         }
-        
+
         private void BindStartBoxCountManager()
         {
             Container
@@ -92,7 +92,7 @@ namespace Installers
         {
             var diamondUI = Container.InstantiatePrefab(this.diamondUI);
             diamondUI.GetComponent<DiamondUI>().Construct(diamondCountManager);
-            
+
             Container
                 .Bind<DiamondUI>()
                 .FromInstance(diamondUI.GetComponent<DiamondUI>())
