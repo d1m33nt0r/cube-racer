@@ -23,7 +23,7 @@ namespace UI
             var rotation = transform.parent.rotation;
             
             foreach (var position in effectPositions)
-                Instantiate(effect, new Vector3(position.x, position.y, position.z), rotation, transform);
+                Instantiate(effect, new Vector3(position.x, position.y + 0.2f, position.z), rotation, transform);
 
             diamondUI.CreatePlusOneEffect(ConvertListWorldPositionsToScreenPositions(effectPositions));
         }
