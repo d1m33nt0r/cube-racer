@@ -35,7 +35,7 @@ namespace UI
             var positions = new List<Vector3>();
             
             foreach (var position in worldPositions)
-                positions.Add(new Vector3(position.x, position.y, position.z));
+                positions.Add(new Vector3(position.x, position.y + 0.2f, position.z));
 
             foreach (var position in positions)
                 convertedPositions.Add(camera.WorldToScreenPoint(position));
