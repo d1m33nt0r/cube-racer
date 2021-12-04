@@ -134,6 +134,7 @@ public class CameraController : MonoBehaviour
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, 1.5f);
+            
             IncreaseZ(camPoint);
             transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
