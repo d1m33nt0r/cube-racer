@@ -16,6 +16,7 @@ public class DiamondUI : MonoBehaviour
     [SerializeField] private RectTransform target;
     [SerializeField] private GameObject settingsButton;
     [SerializeField] private GameObject closeButton;
+    [SerializeField] private RectTransform panel;
     
     private RectTransform diamondIconRectTransform;
     private Canvas canvas;
@@ -23,7 +24,7 @@ public class DiamondUI : MonoBehaviour
     
     public RectTransform DiamondPanel => target;
     private DiamondCountManager diamondCountManager;
-    
+
     public void Construct(DiamondCountManager diamondCountManager)
     {
         this.diamondCountManager = diamondCountManager;
@@ -89,11 +90,16 @@ public class DiamondUI : MonoBehaviour
         
         var diamondIconController = diamondIconRectTransform.GetComponent<DiamondIconController>();
 
-        diamondIconRectTransform.DOAnchorMax(target.anchorMax, 0.5f);
-        diamondIconRectTransform.DOAnchorMin(target.anchorMin, 0.5f);
+        diamondIconRectTransform.DOAnchorMax(target.anchorMax, 0.25f);
+        diamondIconRectTransform.DOAnchorMin(target.anchorMin, 0.25f);
+        
+        panel.DOScale(1.2f, 0.1f).onComplete = (() =>
+        {
+            panel.DOScale(1f, 0.15f);
+        });
         
         diamondIconRectTransform
-            .DOAnchorPos(target.anchoredPosition, 0.5f)
+            .DOAnchorPos(target.anchoredPosition - new Vector2(50f, 100f), 0.25f)
             .OnComplete(diamondIconController.SetMovingDone);
     }
     

@@ -14,7 +14,8 @@ public class FriendlyBox : MonoBehaviour
     [SerializeField] private GameObject wowsomeCanvas;
     [SerializeField] private ParticleSystem wowsoneParticle;
     [SerializeField] private Light _light;
-    
+
+    private bool used;
     private BoxController boxController;
     private BoxAudioController boxAudioController;
     private ThemeManager themeManager;
@@ -30,14 +31,17 @@ public class FriendlyBox : MonoBehaviour
         vibrator = _vibrator;
     }
 
-    private void Start()
+    private void Awake()
     {
         GetCurrentMaterial();
     }
 
     private void GetCurrentMaterial()
     {
-        GetComponent<MeshRenderer>().sharedMaterial = themeManager.GetCurrentBoxTheme();
+        var renderer = GetComponent<MeshRenderer>();
+        if (themeManager == null) return;
+        var material = themeManager.GetCurrentBoxTheme();
+        renderer.sharedMaterial = material;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -77,10 +81,11 @@ public class FriendlyBox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!isBoxBonus) return;
-        
+        if (used) return;
         if (other.CompareTag("DiamondCollector"))
         {
-            boxController.SpecialAddBox(5);
+            used = true;
+            boxController.SpecialAddBox(10);
             wowsomeCanvas.SetActive(true);
             wowsoneParticle.Play();
             

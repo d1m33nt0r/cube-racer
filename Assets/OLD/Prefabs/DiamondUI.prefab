@@ -469,6 +469,7 @@ MonoBehaviour:
   target: {fileID: 7070604699859588173}
   settingsButton: {fileID: 7070604699299228476}
   closeButton: {fileID: 7070604698729002152}
+  panel: {fileID: 7070604699248391778}
 --- !u!82 &5076766844006711555
 AudioSource:
   m_ObjectHideFlags: 0

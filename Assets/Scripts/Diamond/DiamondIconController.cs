@@ -3,19 +3,20 @@ using DG.Tweening;
 using Services.DiamondCountManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class DiamondIconController : MonoBehaviour
 {
     private bool isMovingDone;
     private int countDiamonds;
     private DiamondCountManager diamondCountManager;
-    
+  
     public void Construct(DiamondCountManager diamondCountManager, int countDiamonds)
     {
         this.diamondCountManager = diamondCountManager;
         this.countDiamonds = countDiamonds;
     }
-    
+
     public void SetMovingDone()
     {
         isMovingDone = true;

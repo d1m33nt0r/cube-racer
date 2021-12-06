@@ -158,12 +158,12 @@ public class CameraController : MonoBehaviour
             transform.DOKill();
             camera.DOKill();
             
-            transform.DOMoveY(camPoint.position.y, verticalMoveDuration * 2);
+            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
             DecreaseZ(camPoint);
             transform.DOLocalRotate(
                 new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), rotationDuration  * 2);
-            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration  * 2);
+                    transform.localRotation.eulerAngles.z), rotationDuration * 2);
+            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
         }
     }
 

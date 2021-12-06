@@ -24,7 +24,7 @@ public class BoxController : MonoBehaviour
     [SerializeField] private Transform trail;
     [SerializeField] private Color emissionColorEffect;
     [SerializeField] private Color emissionStartColorEffect;
-
+    [SerializeField] private float specialAddBoxAnimationSpeed;
     public Vector3 LocalPosition => transform.localPosition;
     
     private List<FriendlyBox> boxes;
@@ -122,15 +122,14 @@ public class BoxController : MonoBehaviour
             
             AddBox(instance);
         }
-
-        //AnimateEmission();
+        AnimateEmission();
         SpecialAddedBox?.Invoke();
     }
 
     private void AnimateEmission()
     {
         var originalMaterial = friendlyBox.GetComponent<Renderer>().sharedMaterial;
-        var copyMaterial = new Material(originalMaterial.shader);
+        var copyMaterial = new Material(originalMaterial);
         var targetRenderers = new Renderer[boxes.Count];
         
         for (var i = 0; i < boxes.Count; i++)
@@ -139,22 +138,17 @@ public class BoxController : MonoBehaviour
             targetRenderers[i] = boxes[i].GetComponent<Renderer>();
         }
         
-        var hasEmissionProperty = copyMaterial.HasProperty("_Emission");
+        var hasEmissionProperty = copyMaterial.HasProperty("_TCP2_AMBIENT_BACK");
         if (!hasEmissionProperty) return;
-        
-        
-        
+
         StartCoroutine(Animate(copyMaterial, originalMaterial, targetRenderers, 
-            (_material, _renderers) =>
-        {
-            foreach (var renderer in _renderers)
+            (_originalMaterial, _renderers) =>
             {
-                renderer.sharedMaterial = _material;
-            }
-            Debug.Log("Animation is finished");
-        }));
-        
-        Debug.Log("Emission found");
+                foreach (var renderer in _renderers)
+                {
+                    renderer.sharedMaterial = _originalMaterial;
+                }
+            }));
     }
 
     public delegate void ChangeMaterial(Material _material, Renderer[] _targetRenderers);
@@ -168,14 +162,14 @@ public class BoxController : MonoBehaviour
         
         while (t < 1f)
         {
-            _copyMaterial.SetColor("_Emission", new Color(
+            _copyMaterial.SetColor("_TCP2_AMBIENT_BACK", new Color(
                 Mathf.Lerp(emissionColor.r, targetColor.r, t), 
                 Mathf.Lerp(emissionColor.g, targetColor.g, t), 
                 Mathf.Lerp(emissionColor.b, targetColor.b, t),
                 Mathf.Lerp(emissionColor.a, targetColor.a, t)
                 ));
             
-            t += 0.5f * Time.deltaTime;
+            t += specialAddBoxAnimationSpeed * Time.deltaTime;
 
             yield return null;
         }
