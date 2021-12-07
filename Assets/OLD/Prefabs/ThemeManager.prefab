@@ -60,7 +60,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
     bought: 0
   - key: 6_box_theme
-    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+    material: {fileID: 2100000, guid: 1109a3350bf24b441bf48a2748afacb8, type: 2}
     bought: 0
   - key: 7_box_theme
     material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
