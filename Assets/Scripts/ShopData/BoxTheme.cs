@@ -9,5 +9,6 @@ namespace DefaultNamespace.Services.ShopData
         public string key;
         public Material material;
         public bool bought;
+        public Material trailMaterial;
     }
 }

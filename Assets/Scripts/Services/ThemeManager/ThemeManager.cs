@@ -104,5 +104,11 @@ namespace DefaultNamespace.ThemeManager
             return boxThemes.FirstOrDefault(theme => 
                 theme.key == PlayerPrefs.GetString("current_box_theme"))?.material;
         }
+
+        public Material GetCurrentTrailTheme()
+        {
+            return boxThemes.FirstOrDefault(theme => 
+                theme.key == PlayerPrefs.GetString("current_box_theme"))?.trailMaterial;
+        }
     }
 }
