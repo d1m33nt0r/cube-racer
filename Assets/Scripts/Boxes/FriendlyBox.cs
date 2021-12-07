@@ -28,6 +28,7 @@ public class FriendlyBox : MonoBehaviour
         this.boxController = boxController;
         this.boxAudioController = boxAudioController;
         this.themeManager = themeManager;
+        GetCurrentMaterial();
         vibrator = _vibrator;
     }
 

@@ -128,7 +128,8 @@ public class BoxController : MonoBehaviour
 
     private void AnimateEmission()
     {
-        var originalMaterial = friendlyBox.GetComponent<Renderer>().sharedMaterial;
+        var originalMaterial = boxes[0]?.GetComponent<Renderer>().sharedMaterial;
+        if (originalMaterial == null) return;
         var copyMaterial = new Material(originalMaterial);
         var targetRenderers = new Renderer[boxes.Count];
         

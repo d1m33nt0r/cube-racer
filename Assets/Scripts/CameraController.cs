@@ -147,7 +147,7 @@ public class CameraController : MonoBehaviour
     {
         if (finish)
         {
-            camera.transform.DOMoveY(transform.position.y + 0.15f, 0.25f);
+            camera.transform.DOMoveY(transform.position.y + 0.1f, 0.25f);
             return;
         }
         

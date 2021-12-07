@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using DG.Tweening;
+using UnityEngine;
 using Zenject;
 
 namespace UI
@@ -39,13 +41,19 @@ namespace UI
         
         private void ShowFinish()
         {
+            StartCoroutine(WaitAndShowUI(0.5f));
+            GameObject.Find("Main Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
+            //GameObject.Find("Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
+        }
+
+        private IEnumerator WaitAndShowUI(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            
             if (balloonOnFinished)
                 ShowBalloonUI();
             else
                 ShowFinishUI();
-            
-            GameObject.Find("Main Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
-            //GameObject.Find("Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
         }
         
         private void ShowBalloonUI()
