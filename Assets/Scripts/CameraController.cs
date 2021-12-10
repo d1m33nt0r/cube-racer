@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour
 
         if (!pointIsExist)
         {
-            if (boxController.prevBoxCount < 25)
+            if (boxController.prevBoxCount < 25 && boxController.boxCount > 4)
             {
                 var sad = TryGetPoint<CamPoint>(24, out var camPoint2);
                 if (sad)
@@ -194,6 +194,26 @@ public class CameraController : MonoBehaviour
         }
         
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
+
+        if (!pointIsExist)
+        {
+            if (boxController.prevBoxCount > 4)
+            {
+                var sad = TryGetPoint<CamPoint>(3, out var camPoint2);
+                if (sad)
+                {
+                    transform.DOKill();
+                    camera.DOKill();
+            
+                    transform.DOMoveY(camPoint2.position.y, 1.5f);
+                    // transform.DOLocalRotate(
+                    //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
+                    //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
+                    DecreaseZ(camPoint2);
+                    camera.DOFieldOfView(camPoint2.fieldView, 1.5f);
+                }
+            }
+        }
         
         if (pointIsExist)
         {
