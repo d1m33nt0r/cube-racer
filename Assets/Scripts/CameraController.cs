@@ -28,8 +28,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera camera;
     
     [SerializeField] private float yPositionValue = 0.75f;
+    [SerializeField] private float xPositionValue = 0.75f;
     [SerializeField] private float verticalMoveDuration = 0.25f;
-    [SerializeField] private float xRotateValue = 0.1f;
+    [SerializeField] private float yRotateValue = 0.1f;
     [SerializeField] private float rotationDuration = 0.5f;
     [SerializeField] private float fieldViewValue = 0.75f;
     [SerializeField] private float fieldViewDuration = 0.25f;
@@ -48,7 +49,7 @@ public class CameraController : MonoBehaviour
     [Inject]
     private void Construct(BoxController boxController)
     {
-        maxCount = 30;
+        maxCount = 25;
         minCount = 4;
         this.boxController = boxController;
         boxController.AddedBoxes += Increase;
@@ -66,11 +67,11 @@ public class CameraController : MonoBehaviour
         {
             var multiplier = i - (maxCount - (maxCount - minCount));
             
-            var pos = new Vector3(transform.position.x, transform.position.y + yPositionValue * multiplier, 
+            var pos = new Vector3(transform.position.x + xPositionValue * multiplier, transform.position.y + yPositionValue * multiplier, 
                 transform.position.z - zOffsetValue * multiplier);
             
-            var rot = new Vector3(transform.localRotation.eulerAngles.x + xRotateValue * multiplier, 
-                transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
+            var rot = new Vector3(transform.localRotation.eulerAngles.x, 
+                transform.localRotation.eulerAngles.y + yRotateValue * multiplier, transform.localRotation.eulerAngles.z);
             
             var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
 
@@ -95,6 +96,27 @@ public class CameraController : MonoBehaviour
     private void Increase()
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
+
+        if (!pointIsExist)
+        {
+            if (boxController.prevBoxCount < 25)
+            {
+                var sad = TryGetPoint<CamPoint>(24, out var camPoint2);
+                if (sad)
+                {
+                    transform.DOKill();
+                    camera.DOKill();
+            
+                    transform.DOMoveY(camPoint2.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
+                    //transform.DOMoveX(camPoint.position.x, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
+                    IncreaseZ(camPoint2);
+                    //transform.DOLocalRotate(
+                    //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
+                    //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
+                    camera.DOFieldOfView(camPoint2.fieldView, fieldViewDuration * (boxController.boxCount - boxController.prevBoxCount));
+                }
+            }
+        }
         
         if (pointIsExist)
         {
@@ -102,10 +124,11 @@ public class CameraController : MonoBehaviour
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
+            //transform.DOMoveX(camPoint.position.x, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
             IncreaseZ(camPoint);
-            transform.DOLocalRotate(
-                new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
+            //transform.DOLocalRotate(
+            //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
+            //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration * (boxController.boxCount - boxController.prevBoxCount));
         }
     }
@@ -128,17 +151,36 @@ public class CameraController : MonoBehaviour
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
 
+        if (!pointIsExist)
+        {
+            if (boxController.prevBoxCount < 25)
+            {
+                var sad = TryGetPoint<CamPoint>(24, out var camPoint2);
+                if (sad)
+                {
+                    transform.DOKill();
+                    camera.DOKill();
+            
+                    transform.DOMoveY(camPoint2.position.y, 1.5f);
+                    // transform.DOLocalRotate(
+                    //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
+                    //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
+                    IncreaseZ(camPoint2);
+                    camera.DOFieldOfView(camPoint2.fieldView, 1.5f);
+                }
+            }
+        }
+        
         if (pointIsExist)
         {
             transform.DOKill();
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, 1.5f);
-            
+           // transform.DOLocalRotate(
+            //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
+            //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
             IncreaseZ(camPoint);
-            transform.DOLocalRotate(
-                new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), 1.5f);
             camera.DOFieldOfView(camPoint.fieldView, 1.5f);
         }
     }
@@ -159,10 +201,10 @@ public class CameraController : MonoBehaviour
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
+           // transform.DOLocalRotate(
+            //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
+             //       transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
             DecreaseZ(camPoint);
-            transform.DOLocalRotate(
-                new Vector3(camPoint.rotation.x, transform.localRotation.eulerAngles.y,
-                    transform.localRotation.eulerAngles.z), rotationDuration * 2);
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
         }
     }
