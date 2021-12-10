@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -81,9 +82,20 @@ namespace DefaultNamespace
         public void DisableMoving()
         {
             movingEnabled = false;
+
+            //StartCoroutine(WaitAndClearCubes(1f));
+            
             EnablePhysics();
+           
         }
 
+        private IEnumerator WaitAndClearCubes(float _waitValue)
+        {
+            yield return new WaitForSeconds(_waitValue);
+            
+            GetComponent<BoxController>().ClearBoxes();
+        }
+        
         private void Action(SwipeController.SwipeType swipeType, float delta)
         {
             if (swipeType == SwipeController.SwipeType.LEFT)

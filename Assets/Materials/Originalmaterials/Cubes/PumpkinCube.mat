@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WatermealonCube
+  m_Name: PumpkinCube
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
   m_ShaderKeywords: TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP TCP2_RAMPTEXT
     TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1331a28c768bbe5488e7a758e35bd06d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 11d71c554d21b0943bfa1309b32e253a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap:
@@ -255,4 +255,4 @@ Material:
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}

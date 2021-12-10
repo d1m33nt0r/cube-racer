@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WatermealonCube
+  m_Name: GroundCube
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
   m_ShaderKeywords: TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP TCP2_RAMPTEXT
     TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1331a28c768bbe5488e7a758e35bd06d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6c5746009003e0343bfe928eb50891e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap:
@@ -114,7 +114,7 @@ Material:
     - _2DRampLerp: 0.335
     - _AnisotropicSpread: 2
     - _BandsCount: 4
-    - _BandsSmoothing: 0.539
+    - _BandsSmoothing: 0.318
     - _Brightness: 0.069
     - _BumpScale: 1
     - _Cull: 2
@@ -255,4 +255,4 @@ Material:
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}

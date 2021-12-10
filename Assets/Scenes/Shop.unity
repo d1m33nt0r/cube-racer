@@ -830,6 +830,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &99405111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,6 +1407,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &311447302
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,6 +3692,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1072865564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,6 +3907,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1095828371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4422,6 +4426,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1149778819
 GameObject:
   m_ObjectHideFlags: 0
@@ -4647,6 +4652,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1217362838
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,6 +5165,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1344869789
 GameObject:
   m_ObjectHideFlags: 0
@@ -5307,6 +5314,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1346354990
 GameObject:
   m_ObjectHideFlags: 0
@@ -5744,6 +5752,7 @@ MonoBehaviour:
     key: 
     material: {fileID: 0}
     bought: 0
+    trailMaterial: {fileID: 0}
 --- !u!1 &1422737416
 GameObject:
   m_ObjectHideFlags: 0
@@ -6891,7 +6900,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+  - {fileID: 2100000, guid: 57708431b798bb944bda689f11dcd7c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8276,7 +8285,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+  - {fileID: 2100000, guid: fc563123735994e4ba254958e8452b14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8355,7 +8364,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+  - {fileID: 2100000, guid: 7977b2895b05d454d89f970738a0d9c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

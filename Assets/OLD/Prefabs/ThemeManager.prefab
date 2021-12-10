@@ -61,25 +61,25 @@ MonoBehaviour:
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 5d0b244154afa324ba9d5e2b8fd9720d, type: 2}
   - key: 5_box_theme
-    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+    material: {fileID: 2100000, guid: fc563123735994e4ba254958e8452b14, type: 2}
     bought: 0
-    trailMaterial: {fileID: 2100000, guid: 584ff1482da597d489869540f683bb46, type: 2}
+    trailMaterial: {fileID: 2100000, guid: 1c10c0f3acb233f4884fed3c21d4a096, type: 2}
   - key: 6_box_theme
     material: {fileID: 2100000, guid: 1109a3350bf24b441bf48a2748afacb8, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 0f316bd4943addc4e824faa9a0bdc118, type: 2}
   - key: 7_box_theme
-    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+    material: {fileID: 2100000, guid: 7977b2895b05d454d89f970738a0d9c8, type: 2}
     bought: 0
-    trailMaterial: {fileID: 2100000, guid: 584ff1482da597d489869540f683bb46, type: 2}
+    trailMaterial: {fileID: 2100000, guid: a008ed2c8ee4a0b4f86ad6713d3e0f31, type: 2}
   - key: 8_box_theme
     material: {fileID: 2100000, guid: bec3f303da744ec4e954f30b82597427, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 24a3c44983f27ae4b9811da152b8b689, type: 2}
   - key: 9_box_theme
-    material: {fileID: 2100000, guid: f7dee543c9259cf4cab688f82e72a9f9, type: 2}
+    material: {fileID: 2100000, guid: 57708431b798bb944bda689f11dcd7c7, type: 2}
     bought: 0
-    trailMaterial: {fileID: 2100000, guid: 584ff1482da597d489869540f683bb46, type: 2}
+    trailMaterial: {fileID: 2100000, guid: 9ac47e7a230878947adb6a43ceda3629, type: 2}
   characterThemes:
   - key: default_character_theme
     mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
