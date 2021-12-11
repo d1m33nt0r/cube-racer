@@ -34,14 +34,15 @@ namespace DefaultNamespace.Boxes
                 
                 boxController.prevBoxCount = boxCount;
                 effectSpawner.Cal(countBoxes);
-                
+                var counter = 0;
                 foreach (var box in boxes)
                 {
+                    counter++;
                     boxController.AddBox(box.gameObject);
+                    vibrator.VibrateBoxes();
                 }
-                
-                vibrator.VibrateBoxes();
-                boxController.BoxGroupAdded(countBoxes);
+
+                boxController.BoxGroupAdded(counter);
                 
                 boxAudioController.PlayCollectSound();
             }

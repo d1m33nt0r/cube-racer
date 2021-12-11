@@ -12,7 +12,7 @@ using Zenject;
 public class BoxController : MonoBehaviour
 {
     public delegate void BoxChanged(bool finish, int multiplier);
-    public event Action AddedBoxes;
+    public event Action<int> AddedBoxes;
     public event Action SpecialAddedBox;
     public event BoxChanged RemovedBox;
 
@@ -181,7 +181,7 @@ public class BoxController : MonoBehaviour
     public void BoxGroupAdded(int countBoxes)
     {
         //DisablePhysics();
-        AddedBoxes?.Invoke(); // for camera field view
+        AddedBoxes?.Invoke(countBoxes); // for camera field view
     }
 
     public void AddBox(GameObject box)
