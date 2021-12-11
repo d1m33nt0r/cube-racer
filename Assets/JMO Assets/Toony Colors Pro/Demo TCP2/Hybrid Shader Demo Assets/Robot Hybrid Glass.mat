@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Robot Hybrid Glass
   m_Shader: {fileID: 4800000, guid: 7ffc1bc2bbb1ef64f84b552b2d2f0619, type: 3}
-  m_ShaderKeywords: TCP2_OUTLINE_MIN_SIZE TCP2_REFLECTIONS TCP2_REFLECTIONS_FRESNEL
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_OUTLINE_MIN_SIZE TCP2_REFLECTIONS TCP2_REFLECTIONS_FRESNEL
     TCP2_SHADOW_LIGHT_COLOR TCP2_SPECULAR TCP2_TANGENT_AS_NORMALS TCP2_UV_NORMALS_FULL
     _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 4
@@ -110,6 +110,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineLightingType: 0
     - _OutlineLightingTypeURP: 0
+    - _OutlineMaxWidth: 1
     - _OutlineMinWidth: 1
     - _OutlinePixelSizeType: 2
     - _OutlineTextureLOD: 5

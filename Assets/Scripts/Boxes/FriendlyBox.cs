@@ -58,9 +58,17 @@ public class FriendlyBox : MonoBehaviour
                 boxAudioController.PlayFailSound();
             }
 
-            if (other.collider.CompareTag("Hole"))
+            if (other.collider.CompareTag("Lava"))
             {
                 Instantiate(lavaEffect, transform.position, Quaternion.identity);
+                boxController.RemoveBox(gameObject, false, 1, true);
+                boxAudioController.PlayFailSound();
+                vibrator.VibrateLava();
+            }
+            
+            if (other.collider.CompareTag("Hole"))
+            {
+                //Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
                 boxAudioController.PlayFailSound();
                 vibrator.VibrateLava();

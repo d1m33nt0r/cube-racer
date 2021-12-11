@@ -18,6 +18,7 @@ TagManager:
   - BoxGroup
   - Magnit
   - MagnitPlayer
+  - Lava
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3872171009
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

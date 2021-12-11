@@ -106,7 +106,7 @@ namespace DefaultNamespace
 
         private void LeftSwipe(float delta)
         {
-            var clampedCoordinate = Mathf.Clamp(transform.localPosition.x + prevDeltaLeft - delta,
+            var clampedCoordinate = Mathf.Clamp(transform.localPosition.x - delta,
                 leftLimiter.localPosition.x, rightLimiter.localPosition.x);
             transform.localPosition = new Vector3(clampedCoordinate, transform.localPosition.y, transform.localPosition.z);
 
@@ -116,7 +116,7 @@ namespace DefaultNamespace
 
         private void RightSwipe(float delta)
         {
-            var clampedCoordinate = Mathf.Clamp(transform.localPosition.x - prevDeltaRight + delta,
+            var clampedCoordinate = Mathf.Clamp(transform.localPosition.x + delta,
                 leftLimiter.localPosition.x, rightLimiter.localPosition.x);
             transform.localPosition = new Vector3(clampedCoordinate, transform.localPosition.y, transform.localPosition.z);
             

@@ -51,6 +51,7 @@ public class SwipeController : MonoBehaviour
             {
                 isDragging = true;
                 tapPoint = Input.mousePosition;
+                prevMousePosition = tapPoint;
             }
             else if(Input.GetMouseButtonUp(0))
             {
@@ -65,6 +66,7 @@ public class SwipeController : MonoBehaviour
                 {
                     isDragging = true;
                     tapPoint = Input.touches[0].position; 
+                    prevMousePosition = tapPoint;
                 }
                 else if(Input.touches[0].phase == TouchPhase.Canceled ||
                         Input.touches[0].phase == TouchPhase.Ended)
@@ -85,7 +87,7 @@ public class SwipeController : MonoBehaviour
         if (isDragging)
         {
             if (!isMobilePlatform && Input.GetMouseButton(0))
-                swipeDelta = (Vector2) Input.mousePosition - tapPoint;
+                swipeDelta = (Vector2) Input.mousePosition - prevMousePosition;
             else if (Input.touchCount > 0)
                 swipeDelta = Input.touches[0].position - tapPoint;
             
