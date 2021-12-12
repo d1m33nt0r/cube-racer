@@ -79,6 +79,28 @@ public class BoxController : MonoBehaviour
             transform.position.y, startingRoad.GetStartPosition().z);
     }
 
+    public FriendlyBox GetLastElement()
+    {
+        FriendlyBox _box = null;
+        var i = 0;
+        foreach (var box in boxes)
+        {
+            if (i == 0)
+            {
+                _box = box;
+                i++;
+                continue;
+            }
+
+            if (box.transform.position.y > _box.transform.position.y)
+            {
+                _box = box;
+            }
+        }
+
+        return _box;
+    }
+    
     public bool IsLastElement(FriendlyBox _friendlyBox)
     {
         if (boxes.Last() == _friendlyBox) return true;
@@ -215,7 +237,7 @@ public class BoxController : MonoBehaviour
         }
         else
         {
-            tempPos = boxes[boxes.Count - 1].transform.position;
+            tempPos = GetLastElement().transform.position;
         }
         
         box.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox, tempPos.z);

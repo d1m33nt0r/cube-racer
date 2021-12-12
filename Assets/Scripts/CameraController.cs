@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
 
     private void Increase(int count)
     {
-        var pointIsExist = TryGetPoint<CamPoint>(boxController.prevBoxCount + count, out var camPoint);
+        var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
 
         if (!pointIsExist)
         {

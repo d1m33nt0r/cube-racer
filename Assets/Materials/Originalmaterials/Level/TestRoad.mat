@@ -397,12 +397,12 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 0.46858314, g: 0.6131631, b: 0.8490566, a: 1}
+    - _Color: {r: 0.5518868, g: 0.8246784, b: 1, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffuseTint: {r: 1, g: 0.5019608, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HColor: {r: 1, g: 0.7028302, b: 0.8505405, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}

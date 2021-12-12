@@ -14,7 +14,8 @@ public class FriendlyBox : MonoBehaviour
     [SerializeField] private GameObject wowsomeCanvas;
     [SerializeField] private ParticleSystem wowsoneParticle;
     [SerializeField] private Light _light;
-
+    [SerializeField] private int countBoxes;
+    
     private bool used;
     private BoxController boxController;
     private BoxAudioController boxAudioController;
@@ -94,7 +95,7 @@ public class FriendlyBox : MonoBehaviour
         if (other.CompareTag("DiamondCollector"))
         {
             used = true;
-            boxController.SpecialAddBox(10);
+            boxController.SpecialAddBox(countBoxes);
             wowsomeCanvas.SetActive(true);
             wowsoneParticle.Play();
             
