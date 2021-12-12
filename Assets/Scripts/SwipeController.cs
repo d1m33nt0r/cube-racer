@@ -9,8 +9,9 @@ public class SwipeController : MonoBehaviour
     private Vector2 curMousePosition, prevMousePosition = Vector2.zero;
     private GameplayStarter gameplayStarter;
     private bool enabledSwipeController;
-    
+
     public delegate void OnSwipeInput(SwipeType type, float delta);
+
     public event OnSwipeInput SwipeEvent;
 
     public enum SwipeType
@@ -28,70 +29,38 @@ public class SwipeController : MonoBehaviour
 
     private void EnableSwipeController()
     {
-        enabledSwipeController = true;;
-    }
-    
-    private void Awake() 
-    {
-        #if UNITY_EDITOR || UNITY_STANDALONE
-            isMobilePlatform = false;
-        #else
-            isMobilePlatform = true;
-        #endif
+        enabledSwipeController = true;
     }
 
     private void Update()
     {
-        if(!enabledSwipeController)
+        if (!enabledSwipeController)
             return;
-
-        if(!isMobilePlatform)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                isDragging = true;
-                tapPoint = Input.mousePosition;
-                prevMousePosition = tapPoint;
-            }
-            else if(Input.GetMouseButtonUp(0))
-            {
-                ResetSwipe();
-            }
-        }
-        else
-        {
-            if(Input.touchCount > 0)
-            {
-                if(Input.touches[0].phase == TouchPhase.Began)
-                {
-                    isDragging = true;
-                    tapPoint = Input.touches[0].position; 
-                    prevMousePosition = tapPoint;
-                }
-                else if(Input.touches[0].phase == TouchPhase.Canceled ||
-                        Input.touches[0].phase == TouchPhase.Ended)
-                {
-                    ResetSwipe();
-                }
-            }
-        }
         
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDragging = true;
+            tapPoint = Input.mousePosition;
+            prevMousePosition = tapPoint;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            ResetSwipe();
+        }
+
         CalculateSwipe();
     }
 
     private void CalculateSwipe()
     {
-        curMousePosition = (Vector2)Input.mousePosition;
+        curMousePosition = (Vector2) Input.mousePosition;
         swipeDelta = Vector2.zero;
-        
+
         if (isDragging)
         {
-            if (!isMobilePlatform && Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0))
                 swipeDelta = (Vector2) Input.mousePosition - prevMousePosition;
-            else if (Input.touchCount > 0)
-                swipeDelta = Input.touches[0].position - tapPoint;
-            
-            // TODO fix player position
+
             if (swipeDelta.x < 0 && swipeDelta != prevSwipeDelta)
             {
                 SwipeEvent?.Invoke(SwipeType.LEFT, Mathf.Abs(swipeDelta.x) / 40);
@@ -101,12 +70,9 @@ public class SwipeController : MonoBehaviour
             {
                 SwipeEvent?.Invoke(SwipeType.RIGHT, Mathf.Abs(swipeDelta.x) / 40);
             }
-
-            prevSwipeDelta = swipeDelta;
-            prevMousePosition = curMousePosition;  
+            
+            prevMousePosition = curMousePosition;
         }
-
-       
     }
 
     private void ResetSwipe()

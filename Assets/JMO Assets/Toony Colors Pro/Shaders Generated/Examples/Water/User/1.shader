@@ -86,7 +86,7 @@ Shader "Toony Colors Pro 2/User/1"
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha nolightmap nofog nolppv
+		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha nolightmap nolppv
 		#pragma target 3.0
 
 		//================================================================
@@ -268,5 +268,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","DIRAMBIENT","WRAPPED_LIGHTING_HALF","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","ATTEN_AT_NDL","OCCLUSION","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH 0d3d15e08c741e53dfc229379afefc0d */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","DIRAMBIENT","WRAPPED_LIGHTING_HALF","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","ATTEN_AT_NDL","OCCLUSION","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH c06f910aa28e78175d08bce0e2850855 */
