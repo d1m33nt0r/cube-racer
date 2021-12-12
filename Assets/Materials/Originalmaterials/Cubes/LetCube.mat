@@ -114,7 +114,7 @@ Material:
     - _2DRampLerp: 0.335
     - _AnisotropicSpread: 2
     - _BandsCount: 4
-    - _BandsSmoothing: 0.166
+    - _BandsSmoothing: 0.141
     - _Brightness: 0.069
     - _BumpScale: 1
     - _Cull: 2
@@ -234,7 +234,7 @@ Material:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.6132076, g: 0.53511035, b: 0.53511035, a: 1}
-    - _DiffuseTint: {r: 0.3018868, g: 0.13243146, b: 0.13672143, a: 1}
+    - _DiffuseTint: {r: 0.5566038, g: 0.17065683, b: 0.17963235, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
@@ -245,7 +245,7 @@ Material:
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
-    - _SColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+    - _SColor: {r: 0.735849, g: 0.503293, b: 0.503293, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 1, g: 0, b: 0, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}

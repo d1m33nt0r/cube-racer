@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using DefaultNamespace.ThemeManager;
-using DG.Tweening;
 using Services.StartBoxCountManager;
 using UnityEngine;
 using Zenject;
@@ -160,10 +159,28 @@ public class BoxController : MonoBehaviour
         var targetColor = emissionColorEffect;
 
         float t = 0.0f;
+
+        string param;
+        
+        switch (TurnState.state)
+        {
+            case TurnState.State.Forward:
+                param = "_TCP2_AMBIENT_BACK";
+                break;
+            case TurnState.State.Left:
+                param = "_TCP2_AMBIENT_RIGHT";
+                break;
+            case TurnState.State.Right:
+                param = "_TCP2_AMBIENT_LEFT";
+                break;
+            default:
+                param = "";
+                break;
+        }
         
         while (t < 1f)
         {
-            _copyMaterial.SetColor("_TCP2_AMBIENT_BACK", new Color(
+            _copyMaterial.SetColor(param, new Color(
                 Mathf.Lerp(emissionColor.r, targetColor.r, t), 
                 Mathf.Lerp(emissionColor.g, targetColor.g, t), 
                 Mathf.Lerp(emissionColor.b, targetColor.b, t),
