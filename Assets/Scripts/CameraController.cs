@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using DG.Tweening.Core;
 using UnityEngine;
 using Zenject;
 
@@ -75,7 +75,7 @@ public class CameraController : MonoBehaviour
             
             var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
 
-            var zDistance = Mathf.Abs(boxController.LocalPosition.z - transform.localPosition.z) + boxController.LocalPosition.z - zOffsetValue * multiplier;
+            var zDistance = transform.localPosition.z - zOffsetValue * multiplier;
             
             camPoints.Add(i, new CamPoint(pos, rot, fieldView, zDistance));
         }
@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour
 
         if (!pointIsExist)
         {
-            if (boxController.prevBoxCount < maxCount && boxController.boxCount > minCount)
+            if (boxController.prevBoxCount < maxCount - 1 && boxController.boxCount > minCount - 1)
             {
                 var sad = TryGetPoint<CamPoint>(maxCount - 1, out var camPoint2);
                 if (sad)
@@ -153,9 +153,9 @@ public class CameraController : MonoBehaviour
 
         if (!pointIsExist)
         {
-            if (boxController.prevBoxCount < 25)
+            if (boxController.prevBoxCount < maxCount - 1)
             {
-                var sad = TryGetPoint<CamPoint>(25, out var camPoint2);
+                var sad = TryGetPoint<CamPoint>(maxCount - 1, out var camPoint2);
                 if (sad)
                 {
                     transform.DOKill();
@@ -197,7 +197,7 @@ public class CameraController : MonoBehaviour
 
         if (!pointIsExist)
         {
-            if (boxController.prevBoxCount > minCount)
+            if (boxController.prevBoxCount > minCount - 1)
             {
                 var sad = TryGetPoint<CamPoint>(minCount - 1, out var camPoint2);
                 if (sad)

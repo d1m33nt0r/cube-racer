@@ -36,7 +36,6 @@ namespace DefaultNamespace
         
             if (other.CompareTag("DiamondCollector") && finish)
             {
-                playerMover.EnablePhysics();
                 pathFollower.GetComponent<PathFollower>().Moving -= playerMover.CustomMove;
                 playerMover.SetCurrentDirection();
                 playerMover.EnableMoving();

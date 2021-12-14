@@ -5,41 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Loader.unity
     guid: b6123b882a295e442a76ace8bf87063a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Balloon.unity
     guid: b649ad8da851da94ca43bd399b1712e4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 702f6ead581831e4d8c14c8b5e92b1eb
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/New Folder/Level_0.unity
     guid: 7a6bdff5447dc14498a63f3d26016b82
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/New Folder/Level_1.unity
     guid: 4a055d97ac178f5468a4e7d6b9c3e183
-  - enabled: 1
-    path: Assets/Scenes/Levels/New Folder/Level_2.unity
-    guid: 72d05494e51f6b848af34a08272fcc18
-  - enabled: 0
-    path: Assets/Scenes/Levels/Level_1.unity
-    guid: e0222a7a085b79e45b0e300e8cb4ccac
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/JMO Assets/Toony Colors Pro/Demo TCP2/Demo TCP2 Cat.unity
-    guid: ee01dcde20404d24085806cf87ef861d
-  - enabled: 0
-    path: Assets/JMO Assets/Toony Colors Pro/Demo TCP2/Demo TCP2 ShaderGenerator
-      2.unity
-    guid: e5c62462609a8894093b0836f4b99bdb
   m_configObjects: {}

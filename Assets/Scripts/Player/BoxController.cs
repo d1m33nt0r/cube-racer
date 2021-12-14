@@ -73,7 +73,7 @@ public class BoxController : MonoBehaviour
             AddBox(instance);
         }
 
-        CalculateBoxPositions();
+        //CalculateBoxPositions();
         
         transform.position = new Vector3(startingRoad.GetStartPosition().x,
             transform.position.y, startingRoad.GetStartPosition().z);
@@ -237,7 +237,7 @@ public class BoxController : MonoBehaviour
         }
         else
         {
-            tempPos = GetLastElement().transform.position;
+            tempPos = boxes[boxes.Count - 1].transform.position;
         }
         
         box.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox, tempPos.z);
