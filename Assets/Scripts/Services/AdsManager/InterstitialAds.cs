@@ -14,9 +14,10 @@ namespace DefaultNamespace.Services.AdsManager
         public static void Initialize()
         {
             MobileAds.Initialize(initStatus => { });
+            LoadAds();
         }
         
-        public static void LoadAds()
+        private static void LoadAds()
         {
             interstitialAd = new InterstitialAd(interstitialUnitId);
             AdRequest adRequest = new AdRequest.Builder().Build();

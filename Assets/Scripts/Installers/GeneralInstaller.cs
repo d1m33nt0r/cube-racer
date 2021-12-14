@@ -21,7 +21,7 @@ namespace Installers
         private LevelProgressManager levelProgressManager;
         private SceneLoader sceneLoader;
         private StartBoxCountManager startBoxCountManager;
-
+        [SerializeField] private GameObject adsCanvasPrefab;
         private GameObject debugParent;
         private GameObject servicesParent;
 
@@ -42,7 +42,7 @@ namespace Installers
             BindThemeManager();
             BindDiamondUI(diamondCountManager);
             InstantiateFpsCounter(debugParent);
-            InitializeAds();
+            BindAdsManager();
             BindVibrator();
         }
 
@@ -66,10 +66,10 @@ namespace Installers
                 .AsSingle();
         }
 
-        private void InitializeAds()
+        private void BindAdsManager()
         {
-            InterstitialAds.Initialize();
-                    InterstitialAds.LoadAds();
+            AdsManager adsManager = Container.InstantiatePrefabForComponent<AdsManager>(adsCanvasPrefab);
+            Container.Bind<AdsManager>().FromInstance(adsManager).AsSingle();
         }
 
         private void BindStartBoxCountManager()

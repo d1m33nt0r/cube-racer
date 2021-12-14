@@ -22,8 +22,13 @@ namespace UI
         public void ReloadCurrentScene()
         {
             diamondCountManager.WriteData();
-            adsManager.ShowInterstitial();
-            InterstitialAds.InterstitialAd.OnAdClosed += HandleOnAdClosed;
+            if (InterstitialAds.InterstitialAd.IsLoaded())
+            {
+                adsManager.ShowInterstitial();
+                InterstitialAds.InterstitialAd.OnAdClosed += HandleOnAdClosed;
+            }
+            else
+                SceneManager.LoadScene("Loader");
         }
 
         private void HandleOnAdClosed(object sender, EventArgs args)

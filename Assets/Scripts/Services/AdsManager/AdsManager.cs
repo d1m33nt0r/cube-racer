@@ -10,22 +10,32 @@ namespace DefaultNamespace.Services.AdsManager
     {
         private void Start()
         {
-            
+            BannerAds.Initialize();
+            InterstitialAds.Initialize();
+            RewardedAds.Initialize();
+
+            SceneManager.sceneLoaded += Handle;
         }
 
-        public void BannerShow()
+        private void Handle(Scene _arg0, LoadSceneMode _loadSceneMode)
         {
-            StartCoroutine(WaitForInitializationAndShowBannerAds());
+            switch (_arg0.name)
+            {
+                case "Loader":
+                    DisableCanvas();
+                    break;
+                case "Shop":
+                    DisableCanvas();
+                    break;
+                case "Balloon":
+                    DisableCanvas();
+                    break;
+                default:
+                    EnableCanvas();
+                    break;
+            }
         }
-        
-        private IEnumerator WaitForInitializationAndShowBannerAds()
-        {
-            while (!BannerAds.IsReadyToUse)
-                yield return null;
-            
-            ShowBanner();
-        }
-        
+
         private void ShowBanner()
         {
             BannerAds.Show();
@@ -36,10 +46,28 @@ namespace DefaultNamespace.Services.AdsManager
             BannerAds.Hide();
         }
 
+        public void ShowRewarded()
+        {
+            HideBanner();
+            RewardedAds.Show();
+        }
+        
         public void ShowInterstitial()
         {
             HideBanner();
             InterstitialAds.Show();
+        }
+
+        private void DisableCanvas()
+        {
+            HideBanner();
+            GetComponent<Canvas>().enabled = false;
+        }
+
+        private void EnableCanvas()
+        {
+            GetComponent<Canvas>().enabled = true;
+            ShowBanner();
         }
     }
 }

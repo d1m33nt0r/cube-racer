@@ -238,8 +238,8 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BandsCount: 1
-    - _BandsSmoothing: 0.457
+    - _BandsCount: 3
+    - _BandsSmoothing: 0.106
     - _BaseColor_Step: 0.5
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
@@ -325,7 +325,7 @@ Material:
     - _QueueOffset: 0
     - _RampSmooth: 0.1
     - _RampSmoothing: 1
-    - _RampThreshold: 0.5
+    - _RampThreshold: 0.757
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
@@ -397,12 +397,12 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 0.5518868, g: 0.8246784, b: 1, a: 1}
+    - _Color: {r: 0.7745369, g: 0.75686276, b: 0.8980392, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
-    - _DiffuseTint: {r: 1, g: 0.5019608, b: 0, a: 1}
+    - _DiffuseTint: {r: 0.29019594, g: 0, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 1, g: 0.7028302, b: 0.8505405, a: 1}
+    - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
@@ -413,7 +413,7 @@ Material:
     - _RimColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.6}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SColor: {r: 0.16958883, g: 0.19678974, b: 0.3490566, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}

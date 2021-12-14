@@ -79,7 +79,7 @@ MonoBehaviour:
     type: 3}
   themeManager: {fileID: 3609743187205978093, guid: d3afeb7c85b98f24481a3beeb7f117de,
     type: 3}
-  adsCamera: {fileID: 4179120721636023844, guid: 168d23cf9cbb43942b6551669c7c3f18,
-    type: 3}
   vibrator: {fileID: 1782098527024780494, guid: 52c9784a6c4f5064abeca7d07f3570a1,
+    type: 3}
+  adsCanvasPrefab: {fileID: 7302741886192461246, guid: 26922f18867f42d4293bd433609cc7fe,
     type: 3}

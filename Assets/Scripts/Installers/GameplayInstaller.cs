@@ -19,7 +19,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private PlayerContainer playerContainer;
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private UIController uiController;
-    [SerializeField] private AdsManager adsManager;
+    //[SerializeField] private AdsManager adsManager;
 
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
@@ -47,16 +47,10 @@ public class GameplayInstaller : MonoInstaller
         BindLevel();
         BindPlayerMover();
         BindUiController();
-        BindAdsManager();
+
     }
 
-    private void BindAdsManager()
-    {
-        
-        BannerAds.Initialize();
-        
-        Container.Bind<AdsManager>().FromInstance(adsManager).AsSingle();
-    }
+    
     
     private void BindUiController()
     {
