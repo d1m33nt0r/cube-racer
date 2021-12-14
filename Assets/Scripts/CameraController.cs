@@ -101,7 +101,7 @@ public class CameraController : MonoBehaviour
         {
             if (boxController.prevBoxCount < maxCount && boxController.boxCount > minCount)
             {
-                var sad = TryGetPoint<CamPoint>(maxCount, out var camPoint2);
+                var sad = TryGetPoint<CamPoint>(maxCount - 1, out var camPoint2);
                 if (sad)
                 {
                     transform.DOKill();
@@ -199,7 +199,7 @@ public class CameraController : MonoBehaviour
         {
             if (boxController.prevBoxCount > minCount)
             {
-                var sad = TryGetPoint<CamPoint>(minCount, out var camPoint2);
+                var sad = TryGetPoint<CamPoint>(minCount - 1, out var camPoint2);
                 if (sad)
                 {
                     transform.DOKill();
