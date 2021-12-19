@@ -34,9 +34,15 @@ namespace DefaultNamespace
             nitroEffect.Play();
         }
 
-        public void SetDefaultSpeed()
+        public IEnumerator SetDefaultSpeed()
         {
-            speed = defaultSpeed;
+            var TOLERANCE = 0.05;
+            while (Math.Abs(speed - defaultSpeed) > TOLERANCE)
+            {
+                yield return null;
+                speed -= 2 * Time.deltaTime;
+            }
+            
             nitroEffect.Stop();
         }
         

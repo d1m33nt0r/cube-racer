@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 151586759849749256}
   - component: {fileID: 7293112490981687534}
   m_Layer: 0
-  m_Name: LetCube (24)
+  m_Name: LetCube
   m_TagString: LetBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6523561225233712432}
-  m_Mesh: {fileID: -215390609098537255, guid: 9be03ddd6b1f28240ba81ae31bf3ce02, type: 3}
+  m_Mesh: {fileID: -5325783083582083158, guid: 52e1990cd4794cb48a00546431b8bacc, type: 3}
 --- !u!23 &6523561225233712447
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4f0195aad277d64aaba262dd58cd1b7, type: 2}
+  - {fileID: 2100000, guid: 8bc0b73b98b003b458229e16bd88d6a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

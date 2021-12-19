@@ -14,7 +14,7 @@ namespace DefaultNamespace
         private Vector3 RightRightPoint => new Vector3(startPoint.x + 0.4f, startPoint.y, startPoint.z);
         
         private CubeLetContainer targetObject;
-        private float cubeHeight = 0.2105f;
+        private float cubeHeight = 0.202f;
         
         private void OnEnable()
         {

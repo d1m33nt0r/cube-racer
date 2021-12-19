@@ -35,7 +35,7 @@ public class BoxController : MonoBehaviour
     private StartingRoad startingRoad;
     private Transform currentRoad;
     [SerializeField] private GameObject playerRenderer;
-    public int boxCount => transform.childCount - 2;
+    public int boxCount => boxes.Count;
     public float heightBox => 0.2105f; 
 
     private BoxAudioController boxAudioController;

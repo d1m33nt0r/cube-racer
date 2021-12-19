@@ -24,6 +24,6 @@ public class Nitro : MonoBehaviour
     private IEnumerator WaitAndSetDefaultSpeed(PlayerMover playerMover)
     {
         yield return new WaitForSeconds(duration);
-        playerMover.SetDefaultSpeed();
+        StartCoroutine(playerMover.SetDefaultSpeed());
     }
 }

@@ -105,5 +105,5 @@ Material:
     - _UseMainDistort: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.57351375, g: 0.33922213, b: 0.9339623, a: 1}
+    - _Color: {r: 0.34117642, g: 0.44385752, b: 0.93333334, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

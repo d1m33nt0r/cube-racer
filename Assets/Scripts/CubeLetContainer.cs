@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    [ExecuteInEditMode]
+    [ExecuteInEditMode][Serializable]
     public class CubeLetContainer : MonoBehaviour
     {
         [SerializeField, HideInInspector] private SerializableCubeLetsDictionary letCubes;
