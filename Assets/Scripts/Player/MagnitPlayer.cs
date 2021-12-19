@@ -60,7 +60,6 @@ public class MagnitPlayer : MonoBehaviour
             float distCovered = (Time.time - startTime) * speed;
             float fractionOfJourney = distCovered / journeyLength;
             startMarker.position = Vector3.Lerp(startMarker.position, endMarker.position, fractionOfJourney);
-            Debug.Log("hop hei lalaley!");
             yield return null;
         }
     }

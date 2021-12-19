@@ -47,7 +47,7 @@ public class DiamondIconController : MonoBehaviour
         rectTransform.DOAnchorMin(target.anchorMin, 1f);
         
         rectTransform
-            .DOAnchorPos(target.anchoredPosition, 1f)
+            .DOAnchorPos(target.anchoredPosition - new Vector2(45f, 65f), 1f)
             .OnComplete(SetMovingDone);
     }
     

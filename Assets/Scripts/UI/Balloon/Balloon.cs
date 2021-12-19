@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -20,6 +21,7 @@ public class Balloon : MonoBehaviour
     [SerializeField] private Text text;
 
     private OpenBalloonsCounter openBalloonsCounter;
+    private bool isUsed;
     
     [Inject]
     private void Construct(DiamondUI diamondUI, OpenBalloonsCounter openBalloonsCounter)
@@ -43,10 +45,12 @@ public class Balloon : MonoBehaviour
 
     public void PlayAnimationDestroyBalloon()
     {
-        if (openBalloonsCounter.GetCount() == 3)
+        if ((openBalloonsCounter.GetCount() == 3 && !openBalloonsCounter.unlocked) || isUsed)
             return;
         
+        isUsed = true;
         openBalloonsCounter.AddOne();
+        transform.DOShakePosition(1.5f, new Vector3(15, 10), 10, 90, true, true);
         animator.Play("DestroyAnimation");
     }
 

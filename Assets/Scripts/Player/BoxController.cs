@@ -73,8 +73,6 @@ public class BoxController : MonoBehaviour
             AddBox(instance);
         }
 
-        //CalculateBoxPositions();
-        
         transform.position = new Vector3(startingRoad.GetStartPosition().x,
             transform.position.y, startingRoad.GetStartPosition().z);
     }
@@ -219,8 +217,7 @@ public class BoxController : MonoBehaviour
     
     public void BoxGroupAdded(int countBoxes)
     {
-        //DisablePhysics();
-        AddedBoxes?.Invoke(countBoxes); // for camera field view
+        AddedBoxes?.Invoke(countBoxes); 
     }
 
     public void AddBox(GameObject box)
