@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.ThemeManager;
 using Services.StartBoxCountManager;
 using UnityEngine;
@@ -222,6 +223,9 @@ public class BoxController : MonoBehaviour
 
     public void AddBox(GameObject box)
     {
+        var friendlyBox = box.GetComponent<FriendlyBox>();
+        if (boxes.Contains(friendlyBox)) return;
+
         box.transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, 
             transform.parent.rotation.eulerAngles.y, transform.parent.rotation.eulerAngles.z);
         box.transform.SetParent(transform);
@@ -238,9 +242,11 @@ public class BoxController : MonoBehaviour
         }
         
         box.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox, tempPos.z);
-        boxes.Add(box.GetComponent<FriendlyBox>());
+        boxes.Add(friendlyBox);
         
         playerRenderer.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox * 2, tempPos.z);
+        
+        boxAudioController.PlayCollectSound();
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)

@@ -42,8 +42,6 @@ namespace DefaultNamespace.Boxes
                 }
 
                 boxController.BoxGroupAdded(countBoxes);
-                
-                boxAudioController.PlayCollectSound();
             }
         }
     }
