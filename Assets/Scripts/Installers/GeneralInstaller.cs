@@ -1,6 +1,7 @@
 ﻿using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.ThemeManager;
+using Services.DataManipulator;
 using Services.DiamondCountManager;
 using Services.LevelProgressManager;
 using Services.StartBoxCountManager;
@@ -22,6 +23,7 @@ namespace Installers
         private LevelProgressManager levelProgressManager;
         private SceneLoader sceneLoader;
         private StartBoxCountManager startBoxCountManager;
+        private DiamondMultiplierLevelManager diamondMultiplierLevelManager;
         [SerializeField] private GameObject adsCanvasPrefab;
         private GameObject debugParent;
         private GameObject servicesParent;
@@ -35,8 +37,10 @@ namespace Installers
             levelProgressManager = new LevelProgressManager();
             sceneLoader = new SceneLoader(levelProgressManager);
             startBoxCountManager = new StartBoxCountManager();
-
+            diamondMultiplierLevelManager = new DiamondMultiplierLevelManager();
+            
             BindDiamondCountManager();
+            BindDiamondMultiplierLevelManager();
             BindLevelProgressManager();
             BindSceneLoader();
             BindStartBoxCountManager();
@@ -85,6 +89,14 @@ namespace Installers
             Container
                 .Bind<StartBoxCountManager>()
                 .FromInstance(startBoxCountManager)
+                .AsSingle();
+        }
+        
+        private void BindDiamondMultiplierLevelManager()
+        {
+            Container
+                .Bind<DiamondMultiplierLevelManager>()
+                .FromInstance(diamondMultiplierLevelManager)
                 .AsSingle();
         }
 

@@ -20,7 +20,7 @@ namespace UI.Balloon
         {
             adsManager.ShowRewarded();
             
-            RewardedAds.rewardedAd.OnAdClosed += (_sender, _args) =>
+            RewardedAds.rewardedAd.OnUserEarnedReward += (_sender, _args) =>
             {
                 RewardedAds.Initialize();
                 _openBalloonsCounter.HideButtons();

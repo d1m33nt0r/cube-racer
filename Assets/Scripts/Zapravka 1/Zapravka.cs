@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Runtime.Remoting.Channels;
 using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
 using PathCreation.Examples;
@@ -13,12 +12,12 @@ public class Zapravka : MonoBehaviour
 
     [SerializeField] private BoxCollider startBoxCollider;
     [SerializeField] private BoxCollider finishBoxCollider;
-
-    private bool lalala;
+    
     private AdsManager adsManager;
     private bool finish;
     private PlayerMover playerMover;
-
+    private bool rewardShowed;
+    
     [Inject]
     private void Construct(PlayerMover playerMover, AdsManager _adsManager)
     {
@@ -28,30 +27,18 @@ public class Zapravka : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-   
-        
         if (other.CompareTag("DiamondCollector") && !finish)
         {
-            //Time.timeScale = 0;
+            if (rewardShowed) return;
             
-            adsManager.ShowRewarded();
-            
-            RewardedAds.rewardedAd.OnAdClosed += (object _sender, EventArgs _e) =>
-            {
-                playerMover.DisableMoving();
-                playerMover.UnsubscribeSwipes();
-                //playerMover.DisablePhysics();
-                pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
-                pathFollower.GetComponent<PathFollower>().enabled = true;
-                finishBoxCollider.enabled = true;
-                StartCoroutine(Finish());
-            };
+            adsManager.ShowInterstitial();
+            rewardShowed = true;
+            InterstitialAds.InterstitialAd.OnAdClosed += ReleaseReward;
+            InterstitialAds.InterstitialAd.OnAdFailedToShow += ReleaseReward;
         }
- 
         
         if (other.CompareTag("DiamondCollector") && finish)
         {
-          
             pathFollower.GetComponent<PathFollower>().Moving -= playerMover.CustomMove;
             playerMover.SetCurrentDirection();
             playerMover.EnableMoving();
@@ -60,6 +47,18 @@ public class Zapravka : MonoBehaviour
         }
     }
 
+    private void ReleaseReward(object _sender, EventArgs _e) 
+    {
+        playerMover.DisableMoving();
+        playerMover.UnsubscribeSwipes();
+        //playerMover.DisablePhysics();
+        pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
+        pathFollower.GetComponent<PathFollower>().enabled = true;
+        finishBoxCollider.enabled = true;
+        StartCoroutine(Finish());
+        BannerAds.Show();
+    }
+    
     private IEnumerator Finish()
     {
         yield return new WaitForSeconds(1);

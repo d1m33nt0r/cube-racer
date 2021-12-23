@@ -29,6 +29,17 @@ namespace Services.DiamondCountManager
             countDiamonds = PlayerPrefs.GetInt(key);
         }
 
+        public void AddDiamondsAndSave(int _count)
+        {
+            countDiamonds += _count;
+            foreach (var component in components)
+            {
+                component.UpdateData();
+            }
+            
+            WriteData();
+        }
+        
         public void UpdateData(int countDiamonds)
         {
             this.countDiamonds = countDiamonds;

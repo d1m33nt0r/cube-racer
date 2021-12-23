@@ -1,4 +1,5 @@
 ﻿using System;
+using Services.DataManipulator;
 using Services.DiamondCountManager;
 using Services.ProgressController.Interfaces;
 using UnityEngine;
@@ -13,18 +14,19 @@ namespace UI.GlobalUI.DiamondCounter
 
         private int diamondCount => text.text != "" ? Convert.ToInt32(text.text) : 0;
         private DiamondCountManager diamondCountManager;
-        
+        private DiamondMultiplierLevelManager m_diamondMultiplierLevelManager;
         [Inject]
-        private void Construct(DiamondCountManager diamondCountManager)
+        private void Construct(DiamondCountManager diamondCountManager, DiamondMultiplierLevelManager _diamondMultiplierLevelManager)
         {
             this.diamondCountManager = diamondCountManager;
             diamondCountManager.AddListener(this);
+            m_diamondMultiplierLevelManager = _diamondMultiplierLevelManager;
             text.text = this.diamondCountManager.GetData().ToString();
         }
 
         public void AddDiamond()
         {
-            var count = diamondCount + 1;
+            var count = diamondCount + m_diamondMultiplierLevelManager.GetData();
             diamondCountManager.UpdateData(count);
             text.text = Convert.ToString(count);
         }
