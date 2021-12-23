@@ -1,5 +1,4 @@
 using DefaultNamespace;
-using DefaultNamespace.Services.AdsManager;
 using Diamond;
 using UI;
 using UI.GlobalUI.DiamondCounter;
@@ -29,6 +28,7 @@ public class GameplayInstaller : MonoInstaller
     private void Construct(DiamondUI diamondUI)
     {
         this.diamondUI = diamondUI;
+        diamondUI.settingsButton.GetComponent<SettingsButton>().Construct(gameController);
     }
     
     public override void InstallBindings()

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Runtime.Remoting.Channels;
 using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
 using PathCreation.Examples;
@@ -26,31 +28,24 @@ public class Zapravka : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if (!lalala && other.CompareTag("DiamondCollector"))
-        {
-            Time.timeScale = 0;
-            RewardedAds.Show();
-            
-            RewardedAds.rewardedAd.OnAdClosed += (_sender, _args) =>
-            {
-                Time.timeScale = 1;
-                lalala = true;
-                RewardedAds.Initialize();
-            };
-        }*/
+   
         
         if (other.CompareTag("DiamondCollector") && !finish)
         {
             //Time.timeScale = 0;
             
+            adsManager.ShowRewarded();
             
-            playerMover.DisableMoving();
-            playerMover.UnsubscribeSwipes();
-            //playerMover.DisablePhysics();
-            pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
-            pathFollower.GetComponent<PathFollower>().enabled = true;
-            finishBoxCollider.enabled = true;
-            StartCoroutine(Finish());
+            RewardedAds.rewardedAd.OnAdClosed += (object _sender, EventArgs _e) =>
+            {
+                playerMover.DisableMoving();
+                playerMover.UnsubscribeSwipes();
+                //playerMover.DisablePhysics();
+                pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
+                pathFollower.GetComponent<PathFollower>().enabled = true;
+                finishBoxCollider.enabled = true;
+                StartCoroutine(Finish());
+            };
         }
  
         

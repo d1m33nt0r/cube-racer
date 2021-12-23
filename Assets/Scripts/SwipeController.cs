@@ -1,5 +1,6 @@
 ﻿using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class SwipeController : MonoBehaviour
@@ -21,10 +22,12 @@ public class SwipeController : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(GameplayStarter gameplayStarter)
+    private void Construct(GameplayStarter gameplayStarter, GameController gameController)
     {
         this.gameplayStarter = gameplayStarter;
         gameplayStarter.ActivateSwipeControll += EnableSwipeController;
+        gameController.FailedGame += DisableSwipeController;
+        gameController.FinishedGame += DisableSwipeController;
     }
 
     private void EnableSwipeController()
@@ -32,6 +35,11 @@ public class SwipeController : MonoBehaviour
         enabledSwipeController = true;
     }
 
+    private void DisableSwipeController()
+    {
+        enabledSwipeController = false;
+    }
+    
     private void Update()
     {
         if (!enabledSwipeController)

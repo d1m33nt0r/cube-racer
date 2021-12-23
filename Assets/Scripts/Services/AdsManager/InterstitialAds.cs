@@ -1,5 +1,6 @@
 ﻿using System;
 using GoogleMobileAds.Api;
+using UnityEngine;
 
 namespace DefaultNamespace.Services.AdsManager
 {
@@ -14,6 +15,8 @@ namespace DefaultNamespace.Services.AdsManager
         public static void Initialize()
         {
             MobileAds.Initialize(initStatus => { });
+            
+            
             LoadAds();
         }
         
@@ -21,6 +24,10 @@ namespace DefaultNamespace.Services.AdsManager
         {
             interstitialAd = new InterstitialAd(interstitialUnitId);
             AdRequest adRequest = new AdRequest.Builder().Build();
+            interstitialAd.OnAdLoaded += (sender, args) =>
+            {
+                Debug.Log("Interstitial Ads loaded");
+            };
             interstitialAd.LoadAd(adRequest);
         }
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using GoogleMobileAds.Api;
+using UnityEngine;
 
 namespace DefaultNamespace.Services.AdsManager
 {
@@ -15,7 +16,11 @@ namespace DefaultNamespace.Services.AdsManager
         {
             MobileAds.Initialize(initStatus => { });
             RequestBanner();
-            bannerView.OnAdLoaded += (_sender, _args) => { IsReadyToUse = true; };
+            bannerView.OnAdLoaded += (_sender, _args) =>
+            {
+                IsReadyToUse = true;
+                Debug.Log("Banner Ads loaded");
+            };
         }
         
         private static void RequestBanner()

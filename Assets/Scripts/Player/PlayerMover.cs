@@ -51,7 +51,7 @@ namespace DefaultNamespace
             gameController.StartedGame += EnableMoving;
             gameController.FailedGame += DisableMoving;
             gameController.FinishedGame += DisableMoving;
-            
+
             SubscribeSwipes();
         }
 
@@ -88,13 +88,13 @@ namespace DefaultNamespace
         public void DisableMoving()
         {
             movingEnabled = false;
-
-            //StartCoroutine(WaitAndClearCubes(1f));
-            
-            EnablePhysics();
-           
         }
 
+        private void DestroyCubes()
+        {
+            StartCoroutine(WaitAndClearCubes(1f));
+        }
+        
         private IEnumerator WaitAndClearCubes(float _waitValue)
         {
             yield return new WaitForSeconds(_waitValue);

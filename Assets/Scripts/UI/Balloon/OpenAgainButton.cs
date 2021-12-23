@@ -7,16 +7,18 @@ namespace UI.Balloon
     public class OpenAgainButton : MonoBehaviour
     {
         private OpenBalloonsCounter _openBalloonsCounter;
+        private AdsManager adsManager;
         
         [Inject]
-        private void Construct(OpenBalloonsCounter openBalloonsCounter)
+        private void Construct(OpenBalloonsCounter openBalloonsCounter, AdsManager _adsManager)
         {
             _openBalloonsCounter = openBalloonsCounter;
+            adsManager = _adsManager;
         }
         
         public void ShowReward()
         {
-            RewardedAds.Show();
+            adsManager.ShowRewarded();
             
             RewardedAds.rewardedAd.OnAdClosed += (_sender, _args) =>
             {

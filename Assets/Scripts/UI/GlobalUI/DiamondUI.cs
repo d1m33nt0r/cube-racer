@@ -14,7 +14,7 @@ public class DiamondUI : MonoBehaviour
     [SerializeField] private GameObject plusOnePrefab;
     [SerializeField] private RectTransform parent;
     [SerializeField] private RectTransform target;
-    [SerializeField] private GameObject settingsButton;
+    [SerializeField] public GameObject settingsButton;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private RectTransform panel;
     

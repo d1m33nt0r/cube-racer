@@ -8,12 +8,14 @@ namespace DefaultNamespace.Services.AdsManager
 {
     public class AdsManager : MonoBehaviour
     {
+        
         private void Start()
         {
+         
             BannerAds.Initialize();
             InterstitialAds.Initialize();
             RewardedAds.Initialize();
-
+            //DisableCanvas();
             SceneManager.sceneLoaded += Handle;
         }
 

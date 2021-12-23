@@ -15,7 +15,8 @@ namespace Installers
         [SerializeField] private DiamondUI diamondUI;
         [SerializeField] private ThemeManager themeManager;
         [SerializeField] private Vibrator vibrator;
-
+        [SerializeField] private GameObject lunarConsole;
+        
         // services
         private DiamondCountManager diamondCountManager;
         private LevelProgressManager levelProgressManager;
@@ -44,6 +45,13 @@ namespace Installers
             InstantiateFpsCounter(debugParent);
             BindAdsManager();
             BindVibrator();
+            InstantiateLunarConsole(debugParent);
+        }
+
+        private void InstantiateLunarConsole(GameObject parent)
+        {
+            Container.InstantiatePrefab(lunarConsole)
+                .transform.SetParent(parent.transform);
         }
 
         private void BindVibrator()
