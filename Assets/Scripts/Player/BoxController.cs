@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
+using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using Services.StartBoxCountManager;
 using UnityEngine;
@@ -39,7 +40,7 @@ public class BoxController : MonoBehaviour
     public int boxCount => boxes.Count;
     public float heightBox => 0.2105f; 
 
-    private BoxAudioController boxAudioController;
+    private AudioManager m_audioManager;
     private StartBoxCountManager startBoxCountManager;
     private ThemeManager themeManager;
     private GameController gameController;
@@ -49,11 +50,11 @@ public class BoxController : MonoBehaviour
     public int prevBoxCount;
     
     [Inject]
-    private void Construct(StartingRoad startingRoad, BoxAudioController boxAudioController, 
+    private void Construct(StartingRoad startingRoad, AudioManager _audioManager, 
         StartBoxCountManager startBoxCountManager, ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
     {
         this.startingRoad = startingRoad;
-        this.boxAudioController = boxAudioController;
+        this.m_audioManager = _audioManager;
         this.startBoxCountManager = startBoxCountManager;
         this.themeManager = themeManager;
         this.gameController = gameController;
@@ -70,7 +71,7 @@ public class BoxController : MonoBehaviour
         {
             var instance = Instantiate(friendlyBox, Vector3.zero, Quaternion.AngleAxis(90, Vector3.up));
             instance.transform.SetParent(transform);
-            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
+            instance.GetComponent<FriendlyBox>().Initialize(this, m_audioManager, themeManager, gameController, vibrator);
             AddBox(instance);
         }
 
@@ -119,7 +120,7 @@ public class BoxController : MonoBehaviour
     {
         var instance = Instantiate(friendlyBox);
         instance.transform.SetParent(transform);
-        instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
+        //instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
         AddBox(instance);
     }
 
@@ -138,7 +139,7 @@ public class BoxController : MonoBehaviour
         for (var i = 0; i < count; i++)
         {
             var instance = Instantiate(friendlyBox);
-            instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
+            //instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
             
             AddBox(instance);
         }
@@ -246,7 +247,7 @@ public class BoxController : MonoBehaviour
         
         playerRenderer.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox * 2, tempPos.z);
         
-        boxAudioController.PlayCollectSound();
+        m_audioManager.boxesAudioSource.PlayCollectSound();
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)

@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using DG.Tweening;
 using UnityEngine;
@@ -18,21 +19,32 @@ public class FriendlyBox : MonoBehaviour
     
     private bool used;
     private BoxController boxController;
-    private BoxAudioController boxAudioController;
+    private AudioManager m_audioManager;
     private ThemeManager themeManager;
     private Vibrator vibrator;
 
-    [Inject] 
-    public void Construct(BoxController boxController, BoxAudioController boxAudioController, 
+
+    [Inject]
+    public void Construct(BoxController boxController, AudioManager _audioManager, 
         ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
     {
         this.boxController = boxController;
-        this.boxAudioController = boxAudioController;
+        this.m_audioManager = _audioManager;
         this.themeManager = themeManager;
         GetCurrentMaterial();
         vibrator = _vibrator;
     }
 
+    public void Initialize(BoxController boxController, AudioManager _audioManager, 
+        ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
+    {
+        this.boxController = boxController;
+        this.m_audioManager = _audioManager;
+        this.themeManager = themeManager;
+        GetCurrentMaterial();
+        vibrator = _vibrator;
+    }
+    
     private void Awake()
     {
         GetCurrentMaterial();
@@ -56,14 +68,14 @@ public class FriendlyBox : MonoBehaviour
             if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
             {
                 boxController.RemoveBox(gameObject, false, 1);
-                boxAudioController.PlayFailSound();
+                m_audioManager.boxesAudioSource.PlayFailSound();
             }
 
             if (other.collider.CompareTag("Lava"))
             {
                 Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
-                boxAudioController.PlayFailSound();
+                m_audioManager.boxesAudioSource.PlayFailSound();
                 vibrator.VibrateLava();
             }
             
@@ -71,7 +83,7 @@ public class FriendlyBox : MonoBehaviour
             {
                 //Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
-                boxAudioController.PlayFailSound();
+                m_audioManager.boxesAudioSource.PlayFailSound();
                 vibrator.VibrateLava();
             }
             
@@ -83,7 +95,7 @@ public class FriendlyBox : MonoBehaviour
             {
                 other.collider.tag = "Ground";
                 boxController.RemoveBox(gameObject, true, 1);
-                boxAudioController.PlayFailSound();
+                m_audioManager.boxesAudioSource.PlayFailSound();
             }
         }
     }

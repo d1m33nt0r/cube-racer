@@ -1,4 +1,5 @@
-﻿using Services.LevelProgressManager;
+﻿using DefaultNamespace.Services.AudioManager;
+using Services.LevelProgressManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -9,16 +10,19 @@ namespace UI.GlobalUI
     {
         private SceneLoader sceneLoader;
         private LevelProgressManager levelProgressManager;
+        private AudioManager m_audioManager;
         
         [Inject]
-        private void Construct(SceneLoader sceneLoader, LevelProgressManager levelProgressManager)
+        private void Construct(SceneLoader sceneLoader, LevelProgressManager levelProgressManager, AudioManager _audioManager)
         {
             this.sceneLoader = sceneLoader;
             this.levelProgressManager = levelProgressManager;
+            m_audioManager = _audioManager;
         }
 
         public void SetLoadingParams()
         {
+            m_audioManager.uiAudioSource.PlayButtonClickSound();
             sceneLoader.SetNextScene(levelProgressManager.GetData());
             SceneManager.LoadScene("Loader");
         }

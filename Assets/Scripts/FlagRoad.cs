@@ -1,9 +1,18 @@
+using DefaultNamespace.Services.AudioManager;
 using UnityEngine;
+using Zenject;
 
 public class FlagRoad : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private AudioSource audioSource;
+
+    private AudioManager m_audioManager;
+    
+    [Inject]
+    private void Construct(AudioManager _audioManager)
+    {
+        m_audioManager = _audioManager;
+    }
     
     private void OnCollisionEnter(Collision other)
     {
@@ -11,7 +20,7 @@ public class FlagRoad : MonoBehaviour
         {
             animator.enabled = true;
             animator.Play("FlagAnim");
-            audioSource.Play();
+            m_audioManager.flagEffectAudioSource.PlayFlagEffectSound();
         }
     }
 }

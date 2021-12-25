@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace.Services.AudioManager;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,12 +23,15 @@ public class Balloon : MonoBehaviour
 
     private OpenBalloonsCounter openBalloonsCounter;
     private bool isUsed;
+
+    private AudioManager m_audioManager;
     
     [Inject]
-    private void Construct(DiamondUI diamondUI, OpenBalloonsCounter openBalloonsCounter)
+    private void Construct(DiamondUI diamondUI, OpenBalloonsCounter openBalloonsCounter, AudioManager _audioManager)
     {
         this.diamondUI = diamondUI;
         this.openBalloonsCounter = openBalloonsCounter;
+        m_audioManager = _audioManager;
     }
     
     private void Start()
@@ -45,6 +49,7 @@ public class Balloon : MonoBehaviour
 
     public void PlayAnimationDestroyBalloon()
     {
+        m_audioManager.uiAudioSource.PlayButtonClickSound();
         if ((openBalloonsCounter.GetCount() == 3 && !openBalloonsCounter.unlocked) || isUsed)
             return;
         

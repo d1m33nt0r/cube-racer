@@ -1,5 +1,6 @@
 ﻿using System;
 using DefaultNamespace.Services.AdsManager;
+using DefaultNamespace.Services.AudioManager;
 using Services.DiamondCountManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,16 +12,19 @@ namespace UI
     {
         private DiamondCountManager diamondCountManager;
         private AdsManager adsManager;
+        private AudioManager m_audioManager;
         
         [Inject]
-        private void Construct(DiamondCountManager diamondCountManager, AdsManager _adsManager)
+        private void Construct(DiamondCountManager diamondCountManager, AdsManager _adsManager, AudioManager _audioManager)
         {
             this.diamondCountManager = diamondCountManager;
             adsManager = _adsManager;
+            m_audioManager = _audioManager;
         }
 
         public void ReloadCurrentScene()
         {
+            m_audioManager.uiAudioSource.PlayButtonClickSound();
             diamondCountManager.WriteData();
             if (InterstitialAds.InterstitialAd.IsLoaded())
             {

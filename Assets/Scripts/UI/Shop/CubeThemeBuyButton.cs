@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,14 +19,18 @@ namespace UI.Shop
         [SerializeField] private Sprite selectedSprite;
         [SerializeField] private Sprite notSelectedSprite;
 
+        private AudioManager m_audioManager;
+        
         [Inject]
-        private void Construct(ThemeManager themeManager)
+        private void Construct(ThemeManager themeManager, AudioManager _audioManager)
         {
             this.themeManager = themeManager;
+            m_audioManager = _audioManager;
         }
 
         public void ByRandomCube()
         {
+            m_audioManager.uiAudioSource.PlayButtonClickSound();
             var themeButtons = buttons.Where(button => !button.boxTheme.bought).ToList();
             var randNum = Random.Range(0, themeButtons.Count - 1);
             StartCoroutine(Randomize(themeButtons));

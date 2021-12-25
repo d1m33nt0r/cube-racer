@@ -1,6 +1,8 @@
 using System.Collections;
 using DefaultNamespace;
+using DefaultNamespace.Services.AudioManager;
 using UnityEngine;
+using Zenject;
 
 public class Nitro : MonoBehaviour
 {
@@ -8,6 +10,13 @@ public class Nitro : MonoBehaviour
     [SerializeField] private float duration;
 
     private bool isActive;
+    private AudioManager m_audioManager;
+    
+    [Inject]
+    private void Construct(AudioManager _audioManager)
+    {
+        m_audioManager = _audioManager;
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -17,7 +26,7 @@ public class Nitro : MonoBehaviour
             var playerMover = other.transform.parent.GetComponent<PlayerMover>();
             playerMover.IncreaseSpeed(multiplierSpeed);
             StartCoroutine(WaitAndSetDefaultSpeed(playerMover));
-            GetComponent<AudioSource>().Play();
+            m_audioManager.nitroAudioEffectSource.PlayNitroSound();
         }
     }
 

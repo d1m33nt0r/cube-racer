@@ -1,6 +1,8 @@
-﻿using DefaultNamespace.Services.ShopData;
+﻿using DefaultNamespace.Services.AudioManager;
+using DefaultNamespace.Services.ShopData;
 using DefaultNamespace.ThemeManager;
 using UnityEngine;
+using Zenject;
 
 namespace UI.Shop
 {
@@ -14,12 +16,18 @@ namespace UI.Shop
         
         public BoxTheme boxTheme;
         public BoxTheme BoxTheme => boxTheme;
-        
+        private AudioManager m_audioManager;
         public void Bind(CubeButtonsConstructor cubeButtonsConstructor)
         {
             this.cubeButtonsConstructor = cubeButtonsConstructor;
         }
 
+        [Inject]
+        private void Inject(AudioManager _audioManager)
+        {
+            m_audioManager = _audioManager;
+        }
+        
         public void Construct(BoxTheme boxTheme, ThemeManager themeManager)
         {
             this.boxTheme = boxTheme;
@@ -38,6 +46,7 @@ namespace UI.Shop
 
         public void SelectTheme()
         {
+            m_audioManager.uiAudioSource.PlayButtonClickSound();
             if (boxTheme.bought)
             {
                 themeManager.SetCurrentBoxTheme(boxTheme.key);

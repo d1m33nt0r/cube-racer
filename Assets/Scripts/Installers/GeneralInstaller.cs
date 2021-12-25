@@ -1,5 +1,6 @@
 ﻿using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
+using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using Services.DataManipulator;
 using Services.DiamondCountManager;
@@ -17,6 +18,8 @@ namespace Installers
         [SerializeField] private ThemeManager themeManager;
         [SerializeField] private Vibrator vibrator;
         [SerializeField] private GameObject lunarConsole;
+        [SerializeField] private GameObject audioManager;
+        [SerializeField] private GameObject adsCanvasPrefab;
         
         // services
         private DiamondCountManager diamondCountManager;
@@ -24,10 +27,10 @@ namespace Installers
         private SceneLoader sceneLoader;
         private StartBoxCountManager startBoxCountManager;
         private DiamondMultiplierLevelManager diamondMultiplierLevelManager;
-        [SerializeField] private GameObject adsCanvasPrefab;
         private GameObject debugParent;
         private GameObject servicesParent;
-
+        
+        
         public override void InstallBindings()
         {
             debugParent = CreateParent("Debug");
@@ -38,7 +41,8 @@ namespace Installers
             sceneLoader = new SceneLoader(levelProgressManager);
             startBoxCountManager = new StartBoxCountManager();
             diamondMultiplierLevelManager = new DiamondMultiplierLevelManager();
-            
+
+            BindAudioManager();
             BindDiamondCountManager();
             BindDiamondMultiplierLevelManager();
             BindLevelProgressManager();
@@ -56,6 +60,19 @@ namespace Installers
         {
             Container.InstantiatePrefab(lunarConsole)
                 .transform.SetParent(parent.transform);
+        }
+
+        private void BindAudioManager()
+        {
+            var audioManager = Container.InstantiatePrefab(this.audioManager);
+            var manager = audioManager.GetComponent<AudioManager>();
+
+            Container
+                .Bind<AudioManager>()
+                .FromInstance(manager)
+                .AsSingle();
+
+            manager.Setup();
         }
 
         private void BindVibrator()
