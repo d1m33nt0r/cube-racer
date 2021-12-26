@@ -1,4 +1,5 @@
-﻿using MoreMountains.NiceVibrations;
+﻿using System;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -7,9 +8,34 @@ namespace DefaultNamespace
     {
         private bool HapticAllowed = true;
 
+        public void DisableHaptics()
+        {
+            HapticAllowed = false;
+            MMVibrationManager.SetHapticsActive(HapticAllowed);
+            PlayerPrefs.SetInt("vibration_enable", 0);
+        }
+
+        public void EnableHaptics()
+        {
+            HapticAllowed = true;
+            MMVibrationManager.SetHapticsActive(HapticAllowed);
+            PlayerPrefs.SetInt("vibration_enable", 1);
+        }
+        
+        private bool GetSoundSettings()
+        {
+            if (PlayerPrefs.HasKey("vibration_enable"))
+                return Convert.ToBoolean(PlayerPrefs.GetInt("vibration_enable"));
+            
+            return false;
+        }
+        
         public void Start()
         {
-            MMVibrationManager.SetHapticsActive(HapticAllowed);
+            if (GetSoundSettings())
+                EnableHaptics();
+            else
+                DisableHaptics();
         }
 
         #if UNITY_ANDROID

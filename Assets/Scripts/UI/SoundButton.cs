@@ -1,4 +1,5 @@
-﻿using DefaultNamespace.Services.AudioManager;
+﻿using System;
+using DefaultNamespace.Services.AudioManager;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,7 +16,12 @@ namespace UI
         {
             m_audioManager = _audioManager;
         }
-        
+
+        private void Start()
+        {
+            disableIcon.enabled = !m_audioManager.soundIsEnabled;
+        }
+
         public void SwitchSoundSettingsStatus()
         {
             disableIcon.enabled = !m_audioManager.SwitchSoundSettings();

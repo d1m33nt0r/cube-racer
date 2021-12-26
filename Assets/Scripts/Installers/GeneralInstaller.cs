@@ -41,7 +41,7 @@ namespace Installers
             sceneLoader = new SceneLoader(levelProgressManager);
             startBoxCountManager = new StartBoxCountManager();
             diamondMultiplierLevelManager = new DiamondMultiplierLevelManager();
-
+            BindVibrator();
             BindAudioManager();
             BindDiamondCountManager();
             BindDiamondMultiplierLevelManager();
@@ -52,7 +52,7 @@ namespace Installers
             BindDiamondUI(diamondCountManager);
             InstantiateFpsCounter(debugParent);
             BindAdsManager();
-            BindVibrator();
+            
             InstantiateLunarConsole(debugParent);
         }
 
