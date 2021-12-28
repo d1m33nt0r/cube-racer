@@ -26,14 +26,22 @@ namespace UI
         {
             if (PlayerPrefs.HasKey("vibration_enabled"))
             {
-                vibrationIsActive = Convert.ToBoolean(PlayerPrefs.GetInt("vibration_enable"));  
-                
-                if (vibrationIsActive) m_vibrator.EnableHaptics();
-                else m_vibrator.DisableHaptics();
+                vibrationIsActive = Convert.ToBoolean(PlayerPrefs.GetInt("vibration_enabled"));
+
+                if (vibrationIsActive)
+                {
+                    m_vibrator.EnableHaptics();
+                }
+                else
+                {
+                    disableIcon.enabled = !disableIcon.enabled;
+                    m_vibrator.DisableHaptics();
+                }
             }
             else
             {
                 vibrationIsActive = true;
+                PlayerPrefs.SetInt("vibration_enabled", Convert.ToInt16(vibrationIsActive));
                 m_vibrator.EnableHaptics();
             }
         }
@@ -43,7 +51,7 @@ namespace UI
             vibrationIsActive = !vibrationIsActive;
             disableIcon.enabled = !disableIcon.enabled;
             m_audioManager.uiAudioSource.PlayButtonClickSound();
-            
+            PlayerPrefs.SetInt("vibration_enabled", Convert.ToInt16(vibrationIsActive));
             if (vibrationIsActive) m_vibrator.EnableHaptics();
             else m_vibrator.DisableHaptics();
         }

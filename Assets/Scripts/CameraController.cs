@@ -135,16 +135,16 @@ public class CameraController : MonoBehaviour
 
     private void IncreaseZ(CamPoint _camPoint, float duration)
     {
-        var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
-        var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
-        transform.DOLocalMoveZ(transform.localPosition.z - difference, duration);
+        //var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
+        //var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
+        //transform.DOLocalMoveZ(transform.localPosition.z - difference, duration);
     }
     
     private void DecreaseZ(CamPoint _camPoint, float duration)
     {
-        var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
-        var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
-        transform.DOLocalMoveZ(transform.localPosition.z + difference, duration);
+        //var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
+        //var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
+        //transform.DOLocalMoveZ(transform.localPosition.z + difference, duration);
     }
     
     private void SpecialIncrease()

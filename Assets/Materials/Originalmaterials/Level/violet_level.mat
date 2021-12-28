@@ -238,8 +238,8 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BandsCount: 1
-    - _BandsSmoothing: 0.457
+    - _BandsCount: 3
+    - _BandsSmoothing: 0.521
     - _BaseColor_Step: 0.5
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
@@ -397,7 +397,7 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 0.514151, g: 0.7300525, b: 1, a: 1}
+    - _Color: {r: 0.6309185, g: 0.77646285, b: 0.9622642, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffuseTint: {r: 1, g: 0.5019608, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

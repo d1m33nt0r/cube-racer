@@ -238,7 +238,7 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BandsCount: 1
+    - _BandsCount: 4
     - _BandsSmoothing: 0.457
     - _BaseColor_Step: 0.5
     - _BaseShade_Feather: 0.0001
@@ -325,7 +325,7 @@ Material:
     - _QueueOffset: 0
     - _RampSmooth: 0.1
     - _RampSmoothing: 1
-    - _RampThreshold: 0.5
+    - _RampThreshold: 0.428
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
@@ -399,7 +399,7 @@ Material:
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
     - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
-    - _DiffuseTint: {r: 0.9934278, g: 1, b: 0.23113209, a: 1}
+    - _DiffuseTint: {r: 0.99513865, g: 1, b: 0.5235849, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}

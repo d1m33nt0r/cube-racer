@@ -120,7 +120,8 @@ public class BoxController : MonoBehaviour
     {
         var instance = Instantiate(friendlyBox);
         instance.transform.SetParent(transform);
-        //instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
+        
+        instance.GetComponent<FriendlyBox>().Initialize(this, m_audioManager, themeManager, gameController, vibrator);
         AddBox(instance);
     }
 
@@ -139,7 +140,7 @@ public class BoxController : MonoBehaviour
         for (var i = 0; i < count; i++)
         {
             var instance = Instantiate(friendlyBox);
-            //instance.GetComponent<FriendlyBox>().Construct(this, boxAudioController, themeManager, gameController, vibrator);
+            instance.GetComponent<FriendlyBox>().Initialize(this, m_audioManager, themeManager, gameController, vibrator);
             
             AddBox(instance);
         }

@@ -255,4 +255,4 @@ Material:
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
