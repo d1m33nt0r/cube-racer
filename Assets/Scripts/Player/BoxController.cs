@@ -144,11 +144,11 @@ public class BoxController : MonoBehaviour
             
             AddBox(instance);
         }
-        AnimateEmission();
+        
         SpecialAddedBox?.Invoke();
     }
 
-    private void AnimateEmission()
+    public void AnimateEmission()
     {
         var originalMaterial = boxes[0]?.GetComponent<Renderer>().sharedMaterial;
         if (originalMaterial == null) return;

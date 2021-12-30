@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DefaultNamespace;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,7 +12,6 @@ public class MagnitPlayer : MonoBehaviour
     private Transform startMarker;
     public Transform endMarker;
 
- 
     public float speed = 1.0F;
     private float startTime;
     private float journeyLength;
@@ -23,6 +23,7 @@ public class MagnitPlayer : MonoBehaviour
         effect.Play();
         magnit.SetActive(true);
         StartCoroutine(DisableMagnit());
+        transform.parent.GetComponent<BonusEffect>().Play();
     }
 
     private IEnumerator DisableMagnit()

@@ -12,6 +12,8 @@ public class DiamondCollectingEffect : MonoBehaviour
     [SerializeField] private GameObject effect;
     [SerializeField] private Camera camera;
     [SerializeField] private UIController uiController;
+    [SerializeField] private GameObject wowsomeCanvas;
+    [SerializeField] private ParticleSystem wowsoneParticle;
     
     private AudioSource audioSource;
     private DiamondCounter diamondCounter;
@@ -40,6 +42,11 @@ public class DiamondCollectingEffect : MonoBehaviour
         {
             uiController.ShowDimondBonusUIEffect();
             m_audioManager.diamondAudioSource.PlayCollectSound();
+            m_audioManager.bonusAudioSource.PlayBonusAudioSound();
+            other.GetComponent<BonusEffect>().Play();
+            other.transform.parent.GetComponent<BoxController>().AnimateEmission();
+            wowsomeCanvas.SetActive(true);
+            wowsoneParticle.Play();
             diamondCounter.AddDiamond(1500);
             sessionDiamondCounter.AddDiamond(1500);
             Destroy(gameObject);

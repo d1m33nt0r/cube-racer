@@ -8,7 +8,7 @@ using Zenject;
 
 public class Zapravka : MonoBehaviour
 {
-    [SerializeField] private GameObject pathFollower;
+    [SerializeField] private PathFollower pathFollower;
 
     [SerializeField] private BoxCollider startBoxCollider;
     [SerializeField] private BoxCollider finishBoxCollider;
@@ -39,11 +39,11 @@ public class Zapravka : MonoBehaviour
         
         if (other.CompareTag("DiamondCollector") && finish)
         {
-            pathFollower.GetComponent<PathFollower>().Moving -= playerMover.CustomMove;
+            pathFollower.Moving -= playerMover.CustomMove;
             playerMover.SetCurrentDirection();
             playerMover.EnableMoving();
             playerMover.SubscribeSwipes();
-            pathFollower.GetComponent<PathFollower>().enabled = false;
+            pathFollower.enabled = false;
         }
     }
 
@@ -51,9 +51,8 @@ public class Zapravka : MonoBehaviour
     {
         playerMover.DisableMoving();
         playerMover.UnsubscribeSwipes();
-        //playerMover.DisablePhysics();
-        pathFollower.GetComponent<PathFollower>().Moving += playerMover.CustomMove;
-        pathFollower.GetComponent<PathFollower>().enabled = true;
+        pathFollower.Moving += playerMover.CustomMove;
+        pathFollower.enabled = true;
         finishBoxCollider.enabled = true;
         StartCoroutine(Finish());
         BannerAds.Show();
