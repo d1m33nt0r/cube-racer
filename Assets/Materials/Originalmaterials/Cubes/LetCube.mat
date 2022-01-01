@@ -14,7 +14,7 @@ Material:
     TCP2_SKETCH TCP2_SPECULAR TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF _NORMALMAP
     _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
