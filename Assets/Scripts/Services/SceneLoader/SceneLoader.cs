@@ -1,4 +1,5 @@
 using Services.LevelProgressManager;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader
@@ -26,11 +27,11 @@ public class SceneLoader
             this.nextScene = "Level_0";
     }
 
-    public void LoadNextScene(bool currentScene = false)
+    public AsyncOperation LoadNextScene(bool currentScene = false)
     {
         if (!currentScene)
-            SceneManager.LoadSceneAsync(nextScene);
+           return SceneManager.LoadSceneAsync(nextScene);
         else
-            SceneManager.LoadScene(levelProgressManager.GetData());
+           return SceneManager.LoadSceneAsync(levelProgressManager.GetData());
     }
 }

@@ -68,5 +68,22 @@ namespace DefaultNamespace
             ChangeMaterialForChildrenObjects();
             ChangeMeshForChildrenObjects();
         }
+
+        public void CLearConnectionPoints()
+        {
+            for (var i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                var faceDisplaceComp = child.GetComponent<FaceDisplace>();
+                var customSnapComp = child.GetComponent<CustomSnap>();
+                var rigidBodyComp = child.GetComponent<Rigidbody>();
+                
+                if (faceDisplaceComp != null) DestroyImmediate(faceDisplaceComp);
+                if (customSnapComp != null) DestroyImmediate(customSnapComp);
+                if (rigidBodyComp != null) DestroyImmediate(rigidBodyComp);
+                
+                while (child.childCount > 0) DestroyImmediate(transform.GetChild(i).GetChild(0).gameObject);
+            }
+        }
     }
 }

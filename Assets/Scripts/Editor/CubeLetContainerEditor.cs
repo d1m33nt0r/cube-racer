@@ -64,6 +64,11 @@ namespace DefaultNamespace
             }
             EditorGUILayout.EndHorizontal();
             
+            if (GUILayout.Button("Clear Connectors"))
+            {
+                targetObject.CLearConnectionPoints();
+            }
+            
             serializedObject.ApplyModifiedProperties();
         }
 
