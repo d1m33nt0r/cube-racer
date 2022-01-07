@@ -4,6 +4,7 @@ using System;
 using DefaultNamespace.Services.AudioManager;
 using Services.DiamondCountManager;
 using Services.StartBoxCountManager;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

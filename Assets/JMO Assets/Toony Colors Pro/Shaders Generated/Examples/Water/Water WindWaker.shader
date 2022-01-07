@@ -57,8 +57,8 @@ Shader "Toony Colors Pro 2/Examples/Water/Water WindWaker"
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsWater keepalpha vertex:vert 
-		#pragma target 3.0
+		#pragma surface surf ToonyColorsWater keepalpha vertex:vert noforwardadd halfasview
+		#pragma target 2.5
 
 		//================================================================
 		// VARIABLES
@@ -222,7 +222,6 @@ Shader "Toony Colors Pro 2/Examples/Water/Water WindWaker"
 				sceneZ = LinearEyeDepth(sceneZ);
 			float partZ = IN.sPos.z;
 			float depthDiff = abs(sceneZ - partZ);
-			depthDiff *= ndv * 2;
 			//Depth-based foam
 			half2 foamUV = IN.texcoord.xy;
 			foamUV.xy += TIME.xx*_FoamSpeed.xy*0.05;

@@ -17,6 +17,7 @@ public class DiamondUI : MonoBehaviour
     [SerializeField] public GameObject settingsButton;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private RectTransform panel;
+
     
     private RectTransform diamondIconRectTransform;
     private Canvas canvas;
@@ -96,6 +97,11 @@ public class DiamondUI : MonoBehaviour
         panel.DOScale(1.2f, 0.1f).onComplete = (() =>
         {
             panel.DOScale(1f, 0.15f);
+        });
+        
+        target.DOScale(1.4f, 0.1f).onComplete = (() =>
+        {
+            target.DOScale(1f, 0.15f);
         });
         
         diamondIconRectTransform

@@ -22,9 +22,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: violet_level
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
-  m_ShaderKeywords: TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_RAMPTEXT _ _EMISSIVE_SIMPLE
-    _ENVIRONMENTREFLECTIONS_OFF _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
-    _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_RAMPTEXT
+    _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF _GLOSSYREFLECTIONS_OFF _IS_ANGELRING_OFF
+    _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -104,7 +104,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 880ec032f68be014aab8d9f45decd009, type: 3}
+        m_Texture: {fileID: 2800000, guid: c94aa3e714570eb46abc89fc460dc772, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask0:
@@ -418,7 +418,7 @@ Material:
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0, g: 0, b: 0, a: 1}
+    - _TCP2_AMBIENT_LEFT: {r: 0.33962262, g: 0.14898539, b: 0.14898539, a: 1}
+    - _TCP2_AMBIENT_RIGHT: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.1981132, g: 0, b: 0.13587861, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

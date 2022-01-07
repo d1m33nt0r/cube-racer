@@ -1,6 +1,7 @@
 ﻿using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.Services.AudioManager;
 using Services.DataManipulator;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

@@ -87,7 +87,7 @@ Shader "Toony Colors Pro 2/User/1"
 		CGPROGRAM
 
 		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha nolightmap nolppv
-		#pragma target 3.0
+		#pragma target 2.5
 
 		//================================================================
 		// SHADER KEYWORDS
@@ -151,7 +151,6 @@ Shader "Toony Colors Pro 2/User/1"
 			float3 __highlightColor;
 			float3 __shadowColor;
 			float3 __diffuseTint;
-			float __occlusion;
 			float __ambientIntensity;
 		};
 
@@ -171,7 +170,6 @@ Shader "Toony Colors Pro 2/User/1"
 			output.__highlightColor = ( _HColor.rgb );
 			output.__shadowColor = ( _SColor.rgb );
 			output.__diffuseTint = ( _DiffuseTint.rgb );
-			output.__occlusion = ( __albedo.a );
 			output.__ambientIntensity = ( 1.0 );
 
 			output.input = input;
@@ -232,7 +230,7 @@ Shader "Toony Colors Pro 2/User/1"
 			color.a = surface.Alpha;
 
 			// Apply indirect lighting (ambient)
-			half occlusion = surface.__occlusion;
+			half occlusion = 1;
 			#ifdef UNITY_LIGHT_FUNCTION_APPLY_INDIRECT
 			#if defined(TCP2_AMBIENT)
 				half3 ambient = gi.indirect.diffuse;
@@ -268,5 +266,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","DIRAMBIENT","WRAPPED_LIGHTING_HALF","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","ATTEN_AT_NDL","OCCLUSION","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH c06f910aa28e78175d08bce0e2850855 */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","DIRAMBIENT","WRAPPED_LIGHTING_HALF","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","ATTEN_AT_NDL"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH 12edf33d5fea64ebdb084482c512aef8 */
