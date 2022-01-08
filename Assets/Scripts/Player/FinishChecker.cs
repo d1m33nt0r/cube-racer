@@ -22,7 +22,7 @@ namespace DefaultNamespace
             
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
-                multiplier = hit.collider.GetComponentInChildren<FinishPlatform>().Multiplier;
+                multiplier = hit.collider.GetComponent<FinishPlatform>().Multiplier;
             }
             
             diamondMultiplier.SetMultiplier(multiplier);
