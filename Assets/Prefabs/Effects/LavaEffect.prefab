@@ -42,7 +42,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 0.1
   simulationSpeed: 2
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4710,7 +4710,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d705f486ec49d1843900c42af7db80dd, type: 2}
-  - {fileID: 2100000, guid: d705f486ec49d1843900c42af7db80dd, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4744,7 +4744,7 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 1
+  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1

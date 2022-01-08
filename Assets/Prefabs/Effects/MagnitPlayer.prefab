@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d694ee24286e4345bf06b9f7fbb6c32, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,6 +129,8 @@ MonoBehaviour:
   magnitCollider: {fileID: 5686342435884326622}
   effect: {fileID: 5686342435884326621}
   magnit: {fileID: 5686342435138844829}
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &5686342435884326622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -152,7 +154,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 5
   simulationSpeed: 5
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

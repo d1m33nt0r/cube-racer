@@ -110,7 +110,7 @@ public class FriendlyBox : MonoBehaviour
             boxController.SpecialAddBox(countBoxes);
             wowsomeCanvas.SetActive(true);
             wowsoneParticle.Play();
-            boxController.AnimateEmission();
+            //boxController.AnimateEmission();
             other.GetComponent<BonusEffect>().Play();
             
             /*_light.enabled = true;
