@@ -325,7 +325,7 @@ Material:
     - _QueueOffset: 0
     - _RampSmooth: 0.1
     - _RampSmoothing: 1
-    - _RampThreshold: 0.5
+    - _RampThreshold: 0.439
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
