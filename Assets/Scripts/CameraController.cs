@@ -161,12 +161,12 @@ public class CameraController : MonoBehaviour
                     transform.DOKill();
                     camera.DOKill();
             
-                    transform.DOMoveY(camPoint2.position.y, 2f);
+                    transform.DOMoveY(camPoint2.position.y, 1f);
                     // transform.DOLocalRotate(
                     //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
                     //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
-                    IncreaseZ(camPoint2, 2f);
-                    camera.DOFieldOfView(camPoint2.fieldView, 2f);
+                    IncreaseZ(camPoint2, 1f);
+                    camera.DOFieldOfView(camPoint2.fieldView, 1f);
                 }
             }
         }
@@ -176,12 +176,12 @@ public class CameraController : MonoBehaviour
             transform.DOKill();
             camera.DOKill();
             
-            transform.DOMoveY(camPoint.position.y, 2f);
+            transform.DOMoveY(camPoint.position.y, 1f);
            // transform.DOLocalRotate(
             //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
             //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
-            IncreaseZ(camPoint, 2f);
-            camera.DOFieldOfView(camPoint.fieldView, 2f);
+            IncreaseZ(camPoint, 1f);
+            camera.DOFieldOfView(camPoint.fieldView, 1f);
         }
     }
 
