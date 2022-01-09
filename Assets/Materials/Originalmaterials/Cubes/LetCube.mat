@@ -9,10 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LetCube
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
-  m_ShaderKeywords: TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP TCP2_RAMPTEXT
-    TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR
-    TCP2_SKETCH TCP2_SPECULAR TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF _NORMALMAP
-    _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_RAMPTEXT TCP2_REFLECTIONS_FRESNEL
+    TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR TCP2_SKETCH TCP2_SPECULAR
+    TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+    _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -113,8 +113,8 @@ Material:
     m_Floats:
     - _2DRampLerp: 0.335
     - _AnisotropicSpread: 2
-    - _BandsCount: 3
-    - _BandsSmoothing: 0.117
+    - _BandsCount: 4
+    - _BandsSmoothing: 0.126
     - _Brightness: 0.069
     - _BumpScale: 1
     - _Cull: 2
@@ -131,7 +131,7 @@ Material:
     - _GlossyReflections: 0
     - _IndirectIntensity: 1
     - _IndirectIntensityOutline: 0
-    - _LightWrapFactor: 1.59
+    - _LightWrapFactor: 1.72
     - _MatCapMaskChannel: 0
     - _MatCapType: 0
     - _Metallic: 0.38
@@ -160,7 +160,7 @@ Material:
     - _RampSmoothAdd: 0.75
     - _RampSmoothOtherLights: 0.5
     - _RampSmoothing: 1
-    - _RampThreshold: 0.905
+    - _RampThreshold: 0.835
     - _RampThresholdOtherLights: 0.5
     - _RampType: 0
     - _ReceiveShadowsOff: 1
@@ -175,8 +175,8 @@ Material:
     - _RimStrength: 0.5
     - _RimThreshold: 0.273
     - _ShadowColorLightAtten: 1
-    - _Shadow_HSV_H: 0
-    - _Shadow_HSV_S: 0
+    - _Shadow_HSV_H: 9
+    - _Shadow_HSV_S: 0.15
     - _Shadow_HSV_V: 0
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
@@ -210,7 +210,7 @@ Material:
     - _UseAmbient: 1
     - _UseEmission: 0
     - _UseFresnelReflections: 1
-    - _UseMatCap: 1
+    - _UseMatCap: 0
     - _UseMatCapMask: 0
     - _UseMobileMode: 0
     - _UseNormalMap: 1
@@ -229,23 +229,25 @@ Material:
     - _VerticalFogThreshold: -3.23
     - _ZSmooth: -0.5
     - _ZWrite: 1
+    - __BeginGroup_ShadowHSV: 1
+    - __EndGroup: 0
     - __dummy__: 0
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.8490566, g: 0.5246529, b: 0.6391483, a: 1}
-    - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.7169812, g: 0.46333218, b: 0.5515579, a: 1}
+    - _DiffuseTint: {r: 1, g: 0, b: 0.047002792, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
-    - _HColor: {r: 0.70980394, g: 1, b: 0, a: 1}
-    - _MatCapColor: {r: 0.254717, g: 0.16700785, b: 0.16700785, a: 1}
+    - _HColor: {r: 0.5045471, g: 1, b: 0, a: 1}
+    - _MatCapColor: {r: 0.9513158, g: 0.9528302, b: 0.876424, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RampSmoothingRGB: {r: 0.203, g: 1, b: 0, a: 1}
     - _RampThresholdRGB: {r: 0.178, g: 1, b: 0, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
-    - _SColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+    - _SColor: {r: 0.3679245, g: 0.2204076, b: 0.2204076, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 1, g: 0, b: 0, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
@@ -255,4 +257,4 @@ Material:
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}

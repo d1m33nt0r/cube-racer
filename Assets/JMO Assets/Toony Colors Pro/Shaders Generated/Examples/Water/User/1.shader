@@ -17,6 +17,13 @@ Shader "Toony Colors Pro 2/User/1"
 		_RampSmoothing ("Smoothing", Range(0.001,1)) = 0.5
 		[IntRange] _BandsCount ("Bands Count", Range(1,20)) = 4
 		_BandsSmoothing ("Bands Smoothing", Range(0.001,1)) = 0.1
+		_LightWrapFactor ("Light Wrap Factor", Range(0,2)) = 0.5
+		[TCP2Separator]
+		
+		[TCP2HeaderHelp(MatCap)]
+		[Toggle(TCP2_MATCAP)] _UseMatCap ("Enable MatCap", Float) = 0
+		[NoScaleOffset] _MatCapTex ("MatCap (RGB)", 2D) = "white" {}
+		[TCP2ColorNoAlpha] _MatCapColor ("MatCap Color", Color) = (1,1,1,1)
 		[TCP2Separator]
 		[TCP2HeaderHelp(Ambient Lighting)]
 		[Toggle(TCP2_AMBIENT)] _UseAmbient ("Enable Ambient/Indirect Diffuse", Float) = 0
@@ -53,6 +60,8 @@ Shader "Toony Colors Pro 2/User/1"
 		// Shader Properties
 		float4 _MainTex_ST;
 		fixed4 _Color;
+		fixed4 _MatCapColor;
+		float _LightWrapFactor;
 		float _RampThreshold;
 		float _RampSmoothing;
 		float _BandsCount;
@@ -61,6 +70,7 @@ Shader "Toony Colors Pro 2/User/1"
 		fixed4 _SColor;
 		fixed4 _DiffuseTint;
 
+		sampler2D _MatCapTex;
 		fixed4 _TCP2_AMBIENT_RIGHT;
 		fixed4 _TCP2_AMBIENT_LEFT;
 		fixed4 _TCP2_AMBIENT_TOP;
@@ -86,13 +96,14 @@ Shader "Toony Colors Pro 2/User/1"
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha nolightmap nolppv
+		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha noforwardadd nolightmap nolppv
 		#pragma target 2.5
 
 		//================================================================
 		// SHADER KEYWORDS
 
 		#pragma shader_feature TCP2_AMBIENT
+		#pragma shader_feature TCP2_MATCAP
 
 		//================================================================
 		// STRUCTS
@@ -113,6 +124,7 @@ Shader "Toony Colors Pro 2/User/1"
 
 		struct Input
 		{
+			half2 matcap;
 			float2 texcoord0;
 		};
 
@@ -125,6 +137,20 @@ Shader "Toony Colors Pro 2/User/1"
 
 			// Texture Coordinates
 			output.texcoord0.xy = v.texcoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+
+			float4 clipPos = UnityObjectToClipPos(v.vertex);
+
+			//Screen Position
+			float4 screenPos = ComputeScreenPos(clipPos);
+
+			#if defined(TCP2_MATCAP)
+			//MatCap
+			float3 worldNorm = normalize(unity_WorldToObject[0].xyz * v.normal.x + unity_WorldToObject[1].xyz * v.normal.y + unity_WorldToObject[2].xyz * v.normal.z);
+			worldNorm = mul((float3x3)UNITY_MATRIX_V, worldNorm);
+			float3 perspectiveOffset = (screenPos.xyz / screenPos.w) - 0.5;
+			worldNorm.xy -= (perspectiveOffset.xy * perspectiveOffset.z) * 0.5;
+			output.matcap = worldNorm.xy * 0.5 + 0.5;
+			#endif
 
 		}
 
@@ -144,6 +170,7 @@ Shader "Toony Colors Pro 2/User/1"
 			Input input;
 			
 			// Shader Properties
+			float __lightWrapFactor;
 			float __rampThreshold;
 			float __rampSmoothing;
 			float __bandsCount;
@@ -163,6 +190,8 @@ Shader "Toony Colors Pro 2/User/1"
 			float4 __albedo = ( tex2D(_MainTex, input.texcoord0.xy).rgba );
 			float4 __mainColor = ( _Color.rgba );
 			float __alpha = ( __albedo.a * __mainColor.a );
+			float3 __matcapColor = ( _MatCapColor.rgb );
+			output.__lightWrapFactor = ( _LightWrapFactor );
 			output.__rampThreshold = ( _RampThreshold );
 			output.__rampSmoothing = ( _RampSmoothing );
 			output.__bandsCount = ( _BandsCount );
@@ -178,6 +207,12 @@ Shader "Toony Colors Pro 2/User/1"
 			output.Alpha = __alpha;
 			
 			output.Albedo *= __mainColor.rgb;
+			
+			//MatCap
+			#if defined(TCP2_MATCAP)
+			fixed3 matcap = tex2D(_MatCapTex, input.matcap).rgb * __matcapColor;
+			output.Albedo *= matcap;
+			#endif
 		}
 
 		//================================================================
@@ -200,9 +235,12 @@ Shader "Toony Colors Pro 2/User/1"
 			//Apply attenuation (shadowmaps & point/spot lights attenuation)
 			ndl *= atten;
 			half3 ramp;
+			#if defined(UNITY_PASS_FORWARDBASE)
 			
 			// Wrapped Lighting
-			ndl = ndl * 0.5 + 0.5;
+			half lightWrap = surface.__lightWrapFactor;
+			ndl = (ndl + lightWrap) / (1 + lightWrap);
+			#endif
 			
 			#define		RAMP_THRESHOLD		surface.__rampThreshold
 			#define		RAMP_SMOOTH			surface.__rampSmoothing
@@ -266,5 +304,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","DIRAMBIENT","WRAPPED_LIGHTING_HALF","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","ATTEN_AT_NDL","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH daab13d7d627360bde4f4555c0a570bf */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","ATTEN_AT_NDL","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","MATCAP","MATCAP_MULT","DIRAMBIENT"];flags:list["noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list["nolodfade","nolightmap","nolightprobe"]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH a4aa9984e882c6302c8720f64246baf9 */

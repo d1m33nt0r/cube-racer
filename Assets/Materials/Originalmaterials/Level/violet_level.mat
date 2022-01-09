@@ -123,6 +123,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -325,7 +329,7 @@ Material:
     - _QueueOffset: 0
     - _RampSmooth: 0.1
     - _RampSmoothing: 1
-    - _RampThreshold: 0.439
+    - _RampThreshold: 0.786
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
@@ -376,6 +380,7 @@ Material:
     - _UVSec: 0
     - _Unlit_Intensity: 1
     - _UseAmbient: 1
+    - _UseMatCap: 0
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
@@ -397,12 +402,12 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 0.8207547, g: 0.7471965, b: 0.7471965, a: 1}
+    - _Color: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffuseTint: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
@@ -413,12 +418,12 @@ Material:
     - _RimColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.6}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_LEFT: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+    - _TCP2_AMBIENT_LEFT: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.1981132, g: 0, b: 0.13587861, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.14168334, g: 0, b: 0.16037738, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
