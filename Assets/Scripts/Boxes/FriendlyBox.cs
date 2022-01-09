@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using DefaultNamespace.General;
 using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using DG.Tweening;
@@ -7,29 +8,23 @@ using Zenject;
 
 public class FriendlyBox : MonoBehaviour
 {
-    [SerializeField] private GameObject effect;
-    [SerializeField] private GameObject plusOne;
     [SerializeField] private bool isBoxBonus;
-    [SerializeField] private GameObject boxes;
     [SerializeField] private GameObject lavaEffect;
     [SerializeField] private GameObject wowsomeCanvas;
     [SerializeField] private ParticleSystem wowsoneParticle;
-    [SerializeField] private Light _light;
-    [SerializeField] private int countBoxes;
-    
+
     private bool used;
     private BoxController boxController;
     private AudioManager m_audioManager;
     private ThemeManager themeManager;
     private Vibrator vibrator;
-
-
+    
     [Inject]
     public void Construct(BoxController boxController, AudioManager _audioManager, 
         ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
     {
         this.boxController = boxController;
-        this.m_audioManager = _audioManager;
+        m_audioManager = _audioManager;
         this.themeManager = themeManager;
         GetCurrentMaterial();
         vibrator = _vibrator;
@@ -39,7 +34,7 @@ public class FriendlyBox : MonoBehaviour
         ThemeManager themeManager, GameController gameController, Vibrator _vibrator)
     {
         this.boxController = boxController;
-        this.m_audioManager = _audioManager;
+        m_audioManager = _audioManager;
         this.themeManager = themeManager;
         GetCurrentMaterial();
         vibrator = _vibrator;
@@ -107,39 +102,12 @@ public class FriendlyBox : MonoBehaviour
         if (other.CompareTag("DiamondCollector"))
         {
             used = true;
-            boxController.SpecialAddBox(countBoxes);
+            boxController.SpecialAddBox2(transform.parent.GetComponent<BoxesPool>().Boxes);
             wowsomeCanvas.SetActive(true);
             wowsoneParticle.Play();
-            //boxController.AnimateEmission();
+            boxController.AnimateEmission();
             other.GetComponent<BonusEffect>().Play();
-            
-            /*_light.enabled = true;
-            _light.DOIntensity(4f, 0.05f).onComplete = () =>
-            {
-                _light.DOIntensity(0, 0.25f).onComplete = () =>
-                {
-                    _light.enabled = false;
-                };
-            };*/
-            
             Destroy(gameObject);
         }
-    }
-
-    private void SpawnEffects()
-    {
-        var effectPosition = new Vector3(transform.position.x,
-            transform.position.y , transform.position.z);
-
-        var effect2 = Instantiate(effect);
-        effect2.transform.position = effectPosition;
-        effect2.transform.SetParent(transform);
-
-        var effectText = Instantiate(plusOne);
-        effectText.transform.position =
-            new Vector3(effectPosition.x, effectPosition.y, effectPosition.z);
-        effectText.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
-            transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-        effectText.transform.SetParent(transform);
     }
 }

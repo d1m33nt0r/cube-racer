@@ -42,7 +42,6 @@ public class DiamondCollectingEffect : MonoBehaviour
         {
             uiController.ShowDimondBonusUIEffect();
             m_audioManager.diamondAudioSource.PlayCollectSound();
-            m_audioManager.bonusAudioSource.PlayBonusAudioSound();
             other.GetComponent<BonusEffect>().Play();
             other.transform.parent.GetComponent<BoxController>().AnimateEmission();
             wowsomeCanvas.SetActive(true);

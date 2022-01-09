@@ -19,19 +19,16 @@ public class BoxController : MonoBehaviour
 
     private int startCountBoxes;
     
-    //TODO refactor me
+
     [SerializeField] private GameObject friendlyBox;
     [SerializeField] private GameObject road;
-    [SerializeField] private Transform trail;
     [SerializeField] private Color emissionColorEffect;
     [SerializeField] private Color emissionStartColorEffect;
     [SerializeField] private float specialAddBoxAnimationSpeed;
-    public Vector3 LocalPosition => transform.localPosition;
+
     
     private List<FriendlyBox> boxes;
-    public List<FriendlyBox> Boxes => boxes;
-    private Bounds BoxBounds => friendlyBox.GetComponent<MeshRenderer>().bounds;
-    private Bounds GroundBounds => road.GetComponent<MeshRenderer>().bounds;
+    private Bounds GroundBounds;
     private float offsetYForGround => Mathf.Abs(GroundBounds.max.y - GroundBounds.center.y);
     
     private StartingRoad startingRoad;
@@ -45,7 +42,6 @@ public class BoxController : MonoBehaviour
     private ThemeManager themeManager;
     private GameController gameController;
     private Vibrator vibrator;
-    private MagnitPlayer magnitPlayerEffect;
 
     public int prevBoxCount;
     
@@ -63,7 +59,7 @@ public class BoxController : MonoBehaviour
 
     private void Awake()
     {
-        magnitPlayerEffect = transform.parent.GetComponentInChildren<MagnitPlayer>();
+        GroundBounds = road.GetComponent<MeshRenderer>().bounds;
         boxes = new List<FriendlyBox>();
         startCountBoxes = startBoxCountManager.GetData();
         
@@ -148,6 +144,19 @@ public class BoxController : MonoBehaviour
         SpecialAddedBox?.Invoke();
     }
 
+    public void SpecialAddBox2(GameObject[] _friendlyBoxes)
+    {
+        prevBoxCount = boxCount;
+        
+        foreach (var box in _friendlyBoxes)
+        {
+            AddBox(box);
+            box.SetActive(true);
+        }
+        
+        SpecialAddedBox?.Invoke();
+    }
+    
     public void AnimateEmission()
     {
         var originalMaterial = boxes[0]?.GetComponent<Renderer>().sharedMaterial;
