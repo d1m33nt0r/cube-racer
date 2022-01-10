@@ -96,7 +96,7 @@ Shader "Toony Colors Pro 2/User/1"
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha noforwardadd nolightmap nolppv
+		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha noforwardadd novertexlights nolightmap nolppv
 		#pragma target 2.5
 
 		//================================================================
@@ -304,5 +304,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","ATTEN_AT_NDL","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","MATCAP","MATCAP_MULT","DIRAMBIENT"];flags:list["noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list["nolodfade","nolightmap","nolightprobe"]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH a4aa9984e882c6302c8720f64246baf9 */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","ATTEN_AT_NDL","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","MATCAP","MATCAP_MULT","DIRAMBIENT"];flags:list["noforwardadd","novertexlights"];flags_extra:dict[pragma_gpu_instancing=list["nolodfade","nolightmap","nolightprobe"]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH f3769675b649d8b3489ef55eb2799ae4 */

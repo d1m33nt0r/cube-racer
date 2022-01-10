@@ -17,7 +17,7 @@ SpriteAtlas:
       textureCompression: 0
       filterMode: 1
       generateMipMaps: 0
-      readable: 1
+      readable: 0
       crunchedCompression: 0
       sRGB: 1
     platformSettings: []
@@ -30,6 +30,12 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
+    - {fileID: 2800000, guid: 3769b9f694d4f5841bfe35b6eead17d8, type: 3}
+    - {fileID: 2800000, guid: 1bedb6adec20f8a4f82f2f6ab6ddfffa, type: 3}
+    - {fileID: 2800000, guid: 8fa6b23b7286dd7419ed956856ff3124, type: 3}
+    - {fileID: 2800000, guid: 69f7c2116d807724f9c0790afcb1390b, type: 3}
+    - {fileID: 2800000, guid: 5f88095f2ca138d479adef6e87b7f795, type: 3}
+    - {fileID: 2800000, guid: 3c239827b2cac6141bbd4fb7ef995673, type: 3}
     - {fileID: 2800000, guid: eff3fdd995dbbbf45b958c9f71696487, type: 3}
     - {fileID: 2800000, guid: 1dfe7f4349be8f0409c41c6e73e58956, type: 3}
     - {fileID: 2800000, guid: 0b8e79a8a8510a04c9363d5be3815cba, type: 3}
@@ -80,12 +86,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: b9e07bed3fb96ae4b929c99cd683e9c6, type: 3}
     - {fileID: 2800000, guid: 3e8c421b10a257e448c4461e7f61551a, type: 3}
     - {fileID: 2800000, guid: 95207cf0af6649145a851a788cec6dcf, type: 3}
-    - {fileID: 2800000, guid: 3769b9f694d4f5841bfe35b6eead17d8, type: 3}
-    - {fileID: 2800000, guid: 1bedb6adec20f8a4f82f2f6ab6ddfffa, type: 3}
-    - {fileID: 2800000, guid: 8fa6b23b7286dd7419ed956856ff3124, type: 3}
-    - {fileID: 2800000, guid: 69f7c2116d807724f9c0790afcb1390b, type: 3}
-    - {fileID: 2800000, guid: 5f88095f2ca138d479adef6e87b7f795, type: 3}
-    - {fileID: 2800000, guid: 3c239827b2cac6141bbd4fb7ef995673, type: 3}
     totalSpriteSurfaceArea: 5862416
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}

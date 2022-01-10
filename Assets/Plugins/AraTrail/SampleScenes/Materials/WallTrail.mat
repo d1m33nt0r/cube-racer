@@ -77,7 +77,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _InvFade: 2.6
+    - _InvFade: 2.48
     - _Metallic: 0
     - _Mode: 0
     - _Occlusion: 7.5
@@ -97,7 +97,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
-    - _TintColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.27058825}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 0.6509804}
     - _TranslucencyColor: {r: 0.73, g: 0.85, b: 0.41, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}

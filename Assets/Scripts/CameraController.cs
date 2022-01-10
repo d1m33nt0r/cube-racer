@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
     [Inject]
     private void Construct(BoxController boxController)
     {
-        maxCount = 30;
+        maxCount = 25;
         minCount = 4;
         this.boxController = boxController;
         boxController.AddedBoxes += Increase;

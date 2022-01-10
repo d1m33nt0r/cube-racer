@@ -22,9 +22,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: violet_level
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_RAMPTEXT
-    _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF _GLOSSYREFLECTIONS_OFF _IS_ANGELRING_OFF
-    _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP
+    TCP2_RAMPTEXT _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF _GLOSSYREFLECTIONS_OFF
+    _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -104,7 +104,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c94aa3e714570eb46abc89fc460dc772, type: 3}
+        m_Texture: {fileID: 2800000, guid: d80eb03106981ed4e8810a594b3185d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask0:
@@ -124,7 +124,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: eaf9954881d0ec54cb87bbe549858926, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
@@ -307,6 +307,7 @@ Material:
     - _Is_ViewCoord_Scroll: 0
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
+    - _LightWrapFactor: 0.5
     - _MatCap: 0
     - _Metallic: 0
     - _Metallic0: 0
@@ -380,7 +381,7 @@ Material:
     - _UVSec: 0
     - _Unlit_Intensity: 1
     - _UseAmbient: 1
-    - _UseMatCap: 0
+    - _UseMatCap: 1
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
@@ -407,23 +408,23 @@ Material:
     - _DiffuseTint: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
-    - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MatCapColor: {r: 0.986, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _ReflectColor: {r: 0.14297792, g: 0.35725394, b: 0.4811321, a: 0.5}
     - _RimColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.6}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    - _SColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_LEFT: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
+    - _TCP2_AMBIENT_LEFT: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
     - _TCP2_AMBIENT_TOP: {r: 0.14168334, g: 0, b: 0.16037738, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

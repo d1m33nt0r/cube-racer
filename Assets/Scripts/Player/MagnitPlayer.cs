@@ -28,7 +28,7 @@ public class MagnitPlayer : MonoBehaviour
 
     private IEnumerator DisableMagnit()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3.5f);
         effect.Stop();
         effect.Clear();
         magnit.SetActive(false);
