@@ -113,8 +113,8 @@ Material:
     m_Floats:
     - _2DRampLerp: 0.335
     - _AnisotropicSpread: 0.02
-    - _BandsCount: 3
-    - _BandsSmoothing: 0.209
+    - _BandsCount: 4
+    - _BandsSmoothing: 0.151
     - _Brightness: 0.069
     - _BumpScale: 1
     - _Cull: 2
@@ -161,8 +161,8 @@ Material:
     - _RampSmooth: 0.619
     - _RampSmoothAdd: 0.75
     - _RampSmoothOtherLights: 0.5
-    - _RampSmoothing: 0.858
-    - _RampThreshold: 0.876
+    - _RampSmoothing: 0.842
+    - _RampThreshold: 0.949
     - _RampThresholdOtherLights: 0.5
     - _RampType: 0
     - _ReceiveShadowsOff: 1
