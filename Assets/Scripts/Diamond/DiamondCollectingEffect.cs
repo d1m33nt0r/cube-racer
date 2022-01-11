@@ -45,7 +45,7 @@ public class DiamondCollectingEffect : MonoBehaviour
             other.GetComponent<BonusEffect>().Play();
             other.transform.parent.GetComponent<BoxController>().AnimateEmission();
             wowsomeCanvas.SetActive(true);
-            wowsoneParticle.Play();
+            //wowsoneParticle.Play();
             diamondCounter.AddDiamond(1500);
             sessionDiamondCounter.AddDiamond(1500);
             Destroy(gameObject);

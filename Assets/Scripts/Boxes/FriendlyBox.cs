@@ -104,7 +104,7 @@ public class FriendlyBox : MonoBehaviour
             used = true;
             boxController.SpecialAddBox2(transform.parent.GetComponent<BoxesPool>().Boxes);
             wowsomeCanvas.SetActive(true);
-            wowsoneParticle.Play();
+            //wowsoneParticle.Play();
             boxController.AnimateEmission();
             other.GetComponent<BonusEffect>().Play();
             Destroy(gameObject);

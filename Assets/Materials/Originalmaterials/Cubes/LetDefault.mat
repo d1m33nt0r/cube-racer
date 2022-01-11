@@ -114,7 +114,7 @@ Material:
     - _2DRampLerp: 0.335
     - _AnisotropicSpread: 0.02
     - _BandsCount: 4
-    - _BandsSmoothing: 0.109
+    - _BandsSmoothing: 0.001
     - _Brightness: 0.069
     - _BumpScale: 1
     - _Cull: 2
@@ -133,7 +133,7 @@ Material:
     - _GlossyReflections: 0
     - _IndirectIntensity: 1
     - _IndirectIntensityOutline: 0
-    - _LightWrapFactor: 2
+    - _LightWrapFactor: 0.15
     - _MatCapMaskChannel: 0
     - _MatCapType: 0
     - _Metallic: 0.38
@@ -161,8 +161,8 @@ Material:
     - _RampSmooth: 0.619
     - _RampSmoothAdd: 0.75
     - _RampSmoothOtherLights: 0.5
-    - _RampSmoothing: 0.667
-    - _RampThreshold: 0.868
+    - _RampSmoothing: 0.052
+    - _RampThreshold: 0.823
     - _RampThresholdOtherLights: 0.5
     - _RampType: 0
     - _ReceiveShadowsOff: 1
@@ -238,11 +238,11 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-    - _DiffuseTint: {r: 0.066037714, g: 0.013394442, b: 0.041311327, a: 1}
+    - _Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+    - _DiffuseTint: {r: 0, g: 0, b: 0, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
-    - _HColor: {r: 0.508989, g: 0.7674338, b: 0.8113208, a: 1}
+    - _HColor: {r: 0.38679248, g: 0.21346566, b: 0.2215168, a: 1}
     - _MatCapColor: {r: 0.8962264, g: 0.85817903, b: 0.8854109, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RampSmoothingRGB: {r: 0.203, g: 1, b: 0, a: 1}
@@ -250,7 +250,7 @@ Material:
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
-    - _SColor: {r: 0.509434, g: 0.38688147, b: 0.38688147, a: 1}
+    - _SColor: {r: 0.2924528, g: 0.120016016, b: 0.120016016, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
@@ -260,4 +260,4 @@ Material:
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.1792453, g: 0.15916242, b: 0.090468146, a: 1}
