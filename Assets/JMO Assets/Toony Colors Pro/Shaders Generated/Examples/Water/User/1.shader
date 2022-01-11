@@ -9,6 +9,11 @@ Shader "Toony Colors Pro 2/User/1"
 		_Color ("Color", Color) = (1,1,1,1)
 		[TCP2ColorNoAlpha] _HColor ("Highlight Color", Color) = (0.75,0.75,0.75,1)
 		[TCP2ColorNoAlpha] _SColor ("Shadow Color", Color) = (0.2,0.2,0.2,1)
+		[HideInInspector] __BeginGroup_ShadowHSV ("Shadow HSV", Float) = 0
+		_Shadow_HSV_H ("Hue", Range(-180,180)) = 0
+		_Shadow_HSV_S ("Saturation", Range(-1,1)) = 0
+		_Shadow_HSV_V ("Value", Range(-1,1)) = 0
+		[HideInInspector] __EndGroup ("Shadow HSV", Float) = 0
 		_MainTex ("Albedo", 2D) = "white" {}
 		[TCP2Separator]
 
@@ -18,6 +23,23 @@ Shader "Toony Colors Pro 2/User/1"
 		[IntRange] _BandsCount ("Bands Count", Range(1,20)) = 4
 		_BandsSmoothing ("Bands Smoothing", Range(0.001,1)) = 0.1
 		_LightWrapFactor ("Light Wrap Factor", Range(0,2)) = 0.5
+		[TCP2Separator]
+		
+		[TCP2HeaderHelp(Rim Lighting)]
+		[Toggle(TCP2_RIM_LIGHTING)] _UseRim ("Enable Rim Lighting", Float) = 0
+		[TCP2ColorNoAlpha] _RimColor ("Rim Color", Color) = (0.8,0.8,0.8,0.5)
+		_RimMinVert ("Rim Min", Range(0,2)) = 0.5
+		_RimMaxVert ("Rim Max", Range(0,2)) = 1
+		//Rim Direction
+		_RimDirVert ("Rim Direction", Vector) = (0,0,1,1)
+		[TCP2Separator]
+
+		[TCP2HeaderHelp(Reflections)]
+		[Toggle(TCP2_REFLECTIONS)] _UseReflections ("Enable Reflections", Float) = 0
+		[TCP2ColorNoAlpha] _ReflectionColor ("Color", Color) = (1,1,1,1)
+		[HideInInspector] _ReflectionTex ("Planar Reflection RenderTexture", 2D) = "white" {}
+		_FresnelMin ("Fresnel Min", Range(0,2)) = 0
+		_FresnelMax ("Fresnel Max", Range(0,2)) = 1.5
 		[TCP2Separator]
 		
 		[TCP2HeaderHelp(MatCap)]
@@ -58,6 +80,9 @@ Shader "Toony Colors Pro 2/User/1"
 		sampler2D _MainTex;
 		
 		// Shader Properties
+		float4 _RimDirVert;
+		float _RimMinVert;
+		float _RimMaxVert;
 		float4 _MainTex_ST;
 		fixed4 _Color;
 		fixed4 _MatCapColor;
@@ -66,10 +91,18 @@ Shader "Toony Colors Pro 2/User/1"
 		float _RampSmoothing;
 		float _BandsCount;
 		float _BandsSmoothing;
+		float _Shadow_HSV_H;
+		float _Shadow_HSV_S;
+		float _Shadow_HSV_V;
 		fixed4 _HColor;
 		fixed4 _SColor;
 		fixed4 _DiffuseTint;
+		fixed4 _RimColor;
+		float _FresnelMin;
+		float _FresnelMax;
+		fixed4 _ReflectionColor;
 
+		sampler2D _ReflectionTex;
 		sampler2D _MatCapTex;
 		fixed4 _TCP2_AMBIENT_RIGHT;
 		fixed4 _TCP2_AMBIENT_LEFT;
@@ -78,6 +111,45 @@ Shader "Toony Colors Pro 2/User/1"
 		fixed4 _TCP2_AMBIENT_FRONT;
 		fixed4 _TCP2_AMBIENT_BACK;
 
+		//--------------------------------
+		// HSV HELPERS
+		// source: http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl
+		
+		float3 rgb2hsv(float3 c)
+		{
+			float4 K = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+			float4 p = lerp(float4(c.bg, K.wz), float4(c.gb, K.xy), step(c.b, c.g));
+			float4 q = lerp(float4(p.xyw, c.r), float4(c.r, p.yzx), step(p.x, c.r));
+		
+			float d = q.x - min(q.w, q.y);
+			float e = 1.0e-10;
+			return float3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+		}
+		
+		float3 hsv2rgb(float3 c)
+		{
+			c.g = max(c.g, 0.0); //make sure that saturation value is positive
+			float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+			float3 p = abs(frac(c.xxx + K.xyz) * 6.0 - K.www);
+			return c.z * lerp(K.xxx, saturate(p - K.xxx), c.y);
+		}
+		
+		float3 ApplyHSV_3(float3 color, float h, float s, float v)
+		{
+			float3 hsv = rgb2hsv(color.rgb);
+			hsv += float3(h/360,s,v);
+			return hsv2rgb(hsv);
+		}
+		float3 ApplyHSV_3(float color, float h, float s, float v) { return ApplyHSV_3(color.xxx, h, s ,v); }
+		
+		float4 ApplyHSV_4(float4 color, float h, float s, float v)
+		{
+			float3 hsv = rgb2hsv(color.rgb);
+			hsv += float3(h/360,s,v);
+			return float4(hsv2rgb(hsv), color.a);
+		}
+		float4 ApplyHSV_4(float color, float h, float s, float v) { return ApplyHSV_4(color.xxxx, h, s, v); }
+		
 		half3 DirAmbient (half3 normal)
 		{
 			fixed3 retColor =
@@ -102,6 +174,8 @@ Shader "Toony Colors Pro 2/User/1"
 		//================================================================
 		// SHADER KEYWORDS
 
+		#pragma shader_feature TCP2_RIM_LIGHTING
+		#pragma shader_feature TCP2_REFLECTIONS
 		#pragma shader_feature TCP2_AMBIENT
 		#pragma shader_feature TCP2_MATCAP
 
@@ -124,6 +198,10 @@ Shader "Toony Colors Pro 2/User/1"
 
 		struct Input
 		{
+			half3 viewDir;
+			half3 worldNormal; INTERNAL_DATA
+			float4 screenPosition;
+			half rim;
 			half2 matcap;
 			float2 texcoord0;
 		};
@@ -137,12 +215,27 @@ Shader "Toony Colors Pro 2/User/1"
 
 			// Texture Coordinates
 			output.texcoord0.xy = v.texcoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+			// Shader Properties Sampling
+			float3 __rimDirVert = ( _RimDirVert.xyz );
+			float __rimMinVert = ( _RimMinVert );
+			float __rimMaxVert = ( _RimMaxVert );
 
+			float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 			float4 clipPos = UnityObjectToClipPos(v.vertex);
 
 			//Screen Position
 			float4 screenPos = ComputeScreenPos(clipPos);
+			output.screenPosition = screenPos;
+			half3 viewDir = normalize(UnityWorldSpaceViewDir(worldPos));
 
+			#if defined(TCP2_RIM_LIGHTING)
+			half3 rViewDir = viewDir;
+			half3 rimDir = __rimDirVert;
+			rViewDir = normalize(UNITY_MATRIX_V[0].xyz * rimDir.x + UNITY_MATRIX_V[1].xyz * rimDir.y + UNITY_MATRIX_V[2].xyz * rimDir.z);
+			half rim = 1.0f - saturate(dot(rViewDir, v.normal.xyz));
+			rim = smoothstep(__rimMinVert, __rimMaxVert, rim);
+			output.rim = rim;
+			#endif
 			#if defined(TCP2_MATCAP)
 			//MatCap
 			float3 worldNorm = normalize(unity_WorldToObject[0].xyz * v.normal.x + unity_WorldToObject[1].xyz * v.normal.y + unity_WorldToObject[2].xyz * v.normal.z);
@@ -162,10 +255,13 @@ Shader "Toony Colors Pro 2/User/1"
 			half atten;
 			half3 Albedo;
 			half3 Normal;
+			half3 worldNormal;
 			half3 Emission;
 			half Specular;
 			half Gloss;
 			half Alpha;
+			half ndv;
+			half ndvRaw;
 
 			Input input;
 			
@@ -175,10 +271,18 @@ Shader "Toony Colors Pro 2/User/1"
 			float __rampSmoothing;
 			float __bandsCount;
 			float __bandsSmoothing;
+			float __shadowHue;
+			float __shadowSaturation;
+			float __shadowValue;
 			float3 __highlightColor;
 			float3 __shadowColor;
 			float3 __diffuseTint;
 			float __ambientIntensity;
+			float3 __rimColor;
+			float __rimStrength;
+			float __fresnelMin;
+			float __fresnelMax;
+			float3 __reflectionColor;
 		};
 
 		//================================================================
@@ -196,12 +300,28 @@ Shader "Toony Colors Pro 2/User/1"
 			output.__rampSmoothing = ( _RampSmoothing );
 			output.__bandsCount = ( _BandsCount );
 			output.__bandsSmoothing = ( _BandsSmoothing );
+			output.__shadowHue = ( _Shadow_HSV_H );
+			output.__shadowSaturation = ( _Shadow_HSV_S );
+			output.__shadowValue = ( _Shadow_HSV_V );
 			output.__highlightColor = ( _HColor.rgb );
 			output.__shadowColor = ( _SColor.rgb );
 			output.__diffuseTint = ( _DiffuseTint.rgb );
 			output.__ambientIntensity = ( 1.0 );
+			output.__rimColor = ( _RimColor.rgb );
+			output.__rimStrength = ( 1.0 );
+			output.__fresnelMin = ( _FresnelMin );
+			output.__fresnelMax = ( _FresnelMax );
+			output.__reflectionColor = ( _ReflectionColor.rgb );
 
 			output.input = input;
+
+			half3 worldNormal = WorldNormalVector(input, output.Normal);
+			output.worldNormal = worldNormal;
+
+			half ndv = abs(dot(input.viewDir, normalize(output.Normal.xyz)));
+			half ndvRaw = ndv;
+			output.ndv = ndv;
+			output.ndvRaw = ndvRaw;
 
 			output.Albedo = __albedo.rgb;
 			output.Alpha = __alpha;
@@ -218,8 +338,9 @@ Shader "Toony Colors Pro 2/User/1"
 		//================================================================
 		// LIGHTING FUNCTION
 
-		inline half4 LightingToonyColorsCustom(inout SurfaceOutputCustom surface, UnityGI gi)
+		inline half4 LightingToonyColorsCustom(inout SurfaceOutputCustom surface, half3 viewDir, UnityGI gi)
 		{
+			half ndv = surface.ndv;
 			half3 lightDir = gi.light.dir;
 			#if defined(UNITY_PASS_FORWARDBASE)
 				half3 lightColor = _LightColor0.rgb;
@@ -251,6 +372,10 @@ Shader "Toony Colors Pro 2/User/1"
 			half bandsSmooth = RAMP_BANDS_SMOOTH * 0.5;
 			ramp = saturate((smoothstep(0.5 - bandsSmooth, 0.5 + bandsSmooth, frac(bandsNdl * RAMP_BANDS)) + floor(bandsNdl * RAMP_BANDS)) / RAMP_BANDS).xxx;
 
+			//Shadow HSV
+			float3 albedoShadowHSV = ApplyHSV_3(surface.Albedo, surface.__shadowHue, surface.__shadowSaturation, surface.__shadowValue);
+			surface.Albedo = lerp(albedoShadowHSV, surface.Albedo, ramp);
+
 			//Highlight/Shadow Colors
 			#if !defined(UNITY_PASS_FORWARDBASE)
 				ramp = lerp(half3(0,0,0), surface.__highlightColor, ramp);
@@ -281,6 +406,28 @@ Shader "Toony Colors Pro 2/User/1"
 			#endif
 			#endif
 
+			// Rim Lighting
+			#if defined(TCP2_RIM_LIGHTING)
+			#if !defined(UNITY_PASS_FORWARDADD)
+			half rim = surface.input.rim;
+			rim = ( rim );
+			half3 rimColor = surface.__rimColor;
+			half rimStrength = surface.__rimStrength;
+			color.rgb += rim * rimColor * rimStrength;
+			#endif
+			#endif
+
+			half3 reflections = half3(0, 0, 0);
+			#if defined(TCP2_REFLECTIONS)
+			reflections.rgb += tex2D(_ReflectionTex, surface.input.screenPosition.xy / surface.input.screenPosition.w).rgb;
+			#endif
+			half fresnelMin = surface.__fresnelMin;
+			half fresnelMax = surface.__fresnelMax;
+			half fresnelTerm = smoothstep(fresnelMin, fresnelMax, 1 - surface.ndvRaw);
+			reflections *= fresnelTerm;
+			reflections *= surface.__reflectionColor;
+			color.rgb += reflections;
+
 			return color;
 		}
 
@@ -304,5 +451,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RIM_VERTEX","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","ATTEN_AT_NDL","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","MATCAP","MATCAP_MULT","DIRAMBIENT"];flags:list["noforwardadd","novertexlights"];flags_extra:dict[pragma_gpu_instancing=list["nolodfade","nolightmap","nolightprobe"]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH f3769675b649d8b3489ef55eb2799ae4 */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","ATTEN_AT_NDL","MATCAP_SHADER_FEATURE","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","MATCAP","DIRAMBIENT","MATCAP_PERSPECTIVE_CORRECTION","MATCAP_MULT","PLANAR_REFLECTION","REFLECTION_SHADER_FEATURE","REFLECTION_FRESNEL","SHADOW_HSV","RIM","RIM_VERTEX","RIM_DIR","RIM_DIR_PERSP_CORRECTION"];flags:list["noforwardadd","novertexlights"];flags_extra:dict[pragma_gpu_instancing=list["nolodfade","nolightmap","nolightprobe"]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH a8b4ea339573eabbb694f5d3e7b44172 */
