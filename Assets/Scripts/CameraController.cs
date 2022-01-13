@@ -38,17 +38,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zMoveDuration;
 
     [SerializeField] private float speedForChangingPositionOnRefuelling;
-
-    private Coroutine startingCoroutineChangingPositionOnRefuelling;
-    private Coroutine finishingCoroutineChangingPositionOnRefuelling;
     
     private BoxController boxController;
-
     private float currentZValue;
-
     private Dictionary<int, CamPoint> camPoints = new Dictionary<int, CamPoint>();
-
-    private Vector3 startLocalPosition;
 
     [Inject]
     private void Construct(BoxController boxController)
@@ -59,7 +52,6 @@ public class CameraController : MonoBehaviour
         boxController.AddedBoxes += Increase;
         boxController.SpecialAddedBox += SpecialIncrease;
         boxController.RemovedBox += Decrease;
-        startLocalPosition = transform.localPosition;
         FillCameraPoints();
     }
 
@@ -112,11 +104,6 @@ public class CameraController : MonoBehaviour
                     camera.DOKill();
             
                     transform.DOMoveY(camPoint2.position.y, verticalMoveDuration );
-                    //transform.DOMoveX(camPoint.position.x, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
-                    IncreaseZ(camPoint2, verticalMoveDuration);
-                    //transform.DOLocalRotate(
-                    //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
-                    //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
                     camera.DOFieldOfView(camPoint2.fieldView, fieldViewDuration );
                 }
             }
@@ -128,11 +115,6 @@ public class CameraController : MonoBehaviour
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
-            //transform.DOMoveX(camPoint.position.x, verticalMoveDuration * (boxController.boxCount - boxController.prevBoxCount));
-            IncreaseZ(camPoint, verticalMoveDuration);
-            //transform.DOLocalRotate(
-            //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
-            //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration );
         }
     }
@@ -153,7 +135,6 @@ public class CameraController : MonoBehaviour
     
     private void SpecialIncrease()
     {
-        ChangeFinishingPosition();
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
 
         if (!pointIsExist)
@@ -165,12 +146,9 @@ public class CameraController : MonoBehaviour
                 {
                     transform.DOKill();
                     camera.DOKill();
-            
+                    
+                    
                     transform.DOMoveY(camPoint2.position.y, 2f);
-                    // transform.DOLocalRotate(
-                    //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
-                    //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
-                    IncreaseZ(camPoint2, 2f);
                     camera.DOFieldOfView(camPoint2.fieldView, 2f);
                 }
             }
@@ -182,12 +160,10 @@ public class CameraController : MonoBehaviour
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, 2f);
-           // transform.DOLocalRotate(
-            //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
-            //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
-            IncreaseZ(camPoint, 2f);
             camera.DOFieldOfView(camPoint.fieldView, 2f);
         }
+        
+        ChangeFinishingPosition();
     }
 
     private void Decrease(bool finish, int multiplier)
@@ -211,10 +187,6 @@ public class CameraController : MonoBehaviour
                     camera.DOKill();
             
                     transform.DOMoveY(camPoint2.position.y, 1.5f);
-                    // transform.DOLocalRotate(
-                    //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
-                    //        transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
-                    DecreaseZ(camPoint2, verticalMoveDuration);
                     camera.DOFieldOfView(camPoint2.fieldView, 1.5f);
                 }
             }
@@ -226,10 +198,6 @@ public class CameraController : MonoBehaviour
             camera.DOKill();
             
             transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
-           // transform.DOLocalRotate(
-            //    new Vector3(transform.localRotation.eulerAngles.x, camPoint.rotation.y,
-             //       transform.localRotation.eulerAngles.z), rotationDuration * (boxController.boxCount - boxController.prevBoxCount));
-            DecreaseZ(camPoint, verticalMoveDuration);
             camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
         }
     }
@@ -250,34 +218,15 @@ public class CameraController : MonoBehaviour
 
     public void ChangeStartingPosition()
     {
-       startingCoroutineChangingPositionOnRefuelling = StartCoroutine(StartingPositionChanging());
+        transform.DOLocalRotate(new Vector3(17.7f, -3f, 0), speedForChangingPositionOnRefuelling);
+        transform.DOLocalMoveX(0, speedForChangingPositionOnRefuelling);
+        transform.DOLocalMoveZ(-33.6f, speedForChangingPositionOnRefuelling);
     }
 
     private void ChangeFinishingPosition()
     {
-        StopCoroutine(startingCoroutineChangingPositionOnRefuelling);
-        finishingCoroutineChangingPositionOnRefuelling = StartCoroutine(FinishingPositionChanging());
-    }
-    
-    private IEnumerator StartingPositionChanging()
-    {
-        while (transform.localPosition.x > 3f)
-        {
-            transform.localPosition = new Vector3(transform.localPosition.x - speedForChangingPositionOnRefuelling * 
-                Time.deltaTime, transform.localPosition.y, transform.localPosition.z);
-            
-            yield return null;
-        }
-    }
-    
-    private IEnumerator FinishingPositionChanging()
-    {
-        while (transform.localPosition.x < startLocalPosition.x)
-        {
-            transform.localPosition = new Vector3(transform.localPosition.x + speedForChangingPositionOnRefuelling * 
-                Time.deltaTime, transform.localPosition.y, transform.localPosition.z);
-            
-            yield return null;
-        }
+        transform.DOLocalRotate(new Vector3(17.7f, -11.54f, 0), speedForChangingPositionOnRefuelling);
+        transform.DOLocalMoveX(8.4f, speedForChangingPositionOnRefuelling);
+        transform.DOLocalMoveZ(-27.91f, speedForChangingPositionOnRefuelling);
     }
 }

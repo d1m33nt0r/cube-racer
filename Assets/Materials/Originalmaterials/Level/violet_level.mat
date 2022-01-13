@@ -23,8 +23,9 @@ Material:
   m_Name: violet_level
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP
-    TCP2_RAMPTEXT _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF _GLOSSYREFLECTIONS_OFF
-    _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
+    TCP2_RAMPTEXT TCP2_REFLECTIONS TCP2_RIM_LIGHTING _ _EMISSIVE_SIMPLE _ENVIRONMENTREFLECTIONS_OFF
+    _GLOSSYREFLECTIONS_OFF _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
+    _OUTLINE_NML _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -246,8 +247,8 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BandsCount: 20
-    - _BandsSmoothing: 0.576
+    - _BandsCount: 4
+    - _BandsSmoothing: 1
     - _BaseColor_Step: 0.5
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
@@ -313,7 +314,7 @@ Material:
     - _Is_ViewCoord_Scroll: 0
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
-    - _LightWrapFactor: 0
+    - _LightWrapFactor: 0.26
     - _MatCap: 0
     - _Metallic: 0
     - _Metallic0: 0
@@ -336,7 +337,7 @@ Material:
     - _QueueOffset: 0
     - _RampSmooth: 0.1
     - _RampSmoothing: 1
-    - _RampThreshold: 0.286
+    - _RampThreshold: 0.5
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
@@ -345,7 +346,7 @@ Material:
     - _RimMax: 0.971
     - _RimMaxVert: 1
     - _RimMin: 0.573
-    - _RimMinVert: 0.5
+    - _RimMinVert: 0.68
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
@@ -393,8 +394,8 @@ Material:
     - _Unlit_Intensity: 1
     - _UseAmbient: 1
     - _UseMatCap: 1
-    - _UseReflections: 0
-    - _UseRim: 0
+    - _UseReflections: 1
+    - _UseRim: 1
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
@@ -423,7 +424,7 @@ Material:
     - _DiffuseTint: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
+    - _HColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
@@ -436,12 +437,12 @@ Material:
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: 0, g: 0, b: 1, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SColor: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_LEFT: {r: 0.26415092, g: 0.25542894, b: 0.25542894, a: 1}
+    - _TCP2_AMBIENT_LEFT: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
     - _TCP2_AMBIENT_TOP: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
