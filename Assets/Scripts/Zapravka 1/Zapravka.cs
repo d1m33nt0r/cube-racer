@@ -52,6 +52,7 @@ public class Zapravka : MonoBehaviour
         playerMover.DisableMoving();
         playerMover.UnsubscribeSwipes();
         pathFollower.Moving += playerMover.CustomMove;
+        Camera.main.GetComponent<CameraController>().ChangeStartingPosition();
         pathFollower.enabled = true;
         finishBoxCollider.enabled = true;
         StartCoroutine(Finish());

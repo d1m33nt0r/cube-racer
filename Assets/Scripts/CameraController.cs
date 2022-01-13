@@ -17,7 +17,7 @@ public class CamPoint
         position = pos;
         rotation = rot;
         this.fieldView = fieldView;
-        this.distanceZFromPlayer = zDistance;
+        distanceZFromPlayer = zDistance;
     }
 }
 
@@ -36,15 +36,19 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float fieldViewDuration = 0.25f;
     [SerializeField] private float zOffsetValue;
     [SerializeField] private float zMoveDuration;
+
+    [SerializeField] private float speedForChangingPositionOnRefuelling;
+
+    private Coroutine startingCoroutineChangingPositionOnRefuelling;
+    private Coroutine finishingCoroutineChangingPositionOnRefuelling;
     
     private BoxController boxController;
 
     private float currentZValue;
-    
-    private Vector3 startRotation;
-    private float startYPosition;
 
     private Dictionary<int, CamPoint> camPoints = new Dictionary<int, CamPoint>();
+
+    private Vector3 startLocalPosition;
 
     [Inject]
     private void Construct(BoxController boxController)
@@ -55,13 +59,13 @@ public class CameraController : MonoBehaviour
         boxController.AddedBoxes += Increase;
         boxController.SpecialAddedBox += SpecialIncrease;
         boxController.RemovedBox += Decrease;
-        startRotation = transform.localRotation.eulerAngles;
-        startYPosition = transform.position.y;
+        startLocalPosition = transform.localPosition;
         FillCameraPoints();
     }
 
     private void FillCameraPoints()
     {
+        var cameraFieldOfView = GetComponent<Camera>().fieldOfView;
         var j = 0;
         for (var i = maxCount - (maxCount - minCount); i <= maxCount; i++)
         {
@@ -73,7 +77,7 @@ public class CameraController : MonoBehaviour
             var rot = new Vector3(transform.localRotation.eulerAngles.x, 
                 transform.localRotation.eulerAngles.y + yRotateValue * multiplier, transform.localRotation.eulerAngles.z);
             
-            var fieldView = GetComponent<Camera>().fieldOfView + fieldViewValue * multiplier;
+            var fieldView = cameraFieldOfView + fieldViewValue * multiplier;
 
             var zDistance = transform.localPosition.z - zOffsetValue * multiplier;
             
@@ -149,6 +153,7 @@ public class CameraController : MonoBehaviour
     
     private void SpecialIncrease()
     {
+        ChangeFinishingPosition();
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
 
         if (!pointIsExist)
@@ -229,7 +234,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void RotateAround(Transform target)
+    public void FinishRotation(Transform target)
     {
         StartCoroutine(Rotation(target));
     }
@@ -239,6 +244,39 @@ public class CameraController : MonoBehaviour
         while (true)
         {
             transform.RotateAround(target.position, Vector3.up, 20 * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    public void ChangeStartingPosition()
+    {
+       startingCoroutineChangingPositionOnRefuelling = StartCoroutine(StartingPositionChanging());
+    }
+
+    private void ChangeFinishingPosition()
+    {
+        StopCoroutine(startingCoroutineChangingPositionOnRefuelling);
+        finishingCoroutineChangingPositionOnRefuelling = StartCoroutine(FinishingPositionChanging());
+    }
+    
+    private IEnumerator StartingPositionChanging()
+    {
+        while (transform.localPosition.x > 3f)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x - speedForChangingPositionOnRefuelling * 
+                Time.deltaTime, transform.localPosition.y, transform.localPosition.z);
+            
+            yield return null;
+        }
+    }
+    
+    private IEnumerator FinishingPositionChanging()
+    {
+        while (transform.localPosition.x < startLocalPosition.x)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x + speedForChangingPositionOnRefuelling * 
+                Time.deltaTime, transform.localPosition.y, transform.localPosition.z);
+            
             yield return null;
         }
     }

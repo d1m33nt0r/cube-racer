@@ -42,7 +42,7 @@ namespace UI
         private void ShowFinish()
         {
             StartCoroutine(WaitAndShowUI(0.5f));
-            GameObject.Find("Main Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
+            GameObject.Find("Main Camera").GetComponent<CameraController>().FinishRotation(GameObject.Find("Player").transform);
             //GameObject.Find("Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
         }
 

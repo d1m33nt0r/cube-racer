@@ -41,12 +41,6 @@ Shader "Toony Colors Pro 2/User/1"
 		_FresnelMin ("Fresnel Min", Range(0,2)) = 0
 		_FresnelMax ("Fresnel Max", Range(0,2)) = 1.5
 		[TCP2Separator]
-		
-		[TCP2HeaderHelp(MatCap)]
-		[Toggle(TCP2_MATCAP)] _UseMatCap ("Enable MatCap", Float) = 0
-		[NoScaleOffset] _MatCapTex ("MatCap (RGB)", 2D) = "white" {}
-		[TCP2ColorNoAlpha] _MatCapColor ("MatCap Color", Color) = (1,1,1,1)
-		[TCP2Separator]
 		[TCP2HeaderHelp(Ambient Lighting)]
 		[Toggle(TCP2_AMBIENT)] _UseAmbient ("Enable Ambient/Indirect Diffuse", Float) = 0
 		_TCP2_AMBIENT_RIGHT ("+X (Right)", Color) = (0,0,0,1)
@@ -55,9 +49,6 @@ Shader "Toony Colors Pro 2/User/1"
 		_TCP2_AMBIENT_BOTTOM ("-Y (Bottom)", Color) = (0,0,0,1)
 		_TCP2_AMBIENT_FRONT ("+Z (Front)", Color) = (0,0,0,1)
 		_TCP2_AMBIENT_BACK ("-Z (Back)", Color) = (0,0,0,1)
-		[TCP2Separator]
-		
-		[TCP2ColorNoAlpha] _DiffuseTint ("Diffuse Tint", Color) = (1,0.5,0,1)
 		[TCP2Separator]
 		
 		//Avoid compile error if the properties are ending with a drawer
@@ -85,7 +76,6 @@ Shader "Toony Colors Pro 2/User/1"
 		float _RimMaxVert;
 		float4 _MainTex_ST;
 		fixed4 _Color;
-		fixed4 _MatCapColor;
 		float _LightWrapFactor;
 		float _RampThreshold;
 		float _RampSmoothing;
@@ -96,14 +86,12 @@ Shader "Toony Colors Pro 2/User/1"
 		float _Shadow_HSV_V;
 		fixed4 _HColor;
 		fixed4 _SColor;
-		fixed4 _DiffuseTint;
 		fixed4 _RimColor;
 		float _FresnelMin;
 		float _FresnelMax;
 		fixed4 _ReflectionColor;
 
 		sampler2D _ReflectionTex;
-		sampler2D _MatCapTex;
 		fixed4 _TCP2_AMBIENT_RIGHT;
 		fixed4 _TCP2_AMBIENT_LEFT;
 		fixed4 _TCP2_AMBIENT_TOP;
@@ -168,7 +156,7 @@ Shader "Toony Colors Pro 2/User/1"
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha noforwardadd novertexlights nolightmap nolppv
+		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha novertexlights noforwardadd nolightmap nolppv
 		#pragma target 2.5
 
 		//================================================================
@@ -177,7 +165,6 @@ Shader "Toony Colors Pro 2/User/1"
 		#pragma shader_feature TCP2_RIM_LIGHTING
 		#pragma shader_feature TCP2_REFLECTIONS
 		#pragma shader_feature TCP2_AMBIENT
-		#pragma shader_feature TCP2_MATCAP
 
 		//================================================================
 		// STRUCTS
@@ -202,7 +189,6 @@ Shader "Toony Colors Pro 2/User/1"
 			half3 worldNormal; INTERNAL_DATA
 			float4 screenPosition;
 			half rim;
-			half2 matcap;
 			float2 texcoord0;
 		};
 
@@ -236,14 +222,6 @@ Shader "Toony Colors Pro 2/User/1"
 			rim = smoothstep(__rimMinVert, __rimMaxVert, rim);
 			output.rim = rim;
 			#endif
-			#if defined(TCP2_MATCAP)
-			//MatCap
-			float3 worldNorm = normalize(unity_WorldToObject[0].xyz * v.normal.x + unity_WorldToObject[1].xyz * v.normal.y + unity_WorldToObject[2].xyz * v.normal.z);
-			worldNorm = mul((float3x3)UNITY_MATRIX_V, worldNorm);
-			float3 perspectiveOffset = (screenPos.xyz / screenPos.w) - 0.5;
-			worldNorm.xy -= (perspectiveOffset.xy * perspectiveOffset.z) * 0.5;
-			output.matcap = worldNorm.xy * 0.5 + 0.5;
-			#endif
 
 		}
 
@@ -276,7 +254,6 @@ Shader "Toony Colors Pro 2/User/1"
 			float __shadowValue;
 			float3 __highlightColor;
 			float3 __shadowColor;
-			float3 __diffuseTint;
 			float __ambientIntensity;
 			float3 __rimColor;
 			float __rimStrength;
@@ -294,7 +271,6 @@ Shader "Toony Colors Pro 2/User/1"
 			float4 __albedo = ( tex2D(_MainTex, input.texcoord0.xy).rgba );
 			float4 __mainColor = ( _Color.rgba );
 			float __alpha = ( __albedo.a * __mainColor.a );
-			float3 __matcapColor = ( _MatCapColor.rgb );
 			output.__lightWrapFactor = ( _LightWrapFactor );
 			output.__rampThreshold = ( _RampThreshold );
 			output.__rampSmoothing = ( _RampSmoothing );
@@ -305,7 +281,6 @@ Shader "Toony Colors Pro 2/User/1"
 			output.__shadowValue = ( _Shadow_HSV_V );
 			output.__highlightColor = ( _HColor.rgb );
 			output.__shadowColor = ( _SColor.rgb );
-			output.__diffuseTint = ( _DiffuseTint.rgb );
 			output.__ambientIntensity = ( 1.0 );
 			output.__rimColor = ( _RimColor.rgb );
 			output.__rimStrength = ( 1.0 );
@@ -327,12 +302,6 @@ Shader "Toony Colors Pro 2/User/1"
 			output.Alpha = __alpha;
 			
 			output.Albedo *= __mainColor.rgb;
-			
-			//MatCap
-			#if defined(TCP2_MATCAP)
-			fixed3 matcap = tex2D(_MatCapTex, input.matcap).rgb * __matcapColor;
-			output.Albedo *= matcap;
-			#endif
 		}
 
 		//================================================================
@@ -353,8 +322,6 @@ Shader "Toony Colors Pro 2/User/1"
 
 			half3 normal = normalize(surface.Normal);
 			half ndl = dot(normal, lightDir);
-			//Apply attenuation (shadowmaps & point/spot lights attenuation)
-			ndl *= atten;
 			half3 ramp;
 			#if defined(UNITY_PASS_FORWARDBASE)
 			
@@ -372,6 +339,9 @@ Shader "Toony Colors Pro 2/User/1"
 			half bandsSmooth = RAMP_BANDS_SMOOTH * 0.5;
 			ramp = saturate((smoothstep(0.5 - bandsSmooth, 0.5 + bandsSmooth, frac(bandsNdl * RAMP_BANDS)) + floor(bandsNdl * RAMP_BANDS)) / RAMP_BANDS).xxx;
 
+			//Apply attenuation (shadowmaps & point/spot lights attenuation)
+			ramp *= atten;
+			
 			//Shadow HSV
 			float3 albedoShadowHSV = ApplyHSV_3(surface.Albedo, surface.__shadowHue, surface.__shadowSaturation, surface.__shadowValue);
 			surface.Albedo = lerp(albedoShadowHSV, surface.Albedo, ramp);
@@ -383,10 +353,6 @@ Shader "Toony Colors Pro 2/User/1"
 				ramp = lerp(surface.__shadowColor, surface.__highlightColor, ramp);
 			#endif
 
-			// Diffuse Tint
-			half3 diffuseTint = saturate(surface.__diffuseTint + ndl);
-			ramp *= diffuseTint;
-			
 			//Output color
 			half4 color;
 			color.rgb = surface.Albedo * lightColor.rgb * ramp;
@@ -451,5 +417,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","DIFFUSE_TINT","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","ATTEN_AT_NDL","MATCAP_SHADER_FEATURE","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","MATCAP","DIRAMBIENT","MATCAP_PERSPECTIVE_CORRECTION","MATCAP_MULT","PLANAR_REFLECTION","REFLECTION_SHADER_FEATURE","REFLECTION_FRESNEL","SHADOW_HSV","RIM","RIM_VERTEX","RIM_DIR","RIM_DIR_PERSP_CORRECTION"];flags:list["noforwardadd","novertexlights"];flags_extra:dict[pragma_gpu_instancing=list["nolodfade","nolightmap","nolightprobe"]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH a8b4ea339573eabbb694f5d3e7b44172 */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","MATCAP_SHADER_FEATURE","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","DIRAMBIENT","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","REFLECTION_FRESNEL","SHADOW_HSV","RIM_VERTEX","RIM_DIR","RIM_DIR_PERSP_CORRECTION","RIM","PLANAR_REFLECTION"];flags:list["novertexlights","noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH daf6b9a11405228859b96239d69f015b */
