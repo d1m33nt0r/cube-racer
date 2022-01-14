@@ -51,6 +51,9 @@ Shader "Toony Colors Pro 2/User/1"
 		_TCP2_AMBIENT_BACK ("-Z (Back)", Color) = (0,0,0,1)
 		[TCP2Separator]
 		
+		[TCP2ColorNoAlpha] _DiffuseTint ("Diffuse Tint", Color) = (1,0.5,0,1)
+		[TCP2Separator]
+		
 		//Avoid compile error if the properties are ending with a drawer
 		[HideInInspector] __dummy__ ("unused", Float) = 0
 	}
@@ -86,6 +89,7 @@ Shader "Toony Colors Pro 2/User/1"
 		float _Shadow_HSV_V;
 		fixed4 _HColor;
 		fixed4 _SColor;
+		fixed4 _DiffuseTint;
 		fixed4 _RimColor;
 		float _FresnelMin;
 		float _FresnelMax;
@@ -254,6 +258,7 @@ Shader "Toony Colors Pro 2/User/1"
 			float __shadowValue;
 			float3 __highlightColor;
 			float3 __shadowColor;
+			float3 __diffuseTint;
 			float __ambientIntensity;
 			float3 __rimColor;
 			float __rimStrength;
@@ -281,6 +286,7 @@ Shader "Toony Colors Pro 2/User/1"
 			output.__shadowValue = ( _Shadow_HSV_V );
 			output.__highlightColor = ( _HColor.rgb );
 			output.__shadowColor = ( _SColor.rgb );
+			output.__diffuseTint = ( _DiffuseTint.rgb );
 			output.__ambientIntensity = ( 1.0 );
 			output.__rimColor = ( _RimColor.rgb );
 			output.__rimStrength = ( 1.0 );
@@ -323,12 +329,10 @@ Shader "Toony Colors Pro 2/User/1"
 			half3 normal = normalize(surface.Normal);
 			half ndl = dot(normal, lightDir);
 			half3 ramp;
-			#if defined(UNITY_PASS_FORWARDBASE)
 			
 			// Wrapped Lighting
 			half lightWrap = surface.__lightWrapFactor;
 			ndl = (ndl + lightWrap) / (1 + lightWrap);
-			#endif
 			
 			#define		RAMP_THRESHOLD		surface.__rampThreshold
 			#define		RAMP_SMOOTH			surface.__rampSmoothing
@@ -353,6 +357,10 @@ Shader "Toony Colors Pro 2/User/1"
 				ramp = lerp(surface.__shadowColor, surface.__highlightColor, ramp);
 			#endif
 
+			// Diffuse Tint
+			half3 diffuseTint = saturate(surface.__diffuseTint + ndl);
+			ramp *= diffuseTint;
+			
 			//Output color
 			half4 color;
 			color.rgb = surface.Albedo * lightColor.rgb * ramp;
@@ -417,5 +425,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","MATCAP_SHADER_FEATURE","WRAPPED_LIGHTING_MAIN_LIGHT","WRAPPED_LIGHTING_CUSTOM","DIRAMBIENT","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","REFLECTION_FRESNEL","SHADOW_HSV","RIM_VERTEX","RIM_DIR","RIM_DIR_PERSP_CORRECTION","RIM","PLANAR_REFLECTION"];flags:list["novertexlights","noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH daf6b9a11405228859b96239d69f015b */
+/* TCP_DATA u config(unity:"2019.3.10f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","RIM_DIR","RIM","PLANAR_REFLECTION","DIFFUSE_TINT","SHADOW_HSV","RIM_VERTEX","REFLECTION_FRESNEL","WRAPPED_LIGHTING_CUSTOM","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT"];flags:list["novertexlights","noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH 7fc671f83251500e64680e9c549b79c0 */

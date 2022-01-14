@@ -358,7 +358,7 @@ Material:
     - _ShadeColor_Step: 0
     - _Shadow_HSV_H: 5
     - _Shadow_HSV_S: 0.15
-    - _Shadow_HSV_V: 0.05
+    - _Shadow_HSV_V: -0.01
     - _Shininess: 0.826
     - _Smoothness: 0
     - _Smoothness0: 0.5
@@ -377,6 +377,9 @@ Material:
     - _StencilOpFail: 0
     - _StencilOpPass: 0
     - _StepOffset: 0
+    - _SubsurfaceDistortion: 0.2
+    - _SubsurfacePower: 3
+    - _SubsurfaceScale: 1
     - _Surface: 0
     - _TexLod: 5
     - _TransparentEnabled: 0
@@ -396,6 +399,7 @@ Material:
     - _UseMatCap: 1
     - _UseReflections: 1
     - _UseRim: 1
+    - _UseSubsurface: 0
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
@@ -419,12 +423,12 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffuseTint: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    - _HColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
@@ -433,16 +437,19 @@ Material:
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _ReflectColor: {r: 0.14297792, g: 0.35725394, b: 0.4811321, a: 0.5}
     - _ReflectionColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _ReflectionCubemapColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.6}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: 0, g: 0, b: 1, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SColor: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
+    - _SColor: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SubsurfaceAmbientColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SubsurfaceColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_LEFT: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+    - _TCP2_AMBIENT_LEFT: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.05490196, g: 0, b: 0.0062896805, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

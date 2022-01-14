@@ -218,9 +218,9 @@ public class CameraController : MonoBehaviour
 
     public void ChangeStartingPosition()
     {
-        transform.DOLocalRotate(new Vector3(17.7f, -3f, 0), speedForChangingPositionOnRefuelling);
-        transform.DOLocalMoveX(0, speedForChangingPositionOnRefuelling);
-        transform.DOLocalMoveZ(-33.6f, speedForChangingPositionOnRefuelling);
+        transform.DOLocalRotate(new Vector3(17.7f, -3f, 0), speedForChangingPositionOnRefuelling * 0.7f);
+        transform.DOLocalMoveX(0, speedForChangingPositionOnRefuelling * 0.7f);
+        transform.DOLocalMoveZ(-33.6f, speedForChangingPositionOnRefuelling * 0.7f);
     }
 
     private void ChangeFinishingPosition()
