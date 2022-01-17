@@ -71,7 +71,9 @@ public class FriendlyBox : MonoBehaviour
                 Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
                 m_audioManager.boxesAudioSource.PlayFailSound();
+#if UNITY_ANDROID
                 vibrator.VibrateLava();
+#endif
             }
             
             if (other.collider.CompareTag("Hole"))
@@ -79,7 +81,9 @@ public class FriendlyBox : MonoBehaviour
                 //Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
                 m_audioManager.boxesAudioSource.PlayFailSound();
+#if UNITY_ANDROID
                 vibrator.VibrateLava();
+#endif
             }
             
             if(other == null || other.collider == null || transform == null || other.collider.GetComponent<CenterPointGetter>() == null) return;

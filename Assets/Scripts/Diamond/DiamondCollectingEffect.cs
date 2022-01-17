@@ -59,7 +59,9 @@ public class DiamondCollectingEffect : MonoBehaviour
             diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
             Instantiate(effect).transform.position = transform.position;
+#if UNITY_ANDROID
             vibrator.VibrateDiamond();
+#endif
             Destroy(gameObject);
         }
     }

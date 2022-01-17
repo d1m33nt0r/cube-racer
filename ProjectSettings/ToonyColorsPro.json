@@ -3,7 +3,7 @@
     "SubFolders": true,
     "OverwriteConfig": true,
     "LoadAllShaders": false,
-    "CustomOutputPath": "Shaders/OriginalShaders",
+    "CustomOutputPath": "Shaders/CustomShaders",
     "LastImplementationExportImportPath": "C:/Users/fallentorch/Voodoo/Cuberacer/Assets",
     "OpenedFoldouts": [
         "SPECIAL EFFECTS",

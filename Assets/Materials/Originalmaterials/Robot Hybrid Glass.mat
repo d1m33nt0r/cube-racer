@@ -9,13 +9,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Robot Hybrid Glass
   m_Shader: {fileID: 4800000, guid: 7ffc1bc2bbb1ef64f84b552b2d2f0619, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_OUTLINE_MIN_SIZE TCP2_REFLECTIONS TCP2_REFLECTIONS_FRESNEL
-    TCP2_SHADOW_LIGHT_COLOR TCP2_SPECULAR TCP2_TANGENT_AS_NORMALS TCP2_UV_NORMALS_FULL
-    _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_MOBILE TCP2_OUTLINE_MIN_SIZE TCP2_REFLECTIONS
+    TCP2_REFLECTIONS_FRESNEL TCP2_SHADOW_LIGHT_COLOR TCP2_SPECULAR TCP2_TANGENT_AS_NORMALS
+    TCP2_UV_NORMALS_FULL _ALPHAPREMULTIPLY_ON _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -124,7 +124,7 @@ Material:
     - _RampSmoothing: 0.1
     - _RampThreshold: 0.75
     - _RampType: 0
-    - _ReceiveShadowsOff: 1
+    - _ReceiveShadowsOff: 0
     - _ReflectionMapType: 0
     - _ReflectionSmoothness: 1
     - _RenderingMode: 2
@@ -135,7 +135,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularMapType: 0
-    - _SpecularRoughness: 0.165
+    - _SpecularRoughness: 0.502
     - _SpecularToonSize: 0.08
     - _SpecularToonSmoothness: 0.024
     - _SpecularType: 0
@@ -146,7 +146,7 @@ Material:
     - _UseFresnelReflections: 1
     - _UseMatCap: 0
     - _UseMatCapMask: 0
-    - _UseMobileMode: 0
+    - _UseMobileMode: 1
     - _UseNormalMap: 0
     - _UseOcclusion: 0
     - _UseOutline: 0
@@ -157,7 +157,7 @@ Material:
     - _UseSpecular: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.6415094, g: 0.21484515, b: 0.21484515, a: 0.14117648}
+    - _BaseColor: {r: 1, g: 0, b: 0.6537614, a: 0.16862746}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
@@ -165,5 +165,6 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectionColor: {r: 1, g: 0, b: 0.96968555, a: 1}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5}
-    - _SColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SColor: {r: 0.7735849, g: 0, b: 0, a: 1}
+    - _SpecularColor: {r: 1, g: 0.7744801, b: 0, a: 1}
+  m_BuildTextureStacks: []

@@ -230,6 +230,8 @@ Material:
     - _VerticalFogThreshold: -3.23
     - _ZSmooth: -0.5
     - _ZWrite: 1
+    - __BeginGroup_ShadowHSV: 0
+    - __EndGroup: 0
     - __dummy__: 0
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
@@ -246,6 +248,7 @@ Material:
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
+    - _RimDirVert: {r: 0, g: 0, b: 1, a: 1}
     - _SColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 1, g: 0, b: 0, a: 1}
@@ -257,3 +260,4 @@ Material:
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_TOP: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
+  m_BuildTextureStacks: []

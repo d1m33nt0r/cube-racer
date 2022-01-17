@@ -38,7 +38,9 @@ namespace DefaultNamespace.Boxes
                 foreach (var box in boxes)
                 {
                     boxController.AddBox(box.gameObject);
+#if UNITY_ADNROID
                     vibrator.VibrateBoxes();
+#endif
                 }
 
                 boxController.BoxGroupAdded(countBoxes);

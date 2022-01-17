@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -29,13 +28,9 @@ public class CameraController : MonoBehaviour
     
     [SerializeField] private float yPositionValue = 0.75f;
     [SerializeField] private float xPositionValue = 0.75f;
-    [SerializeField] private float verticalMoveDuration = 0.25f;
-    [SerializeField] private float yRotateValue = 0.1f;
-    [SerializeField] private float rotationDuration = 0.5f;
+    [SerializeField] private float effectDuration = 0.25f;
     [SerializeField] private float fieldViewValue = 0.75f;
-    [SerializeField] private float fieldViewDuration = 0.25f;
     [SerializeField] private float zOffsetValue;
-    [SerializeField] private float zMoveDuration;
 
     [SerializeField] private float speedForChangingPositionOnRefuelling;
     
@@ -63,11 +58,11 @@ public class CameraController : MonoBehaviour
         {
             var multiplier = i - (maxCount - (maxCount - minCount));
             
-            var pos = new Vector3(transform.position.x + xPositionValue * multiplier, transform.position.y + yPositionValue * multiplier, 
-                transform.position.z - zOffsetValue * multiplier);
+            var pos = new Vector3(transform.localPosition.x, transform.localPosition.y + yPositionValue * multiplier, 
+                transform.localPosition.z - zOffsetValue * multiplier);
             
             var rot = new Vector3(transform.localRotation.eulerAngles.x, 
-                transform.localRotation.eulerAngles.y + yRotateValue * multiplier, transform.localRotation.eulerAngles.z);
+                transform.localRotation.eulerAngles.y + effectDuration * multiplier, transform.localRotation.eulerAngles.z);
             
             var fieldView = cameraFieldOfView + fieldViewValue * multiplier;
 
@@ -103,8 +98,8 @@ public class CameraController : MonoBehaviour
                     transform.DOKill();
                     camera.DOKill();
             
-                    transform.DOMoveY(camPoint2.position.y, verticalMoveDuration );
-                    camera.DOFieldOfView(camPoint2.fieldView, fieldViewDuration );
+                    transform.DOLocalMove(camPoint2.position, effectDuration);
+                    camera.DOFieldOfView(camPoint2.fieldView, effectDuration );
                 }
             }
         }
@@ -114,25 +109,11 @@ public class CameraController : MonoBehaviour
             transform.DOKill();
             camera.DOKill();
             
-            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
-            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration );
+            transform.DOLocalMove(camPoint.position, effectDuration);
+            camera.DOFieldOfView(camPoint.fieldView, effectDuration );
         }
     }
 
-    private void IncreaseZ(CamPoint _camPoint, float duration)
-    {
-        //var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
-        //var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
-        //transform.DOLocalMoveZ(transform.localPosition.z - difference, duration);
-    }
-    
-    private void DecreaseZ(CamPoint _camPoint, float duration)
-    {
-        //var actualDistance = -Mathf.Abs(boxController.transform.localPosition.z - transform.localPosition.z);
-        //var difference = Mathf.Abs(_camPoint.distanceZFromPlayer - actualDistance);
-        //transform.DOLocalMoveZ(transform.localPosition.z + difference, duration);
-    }
-    
     private void SpecialIncrease()
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
@@ -147,8 +128,8 @@ public class CameraController : MonoBehaviour
                     transform.DOKill();
                     camera.DOKill();
                     
-                    
-                    transform.DOMoveY(camPoint2.position.y, 2f);
+       
+                    transform.DOLocalMove(camPoint2.position, 2f);
                     camera.DOFieldOfView(camPoint2.fieldView, 2f);
                 }
             }
@@ -159,7 +140,7 @@ public class CameraController : MonoBehaviour
             transform.DOKill();
             camera.DOKill();
             
-            transform.DOMoveY(camPoint.position.y, 2f);
+            transform.DOLocalMove(camPoint.position, 2f);
             camera.DOFieldOfView(camPoint.fieldView, 2f);
         }
         
@@ -186,8 +167,8 @@ public class CameraController : MonoBehaviour
                     transform.DOKill();
                     camera.DOKill();
             
-                    transform.DOMoveY(camPoint2.position.y, 1.5f);
-                    camera.DOFieldOfView(camPoint2.fieldView, 1.5f);
+                    transform.DOLocalMove(camPoint2.position, effectDuration);
+                    camera.DOFieldOfView(camPoint2.fieldView, effectDuration);
                 }
             }
         }
@@ -197,8 +178,8 @@ public class CameraController : MonoBehaviour
             transform.DOKill();
             camera.DOKill();
             
-            transform.DOMoveY(camPoint.position.y, verticalMoveDuration);
-            camera.DOFieldOfView(camPoint.fieldView, fieldViewDuration);
+            transform.DOLocalMove(camPoint.position, effectDuration);
+            camera.DOFieldOfView(camPoint.fieldView, effectDuration);
         }
     }
 
@@ -220,13 +201,13 @@ public class CameraController : MonoBehaviour
     {
         transform.DOLocalRotate(new Vector3(17.7f, -3f, 0), speedForChangingPositionOnRefuelling * 0.7f);
         transform.DOLocalMoveX(0, speedForChangingPositionOnRefuelling * 0.7f);
-        transform.DOLocalMoveZ(-33.6f, speedForChangingPositionOnRefuelling * 0.7f);
+        //transform.DOLocalMoveZ(-33.6f, speedForChangingPositionOnRefuelling * 0.7f);
     }
 
     private void ChangeFinishingPosition()
     {
         transform.DOLocalRotate(new Vector3(17.7f, -11.54f, 0), speedForChangingPositionOnRefuelling);
         transform.DOLocalMoveX(8.4f, speedForChangingPositionOnRefuelling);
-        transform.DOLocalMoveZ(-27.91f, speedForChangingPositionOnRefuelling);
+        //transform.DOLocalMoveZ(-27.91f, speedForChangingPositionOnRefuelling);
     }
 }
