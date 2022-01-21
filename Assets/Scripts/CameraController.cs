@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
         {
             var multiplier = i - (maxCount - (maxCount - minCount));
             
-            var pos = new Vector3(transform.localPosition.x, transform.localPosition.y + yPositionValue * multiplier, 
+            var pos = new Vector3(transform.localPosition.x + xPositionValue * multiplier, transform.localPosition.y + yPositionValue * multiplier, 
                 transform.localPosition.z - zOffsetValue * multiplier);
             
             var rot = new Vector3(transform.localRotation.eulerAngles.x, 

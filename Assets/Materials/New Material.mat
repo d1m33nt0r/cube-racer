@@ -91,7 +91,7 @@ Material:
     - _RampThresholdPoint: 0.5
     - _RampThresholdSpot: 0.5
     - _Shadow_HSV_H: 2
-    - _Shadow_HSV_S: 0.35
+    - _Shadow_HSV_S: 0.2
     - _Shadow_HSV_V: -0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -111,7 +111,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HColor: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
     - _ReflectionColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
     - _SColor: {r: 0, g: 0, b: 0, a: 1}
     - _SubsurfaceAmbientColor: {r: 0, g: 0, b: 0, a: 1}
