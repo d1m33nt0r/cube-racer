@@ -167,7 +167,7 @@ Material:
     - _RampSmoothAdd: 0.75
     - _RampSmoothOtherLights: 0.5
     - _RampSmoothing: 0.877
-    - _RampThreshold: 0.866
+    - _RampThreshold: 0.873
     - _RampThresholdOtherLights: 0.5
     - _RampType: 0
     - _ReceiveShadowsOff: 1
@@ -182,9 +182,9 @@ Material:
     - _RimStrength: 0.5
     - _RimThreshold: 0.273
     - _ShadowColorLightAtten: 1
-    - _Shadow_HSV_H: 3
-    - _Shadow_HSV_S: 0.07
-    - _Shadow_HSV_V: -0.03
+    - _Shadow_HSV_H: 8
+    - _Shadow_HSV_S: 0.09
+    - _Shadow_HSV_V: -0.04
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
     - _SketchMax: 1
@@ -243,7 +243,7 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+    - _Color: {r: 0.7169812, g: 0.7068352, b: 0.7068352, a: 1}
     - _DepthColor: {r: 0, g: 0, b: 1, a: 1}
     - _DiffuseTint: {r: 0, g: 0, b: 0, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}

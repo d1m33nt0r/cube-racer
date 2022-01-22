@@ -14,13 +14,14 @@ public class FlagRoad : MonoBehaviour
         m_audioManager = _audioManager;
     }
     
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.collider.CompareTag("DiamondCollector") || other.collider.CompareTag("Untagged"))
+        if (other.CompareTag("DiamondCollector"))
         {
             animator.enabled = true;
             animator.Play("FlagAnim");
             m_audioManager.flagEffectAudioSource.PlayFlagEffectSound();
         }
     }
+    
 }

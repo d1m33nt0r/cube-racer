@@ -10,7 +10,7 @@ Material:
   m_Name: DefaultCube 5
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP
-    TCP2_RAMPTEXT TCP2_REFLECTIONS TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK
+    TCP2_RAMPTEXT TCP2_REFLECTIONS TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING TCP2_RIM_LIGHTING_LIGHTMASK
     TCP2_SHADOW_LIGHT_COLOR TCP2_SKETCH TCP2_SPECULAR TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF
     _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 2
@@ -225,7 +225,7 @@ Material:
     - _UseOcclusion: 0
     - _UseOutline: 0
     - _UseReflections: 1
-    - _UseRim: 0
+    - _UseRim: 1
     - _UseRimLightMask: 1
     - _UseShadowTexture: 0
     - _UseSketch: 1
@@ -243,7 +243,7 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+    - _Color: {r: 0.754717, g: 0.7369171, b: 0.7369171, a: 1}
     - _DepthColor: {r: 0, g: 0, b: 1, a: 1}
     - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
@@ -258,7 +258,7 @@ Material:
     - _RimColor: {r: 1, g: 0.8608516, b: 0, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: -10.33, g: -27.53, b: 20.6, a: 1}
-    - _SColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    - _SColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
