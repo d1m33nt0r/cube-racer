@@ -65,6 +65,12 @@ public class FriendlyBox : MonoBehaviour
                 boxController.RemoveBox(gameObject, false, 1);
                 m_audioManager.boxesAudioSource.PlayFailSound();
             }
+            
+            if (other.collider.CompareTag("GroundLet"))
+            {
+                boxController.RemoveBox(gameObject, false, 1);
+                m_audioManager.boxesAudioSource.PlayFailSound();
+            }
 
             if (other.collider.CompareTag("Lava"))
             {
@@ -101,6 +107,11 @@ public class FriendlyBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("FinishCameraConfigurator") && transform.parent.name == "Player")
+        {
+            Camera.main.GetComponent<CameraController>().ConfigureCameraForFinish();
+        }
+        
         if (!isBoxBonus) return;
         if (used) return;
         if (other.CompareTag("DiamondCollector"))

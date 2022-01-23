@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using DefaultNamespace.ObjectPool;
 using DefaultNamespace.Services.AudioManager;
 using Diamond;
 using Services.DataManipulator;
@@ -22,11 +23,13 @@ public class DiamondCollectingEffect : MonoBehaviour
     private SessionDiamondCounter sessionDiamondCounter;
     private Vibrator vibrator;
     private DiamondMultiplierLevelManager m_diamondMultiplierLevelManager;
-
+    private PoolManager m_poolManager;
+    
     [Inject]
     private void Construct(DiamondCounter diamondCounter, DiamondUI diamondUI,
         AudioManager _audioManager, SessionDiamondCounter sessionDiamondCounter,
-        UIController uiController, Vibrator _vibrator, DiamondMultiplierLevelManager _diamondMultiplierLevelManager)
+        UIController uiController, Vibrator _vibrator, DiamondMultiplierLevelManager _diamondMultiplierLevelManager,
+        PoolManager _poolManager)
     {
         this.diamondCounter = diamondCounter;
         this.diamondUI = diamondUI;
@@ -34,6 +37,7 @@ public class DiamondCollectingEffect : MonoBehaviour
         this.sessionDiamondCounter = sessionDiamondCounter;
         vibrator = _vibrator;
         m_diamondMultiplierLevelManager = _diamondMultiplierLevelManager;
+        m_poolManager = _poolManager;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,6 +52,7 @@ public class DiamondCollectingEffect : MonoBehaviour
             //wowsoneParticle.Play();
             diamondCounter.AddDiamond(1500);
             sessionDiamondCounter.AddDiamond(1500);
+            Camera.main.GetComponent<CameraController>().ChangeFinishingPosition();
             Destroy(gameObject);
         }
 
@@ -58,7 +63,10 @@ public class DiamondCollectingEffect : MonoBehaviour
             sessionDiamondCounter.AddDiamond(m_diamondMultiplierLevelManager.GetData());
             diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
-            Instantiate(effect).transform.position = transform.position;
+            //Instantiate(effect).transform.position = transform.position;
+            var temp = m_poolManager.GetObject("diamond_effect");
+            temp.transform.position = transform.position;
+            temp.SetActive(true);
 #if UNITY_ANDROID
             vibrator.VibrateDiamond();
 #endif

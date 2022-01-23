@@ -33,11 +33,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zOffsetValue;
 
     [SerializeField] private float speedForChangingPositionOnRefuelling;
-    
+
+    private bool finishMoved;
     private BoxController boxController;
     private float currentZValue;
     private Dictionary<int, CamPoint> camPoints = new Dictionary<int, CamPoint>();
-
+    private Vector3 startRefuellingRotation;
+    private float startRefuellingXPosition;
+    private float specialIncreaseDuration = 1f;
+    
     [Inject]
     private void Construct(BoxController boxController)
     {
@@ -52,6 +56,7 @@ public class CameraController : MonoBehaviour
 
     private void FillCameraPoints()
     {
+        startRefuellingRotation = transform.localRotation.eulerAngles;
         var cameraFieldOfView = GetComponent<Camera>().fieldOfView;
         var j = 0;
         for (var i = maxCount - (maxCount - minCount); i <= maxCount; i++)
@@ -84,6 +89,15 @@ public class CameraController : MonoBehaviour
         return false;
     }
 
+    public void ConfigureCameraForFinish()
+    {
+        if (finishMoved) return;
+        transform.DOLocalMove(new Vector3(transform.localPosition.x - 2, transform.localPosition.y - 5,
+            transform.localPosition.z + 5), 0.8f);
+        transform.DOLocalRotate(new Vector3(transform.localRotation.eulerAngles.x - 3f, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z), 0.8f);
+        finishMoved = true;
+    }
+    
     private void Increase(int count)
     {
         var pointIsExist = TryGetPoint<CamPoint>(boxController.boxCount, out var camPoint);
@@ -129,8 +143,9 @@ public class CameraController : MonoBehaviour
                     camera.DOKill();
                     
        
-                    transform.DOLocalMove(camPoint2.position, 2f);
-                    camera.DOFieldOfView(camPoint2.fieldView, 2f);
+                    transform.DOLocalMove(new Vector3(startRefuellingXPosition, camPoint2.position.y, camPoint2.position.z), specialIncreaseDuration);
+                    transform.DOLocalRotate(startRefuellingRotation, specialIncreaseDuration);
+                    camera.DOFieldOfView(camPoint2.fieldView, specialIncreaseDuration);
                 }
             }
         }
@@ -140,11 +155,10 @@ public class CameraController : MonoBehaviour
             transform.DOKill();
             camera.DOKill();
             
-            transform.DOLocalMove(camPoint.position, 2f);
-            camera.DOFieldOfView(camPoint.fieldView, 2f);
+            transform.DOLocalMove(new Vector3(startRefuellingXPosition, camPoint.position.y, camPoint.position.z), specialIncreaseDuration);
+            transform.DOLocalRotate(startRefuellingRotation, specialIncreaseDuration);
+            camera.DOFieldOfView(camPoint.fieldView, specialIncreaseDuration);
         }
-        
-        ChangeFinishingPosition();
     }
 
     private void Decrease(bool finish, int multiplier)
@@ -197,17 +211,22 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    
     public void ChangeStartingPosition()
     {
-        transform.DOLocalRotate(new Vector3(17.7f, -3f, 0), speedForChangingPositionOnRefuelling * 0.7f);
-        transform.DOLocalMoveX(0, speedForChangingPositionOnRefuelling * 0.7f);
-        //transform.DOLocalMoveZ(-33.6f, speedForChangingPositionOnRefuelling * 0.7f);
+        transform.DOLocalRotate(new Vector3(startRefuellingRotation.x, -3f, startRefuellingRotation.z), speedForChangingPositionOnRefuelling * 0.7f);
+        transform.DOLocalMoveX(3, speedForChangingPositionOnRefuelling * 0.7f);
     }
 
-    private void ChangeFinishingPosition()
+    public void SaveCurrentPositionAndRotation()
     {
-        transform.DOLocalRotate(new Vector3(17.7f, -11.54f, 0), speedForChangingPositionOnRefuelling);
-        transform.DOLocalMoveX(8.4f, speedForChangingPositionOnRefuelling);
-        //transform.DOLocalMoveZ(-27.91f, speedForChangingPositionOnRefuelling);
+        startRefuellingRotation = transform.localRotation.eulerAngles;
+        startRefuellingXPosition = transform.localPosition.x;
+    }
+
+    public void ChangeFinishingPosition()
+    {
+        transform.DOLocalRotate(startRefuellingRotation, speedForChangingPositionOnRefuelling);
+        transform.DOLocalMoveX(startRefuellingXPosition, speedForChangingPositionOnRefuelling);
     }
 }

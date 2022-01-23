@@ -19,6 +19,8 @@ TagManager:
   - Magnit
   - MagnitPlayer
   - Lava
+  - GroundLet
+  - FinishCameraConfigurator
   layers:
   - Default
   - TransparentFX

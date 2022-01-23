@@ -37,6 +37,7 @@ namespace UI
             {
                 text = Convert.ToString(multiplier * sessionDiamondCount);
             }
+            text = Convert.ToString(Int32.Parse(text) + sessionDiamondCount);
             diamondCount.text = text;
             diamondCountManager.UpdateData(Convert.ToInt32(diamondCount.text) + diamondCountManager.GetData());
         }

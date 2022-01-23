@@ -16,11 +16,14 @@ namespace DefaultNamespace
 
         private void SetMultiplier()
         {
+           
+            int layerMask = 1 << 10;
+
             RaycastHit hit;
             
             var multiplier = 1;
             
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
             {
                 multiplier = hit.collider.GetComponent<FinishPlatform>().Multiplier;
             }

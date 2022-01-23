@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using DefaultNamespace.ObjectPool;
 using Diamond;
 using UI;
 using UI.GlobalUI.DiamondCounter;
@@ -19,6 +20,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private UIController uiController;
     //[SerializeField] private AdsManager adsManager;
+    [SerializeField] private PoolManager poolManager;
 
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
@@ -47,7 +49,7 @@ public class GameplayInstaller : MonoInstaller
         BindLevel();
         BindPlayerMover();
         BindUiController();
-
+        BindPoolManager();
     }
 
     
@@ -57,6 +59,14 @@ public class GameplayInstaller : MonoInstaller
         Container
             .Bind<UIController>()
             .FromInstance(uiController)
+            .AsSingle();
+    }
+    
+    private void BindPoolManager()
+    {
+        Container
+            .Bind<PoolManager>()
+            .FromInstance(poolManager)
             .AsSingle();
     }
 

@@ -24,6 +24,10 @@ Shader "Toony Colors Pro 2/User/1"
 		_BandsSmoothing ("Bands Smoothing", Range(0.001,1)) = 0.1
 		_LightWrapFactor ("Light Wrap Factor", Range(0,2)) = 0.5
 		[TCP2Separator]
+
+		[TCP2HeaderHelp(Emission)]
+		[TCP2ColorNoAlpha] [HDR] _Emission ("Emission Color", Color) = (0,0,0,1)
+		[TCP2Separator]
 		
 		[TCP2HeaderHelp(Rim Lighting)]
 		[Toggle(TCP2_RIM_LIGHTING)] _UseRim ("Enable Rim Lighting", Float) = 0
@@ -79,6 +83,7 @@ Shader "Toony Colors Pro 2/User/1"
 		float _RimMaxVert;
 		float4 _MainTex_ST;
 		fixed4 _Color;
+		half4 _Emission;
 		float _LightWrapFactor;
 		float _RampThreshold;
 		float _RampSmoothing;
@@ -276,6 +281,7 @@ Shader "Toony Colors Pro 2/User/1"
 			float4 __albedo = ( tex2D(_MainTex, input.texcoord0.xy).rgba );
 			float4 __mainColor = ( _Color.rgba );
 			float __alpha = ( __albedo.a * __mainColor.a );
+			float3 __emission = ( _Emission.rgb );
 			output.__lightWrapFactor = ( _LightWrapFactor );
 			output.__rampThreshold = ( _RampThreshold );
 			output.__rampSmoothing = ( _RampSmoothing );
@@ -308,6 +314,7 @@ Shader "Toony Colors Pro 2/User/1"
 			output.Alpha = __alpha;
 			
 			output.Albedo *= __mainColor.rgb;
+			output.Emission += __emission;
 		}
 
 		//================================================================
@@ -425,5 +432,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2020.3.12f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","RIM_DIR","RIM","PLANAR_REFLECTION","DIFFUSE_TINT","RIM_VERTEX","REFLECTION_FRESNEL","WRAPPED_LIGHTING_CUSTOM","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT","UNITY_2020_1","SHADOW_HSV"];flags:list["novertexlights","noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH 07344c6615ed5e4b65bd18d04fc3751f */
+/* TCP_DATA u config(unity:"2020.3.12f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","RIM_DIR","RIM","PLANAR_REFLECTION","DIFFUSE_TINT","RIM_VERTEX","REFLECTION_FRESNEL","WRAPPED_LIGHTING_CUSTOM","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT","UNITY_2020_1","SHADOW_HSV","EMISSION"];flags:list["novertexlights","noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH 9c992df11635876d4f978bafd063b3ab */
