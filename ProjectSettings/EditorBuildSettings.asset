@@ -15,21 +15,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Shop.unity
     guid: 702f6ead581831e4d8c14c8b5e92b1eb
   - enabled: 1
-    path: Assets/Scenes/Levels/Level_0.unity
-    guid: 4a055d97ac178f5468a4e7d6b9c3e183
+    path: Assets/New/Scenes/Level_0.unity
+    guid: d2efd319a5b91c84a93395d3d338b9f1
   - enabled: 1
-    path: Assets/Scenes/Levels/Level_1.unity
-    guid: b8ec48355fa6a6b42bfa5011a1e314f9
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/Levels/Level_3.unity
-    guid: 7a6bdff5447dc14498a63f3d26016b82
-  - enabled: 0
-    path: Assets/Scenes/Levels/boloto.unity
-    guid: d3471fb9b3ae9e348b0aa6e58028c5e6
+    path: Assets/New/Scenes/Level_1.unity
+    guid: 536634e56a46b23458ccf2dea7f7b469
+  - enabled: 1
+    path: Assets/New/Scenes/Level_2.unity
+    guid: 0fd1540816f3da244b947d7e3847ac0f
+  - enabled: 1
+    path: Assets/New/Scenes/Level_3.unity
+    guid: 7913b87c57e0c0c478bfda652a42ba00
+  - enabled: 1
+    path: Assets/New/Scenes/Level_4.unity
+    guid: d1af97d78248afd438f0a822038094a2
   m_configObjects: {}

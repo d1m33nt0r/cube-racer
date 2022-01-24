@@ -24,6 +24,15 @@ Shader "Toony Colors Pro 2/User/1"
 		_BandsSmoothing ("Bands Smoothing", Range(0.001,1)) = 0.1
 		_LightWrapFactor ("Light Wrap Factor", Range(0,2)) = 0.5
 		[TCP2Separator]
+		
+		[TCP2HeaderHelp(Specular)]
+		[Toggle(TCP2_SPECULAR)] _UseSpecular ("Enable Specular", Float) = 0
+		[TCP2ColorNoAlpha] _SpecularColor ("Specular Color", Color) = (0.5,0.5,0.5,1)
+		_SpecularSmoothness ("Smoothness", Float) = 0.2
+		_AnisotropicSpread ("Anisotropic Spread", Range(0,2)) = 1
+		_SpecularToonSize ("Toon Size", Range(0,1)) = 0.25
+		_SpecularToonSmoothness ("Toon Smoothness", Range(0.001,0.5)) = 0.05
+		[TCP2Separator]
 
 		[TCP2HeaderHelp(Emission)]
 		[TCP2ColorNoAlpha] [HDR] _Emission ("Emission Color", Color) = (0,0,0,1)
@@ -95,6 +104,11 @@ Shader "Toony Colors Pro 2/User/1"
 		fixed4 _HColor;
 		fixed4 _SColor;
 		fixed4 _DiffuseTint;
+		float _AnisotropicSpread;
+		float _SpecularSmoothness;
+		float _SpecularToonSize;
+		float _SpecularToonSmoothness;
+		fixed4 _SpecularColor;
 		fixed4 _RimColor;
 		float _FresnelMin;
 		float _FresnelMax;
@@ -165,12 +179,13 @@ Shader "Toony Colors Pro 2/User/1"
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha novertexlights noforwardadd nolightmap nolppv
+		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha noforwardadd nolightmap nolppv
 		#pragma target 2.5
 
 		//================================================================
 		// SHADER KEYWORDS
 
+		#pragma shader_feature TCP2_SPECULAR
 		#pragma shader_feature TCP2_RIM_LIGHTING
 		#pragma shader_feature TCP2_REFLECTIONS
 		#pragma shader_feature TCP2_AMBIENT
@@ -186,15 +201,14 @@ Shader "Toony Colors Pro 2/User/1"
 			float4 texcoord0 : TEXCOORD0;
 			float4 texcoord1 : TEXCOORD1;
 			float4 texcoord2 : TEXCOORD2;
-		#if defined(LIGHTMAP_ON) && defined(DIRLIGHTMAP_COMBINED)
 			half4 tangent : TANGENT;
-		#endif
 			UNITY_VERTEX_INPUT_INSTANCE_ID
 		};
 
 		struct Input
 		{
 			half3 viewDir;
+			half3 tangent;
 			half3 worldNormal; INTERNAL_DATA
 			float4 screenPosition;
 			half rim;
@@ -223,6 +237,7 @@ Shader "Toony Colors Pro 2/User/1"
 			output.screenPosition = screenPos;
 			half3 viewDir = normalize(UnityWorldSpaceViewDir(worldPos));
 
+			output.tangent = mul(unity_ObjectToWorld, float4(v.tangent.xyz, 0)).xyz;
 			#if defined(TCP2_RIM_LIGHTING)
 			half3 rViewDir = viewDir;
 			half3 rimDir = __rimDirVert;
@@ -265,6 +280,11 @@ Shader "Toony Colors Pro 2/User/1"
 			float3 __shadowColor;
 			float3 __diffuseTint;
 			float __ambientIntensity;
+			float __anisotropicSpread;
+			float __specularSmoothness;
+			float __specularToonSize;
+			float __specularToonSmoothness;
+			float3 __specularColor;
 			float3 __rimColor;
 			float __rimStrength;
 			float __fresnelMin;
@@ -294,6 +314,11 @@ Shader "Toony Colors Pro 2/User/1"
 			output.__shadowColor = ( _SColor.rgb );
 			output.__diffuseTint = ( _DiffuseTint.rgb );
 			output.__ambientIntensity = ( 1.0 );
+			output.__anisotropicSpread = ( _AnisotropicSpread );
+			output.__specularSmoothness = ( _SpecularSmoothness );
+			output.__specularToonSize = ( _SpecularToonSize );
+			output.__specularToonSmoothness = ( _SpecularToonSmoothness );
+			output.__specularColor = ( _SpecularColor.rgb );
 			output.__rimColor = ( _RimColor.rgb );
 			output.__rimStrength = ( 1.0 );
 			output.__fresnelMin = ( _FresnelMin );
@@ -387,6 +412,21 @@ Shader "Toony Colors Pro 2/User/1"
 			#endif
 			#endif
 
+			#if defined(TCP2_SPECULAR)
+			//Anisotropic Specular
+			half3 h = normalize(lightDir + viewDir);
+			float ndh = max(0, dot (normal, h));
+			half3 binorm = cross(normal, surface.input.tangent);
+			float aX = dot(h, surface.input.tangent) / surface.__anisotropicSpread;
+			float aY = dot(h, binorm) / surface.__specularSmoothness;
+			float specAniso = sqrt(max(0.0, ndl / surface.ndvRaw)) * exp(-2.0 * (aX * aX + aY * aY) / (1.0 + ndh));
+			float spec = smoothstep(surface.__specularToonSize + surface.__specularToonSmoothness, surface.__specularToonSize - surface.__specularToonSmoothness,1 - (specAniso / (1+surface.__specularToonSmoothness)));
+			spec = saturate(spec);
+			spec *= atten;
+			
+			//Apply specular
+			color.rgb += spec * lightColor.rgb * surface.__specularColor;
+			#endif
 			// Rim Lighting
 			#if defined(TCP2_RIM_LIGHTING)
 			#if !defined(UNITY_PASS_FORWARDADD)
@@ -432,5 +472,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2020.3.12f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","SPECULAR_NO_ATTEN","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","RIM_DIR","RIM","PLANAR_REFLECTION","DIFFUSE_TINT","RIM_VERTEX","REFLECTION_FRESNEL","WRAPPED_LIGHTING_CUSTOM","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT","UNITY_2020_1","SHADOW_HSV","EMISSION"];flags:list["novertexlights","noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH 9c992df11635876d4f978bafd063b3ab */
+/* TCP_DATA u config(unity:"2020.3.12f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","AMBIENT_SHADER_FEATURE","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","REFLECTION_SHADER_FEATURE","RIM_DIR","RIM","PLANAR_REFLECTION","DIFFUSE_TINT","RIM_VERTEX","REFLECTION_FRESNEL","WRAPPED_LIGHTING_CUSTOM","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT","UNITY_2020_1","SHADOW_HSV","EMISSION","SPECULAR","SPECULAR_TOON","SPECULAR_ANISOTROPIC","SKETCH_PROGRESSIVE_SMOOTH"];flags:list["noforwardadd"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH 1f7944f9a73c10013323a0372eb5a16e */
