@@ -223,6 +223,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _StylizedThreshold:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TerrainHolesTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -239,6 +243,7 @@ Material:
     - _Add_Antipodean_RimLight: 0
     - _AlphaClip: 0
     - _AngelRing: 0
+    - _AnisotropicSpread: 1
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
@@ -365,6 +370,7 @@ Material:
     - _SpecSmooth: 0.13
     - _SpecSource: 0
     - _SpecularHighlights: 0
+    - _SpecularSmoothness: 0.2
     - _SrcBlend: 1
     - _StencilComp: 0
     - _StencilMode: 0
@@ -390,6 +396,8 @@ Material:
     - _UseAmbient: 1
     - _UseReflections: 0
     - _UseRim: 0
+    - _UseSpecular: 0
+    - _UseTexturedThreshold: 0
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
@@ -413,13 +421,13 @@ Material:
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5424528, g: 0.9865427, b: 1, a: 0.078125}
-    - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+    - _Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffuseTint: {r: 0.99513865, g: 1, b: 0.5235849, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 0.6084906, g: 0.897309, b: 1, a: 0}
     - _L1_direction: {r: -0.54, g: 0.707, b: 0.3, a: 0}
@@ -434,6 +442,7 @@ Material:
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecularColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}

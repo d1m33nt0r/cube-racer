@@ -50,10 +50,10 @@ namespace Installers
             BindStartBoxCountManager();
             BindThemeManager();
             BindDiamondUI(diamondCountManager);
-            InstantiateFpsCounter(debugParent);
+            //InstantiateFpsCounter(debugParent);
             BindAdsManager();
             
-            InstantiateLunarConsole(debugParent);
+            //InstantiateLunarConsole(debugParent);
         }
 
         private void InstantiateLunarConsole(GameObject parent)

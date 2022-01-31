@@ -6,7 +6,13 @@ using UnityEngine;
 namespace DefaultNamespace
 {
     [Serializable]
-    public class SerializableCubeLetsDictionary : SerializableDictionary<int, List<GameObject>>
+    public class ColumnCubes
+    {
+        public List<GameObject> cubes = new List<GameObject>();
+    }
+
+    [Serializable]
+    public class SerializableCubeLetsDictionary : SerializableDictionary<int, ColumnCubes>
     {
         
     }

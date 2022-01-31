@@ -4,25 +4,21 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    [ExecuteInEditMode][Serializable]
+    #if UNITY_EDITOR
     public class CubeLetContainer : MonoBehaviour
     {
-        [SerializeField, HideInInspector] private SerializableCubeLetsDictionary letCubes;
-        [SerializeField, HideInInspector] private List<int> countCubesInColumn;
-        [SerializeField, HideInInspector] private bool isInitialized;
+        [SerializeField] public SerializableCubeLetsDictionary letCubes = new SerializableCubeLetsDictionary();
+        [SerializeField] public List<int> countCubesInColumn = new List<int>();
+        [SerializeField] public bool isInitialized;
 
         public Material material;
         public Mesh mesh;
-        
-        public List<int> CountCubesInColumn => countCubesInColumn;
-        public bool IsInitialized => isInitialized;
-        public SerializableCubeLetsDictionary LetCubes => letCubes;
-        
+
         public void Initialize()
         {
-            countCubesInColumn = new List<int>();
-            letCubes = new SerializableCubeLetsDictionary();
-            InitializeCubesCountList();
+            if (!isInitialized)
+                InitializeCubesCountList();
+            
             isInitialized = true;
         }
 
@@ -31,7 +27,7 @@ namespace DefaultNamespace
             for (var i = 0; i < 5; i++)
             {
                 countCubesInColumn.Add(0);
-                letCubes.Add(i, new List<GameObject>());
+                letCubes.Add(i, new ColumnCubes());
             }
         }
 
@@ -69,7 +65,7 @@ namespace DefaultNamespace
             ChangeMeshForChildrenObjects();
         }
 
-        public void CLearConnectionPoints()
+        public void ClearConnectionPoints()
         {
             for (var i = 0; i < transform.childCount; i++)
             {
@@ -86,4 +82,5 @@ namespace DefaultNamespace
             }
         }
     }
+    #endif
 }

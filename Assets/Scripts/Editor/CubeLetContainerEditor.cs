@@ -20,10 +20,20 @@ namespace DefaultNamespace
         {
             targetObject = target as CubeLetContainer;
             startPoint = targetObject.transform.position;
-            cubeLetPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Prefabs/LetCube.prefab", typeof(GameObject));
-            if (!(targetObject is null) && !targetObject.IsInitialized) Initialize();
+            cubeLetPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/New/Prefabs/let_cube.prefab", typeof(GameObject));
+            if (!targetObject.isInitialized) Initialize();
         }
 
+        private void CalculateCubes()
+        {
+            var i = 0;
+            foreach (var cubesValue in targetObject.letCubes.Values)
+            {
+                targetObject.countCubesInColumn[i] = cubesValue.cubes.Count;
+                i++;
+            }
+        }
+        
         private void Initialize()
         {
             targetObject.Initialize();
@@ -43,32 +53,35 @@ namespace DefaultNamespace
             {
                 targetObject.ChangeComponents();
             }
+            
+            if (GUILayout.Button("Refresh counters"))
+            {
+                CalculateCubes();
+            }
+            
             EditorGUILayout.EndVertical();
             
             EditorGUILayout.BeginHorizontal();
             var i = 0;
-            foreach (var count in targetObject.CountCubesInColumn)
+            foreach (var count in targetObject.countCubesInColumn)
             {
                 EditorGUILayout.BeginVertical();
                 if (GUILayout.Button("+"))
                 {
                     AddCubeInColumnByIndex(i);
+                    return;
                 }
                 EditorGUILayout.IntField(count, style);
                 if (GUILayout.Button("-"))
                 {
                     RemoveCubeInColumnBuIndex(i);
+                    return;
                 }
                 EditorGUILayout.EndVertical();
                 i++;
             }
             EditorGUILayout.EndHorizontal();
-            
-            if (GUILayout.Button("Clear Connectors"))
-            {
-                targetObject.CLearConnectionPoints();
-            }
-            
+
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -79,42 +92,59 @@ namespace DefaultNamespace
             switch (_columnIndex)
             {
                 case 0:
-                    position = new Vector3(LeftLeftPoint.x, LeftLeftPoint.y + targetObject.LetCubes[_columnIndex].Count * cubeHeight, LeftLeftPoint.z);
-                    prefab = Instantiate(cubeLetPrefab, position, Quaternion.identity, targetObject.transform);
-                    targetObject.LetCubes[_columnIndex].Add(prefab);
+                    position = new Vector3(LeftLeftPoint.x, LeftLeftPoint.y + targetObject.letCubes[_columnIndex].cubes.Count * cubeHeight, LeftLeftPoint.z);
+                    prefab = (GameObject) PrefabUtility.InstantiatePrefab(cubeLetPrefab);
+                    prefab.transform.position = position;
+                    prefab.transform.rotation = Quaternion.identity;
+                    prefab.transform.SetParent(targetObject.transform);
+                    targetObject.letCubes[_columnIndex].cubes.Add(prefab);
                     break;
                 case 1:
-                    position = new Vector3(LeftPoint.x, LeftPoint.y + targetObject.LetCubes[_columnIndex].Count * cubeHeight, LeftPoint.z);
-                    prefab = Instantiate(cubeLetPrefab, position, Quaternion.identity, targetObject.transform);
-                    targetObject.LetCubes[_columnIndex].Add(prefab);
+                    position = new Vector3(LeftPoint.x, LeftPoint.y + targetObject.letCubes[_columnIndex].cubes.Count * cubeHeight, LeftPoint.z);
+                    prefab = (GameObject) PrefabUtility.InstantiatePrefab(cubeLetPrefab);
+                    prefab.transform.position = position;
+                    prefab.transform.rotation = Quaternion.identity;
+                    prefab.transform.SetParent(targetObject.transform);
+                    targetObject.letCubes[_columnIndex].cubes.Add(prefab);
                     break;
                 case 2:
-                    position = new Vector3(startPoint.x, startPoint.y + targetObject.LetCubes[_columnIndex].Count * cubeHeight, startPoint.z);
-                    prefab = Instantiate(cubeLetPrefab, position, Quaternion.identity, targetObject.transform);
-                    targetObject.LetCubes[_columnIndex].Add(prefab);
+                    position = new Vector3(startPoint.x, startPoint.y + targetObject.letCubes[_columnIndex].cubes.Count * cubeHeight, startPoint.z);
+                    prefab = (GameObject) PrefabUtility.InstantiatePrefab(cubeLetPrefab);
+                    prefab.transform.position = position;
+                    prefab.transform.rotation = Quaternion.identity;
+                    prefab.transform.SetParent(targetObject.transform);
+                    targetObject.letCubes[_columnIndex].cubes.Add(prefab);
                     break;
                 case 3:
-                    position = new Vector3(RightPoint.x, RightPoint.y + targetObject.LetCubes[_columnIndex].Count * cubeHeight, RightPoint.z);
-                    prefab = Instantiate(cubeLetPrefab, position, Quaternion.identity, targetObject.transform);
-                    targetObject.LetCubes[_columnIndex].Add(prefab);
+                    position = new Vector3(RightPoint.x, RightPoint.y + targetObject.letCubes[_columnIndex].cubes.Count * cubeHeight, RightPoint.z);
+                    prefab = (GameObject) PrefabUtility.InstantiatePrefab(cubeLetPrefab);
+                    prefab.transform.position = position;
+                    prefab.transform.rotation = Quaternion.identity;
+                    prefab.transform.SetParent(targetObject.transform);
+                    targetObject.letCubes[_columnIndex].cubes.Add(prefab);
                     break;
                 case 4:
-                    position = new Vector3(RightRightPoint.x, RightRightPoint.y + targetObject.LetCubes[_columnIndex].Count * cubeHeight, RightRightPoint.z);
-                    prefab = Instantiate(cubeLetPrefab, position, Quaternion.identity, targetObject.transform);
-                    targetObject.LetCubes[_columnIndex].Add(prefab);
+                    position = new Vector3(RightRightPoint.x, RightRightPoint.y + targetObject.letCubes[_columnIndex].cubes.Count * cubeHeight, RightRightPoint.z);
+                    prefab = (GameObject) PrefabUtility.InstantiatePrefab(cubeLetPrefab);
+                    prefab.transform.position = position;
+                    prefab.transform.rotation = Quaternion.identity;
+                    prefab.transform.SetParent(targetObject.transform);
+                    targetObject.letCubes[_columnIndex].cubes.Add(prefab);
                     break;
             }
+
+            targetObject.countCubesInColumn[_columnIndex]++;
             
             EditorUtility.SetDirty(targetObject);
         }
 
         private void RemoveCubeInColumnBuIndex(int _columnIndex)
         {
-            if (targetObject.LetCubes[_columnIndex].Count == 0) return;
-            var temp = targetObject.LetCubes[_columnIndex][targetObject.LetCubes[_columnIndex].Count - 1];
-            targetObject.LetCubes[_columnIndex].RemoveAt(targetObject.LetCubes[_columnIndex].Count - 1);
+            if (targetObject.letCubes[_columnIndex].cubes.Count == 0) return;
+            var temp = targetObject.letCubes[_columnIndex].cubes[targetObject.letCubes[_columnIndex].cubes.Count - 1];
+            targetObject.letCubes[_columnIndex].cubes.RemoveAt(targetObject.letCubes[_columnIndex].cubes.Count - 1);
             DestroyImmediate(temp);
-            
+            targetObject.countCubesInColumn[_columnIndex]--;
             EditorUtility.SetDirty(targetObject);
         }
     }

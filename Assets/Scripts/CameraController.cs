@@ -141,8 +141,7 @@ public class CameraController : MonoBehaviour
                 {
                     transform.DOKill();
                     camera.DOKill();
-                    
-       
+
                     transform.DOLocalMove(new Vector3(startRefuellingXPosition, camPoint2.position.y, camPoint2.position.z), specialIncreaseDuration);
                     transform.DOLocalRotate(startRefuellingRotation, specialIncreaseDuration);
                     camera.DOFieldOfView(camPoint2.fieldView, specialIncreaseDuration);
@@ -165,7 +164,9 @@ public class CameraController : MonoBehaviour
     {
         if (finish)
         {
-            camera.transform.DOMoveY(transform.position.y + 0.1f, 0.25f);
+            transform.DOLocalMove(new Vector3(transform.localPosition.x, transform.localPosition.y + 2f, transform.localPosition.z + 1f), 0.5f);
+            var localRot = transform.localRotation.eulerAngles;
+            transform.DOLocalRotate(new Vector3(localRot.x + 1, localRot.y, localRot.z), 0.5f);
             return;
         }
         
@@ -199,18 +200,22 @@ public class CameraController : MonoBehaviour
 
     public void FinishRotation(Transform target)
     {
+        camera.DOKill();
+        transform.DOKill();
+        camera.DOFieldOfView(72, 2f);
+        //transform.DOLookAt(transform.TransformPoint(target.position), 2f);
         StartCoroutine(Rotation(target));
     }
 
     private IEnumerator Rotation(Transform target)
     {
+        yield return new WaitForSeconds(1f);
         while (true)
         {
             transform.RotateAround(target.position, Vector3.up, 20 * Time.deltaTime);
             yield return null;
         }
     }
-
     
     public void ChangeStartingPosition()
     {

@@ -63,6 +63,7 @@ namespace DefaultNamespace.ObjectPool.Editor
                 {
                     m_poolManager.pools.Add(m_poolObjectName, pool.GetComponent<Pool>());
                     Initialize();
+                    return;
                 }
             }
             
@@ -84,9 +85,12 @@ namespace DefaultNamespace.ObjectPool.Editor
                     var poolValue = keyValue.Value;
                     var i = 0;
 
-                    m_poolManager.pools[keyValue.Key].minCountThreshold =
-                        EditorGUILayout.IntField("Min count threshold", m_poolManager.pools[keyValue.Key].minCountThreshold);
-                    
+                    if (GUILayout.Button("Remove this pool"))
+                    {
+                        m_poolManager.RemovePoolByKey(keyValue.Key);
+                        return;
+                    }
+
                     foreach (var t in poolValue.GetComponent<Pool>().objects)
                     {
                         EditorGUILayout.BeginHorizontal();

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DefaultNamespace;
 using DG.Tweening;
 using UnityEngine;
 using Zenject;
@@ -42,7 +43,7 @@ namespace UI
         private void ShowFinish()
         {
             StartCoroutine(WaitAndShowUI(0.5f));
-            GameObject.Find("Main Camera").GetComponent<CameraController>().FinishRotation(GameObject.Find("Player").transform);
+            FindObjectOfType<CameraController>().FinishRotation(FindObjectOfType<PlayerMover>().transform);
             //GameObject.Find("Camera").GetComponent<CameraController>().RotateAround(GameObject.Find("Player").transform);
         }
 

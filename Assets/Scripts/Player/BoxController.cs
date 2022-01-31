@@ -35,7 +35,7 @@ public class BoxController : MonoBehaviour
     private Transform currentRoad;
     [SerializeField] private GameObject playerRenderer;
     public int boxCount => boxes.Count;
-    public float heightBox => 0.2105f; 
+    public float heightBox => 0.2f; 
 
     private AudioManager m_audioManager;
     private StartBoxCountManager startBoxCountManager;

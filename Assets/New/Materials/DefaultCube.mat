@@ -10,9 +10,9 @@ Material:
   m_Name: DefaultCube
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP
-    TCP2_RAMPTEXT TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING TCP2_RIM_LIGHTING_LIGHTMASK
-    TCP2_SHADOW_LIGHT_COLOR TCP2_SPECULAR TCP2_SUBSURFACE TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF
-    _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
+    TCP2_RAMPTEXT TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR
+    TCP2_SUBSURFACE TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+    _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 76422034c3924124aad5512a55402f34, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6839410c5a454024988fd4c055f74d9a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap:
@@ -119,7 +119,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _StylizedThreshold:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c8b92633bf2cc1f469e7cd9a0ed3aefa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -128,9 +128,15 @@ Material:
     - _AnisotropicExponent2: 400
     - _AnisotropicShift1: 0.2
     - _AnisotropicShift2: 0.5
-    - _AnisotropicSpread: 1.76
-    - _BandsCount: 4
-    - _BandsSmoothing: 0.216
+    - _AnisotropicSpread: 0.61
+    - _BandsCount: 3
+    - _BandsCountDirectional: 4
+    - _BandsCountPoint: 4
+    - _BandsCountSpot: 4
+    - _BandsSmoothing: 0.203
+    - _BandsSmoothingDirectional: 0.1
+    - _BandsSmoothingPoint: 0.1
+    - _BandsSmoothingSpot: 0.1
     - _Brightness: 0.069
     - _BumpScale: 1
     - _Cull: 2
@@ -143,8 +149,8 @@ Material:
     - _DisplacementStrength: -0.33
     - _DstBlend: 0
     - _EmissionChannel: 4
-    - _FresnelMax: 0.79
-    - _FresnelMin: 0.05
+    - _FresnelMax: 1.91
+    - _FresnelMin: 1.67
     - _GlossMapScale: 1
     - _Glossiness: -5.17
     - _GlossyReflections: 0
@@ -179,9 +185,15 @@ Material:
     - _RampSmooth: 0.619
     - _RampSmoothAdd: 0.75
     - _RampSmoothOtherLights: 0.5
-    - _RampSmoothing: 0.83
-    - _RampThreshold: 0.853
+    - _RampSmoothing: 0.814
+    - _RampSmoothingDirectional: 0.5
+    - _RampSmoothingPoint: 0.5
+    - _RampSmoothingSpot: 0.5
+    - _RampThreshold: 0.801
+    - _RampThresholdDirectional: 0.5
     - _RampThresholdOtherLights: 0.5
+    - _RampThresholdPoint: 0.5
+    - _RampThresholdSpot: 0.5
     - _RampType: 0
     - _ReceiveShadowsOff: 1
     - _ReflectionMapType: 0
@@ -195,9 +207,12 @@ Material:
     - _RimStrength: 0.5
     - _RimThreshold: 0.273
     - _ShadowColorLightAtten: 1
-    - _Shadow_HSV_H: 6
-    - _Shadow_HSV_S: 0.61
-    - _Shadow_HSV_V: -0.14
+    - _ShadowLineSmoothing: 0.015
+    - _ShadowLineStrength: 1
+    - _ShadowLineThreshold: 0.5
+    - _Shadow_HSV_H: -2
+    - _Shadow_HSV_S: 0.3
+    - _Shadow_HSV_V: -0.119
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
     - _SketchMax: 0.3
@@ -213,8 +228,8 @@ Material:
     - _SpecularShadowAttenuation: -0.8
     - _SpecularSmoothness: 5.97
     - _SpecularToonBands: -1
-    - _SpecularToonSize: 0.178
-    - _SpecularToonSmoothness: 0.5
+    - _SpecularToonSize: 0.619
+    - _SpecularToonSmoothness: 0.076
     - _SpecularType: 0
     - _SrcBlend: 1
     - _Strength: 0.015
@@ -238,11 +253,11 @@ Material:
     - _UseOcclusion: 0
     - _UseOutline: 0
     - _UseReflections: 0
-    - _UseRim: 1
+    - _UseRim: 0
     - _UseRimLightMask: 1
     - _UseShadowTexture: 0
     - _UseSketch: 0
-    - _UseSpecular: 1
+    - _UseSpecular: 0
     - _UseSubsurface: 1
     - _UseTexturedThreshold: 0
     - _UseVertexDisplacement: 0
@@ -250,18 +265,19 @@ Material:
     - _VerticalFogThreshold: -3.23
     - _ZSmooth: -0.5
     - _ZWrite: 1
+    - __BeginGroup_OtherLights: 0
     - __BeginGroup_ShadowHSV: 1
     - __EndGroup: 0
     - __dummy__: 0
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+    - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _DepthColor: {r: 0, g: 0, b: 1, a: 1}
-    - _DiffuseTint: {r: 0.08018869, g: 1, b: 0.99278593, a: 1}
-    - _Emission: {r: 0.033, g: 0, b: 0, a: 1}
+    - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
-    - _HColor: {r: 0.5, g: 0.49292454, b: 0.49292454, a: 1}
+    - _HColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
     - _MatCapColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RampSmoothingRGB: {r: 0.203, g: 1, b: 0, a: 1}
@@ -271,9 +287,10 @@ Material:
     - _RimColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: -1.73, g: -157.65, b: 0, a: 1}
-    - _SColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    - _SColor: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+    - _ShadowLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
-    - _SpecularColor: {r: 0.028301895, g: 0.023629412, b: 0.028301895, a: 1}
+    - _SpecularColor: {r: 0.02745098, g: 0.023529412, b: 0.02745098, a: 1}
     - _SpecularColor1: {r: 0.3, g: 0.3, b: 0.3, a: 1}
     - _SpecularColor2: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.764151, g: 0.14057496, b: 0.14057496, a: 1}
@@ -283,5 +300,5 @@ Material:
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0, g: 0, b: 0, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
   m_BuildTextureStacks: []

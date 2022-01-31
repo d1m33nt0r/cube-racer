@@ -26,13 +26,13 @@ public class RotationAnimation : MonoBehaviour
         switch (type)
         {
             case Rotation.Y:
-                transform.rotation = Quaternion.AngleAxis(rotation += speed, Vector3.up);
+                transform.rotation = Quaternion.AngleAxis(rotation += speed * Time.deltaTime, Vector3.up);
                 break;
             case Rotation.X:
-                transform.rotation = Quaternion.AngleAxis(rotation += speed, Vector3.right);
+                transform.rotation = Quaternion.AngleAxis(rotation += speed * Time.deltaTime, Vector3.right);
                 break;
             case Rotation.Z:
-                transform.rotation = Quaternion.AngleAxis(rotation += speed, Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(rotation += speed * Time.deltaTime, Vector3.forward);
                 break;
             default:
                 angle1 = angle * (Mathf.PI / 180);
