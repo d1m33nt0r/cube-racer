@@ -182,8 +182,8 @@ Material:
     - _RimStrength: 0.5
     - _RimThreshold: 0.273
     - _ShadowColorLightAtten: 1
-    - _Shadow_HSV_H: 12
-    - _Shadow_HSV_S: 0.27
+    - _Shadow_HSV_H: 10
+    - _Shadow_HSV_S: 0.18
     - _Shadow_HSV_V: -0.1
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
