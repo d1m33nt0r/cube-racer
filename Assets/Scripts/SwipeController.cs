@@ -71,12 +71,12 @@ public class SwipeController : MonoBehaviour
 
             if (swipeDelta.x < 0 && swipeDelta != prevSwipeDelta)
             {
-                SwipeEvent?.Invoke(SwipeType.LEFT, Mathf.Abs(swipeDelta.x) / 65);
+                SwipeEvent?.Invoke(SwipeType.LEFT, Mathf.Abs(swipeDelta.x) / 70);
             }
 
             if (swipeDelta.x > 0 && swipeDelta != prevSwipeDelta)
             {
-                SwipeEvent?.Invoke(SwipeType.RIGHT, Mathf.Abs(swipeDelta.x) / 65);
+                SwipeEvent?.Invoke(SwipeType.RIGHT, Mathf.Abs(swipeDelta.x) / 70);
             }
             
             prevMousePosition = curMousePosition;

@@ -118,6 +118,7 @@ public class FriendlyBox : MonoBehaviour
         {
             used = true;
             boxController.SpecialAddBox2(transform.parent.GetComponent<BoxesPool>().Boxes);
+            Camera.main.GetComponent<CameraController>().ChangeFinishingPosition();
             wowsomeCanvas.SetActive(true);
             //wowsoneParticle.Play();
             boxController.AnimateEmission();

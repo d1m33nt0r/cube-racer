@@ -61,6 +61,9 @@ Shader "Toony Colors Pro 2/User/1"
 		_StylizedThreshold ("Stylized Threshold", 2D) = "gray" {}
 		[TCP2Separator]
 		
+		[TCP2ColorNoAlpha] _DiffuseTint ("Diffuse Tint", Color) = (1,0.5,0,1)
+		[TCP2Separator]
+		
 		//Avoid compile error if the properties are ending with a drawer
 		[HideInInspector] __dummy__ ("unused", Float) = 0
 	}
@@ -98,6 +101,7 @@ Shader "Toony Colors Pro 2/User/1"
 		float _Shadow_HSV_V;
 		fixed4 _HColor;
 		fixed4 _SColor;
+		fixed4 _DiffuseTint;
 		float _AnisotropicSpread;
 		float _SpecularSmoothness;
 		fixed4 _SpecularColor;
@@ -272,6 +276,7 @@ Shader "Toony Colors Pro 2/User/1"
 			float __shadowValue;
 			float3 __highlightColor;
 			float3 __shadowColor;
+			float3 __diffuseTint;
 			float __ambientIntensity;
 			float __anisotropicSpread;
 			float __specularSmoothness;
@@ -304,6 +309,7 @@ Shader "Toony Colors Pro 2/User/1"
 			output.__shadowValue = ( _Shadow_HSV_V );
 			output.__highlightColor = ( _HColor.rgb );
 			output.__shadowColor = ( _SColor.rgb );
+			output.__diffuseTint = ( _DiffuseTint.rgb );
 			output.__ambientIntensity = ( 1.0 );
 			output.__anisotropicSpread = ( _AnisotropicSpread );
 			output.__specularSmoothness = ( _SpecularSmoothness );
@@ -383,6 +389,10 @@ Shader "Toony Colors Pro 2/User/1"
 				ramp = lerp(surface.__shadowColor, surface.__highlightColor, ramp);
 			#endif
 
+			// Diffuse Tint
+			half3 diffuseTint = saturate(surface.__diffuseTint + ndl);
+			ramp *= diffuseTint;
+			
 			//Output color
 			half4 color;
 			color.rgb = surface.Albedo * lightColor.rgb * ramp;
@@ -460,5 +470,5 @@ Shader "Toony Colors Pro 2/User/1"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2020.3.12f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","RIM_DIR","RIM_VERTEX","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT","UNITY_2020_1","SKETCH_PROGRESSIVE_SMOOTH","SHADOW_HSV","TEXTURED_THRESHOLD","PLANAR_REFLECTION","REFLECTION_FRESNEL","REFLECTION_SHADER_FEATURE","RIM","SPECULAR_ANISOTROPIC","SPECULAR","WRAPPED_LIGHTING_CUSTOM"];flags:list["noforwardadd","novertexlights","halfasview"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH 445fa7c2663d9491ac9e3fc70c11fd5b */
+/* TCP_DATA u config(unity:"2020.3.12f1";ver:"2.7.4";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","SS_SHADER_FEATURE","SUBSURFACE_AMB_COLOR","TT_SHADER_FEATURE","RIM_SHADER_FEATURE","RAMP_BANDS","SKETCH_AMBIENT","SKETCH_SHADER_FEATURE","VERTICAL_FOG_ALPHA","VERTICAL_FOG_COLOR","ENABLE_FOG","SPECULAR_SHADER_FEATURE","MATCAP_SHADER_FEATURE","MATCAP_PERSPECTIVE_CORRECTION","RIM_DIR","RIM_VERTEX","RIM_DIR_PERSP_CORRECTION","DIRAMBIENT","UNITY_2020_1","SKETCH_PROGRESSIVE_SMOOTH","SHADOW_HSV","TEXTURED_THRESHOLD","PLANAR_REFLECTION","REFLECTION_FRESNEL","REFLECTION_SHADER_FEATURE","RIM","SPECULAR_ANISOTROPIC","SPECULAR","WRAPPED_LIGHTING_CUSTOM","DIFFUSE_TINT"];flags:list["noforwardadd","novertexlights","halfasview"];flags_extra:dict[pragma_gpu_instancing=list[]];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="2.5",RIM_LABEL="Rim Lighting"];shaderProperties:list[];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH 09d548f0837e5d7bc2c84f2dd6f9b935 */

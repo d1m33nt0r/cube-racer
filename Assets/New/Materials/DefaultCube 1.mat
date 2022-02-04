@@ -119,7 +119,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _StylizedThreshold:
-        m_Texture: {fileID: 2800000, guid: 388db4c97aca6494e8d722423595be3b, type: 3}
+        m_Texture: {fileID: 2800000, guid: c8b92633bf2cc1f469e7cd9a0ed3aefa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -128,12 +128,12 @@ Material:
     - _AnisotropicExponent2: 400
     - _AnisotropicShift1: 0.2
     - _AnisotropicShift2: 0.5
-    - _AnisotropicSpread: 0.01
+    - _AnisotropicSpread: 0.53
     - _BandsCount: 3
     - _BandsCountDirectional: 4
     - _BandsCountPoint: 4
     - _BandsCountSpot: 4
-    - _BandsSmoothing: 0.203
+    - _BandsSmoothing: 0.176
     - _BandsSmoothingDirectional: 0.1
     - _BandsSmoothingPoint: 0.1
     - _BandsSmoothingSpot: 0.1
@@ -149,8 +149,8 @@ Material:
     - _DisplacementStrength: -0.33
     - _DstBlend: 0
     - _EmissionChannel: 4
-    - _FresnelMax: 2
-    - _FresnelMin: 0.52
+    - _FresnelMax: 0
+    - _FresnelMin: 0.01
     - _GlossMapScale: 1
     - _Glossiness: -5.17
     - _GlossyReflections: 0
@@ -189,7 +189,7 @@ Material:
     - _RampSmoothingDirectional: 0.5
     - _RampSmoothingPoint: 0.5
     - _RampSmoothingSpot: 0.5
-    - _RampThreshold: 0.624
+    - _RampThreshold: 0.632
     - _RampThresholdDirectional: 0.5
     - _RampThresholdOtherLights: 0.5
     - _RampThresholdPoint: 0.5
@@ -210,9 +210,9 @@ Material:
     - _ShadowLineSmoothing: 0.015
     - _ShadowLineStrength: 1
     - _ShadowLineThreshold: 0.5
-    - _Shadow_HSV_H: 5
-    - _Shadow_HSV_S: 0.78
-    - _Shadow_HSV_V: -0.15
+    - _Shadow_HSV_H: 10
+    - _Shadow_HSV_S: 1
+    - _Shadow_HSV_V: -0.11
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
     - _SketchMax: 0.3
@@ -226,7 +226,7 @@ Material:
     - _SpecularMapType: 0
     - _SpecularRoughness: 0.5
     - _SpecularShadowAttenuation: -0.8
-    - _SpecularSmoothness: 0.13
+    - _SpecularSmoothness: 0.01
     - _SpecularToonBands: -1
     - _SpecularToonSize: 0.619
     - _SpecularToonSmoothness: 0.076
@@ -272,25 +272,25 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.69803923, g: 0.6947691, b: 0.6862745, a: 1}
+    - _Color: {r: 0.6509434, g: 0.61102706, b: 0.61102706, a: 1}
     - _DepthColor: {r: 0, g: 0, b: 1, a: 1}
     - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
-    - _HColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    - _HColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
     - _MatCapColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RampSmoothingRGB: {r: 0.203, g: 1, b: 0, a: 1}
     - _RampThresholdRGB: {r: 0.178, g: 1, b: 0, a: 1}
-    - _ReflectionColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+    - _ReflectionColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
     - _ReflectionCubemapColor: {r: 0.22432362, g: 0.6698113, b: 0.64570105, a: 1}
     - _RimColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: 83.87, g: -108.86, b: 23.6, a: 1}
-    - _SColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
     - _ShadowLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
     - _SpecularColor1: {r: 0.3, g: 0.3, b: 0.3, a: 1}
     - _SpecularColor2: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.764151, g: 0.14057496, b: 0.14057496, a: 1}
