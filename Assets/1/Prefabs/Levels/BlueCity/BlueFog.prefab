@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2827904007756245716}
   - component: {fileID: 2827904007756245719}
   m_Layer: 0
-  m_Name: Fog
+  m_Name: BlueFog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
