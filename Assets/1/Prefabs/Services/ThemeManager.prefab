@@ -45,39 +45,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxThemes:
   - key: default_box_theme
-    material: {fileID: 2100000, guid: 5c51be1831b451d4bbf719634f8d3ec9, type: 2}
+    material: {fileID: 2100000, guid: ecc9fcaed65c2554abfad344ebac0cf3, type: 2}
     bought: 1
     trailMaterial: {fileID: 2100000, guid: 584ff1482da597d489869540f683bb46, type: 2}
   - key: 2_box_theme
-    material: {fileID: 2100000, guid: e5184dedf930cf14393606becc50d181, type: 2}
+    material: {fileID: 2100000, guid: dec415e7ea7f0dc419713429a4710f9f, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 584ff1482da597d489869540f683bb46, type: 2}
   - key: 3_box_theme
-    material: {fileID: 2100000, guid: 7c54ecd876d03f348b18484d9b0a29af, type: 2}
+    material: {fileID: 2100000, guid: aa82e0cf3fd8bc5408d828f5d169bd2c, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: e97b8b4f1c3f3224c8218dfb52579e20, type: 2}
   - key: 4_box_theme
-    material: {fileID: 2100000, guid: b07dd854edada2b45a8859013a416eed, type: 2}
+    material: {fileID: 2100000, guid: c8c30b86b574adb439627a14384af73c, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 5d0b244154afa324ba9d5e2b8fd9720d, type: 2}
   - key: 5_box_theme
-    material: {fileID: 2100000, guid: fc563123735994e4ba254958e8452b14, type: 2}
+    material: {fileID: 2100000, guid: de500f78fd7401746a4bcb9df7752212, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 1c10c0f3acb233f4884fed3c21d4a096, type: 2}
   - key: 6_box_theme
-    material: {fileID: 2100000, guid: 1109a3350bf24b441bf48a2748afacb8, type: 2}
+    material: {fileID: 2100000, guid: 411ff87be7862e641bb2c4bca6d0895c, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 0f316bd4943addc4e824faa9a0bdc118, type: 2}
   - key: 7_box_theme
-    material: {fileID: 2100000, guid: 7977b2895b05d454d89f970738a0d9c8, type: 2}
+    material: {fileID: 2100000, guid: 70538aa11a36f4541802356485be4b4e, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: a008ed2c8ee4a0b4f86ad6713d3e0f31, type: 2}
   - key: 8_box_theme
-    material: {fileID: 2100000, guid: bec3f303da744ec4e954f30b82597427, type: 2}
+    material: {fileID: 2100000, guid: 192f415ddda95fb48b8ad259bdb4da3d, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 24a3c44983f27ae4b9811da152b8b689, type: 2}
   - key: 9_box_theme
-    material: {fileID: 2100000, guid: 57708431b798bb944bda689f11dcd7c7, type: 2}
+    material: {fileID: 2100000, guid: 5fdb733e4f7417d45be5b9c91afb1dcf, type: 2}
     bought: 0
     trailMaterial: {fileID: 2100000, guid: 9ac47e7a230878947adb6a43ceda3629, type: 2}
   characterThemes:

@@ -20,7 +20,7 @@ namespace DefaultNamespace
         {
             targetObject = target as CubeLetContainer;
             startPoint = targetObject.transform.position;
-            cubeLetPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/New/Prefabs/let_cube.prefab", typeof(GameObject));
+            cubeLetPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/1/Prefabs/Cubes/let_cube.prefab", typeof(GameObject));
             if (!targetObject.isInitialized) Initialize();
         }
 
