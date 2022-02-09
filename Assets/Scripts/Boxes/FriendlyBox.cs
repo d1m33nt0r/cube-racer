@@ -1,8 +1,8 @@
+using System.Collections;
 using DefaultNamespace;
 using DefaultNamespace.General;
 using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
-using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -12,7 +12,7 @@ public class FriendlyBox : MonoBehaviour
     [SerializeField] private GameObject lavaEffect;
     [SerializeField] private GameObject wowsomeCanvas;
     [SerializeField] private ParticleSystem wowsoneParticle;
-
+    
     private bool used;
     private BoxController boxController;
     private AudioManager m_audioManager;
@@ -44,7 +44,7 @@ public class FriendlyBox : MonoBehaviour
     {
         GetCurrentMaterial();
     }
-
+    
     private void GetCurrentMaterial()
     {
         var renderer = GetComponent<MeshRenderer>();

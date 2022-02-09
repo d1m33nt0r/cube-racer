@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -7,21 +8,32 @@ namespace DefaultNamespace.Boxes
 {
     public class BoxGroup : MonoBehaviour
     {
-        [SerializeField] private List<FriendlyBox> boxes;
+        public List<FriendlyBox> boxes;
 
         private Vibrator vibrator;
         private BoxAudioController boxAudioController;
-        private int countBoxes => boxes.Count;
+        public int countBoxes => boxes.Count;
         
-        private float heightBox = 0.2105f;
+        public float heightBox = 0.192f;
 
+        
+        
+        private Transform startMarker;
+        public Transform endMarker;
+
+        public float speed = 1.0F;
+        private float startTime;
+        private float journeyLength;
+        private bool ismove = true;
+        
+        
         [Inject]
         private void Construct(BoxAudioController boxAudioController, Vibrator _vibrator)
         {
             this.boxAudioController = boxAudioController;
             vibrator = _vibrator;
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("DiamondCollector"))
@@ -43,7 +55,31 @@ namespace DefaultNamespace.Boxes
 #endif
                 }
 
+                ismove = false;
                 boxController.BoxGroupAdded(countBoxes);
+            }
+        }
+        
+        
+        public void MoveToTargetTransform(Transform _transform)
+        {
+            startMarker = transform;
+            endMarker = _transform;
+            startTime = Time.time;
+            journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+            //transform.DOMove(_transform.position, 0.5f);
+            StartCoroutine(Move());
+        }
+    
+        private IEnumerator Move()
+        {
+            while (ismove) 
+            {
+                //if (startMarker.childCount == 0) break;
+                float distCovered = (Time.time - startTime) * speed;
+                float fractionOfJourney = distCovered / journeyLength;
+                startMarker.position = Vector3.Lerp(startMarker.position, endMarker.position, fractionOfJourney);
+                yield return null;
             }
         }
     }

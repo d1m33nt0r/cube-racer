@@ -982,6 +982,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235966892891188589, guid: 7e3e4e484d5a57f45bf5174d3af86389,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: beb01d28fd15db3488c47bb31d6486f4, type: 2}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_RootOrder
@@ -990,17 +995,17 @@ PrefabInstance:
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.4
+      value: -39.9
       objectReference: {fileID: 0}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 87.1
+      value: 109.5
       objectReference: {fileID: 0}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
@@ -1206,6 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 635183806}
+  heightBox: 0.192
 --- !u!65 &182263076
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1845,6 +1851,7 @@ MonoBehaviour:
   - {fileID: 260756480}
   - {fileID: 1076150701}
   - {fileID: 543527643}
+  heightBox: 0.192
 --- !u!65 &263310513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1905,6 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 683530187}
+  heightBox: 0.192
 --- !u!65 &267794217
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2253,6 +2261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1201283500}
+  heightBox: 0.192
 --- !u!65 &303105931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3079,6 +3088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1013009553}
+  heightBox: 0.192
 --- !u!65 &393618995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3372,6 +3382,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235966892891188589, guid: 7e3e4e484d5a57f45bf5174d3af86389,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: beb01d28fd15db3488c47bb31d6486f4, type: 2}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_RootOrder
@@ -9690,6 +9705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 790499213}
+  heightBox: 0.192
 --- !u!65 &609175414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10742,6 +10758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 698792063}
+  heightBox: 0.192
 --- !u!65 &708113868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13186,6 +13203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 405644596}
+  heightBox: 0.192
 --- !u!65 &949297853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13544,6 +13562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1376007691}
+  heightBox: 0.192
 --- !u!65 &992083069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14224,6 +14243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1956309332}
+  heightBox: 0.192
 --- !u!65 &1092402367
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14596,6 +14616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 690056227}
+  heightBox: 0.192
 --- !u!65 &1150441095
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17176,6 +17197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1831554632}
+  heightBox: 0.192
 --- !u!65 &1459187130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17532,6 +17554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 363813535}
+  heightBox: 0.192
 --- !u!65 &1522884642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24487,6 +24510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1232755691}
+  heightBox: 0.192
 --- !u!65 &1698974834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29725,6 +29749,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235966892891188589, guid: 7e3e4e484d5a57f45bf5174d3af86389,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: beb01d28fd15db3488c47bb31d6486f4, type: 2}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_RootOrder
@@ -31810,6 +31839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxes:
   - {fileID: 1245366153}
+  heightBox: 0.192
 --- !u!65 &2013202344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37803,8 +37833,6 @@ MonoBehaviour:
   magnitCollider: {fileID: 5686342436379703934}
   effect: {fileID: 5686342436379703933}
   magnit: {fileID: 5686342434910854205}
-  endMarker: {fileID: 5686342436379704705}
-  speed: 4
 --- !u!1 &5686342436379704704
 GameObject:
   m_ObjectHideFlags: 0
@@ -38194,6 +38222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291872477260649846, guid: 86a799ea778b2e24f85d9c3f1aac0407,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967294
       objectReference: {fileID: 0}
     - target: {fileID: 8737221020759751693, guid: 86a799ea778b2e24f85d9c3f1aac0407,
         type: 3}
@@ -38819,6 +38852,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud
       objectReference: {fileID: 0}
+    - target: {fileID: 8235966892891188589, guid: 7e3e4e484d5a57f45bf5174d3af86389,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: beb01d28fd15db3488c47bb31d6486f4, type: 2}
     - target: {fileID: 8235966892891188591, guid: 7e3e4e484d5a57f45bf5174d3af86389,
         type: 3}
       propertyPath: m_RootOrder
