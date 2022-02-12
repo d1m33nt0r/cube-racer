@@ -8,7 +8,8 @@ public class MagnitPlayer : MonoBehaviour
     [SerializeField] private BoxCollider magnitCollider;
     [SerializeField] private ParticleSystem effect;
     [SerializeField] private GameObject magnit;
-
+    [SerializeField] private float duration = 3f;
+    
     public void EnableMagnitPlayerAndDestroyMagnitOnMap(GameObject gameObject)
     {
         Destroy(gameObject);
@@ -21,7 +22,7 @@ public class MagnitPlayer : MonoBehaviour
 
     private IEnumerator DisableMagnit()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(duration);
         effect.Stop();
         effect.Clear();
         magnit.SetActive(false);
