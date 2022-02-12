@@ -9,5 +9,11 @@ namespace DefaultNamespace
 
         public string NextLevel => nextLevel;
         public string CurrentLevel => currentLevel;
+
+        /*public void Start()
+        {
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent(currentLevel);
+        }*/
     }
 }

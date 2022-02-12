@@ -95,7 +95,7 @@ Material:
     - _RampThresholdPoint: 0.5
     - _RampThresholdSpot: 0.5
     - _Shadow_HSV_H: 10
-    - _Shadow_HSV_S: 0.23
+    - _Shadow_HSV_S: 0.15
     - _Shadow_HSV_V: -0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

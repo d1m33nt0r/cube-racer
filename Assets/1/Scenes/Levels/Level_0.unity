@@ -1212,6 +1212,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 635183806}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &182263076
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1852,6 +1854,8 @@ MonoBehaviour:
   - {fileID: 1076150701}
   - {fileID: 543527643}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &263310513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1913,6 +1917,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 683530187}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &267794217
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2262,6 +2268,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1201283500}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &303105931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3089,6 +3097,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1013009553}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &393618995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9706,6 +9716,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 790499213}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &609175414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10759,6 +10771,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 698792063}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &708113868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13204,6 +13218,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 405644596}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &949297853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13563,6 +13579,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1376007691}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &992083069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14244,6 +14262,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1956309332}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &1092402367
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14617,6 +14637,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 690056227}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &1150441095
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17198,6 +17220,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1831554632}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &1459187130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17555,6 +17579,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 363813535}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &1522884642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24511,6 +24537,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1232755691}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &1698974834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31840,6 +31868,8 @@ MonoBehaviour:
   boxes:
   - {fileID: 1245366153}
   heightBox: 0.192
+  endMarker: {fileID: 0}
+  speed: 1
 --- !u!65 &2013202344
 BoxCollider:
   m_ObjectHideFlags: 0

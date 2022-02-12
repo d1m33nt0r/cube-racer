@@ -211,7 +211,7 @@ Material:
     - _ShadowLineStrength: 1
     - _ShadowLineThreshold: 0.5
     - _Shadow_HSV_H: 6
-    - _Shadow_HSV_S: 0.32
+    - _Shadow_HSV_S: 0.36
     - _Shadow_HSV_V: -0.14
     - _Shininess: 0.144
     - _SingleIndirectColor: 0

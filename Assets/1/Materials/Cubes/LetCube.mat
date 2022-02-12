@@ -182,9 +182,9 @@ Material:
     - _RimStrength: 0.5
     - _RimThreshold: 0.273
     - _ShadowColorLightAtten: 1
-    - _Shadow_HSV_H: -8
-    - _Shadow_HSV_S: -0.1
-    - _Shadow_HSV_V: -0.19
+    - _Shadow_HSV_H: 10
+    - _Shadow_HSV_S: 0.73
+    - _Shadow_HSV_V: -0.11
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
     - _SketchMax: 1
@@ -243,12 +243,12 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.6886792, g: 0.62695795, b: 0.62695795, a: 1}
+    - _Color: {r: 0.8058473, g: 0.8584906, b: 0.82328093, a: 1}
     - _DepthColor: {r: 0, g: 0, b: 1, a: 1}
-    - _DiffuseTint: {r: 0.8396226, g: 0.19513659, b: 0.09109115, a: 1}
+    - _DiffuseTint: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
     - _Emission: {r: 0.04478782, g: 0.047169805, b: 0.0055624763, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
-    - _HColor: {r: 1, g: 0.8820755, b: 0.8820755, a: 1}
+    - _HColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
     - _MatCapColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RampSmoothingRGB: {r: 0.203, g: 1, b: 0, a: 1}
@@ -258,7 +258,7 @@ Material:
     - _RimColor: {r: 0.6230505, g: 0, b: 0.8773585, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: -10.33, g: -27.53, b: 20.6, a: 1}
-    - _SColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+    - _SColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
     - _SubsurfaceAmbientColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
