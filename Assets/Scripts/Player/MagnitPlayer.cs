@@ -17,7 +17,7 @@ public class MagnitPlayer : MonoBehaviour
         effect.Play();
         magnit.SetActive(true);
         StartCoroutine(DisableMagnit());
-        transform.parent.GetComponent<BonusEffect>().Play();
+        //transform.parent.GetComponent<BonusEffect>().Play();
     }
 
     private IEnumerator DisableMagnit()

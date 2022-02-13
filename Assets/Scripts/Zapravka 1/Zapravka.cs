@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
+using Firebase.Analytics;
 using PathCreation.Examples;
 using UnityEngine;
 using Zenject;
@@ -30,7 +31,6 @@ public class Zapravka : MonoBehaviour
         if (other.CompareTag("DiamondCollector") && !finish)
         {
             if (rewardShowed) return;
-            
             adsManager.ShowInterstitial();
             rewardShowed = true;
             InterstitialAds.InterstitialAd.OnAdClosed += ReleaseReward;

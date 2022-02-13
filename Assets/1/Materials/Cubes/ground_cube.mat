@@ -210,9 +210,9 @@ Material:
     - _ShadowLineSmoothing: 0.015
     - _ShadowLineStrength: 1
     - _ShadowLineThreshold: 0.5
-    - _Shadow_HSV_H: 6
-    - _Shadow_HSV_S: 0.11
-    - _Shadow_HSV_V: -0.21
+    - _Shadow_HSV_H: 24
+    - _Shadow_HSV_S: 0.52
+    - _Shadow_HSV_V: -0.05
     - _Shininess: 0.144
     - _SingleIndirectColor: 0
     - _SketchMax: 0.3
@@ -272,12 +272,12 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.6129185, g: 0.5756052, b: 0.6132076, a: 1}
+    - _Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
     - _DepthColor: {r: 0, g: 0, b: 1, a: 1}
     - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0.5471698, g: 0.40441746, b: 0, a: 1}
-    - _HColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+    - _HColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     - _MatCapColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RampSmoothingRGB: {r: 0.203, g: 1, b: 0, a: 1}
@@ -287,7 +287,7 @@ Material:
     - _RimColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0.13333334}
     - _RimDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimDirVert: {r: 83.87, g: -108.86, b: 23.6, a: 1}
-    - _SColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
+    - _SColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _SpecularColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
@@ -296,9 +296,9 @@ Material:
     - _SubsurfaceAmbientColor: {r: 0.764151, g: 0.14057496, b: 0.14057496, a: 1}
     - _SubsurfaceColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_BOTTOM: {r: 1, g: 1, b: 1, a: 1}
+    - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_FRONT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_LEFT: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_RIGHT: {r: 0, g: 0, b: 0, a: 1}
-    - _TCP2_AMBIENT_TOP: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

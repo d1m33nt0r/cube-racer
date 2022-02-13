@@ -2,6 +2,8 @@
 using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
+using Firebase;
+using Firebase.Analytics;
 using Services.DataManipulator;
 using Services.DiamondCountManager;
 using Services.LevelProgressManager;
@@ -52,8 +54,8 @@ namespace Installers
             BindDiamondUI(diamondCountManager);
             //InstantiateFpsCounter(debugParent);
             BindAdsManager();
-            
-            //InstantiateLunarConsole(debugParent);
+
+            InstantiateLunarConsole(debugParent);
         }
 
         private void InstantiateLunarConsole(GameObject parent)

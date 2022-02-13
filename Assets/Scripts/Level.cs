@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Firebase;
+using Firebase.Analytics;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -10,10 +13,21 @@ namespace DefaultNamespace
         public string NextLevel => nextLevel;
         public string CurrentLevel => currentLevel;
 
-        /*public void Start()
+        public void Start()
         {
-            Firebase.Analytics.FirebaseAnalytics
-                .LogEvent(currentLevel);
-        }*/
+            FirebaseAnalyticsInitialize.CheckIfReady();
+            StartCoroutine(SendTestEvent());
+        }
+
+        private IEnumerator SendTestEvent()
+        {
+            while (!FirebaseAnalyticsInitialize.firebaseReady)
+            {
+                yield return null;
+            }
+            
+            FirebaseAnalytics.LogEvent("test_event");
+            Debug.Log("Event sended!");
+        }
     }
 }
