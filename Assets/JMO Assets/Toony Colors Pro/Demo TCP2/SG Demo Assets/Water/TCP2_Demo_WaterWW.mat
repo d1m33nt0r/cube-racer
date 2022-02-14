@@ -112,10 +112,11 @@ Material:
     - __dummy__: 0
     m_Colors:
     - _Color: {r: 0.7924528, g: 0.3356271, b: 0, a: 1}
-    - _DepthColor: {r: 0.8018868, g: 0.14751692, b: 0.14751692, a: 1}
+    - _DepthColor: {r: 0.8773585, g: 0.5007565, b: 0.5007565, a: 1}
     - _EmissionColor: {r: 0.9339623, g: 0.2775454, b: 0.2775454, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _FoamSpeed: {r: 1, g: 1, b: -1, a: -1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.7058824}
     - _SColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
