@@ -11592,7 +11592,7 @@ MonoBehaviour:
     type: 3}
   road: {fileID: 520452473}
   emissionColorEffect: {r: 0, g: 0, b: 0, a: 1}
-  emissionStartColorEffect: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+  emissionStartColorEffect: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   specialAddBoxAnimationSpeed: 2
   playerRenderer: {fileID: 809588671}
   prevBoxCount: 0
@@ -13727,7 +13727,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 0.289
     m_Bias: 0
-    m_NormalBias: 1.89
+    m_NormalBias: 0
     m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
@@ -21511,11 +21511,6 @@ PrefabInstance:
     - target: {fileID: 2099944709293748479, guid: 7d6e5dbd137aeea41b712f35a8ec55bb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763743394523678807, guid: 7d6e5dbd137aeea41b712f35a8ec55bb,
-        type: 3}
-      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -75896,7 +75891,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: ad8696ee128897f48a1695aa6b75cc2c, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81298,7 +81292,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4294967294
   m_IsActive: 1
 --- !u!4 &5963800299170660958
 Transform:

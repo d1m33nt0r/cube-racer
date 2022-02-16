@@ -9,9 +9,7 @@
         "SPECIAL EFFECTS",
         "TRANSPARENCY/BLENDING",
         "SHADER STATES",
-        "STYLIZATION",
         "OPTIONS",
-        "LIGHTING",
         "THIRD PARTY PLUGINS"
     ],
     "UseCustomFont": true,

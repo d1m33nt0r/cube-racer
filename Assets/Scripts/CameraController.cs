@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
     private Dictionary<int, CamPoint> camPoints = new Dictionary<int, CamPoint>();
     private Vector3 startRefuellingRotation;
     private float startRefuellingXPosition;
-    private float specialIncreaseDuration = 1f;
+    private float specialIncreaseDuration = 2f;
     
     [Inject]
     private void Construct(BoxController boxController)

@@ -25,9 +25,8 @@ namespace DefaultNamespace
             {
                 yield return null;
             }
-            
-            FirebaseAnalytics.LogEvent("test_event");
-            Debug.Log("Event sended!");
+
+            FirebaseAnalytics.LogEvent(currentLevel, "Start", "Start");
         }
     }
 }

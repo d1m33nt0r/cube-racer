@@ -13,7 +13,7 @@ public class PlayerSetup : MonoBehaviour
     public Vector3 UpdatePosition()
     {
         var upperPosition = boxController.transform.GetChild(0).position;
-        var playerOffsetY = playerMeshRenderer.bounds.max.y - playerMeshRenderer.bounds.min.y;
+        var playerOffsetY = 0.2f;
         return new Vector3(
             startingRoad.GetStartPosition().x, 
             upperPosition.y + playerOffsetY, 

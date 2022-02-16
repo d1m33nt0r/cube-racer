@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using DefaultNamespace;
+using Firebase.Analytics;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -42,12 +45,30 @@ public class GameController : MonoBehaviour
             boxController.transform.GetComponent<PlayerEffector>().ActivateDiamondEffect();
             boxController.ClearBoxes();
         }
-        
+    }
+    
+    private IEnumerator SendStartLevelEvent()
+    {
+        while (!FirebaseAnalyticsInitialize.firebaseReady) yield return null;
+        FirebaseAnalytics.LogEvent(FindObjectOfType<Level>().CurrentLevel, "Start", "Start");
+    }
+    
+    private IEnumerator SendFailLevelEvent()
+    {
+        while (!FirebaseAnalyticsInitialize.firebaseReady) yield return null;
+        FirebaseAnalytics.LogEvent(FindObjectOfType<Level>().CurrentLevel, "Fail", "Fail");
+    }
+    
+    private IEnumerator SendFinishLevelEvent()
+    {
+        while (!FirebaseAnalyticsInitialize.firebaseReady) yield return null;
+        FirebaseAnalytics.LogEvent(FindObjectOfType<Level>().CurrentLevel, "Finish", "Finish");
     }
 
     private void StartGame()
     {
         Debug.Log("Game Started");
+        StartCoroutine(SendStartLevelEvent());
         StartedGame?.Invoke();
         //m_DiamondUI.DisableSettingsButton();
     }
@@ -55,6 +76,7 @@ public class GameController : MonoBehaviour
     public void FinishGame()
     {
         Debug.Log("Game Finished");
+        StartCoroutine(SendFinishLevelEvent());
         FinishedGame?.Invoke();
     }
 
@@ -64,9 +86,11 @@ public class GameController : MonoBehaviour
         PausedGame?.Invoke();
     }
 
-    public void FailGame()
+    private void FailGame()
     {
         Debug.Log("Game Failed");
+        StartCoroutine(SendFailLevelEvent());
+        FirebaseAnalytics.LogEvent(FindObjectOfType<Level>().CurrentLevel, "Fail", "Fail");
         FailedGame?.Invoke();
     }
 
