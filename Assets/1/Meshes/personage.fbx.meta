@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: 5778581635656814883
     second: rig|Idle.004
+  - first:
+      74: 1599155768152908184
+    second: rig|idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -91,7 +94,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.002
+    globalScale: 0.2
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

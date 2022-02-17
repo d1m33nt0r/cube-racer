@@ -10,9 +10,9 @@ Material:
   m_Name: smile_cube
   m_Shader: {fileID: 4800000, guid: 1a1a9ca390ddc084abdc006e639cd2f0, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA TCP2_AMBIENT TCP2_DISABLE_WRAPPED_LIGHT TCP2_MATCAP
-    TCP2_RAMPTEXT TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR
-    TCP2_SUBSURFACE TCP2_TEXTURED_THRESHOLD TCP2_UV_NORMALS_FULL _GLOSSYREFLECTIONS_OFF
-    _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
+    TCP2_RAMPTEXT TCP2_REFLECTIONS TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK
+    TCP2_SHADOW_LIGHT_COLOR TCP2_SUBSURFACE TCP2_TEXTURED_THRESHOLD TCP2_UV_NORMALS_FULL
+    _GLOSSYREFLECTIONS_OFF _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -149,7 +149,7 @@ Material:
     - _DisplacementStrength: -0.33
     - _DstBlend: 0
     - _EmissionChannel: 4
-    - _FresnelMax: 0
+    - _FresnelMax: 0.78
     - _FresnelMin: 0.01
     - _GlossMapScale: 1
     - _Glossiness: -5.17
@@ -252,7 +252,7 @@ Material:
     - _UseNormalMap: 1
     - _UseOcclusion: 0
     - _UseOutline: 0
-    - _UseReflections: 0
+    - _UseReflections: 1
     - _UseRim: 0
     - _UseRimLightMask: 1
     - _UseShadowTexture: 0

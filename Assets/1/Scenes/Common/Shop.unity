@@ -258,7 +258,7 @@ MonoBehaviour:
   characterDemo: {fileID: 1521058130}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &43251929
 MonoBehaviour:
@@ -603,7 +603,7 @@ MonoBehaviour:
   characterDemo: {fileID: 632863441}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &91021008
 MonoBehaviour:
@@ -882,7 +882,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &99405113
 MeshRenderer:
@@ -6528,7 +6528,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &467466682
 MeshRenderer:
@@ -7009,7 +7009,7 @@ MonoBehaviour:
   characterDemo: {fileID: 99405111}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &594599465
 MonoBehaviour:
@@ -7214,7 +7214,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &632863443
 MeshRenderer:
@@ -7481,7 +7481,7 @@ MonoBehaviour:
   characterDemo: {fileID: 1995744709}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &715878840
 MonoBehaviour:
@@ -7577,6 +7577,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715878837}
   m_CullTransparentMesh: 1
+--- !u!4 &728939057 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+    type: 3}
+  m_PrefabInstance: {fileID: 870017101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &815581353
 GameObject:
   m_ObjectHideFlags: 0
@@ -7607,7 +7613,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &815581355
 MeshRenderer:
@@ -7964,7 +7970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  speed: -1.5
+  speed: 100
   angle: 0.25
   vector: {x: 0, y: 1, z: 0}
 --- !u!4 &865349347
@@ -7982,6 +7988,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &870017101
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1220827261}
+    m_Modifications:
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5479774
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.407
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 101.549
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135214292630584667, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804789813411407841, guid: a44544b3f586a69459ede421d40f2143,
+        type: 3}
+      propertyPath: m_Name
+      value: personage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a44544b3f586a69459ede421d40f2143, type: 3}
 --- !u!1 &871658507
 GameObject:
   m_ObjectHideFlags: 0
@@ -8196,7 +8286,7 @@ MonoBehaviour:
   characterDemo: {fileID: 1502696976}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &904120634
 MonoBehaviour:
@@ -8348,7 +8438,7 @@ MonoBehaviour:
   characterDemo: {fileID: 1641231365}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &904790526
 MonoBehaviour:
@@ -9119,7 +9209,7 @@ MonoBehaviour:
   characterDemo: {fileID: 815581353}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &1114429968
 MonoBehaviour:
@@ -9767,8 +9857,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218179151}
-  - component: {fileID: 1218179153}
-  - component: {fileID: 1218179152}
   m_Layer: 6
   m_Name: CharacterDemo
   m_TagString: Untagged
@@ -9784,61 +9872,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218179150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.093, z: 0}
+  m_LocalPosition: {x: 0, y: -0.116, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 865349347}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1218179152
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218179150}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e4f0195aad277d64aaba262dd58cd1b7, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1218179153
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218179150}
-  m_Mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
 --- !u!1 &1220827260
 GameObject:
   m_ObjectHideFlags: 0
@@ -9866,6 +9905,7 @@ Transform:
   m_LocalPosition: {x: -247, y: -32.410797, z: -14966.124}
   m_LocalScale: {x: 147.19998, y: 147.19998, z: 147.19998}
   m_Children:
+  - {fileID: 728939057}
   - {fileID: 1521058131}
   - {fileID: 1995744710}
   - {fileID: 1641231366}
@@ -10769,7 +10809,7 @@ MonoBehaviour:
   characterDemo: {fileID: 1679200733}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &1422737419
 MonoBehaviour:
@@ -10974,7 +11014,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1502696978
 MeshRenderer:
@@ -11268,7 +11308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1521058131
 Transform:
   m_ObjectHideFlags: 0
@@ -11281,7 +11321,7 @@ Transform:
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &1521058132
 MeshRenderer:
@@ -11572,7 +11612,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1641231367
 MeshRenderer:
@@ -11732,7 +11772,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1679200735
 MeshRenderer:
@@ -12592,7 +12632,7 @@ MonoBehaviour:
   characterDemo: {fileID: 467466680}
   characterTheme:
     key: 
-    mesh: {fileID: 0}
+    gameObject: {fileID: 0}
     bought: 0
 --- !u!114 &1849667228
 MonoBehaviour:
@@ -12917,7 +12957,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1220827261}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 180}
 --- !u!23 &1995744711
 MeshRenderer:

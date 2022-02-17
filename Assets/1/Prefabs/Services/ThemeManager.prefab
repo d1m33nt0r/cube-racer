@@ -82,29 +82,30 @@ MonoBehaviour:
     trailMaterial: {fileID: 2100000, guid: 9ac47e7a230878947adb6a43ceda3629, type: 2}
   characterThemes:
   - key: default_character_theme
-    mesh: {fileID: 4300000, guid: 994c301cb6f15aa4bb37ea2d87877435, type: 3}
+    gameObject: {fileID: 6804789813411407841, guid: a44544b3f586a69459ede421d40f2143,
+      type: 3}
     bought: 1
   - key: 2_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 3_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 4_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 5_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 6_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 7_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 8_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0
   - key: 9_character_theme
-    mesh: {fileID: 5895695398541888791, guid: 8306c3a13e0f91a4ab2b54b690166dff, type: 3}
+    gameObject: {fileID: 0}
     bought: 0

@@ -82,10 +82,10 @@ namespace DefaultNamespace.ThemeManager
             PlayerPrefs.SetString("current_character_theme", key);
         }
         
-        public Mesh GetCurrentCharacterTheme()
+        public GameObject GetCurrentCharacterTheme()
         {
             return characterThemes.FirstOrDefault(theme => 
-                theme.key == PlayerPrefs.GetString("current_character_theme"))?.mesh;
+                theme.key == PlayerPrefs.GetString("current_character_theme"))?.gameObject;
         }
         
         public void BuyCubeTheme(string key)

@@ -42,7 +42,8 @@ namespace UI.Shop
         public void ActiveDemoCharacter()
         {
             if (transform.childCount > 0) Destroy(transform.GetChild(0).gameObject);
-            CHARACTER_DEMO.GetComponent<MeshFilter>().sharedMesh = themeManager.GetCurrentCharacterTheme();
+            var skin = Instantiate(themeManager.GetCurrentCharacterTheme(), CHARACTER_DEMO.transform.position, Quaternion.identity, CHARACTER_DEMO.transform);
+            skin.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             characterDemo.SetActive(true);
         }
 

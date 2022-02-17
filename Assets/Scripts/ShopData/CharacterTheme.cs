@@ -7,7 +7,7 @@ namespace DefaultNamespace.Services.ShopData
     public class CharacterTheme
     {
         public string key;
-        public Mesh mesh;
+        public GameObject gameObject;
         public bool bought;
     }
 }

@@ -76,7 +76,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LightWrapFactor: 1.54
+    - _LightWrapFactor: 1.16
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -105,11 +105,11 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffuseTint: {r: 1, g: 0.5, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+    - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5}
     - _RimDirVert: {r: 0, g: 0, b: 1, a: 1}
-    - _SColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TCP2_AMBIENT_BACK: {r: 0, g: 0, b: 0, a: 1}
     - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}

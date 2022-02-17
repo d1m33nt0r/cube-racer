@@ -92,7 +92,7 @@ Material:
     - _RampSmoothingDirectional: 0.5
     - _RampSmoothingPoint: 0.5
     - _RampSmoothingSpot: 0.5
-    - _RampThreshold: 1
+    - _RampThreshold: 0.916
     - _RampThresholdDirectional: 0.5
     - _RampThresholdPoint: 0.5
     - _RampThresholdSpot: 0.5

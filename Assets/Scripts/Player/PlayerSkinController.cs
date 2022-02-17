@@ -20,7 +20,8 @@ namespace DefaultNamespace
 
         private void GetCurrentMaterial()
         {
-            GetComponent<MeshFilter>().sharedMesh = themeManager.GetCurrentCharacterTheme();
+            var player = Instantiate(themeManager.GetCurrentCharacterTheme(), transform.position, Quaternion.identity, transform);
+            player.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
 }

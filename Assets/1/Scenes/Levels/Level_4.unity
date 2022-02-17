@@ -14271,7 +14271,6 @@ GameObject:
   m_Component:
   - component: {fileID: 809588676}
   - component: {fileID: 809588675}
-  - component: {fileID: 809588674}
   - component: {fileID: 809588673}
   - component: {fileID: 809588678}
   - component: {fileID: 809588679}
@@ -14310,47 +14309,6 @@ CapsuleCollider:
   m_Height: 0.05833664
   m_Direction: 1
   m_Center: {x: 0, y: 0.028836442, z: 0}
---- !u!23 &809588674
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809588671}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f5de3765c494bdf4baa27b1a6645a2a1, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &809588675
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17739,6 +17697,86 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1313664334}
     m_Modifications:
+    - target: {fileID: 3671518034315939531, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518034315939531, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518034365279563, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518034365279563, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518034431542204, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518034431542204, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518034569662343, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518034569662343, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518034681802329, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518034681802329, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518035137977855, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518035137977855, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518035239765734, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518035239765734, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
+    - target: {fileID: 3671518035911840369, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3671518035911840369, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 466276574}
     - target: {fileID: 5533859022486386576, guid: 133ecf8b306317f47b2854d9cbdf10f5,
         type: 3}
       propertyPath: m_Name

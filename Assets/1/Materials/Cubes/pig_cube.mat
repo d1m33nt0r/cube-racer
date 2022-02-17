@@ -149,7 +149,7 @@ Material:
     - _DisplacementStrength: -0.33
     - _DstBlend: 0
     - _EmissionChannel: 4
-    - _FresnelMax: 0
+    - _FresnelMax: 0.78
     - _FresnelMin: 0.01
     - _GlossMapScale: 1
     - _Glossiness: -5.17
