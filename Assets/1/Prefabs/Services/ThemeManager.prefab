@@ -86,26 +86,34 @@ MonoBehaviour:
       type: 3}
     bought: 1
   - key: 2_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 3_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 4_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 5_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 6_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 7_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 8_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0
   - key: 9_character_theme
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
+      type: 3}
     bought: 0

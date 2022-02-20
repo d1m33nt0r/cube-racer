@@ -230,6 +230,7 @@ public class BoxController : MonoBehaviour
     public void BoxGroupAdded(int countBoxes)
     {
         AddedBoxes?.Invoke(countBoxes); 
+        vibrator.VibrateBoxes();
     }
 
     public void AddBox(GameObject box)
@@ -257,7 +258,8 @@ public class BoxController : MonoBehaviour
         
         playerRenderer.transform.position = new Vector3(tempPos.x, tempPos.y + heightBox * 2, tempPos.z);
         
-        m_audioManager.boxesAudioSource.PlayCollectSound();
+        if (gameController.gameStarted)
+            m_audioManager.boxesAudioSource.PlayCollectSound();
     }
 
     public void RemoveBox(GameObject box, bool finish, int multiplier, bool destroy = false)

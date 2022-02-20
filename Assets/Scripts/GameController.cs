@@ -8,6 +8,7 @@ using Zenject;
 
 public class GameController : MonoBehaviour
 {
+    public bool gameStarted;
     public event Action StartedGame;
     public event Action FinishedGame;
     public event Action FailedGame;
@@ -69,6 +70,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Game Started");
         StartCoroutine(SendStartLevelEvent());
+        gameStarted = true;
         StartedGame?.Invoke();
         //m_DiamondUI.DisableSettingsButton();
     }
@@ -77,6 +79,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Game Finished");
         StartCoroutine(SendFinishLevelEvent());
+        gameStarted = false;
         FinishedGame?.Invoke();
     }
 

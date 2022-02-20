@@ -12,6 +12,6 @@ public class PlayerEffector : MonoBehaviour
     public void ActivateDiamondEffect()
     {
         diamondEffect.SetActive(true);
-        salutEffect.SetActive(true);
+        //salutEffect.SetActive(true);
     }
 }

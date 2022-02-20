@@ -105,7 +105,7 @@ public class DiamondUI : MonoBehaviour
         });
         
         diamondIconRectTransform
-            .DOAnchorPos(target.anchoredPosition - new Vector2(50f, 100f), 0.25f)
+            .DOAnchorPos(target.anchoredPosition - new Vector2(5f, 15f), 0.25f)
             .OnComplete(diamondIconController.SetMovingDone);
     }
     
