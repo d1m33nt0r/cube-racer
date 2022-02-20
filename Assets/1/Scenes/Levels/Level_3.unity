@@ -25298,6 +25298,21 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3763743394523678807, guid: 7d6e5dbd137aeea41b712f35a8ec55bb,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763743394523678807, guid: 7d6e5dbd137aeea41b712f35a8ec55bb,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763743394523678807, guid: 7d6e5dbd137aeea41b712f35a8ec55bb,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6e5dbd137aeea41b712f35a8ec55bb, type: 3}
 --- !u!4 &1334056650 stripped
@@ -42990,6 +43005,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle System
       objectReference: {fileID: 0}
+    - target: {fileID: 664205173378588252, guid: 09ac02785d494ce4b80655b61f0c1b88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 664205173378588253, guid: 09ac02785d494ce4b80655b61f0c1b88,
         type: 3}
       propertyPath: m_RootOrder
@@ -43044,6 +43064,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 664205173378588254, guid: 09ac02785d494ce4b80655b61f0c1b88,
+        type: 3}
+      propertyPath: m_Mesh1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 664205173378588254, guid: 09ac02785d494ce4b80655b61f0c1b88,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09ac02785d494ce4b80655b61f0c1b88, type: 3}

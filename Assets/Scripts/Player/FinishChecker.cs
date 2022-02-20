@@ -28,6 +28,8 @@ namespace DefaultNamespace
                 multiplier = hit.collider.GetComponent<FinishPlatform>().Multiplier;
             }
             
+            transform.GetChild(2).GetComponent<Animator>().Play("metarig|metarigAction");
+            
             diamondMultiplier.SetMultiplier(multiplier);
         }
     }

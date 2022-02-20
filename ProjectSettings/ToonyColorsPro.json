@@ -6,11 +6,14 @@
     "CustomOutputPath": "New/Shaders/Cubracer",
     "LastImplementationExportImportPath": "C:/Users/fallentorch/Voodoo/Cuberacer/Assets",
     "OpenedFoldouts": [
-        "SPECIAL EFFECTS",
+        "LIGHTING",
         "TRANSPARENCY/BLENDING",
         "SHADER STATES",
         "OPTIONS",
-        "THIRD PARTY PLUGINS"
+        "THIRD PARTY PLUGINS",
+        "SPECIAL EFFECTS",
+        "STYLIZATION",
+        "SURFACE"
     ],
     "UseCustomFont": true,
     "CustomFont": {

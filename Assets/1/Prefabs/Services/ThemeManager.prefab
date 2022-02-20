@@ -82,7 +82,7 @@ MonoBehaviour:
     trailMaterial: {fileID: 2100000, guid: 9ac47e7a230878947adb6a43ceda3629, type: 2}
   characterThemes:
   - key: default_character_theme
-    gameObject: {fileID: 6804789813411407841, guid: a44544b3f586a69459ede421d40f2143,
+    gameObject: {fileID: 8290556108300428493, guid: c8cba4fab44f11e468fbbb51ec6ad98e,
       type: 3}
     bought: 1
   - key: 2_character_theme
