@@ -55,7 +55,7 @@ namespace Installers
             //InstantiateFpsCounter(debugParent);
             BindAdsManager();
 
-            InstantiateLunarConsole(debugParent);
+            //InstantiateLunarConsole(debugParent);
         }
 
         private void InstantiateLunarConsole(GameObject parent)
