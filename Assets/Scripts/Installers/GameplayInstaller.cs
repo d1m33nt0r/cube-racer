@@ -22,6 +22,7 @@ public class GameplayInstaller : MonoInstaller
     //[SerializeField] private AdsManager adsManager;
     [SerializeField] private PoolManager poolManager;
 
+    private TurnState _turnState;
     private DiamondUI diamondUI;
     private DiamondCounter diamondCounter => 
         diamondUI.transform.GetComponentInChildren<DiamondCounter>();
@@ -50,10 +51,17 @@ public class GameplayInstaller : MonoInstaller
         BindPlayerMover();
         BindUiController();
         BindPoolManager();
+
+        BindTurnState();
     }
 
-    
-    
+    private void BindTurnState()
+    {
+        _turnState = new TurnState();
+        Container.Bind<TurnState>().FromInstance(_turnState).AsSingle();
+    }
+
+
     private void BindUiController()
     {
         Container

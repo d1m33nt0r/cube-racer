@@ -21,6 +21,8 @@ namespace DefaultNamespace
         private GameController gameController;
 
         private Vector3 prevPos, curPos;
+
+        [Inject] private TurnState _turnState;
         
         [Inject]
         private void Construct(GameController gameController)
@@ -57,13 +59,13 @@ namespace DefaultNamespace
 
         public void SetCurrentDirection()
         {
-            if (TurnState.state == TurnState.State.Forward)
+            if (_turnState.state == TurnState.State.Forward)
                 transform.parent.rotation = Quaternion.AngleAxis(0, Vector3.up);
-            else if(TurnState.state == TurnState.State.Left)
+            else if(_turnState.state == TurnState.State.Left)
                 transform.parent.rotation = Quaternion.AngleAxis(-90, Vector3.up);
-            else if(TurnState.state == TurnState.State.Right)
+            else if(_turnState.state == TurnState.State.Right)
                 transform.parent.rotation = Quaternion.AngleAxis(+90, Vector3.up);
-            else if(TurnState.state == TurnState.State.Back)
+            else if(_turnState.state == TurnState.State.Back)
                 transform.parent.rotation = Quaternion.AngleAxis(-180, Vector3.up);
             //EnableMoving();
             //SubscribeSwipes();

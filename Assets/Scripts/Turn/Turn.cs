@@ -15,6 +15,8 @@ namespace DefaultNamespace
         [SerializeField] private TurnState.State state;
         [SerializeField] private float speed = 3f;
 
+        [Inject] private TurnState _turnState;
+        
         [Range(0, 1)] [SerializeField] private float t;
         [Range(-0.4f, 0.4f)] [SerializeField] private float t2;
 
@@ -34,7 +36,7 @@ namespace DefaultNamespace
         
         private void Start()
         {
-            TurnState.prevState = TurnState.State.Forward;
+            _turnState.prevState = TurnState.State.Forward;
             centerPoint = transform.position;
         }
 
@@ -77,7 +79,7 @@ namespace DefaultNamespace
         public void SetMoving(bool moving)
         {
             this.moving = moving;
-            TurnState.SetState(state);
+            _turnState.SetState(state);
             if (moving)
             {
                 playerContainer.LightParent();

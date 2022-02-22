@@ -7,7 +7,7 @@ namespace DefaultNamespace.Services.AudioManager
         [SerializeField] private AudioSource m_audioSource;
         [SerializeField] private AudioClip[] m_collectAudioClip;
         [SerializeField] private AudioClip m_failAudioClip;
-        
+
         private bool m_soundIsEnabled;
         
         public void SetSoundSettings(bool _soundIsEnabled)
@@ -17,7 +17,7 @@ namespace DefaultNamespace.Services.AudioManager
         
         public void PlayCollectSound()
         {
-            m_audioSource.clip = m_collectAudioClip[Random.Range(0, 1)];
+            m_audioSource.clip = m_collectAudioClip[Random.Range(0, 2)];
             
             if (!m_soundIsEnabled) return;
             

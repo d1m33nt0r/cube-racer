@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace DefaultNamespace
 {
@@ -9,6 +10,8 @@ namespace DefaultNamespace
         
         private float previousYRotation;
         private bool rotating;
+
+        [Inject] private TurnState _turnState;
         
         private void Update()
         {
@@ -18,14 +21,14 @@ namespace DefaultNamespace
             if (!rotating)
                 return;
             
-            if (TurnState.state == TurnState.State.Left && TurnState.prevState == TurnState.State.Forward)
+            if (_turnState.state == TurnState.State.Left && _turnState.prevState == TurnState.State.Forward)
             {
                 directionalLight.rotation = Quaternion.Euler(directionalLight.transform.eulerAngles.x, 
                     directionalLight.transform.eulerAngles.y - Mathf.Abs(transform.eulerAngles.y - previousYRotation), 
                     directionalLight.transform.eulerAngles.z);
             }
             
-            if (TurnState.state == TurnState.State.Forward && TurnState.prevState == TurnState.State.Left)
+            if (_turnState.state == TurnState.State.Forward && _turnState.prevState == TurnState.State.Left)
             {
                 directionalLight.rotation = Quaternion.Euler(directionalLight.transform.eulerAngles.x, 
                     directionalLight.transform.eulerAngles.y - Mathf.Abs(transform.eulerAngles.y - previousYRotation), 

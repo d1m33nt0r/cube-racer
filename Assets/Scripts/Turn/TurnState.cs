@@ -1,6 +1,6 @@
 ﻿namespace DefaultNamespace
 {
-    public static class TurnState
+    public class TurnState
     {
         public enum State
         {
@@ -10,10 +10,10 @@
             Left
         }
 
-        public static State state;
-        public static State prevState;
+        public State state;
+        public State prevState;
         
-        public static void SetState(State _state)
+        public void SetState(State _state)
         {
             prevState = state;
             state = _state;

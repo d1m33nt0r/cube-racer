@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace DefaultNamespace.Progress
 {
@@ -13,8 +14,8 @@ namespace DefaultNamespace.Progress
         private Dictionary<Transform, TurnState.State> points;
         private float generalDistance = 0;
         private float currentDistance = 0;
-        
-        
+
+        [Inject] private TurnState _turnState;
         
         private void Start()
         {
@@ -64,7 +65,7 @@ namespace DefaultNamespace.Progress
 
         private void Move(Vector3 difference)
         {
-            switch (TurnState.state)
+            switch (_turnState.state)
             {
                 case TurnState.State.Forward:
                     currentDistance += difference.z;
@@ -89,8 +90,6 @@ namespace DefaultNamespace.Progress
             slider.value = GetProgressProcent();
         }
         
-        
-
         private float GetProgressProcent()
         {
             return currentDistance / generalDistance;

@@ -18,8 +18,9 @@ public class BoxController : MonoBehaviour
     public event BoxChanged RemovedBox;
 
     private int startCountBoxes;
-    
 
+    [Inject] private TurnState _turnState;
+    
     [SerializeField] private GameObject friendlyBox;
     [SerializeField] private GameObject road;
     [SerializeField] private Color emissionColorEffect;
@@ -194,7 +195,7 @@ public class BoxController : MonoBehaviour
 
         string param;
         
-        switch (TurnState.state)
+        switch (_turnState.state)
         {
             case TurnState.State.Forward:
                 param = "_TCP2_AMBIENT_BACK";
