@@ -15,27 +15,27 @@ namespace DefaultNamespace.Services.AdsManager
             BannerAds.Initialize();
             InterstitialAds.Initialize();
             RewardedAds.Initialize();
-            //DisableCanvas();
+            ShowBanner();
             SceneManager.sceneLoaded += Handle;
         }
 
         private void Handle(Scene _arg0, LoadSceneMode _loadSceneMode)
         {
-            switch (_arg0.name)
+            /*switch (_arg0.name)
             {
                 case "Loader":
-                    DisableCanvas();
+                    EnableCanvas();
                     break;
                 case "Shop":
-                    DisableCanvas();
+                    EnableCanvas();
                     break;
                 case "Balloon":
-                    DisableCanvas();
+                    EnableCanvas();
                     break;
                 default:
                     EnableCanvas();
                     break;
-            }
+            }*/
         }
 
         private void ShowBanner()
@@ -50,13 +50,11 @@ namespace DefaultNamespace.Services.AdsManager
 
         public void ShowRewarded()
         {
-            HideBanner();
             RewardedAds.Show();
         }
         
         public void ShowInterstitial()
         {
-            HideBanner();
             InterstitialAds.Show();
         }
 

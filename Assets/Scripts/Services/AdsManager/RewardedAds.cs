@@ -39,7 +39,6 @@ namespace DefaultNamespace.Services.AdsManager
         {
             if (rewardedAd.IsLoaded())
             {
-                
                 rewardedAd.Show();
                 rewardedAd.OnAdClosed += (_sender, _args) =>
                 {

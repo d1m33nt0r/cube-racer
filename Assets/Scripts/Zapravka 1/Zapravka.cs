@@ -31,15 +31,17 @@ public class Zapravka : MonoBehaviour
         if (other.CompareTag("DiamondCollector") && !finish)
         {
             if (rewardShowed) return;
-            adsManager.ShowInterstitial();
+            adsManager.ShowRewarded();
             rewardShowed = true;
-            InterstitialAds.InterstitialAd.OnAdClosed += ReleaseReward;
-            InterstitialAds.InterstitialAd.OnAdFailedToShow += ReleaseReward;
+            RewardedAds.rewardedAd.OnAdClosed += ReleaseReward;
+            RewardedAds.rewardedAd.OnAdFailedToShow += ReleaseReward;
         }
         
         if (other.CompareTag("DiamondCollector") && finish)
         {
             pathFollower.Moving -= playerMover.CustomMove;
+            RewardedAds.rewardedAd.OnAdClosed -= ReleaseReward;
+            RewardedAds.rewardedAd.OnAdFailedToShow -= ReleaseReward;
             playerMover.SetCurrentDirection();
             playerMover.EnableMoving();
             playerMover.SubscribeSwipes();
@@ -58,7 +60,6 @@ public class Zapravka : MonoBehaviour
         pathFollower.enabled = true;
         finishBoxCollider.enabled = true;
         StartCoroutine(Finish());
-        BannerAds.Show();
     }
     
     private IEnumerator Finish()

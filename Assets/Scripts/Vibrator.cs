@@ -38,7 +38,6 @@ namespace DefaultNamespace
                 DisableHaptics();
         }
 
-        #if UNITY_ANDROID
         public void VibrateBoxes()
         {
             MMVibrationManager.Haptic(HapticTypes.LightImpact);
@@ -53,6 +52,5 @@ namespace DefaultNamespace
         {
             MMVibrationManager.Haptic(HapticTypes.SoftImpact);
         }
-        #endif
     }
 }
