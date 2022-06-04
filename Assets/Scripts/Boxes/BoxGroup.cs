@@ -16,6 +16,7 @@ namespace DefaultNamespace.Boxes
         
         public float heightBox = 0.192f;
 
+        private const string DIAMOND_COLLECTOR_TAG = "DiamondCollector";
         
         
         private Transform startMarker;
@@ -36,9 +37,9 @@ namespace DefaultNamespace.Boxes
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("DiamondCollector"))
+            if (other.CompareTag(DIAMOND_COLLECTOR_TAG))
             {
-                List<Vector3> plusOneBoxTextEffect = new List<Vector3>();
+                var plusOneBoxTextEffect = new List<Vector3>();
                 
                 var boxController = other.transform.parent.GetComponent<BoxController>();
                 var effectSpawner = boxController.GetComponent<BoxEffectSpawner>();

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MagnitPlayer : MonoBehaviour
 {
+    private const string BOX_GROUP_TAG = "BoxGroup";
+    
     [SerializeField] private BoxCollider magnitCollider;
     [SerializeField] private ParticleSystem effect;
     [SerializeField] private GameObject magnit;
@@ -31,7 +33,7 @@ public class MagnitPlayer : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("BoxGroup"))
+        if (other.CompareTag(BOX_GROUP_TAG))
         {
             other.GetComponent<BoxGroup>().MoveToTargetTransform(transform);
         }

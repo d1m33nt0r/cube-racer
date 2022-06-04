@@ -53,26 +53,30 @@ public class FriendlyBox : MonoBehaviour
         renderer.sharedMaterial = material;
     }
 
+    private const string LET_BOX = "LetBox";
+    private const string GROUND_LET = "GroundLet";
+    private const string LAVA = "Lava";
+    private const string HOLE = "Hole";
     private void OnCollisionEnter(Collision other)
     {
         if (!isBoxBonus)
         {
-            if (!transform.parent || transform.parent.name != "Player")
+            if (!transform.parent || transform.parent.name != PLAYER)
                 return;
 
-            if (other.collider.CompareTag("LetBox") && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
+            if (other.collider.CompareTag(LET_BOX) && Mathf.Abs(other.transform.position.y - transform.position.y) < 0.1f)
             {
                 boxController.RemoveBox(gameObject, false, 1);
                 m_audioManager.boxesAudioSource.PlayFailSound();
             }
             
-            if (other.collider.CompareTag("GroundLet"))
+            if (other.collider.CompareTag(GROUND_LET))
             {
                 boxController.RemoveBox(gameObject, false, 1);
                 m_audioManager.boxesAudioSource.PlayFailSound();
             }
 
-            if (other.collider.CompareTag("Lava"))
+            if (other.collider.CompareTag(LAVA))
             {
                 Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
@@ -82,7 +86,7 @@ public class FriendlyBox : MonoBehaviour
 #endif
             }
             
-            if (other.collider.CompareTag("Hole"))
+            if (other.collider.CompareTag(HOLE))
             {
                 //Instantiate(lavaEffect, transform.position, Quaternion.identity);
                 boxController.RemoveBox(gameObject, false, 1, true);
@@ -94,27 +98,30 @@ public class FriendlyBox : MonoBehaviour
             
             if(other == null || other.collider == null || transform == null || other.collider.GetComponent<CenterPointGetter>() == null) return;
             
-            if (other.collider.CompareTag("LevelFinish") && 
+            if (other.collider.CompareTag(LEVEL_FINISH) && 
                 Mathf.Abs( transform.TransformPoint(other.collider.GetComponent<CenterPointGetter>()
                     .GetCenterPoint()).y - transform.TransformPoint(transform.position).y) < 0.1f)
             {
-                other.collider.tag = "Ground";
+                other.collider.tag = GROUND;
                 boxController.RemoveBox(gameObject, true, 1);
                 m_audioManager.boxesAudioSource.PlayFailSound();
             }
         }
     }
 
+    private const string LEVEL_FINISH = "LevelFinish";
+    private const string GROUND = "Ground";
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("FinishCameraConfigurator") && transform.parent.name == "Player")
+        if (other.CompareTag(FINISH_CAMERA_CONFIGURATOR) && transform.parent.name == PLAYER)
         {
             Camera.main.GetComponent<CameraController>().ConfigureCameraForFinish();
         }
         
         if (!isBoxBonus) return;
         if (used) return;
-        if (other.CompareTag("DiamondCollector"))
+        if (other.CompareTag(DIAMOND_COLLECTOR))
         {
             used = true;
             boxController.SpecialAddBox2(transform.parent.GetComponent<BoxesPool>().Boxes);
@@ -126,4 +133,8 @@ public class FriendlyBox : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private const string DIAMOND_COLLECTOR = "DiamondCollector";
+    private const string PLAYER = "Player";
+    private const string FINISH_CAMERA_CONFIGURATOR = "FinishCameraConfigurator";
 }

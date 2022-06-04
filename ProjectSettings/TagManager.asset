@@ -21,6 +21,8 @@ TagManager:
   - Lava
   - GroundLet
   - FinishCameraConfigurator
+  - StartLavaTrigger
+  - EndLavaTrigger
   layers:
   - Default
   - TransparentFX

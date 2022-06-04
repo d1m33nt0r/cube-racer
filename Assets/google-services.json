@@ -9,6 +9,43 @@
       "client_info": {
         "mobilesdk_app_id": "1:629489200670:android:204e1f2ae3a9c71bb8080f",
         "android_client_info": {
+          "package_name": "com.DefaultCompany.Cuberacer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629489200670-kigh4ln1u13f0c8irl5fdhscbmsr8a02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.DefaultCompany.Cuberacer",
+            "certificate_hash": "4887ba6963491d14f66c9e50f098419376095851"
+          }
+        },
+        {
+          "client_id": "629489200670-7gsfq750cbifadi8iqm984g6tf066hl0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHpPYdGt99YU0uK65uQQndMwnooQtULIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629489200670-7gsfq750cbifadi8iqm984g6tf066hl0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629489200670:android:7eaa2114d8da8900b8080f",
+        "android_client_info": {
           "package_name": "com.gamerstash.cuberacer"
         }
       },

@@ -10,7 +10,7 @@ public class DiamondIconController : MonoBehaviour
     private bool isMovingDone;
     private int countDiamonds;
     private DiamondCountManager diamondCountManager;
-  
+    private const string BALLOON = "Balloon";
     public void Construct(DiamondCountManager diamondCountManager, int countDiamonds)
     {
         this.diamondCountManager = diamondCountManager;
@@ -55,7 +55,7 @@ public class DiamondIconController : MonoBehaviour
     {
         yield return new WaitUntil(() => isMovingDone);
         
-        if (SceneManager.GetActiveScene().name == "Balloon")
+        if (SceneManager.GetActiveScene().name == BALLOON)
         {
             diamondCountManager.UpdateData(diamondCountManager.GetData() + countDiamonds);
             diamondCountManager.WriteData();

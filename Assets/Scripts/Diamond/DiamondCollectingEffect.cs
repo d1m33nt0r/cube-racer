@@ -10,6 +10,10 @@ using Zenject;
 
 public class DiamondCollectingEffect : MonoBehaviour
 {
+    private const string DIAMOND_COLLECTOR_TAG = "DiamondCollector";
+    private const string DIAMOND_BONUS_TAG = "DiamondBonus";
+    private const string DIAMOND_EFFECT = "diamond_effect";
+    
     [SerializeField] private GameObject effect;
     [SerializeField] private Camera camera;
     [SerializeField] private UIController uiController;
@@ -42,7 +46,7 @@ public class DiamondCollectingEffect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (transform.CompareTag("DiamondBonus") && other.CompareTag("DiamondCollector"))
+        if (transform.CompareTag(DIAMOND_BONUS_TAG) && other.CompareTag(DIAMOND_COLLECTOR_TAG))
         {
             uiController.ShowDimondBonusUIEffect();
             m_audioManager.diamondAudioSource.PlayCollectSound();
@@ -50,13 +54,13 @@ public class DiamondCollectingEffect : MonoBehaviour
             other.transform.parent.GetComponent<BoxController>().AnimateEmission();
             wowsomeCanvas.SetActive(true);
             //wowsoneParticle.Play();
-            diamondCounter.AddDiamond(1500);
-            sessionDiamondCounter.AddDiamond(1500);
+            diamondCounter.AddDiamond(750);
+            sessionDiamondCounter.AddDiamond(750);
             Camera.main.GetComponent<CameraController>().ChangeFinishingPosition();
             Destroy(gameObject);
         }
 
-        if (!transform.CompareTag("DiamondBonus") && other.CompareTag("DiamondCollector"))
+        if (!transform.CompareTag(DIAMOND_BONUS_TAG) && other.CompareTag(DIAMOND_COLLECTOR_TAG))
         {
             m_audioManager.diamondAudioSource.PlayCollectSound();
             diamondCounter.AddDiamond();
@@ -64,7 +68,7 @@ public class DiamondCollectingEffect : MonoBehaviour
             diamondUI.CreateDiamond(camera.WorldToScreenPoint(transform.position));
             GetComponent<BoxCollider>().enabled = false;
             //Instantiate(effect).transform.position = transform.position;
-            var temp = m_poolManager.GetObject("diamond_effect");
+            var temp = m_poolManager.GetObject(DIAMOND_EFFECT);
             temp.transform.position = transform.position;
             temp.SetActive(true);
 #if UNITY_ANDROID

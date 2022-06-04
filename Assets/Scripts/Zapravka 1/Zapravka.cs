@@ -14,6 +14,8 @@ public class Zapravka : MonoBehaviour
     [SerializeField] private BoxCollider startBoxCollider;
     [SerializeField] private BoxCollider finishBoxCollider;
     
+    private const string DIAMOND_COLLECTOR_TAG = "DiamondCollector";
+    
     private AdsManager adsManager;
     private bool finish;
     private PlayerMover playerMover;
@@ -28,7 +30,7 @@ public class Zapravka : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DiamondCollector") && !finish)
+        if (other.CompareTag(DIAMOND_COLLECTOR_TAG) && !finish)
         {
             if (rewardShowed) return;
             adsManager.ShowRewarded();
@@ -37,7 +39,7 @@ public class Zapravka : MonoBehaviour
             RewardedAds.rewardedAd.OnAdFailedToShow += ReleaseReward;
         }
         
-        if (other.CompareTag("DiamondCollector") && finish)
+        if (other.CompareTag(DIAMOND_COLLECTOR_TAG) && finish)
         {
             pathFollower.Moving -= playerMover.CustomMove;
             RewardedAds.rewardedAd.OnAdClosed -= ReleaseReward;
