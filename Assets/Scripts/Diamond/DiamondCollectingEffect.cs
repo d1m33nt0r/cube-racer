@@ -14,6 +14,7 @@ public class DiamondCollectingEffect : MonoBehaviour
     private const string DIAMOND_BONUS_TAG = "DiamondBonus";
     private const string DIAMOND_EFFECT = "diamond_effect";
     
+    [SerializeField] private int DiamondCount;
     [SerializeField] private GameObject effect;
     [SerializeField] private Camera camera;
     [SerializeField] private UIController uiController;
@@ -54,8 +55,8 @@ public class DiamondCollectingEffect : MonoBehaviour
             other.transform.parent.GetComponent<BoxController>().AnimateEmission();
             wowsomeCanvas.SetActive(true);
             //wowsoneParticle.Play();
-            diamondCounter.AddDiamond(750);
-            sessionDiamondCounter.AddDiamond(750);
+            diamondCounter.AddDiamond(DiamondCount);
+            sessionDiamondCounter.AddDiamond(DiamondCount);
             Camera.main.GetComponent<CameraController>().ChangeFinishingPosition();
             Destroy(gameObject);
         }

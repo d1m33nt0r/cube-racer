@@ -5,6 +5,6 @@
   <string name="project_id" translatable="false">cuberacer-8f38a</string>
   <string name="google_api_key" translatable="false">AIzaSyBHpPYdGt99YU0uK65uQQndMwnooQtULIU</string>
   <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBHpPYdGt99YU0uK65uQQndMwnooQtULIU</string>
-  <string name="google_app_id" translatable="false">1:629489200670:android:204e1f2ae3a9c71bb8080f</string>
+  <string name="google_app_id" translatable="false">1:629489200670:android:7eaa2114d8da8900b8080f</string>
   <string name="default_web_client_id" translatable="false">629489200670-7gsfq750cbifadi8iqm984g6tf066hl0.apps.googleusercontent.com</string>
 </resources>
