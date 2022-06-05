@@ -1,5 +1,6 @@
 ﻿using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
+using DefaultNamespace.Services.AdsManager.AppLovin;
 using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using Firebase;
@@ -31,6 +32,10 @@ namespace Installers
         private DiamondMultiplierLevelManager diamondMultiplierLevelManager;
         private GameObject debugParent;
         private GameObject servicesParent;
+
+        private BannerAd bannerAd;
+        private InterstitialAd interstitialAd;
+        private RewardedAd rewardedAd;
         
         
         public override void InstallBindings()
@@ -99,8 +104,11 @@ namespace Installers
 
         private void BindAdsManager()
         {
-            AdsManager adsManager = Container.InstantiatePrefabForComponent<AdsManager>(adsCanvasPrefab);
+            var adsManager = Container.InstantiatePrefabForComponent<AdsManager>(adsCanvasPrefab);
             Container.Bind<AdsManager>().FromInstance(adsManager).AsSingle();
+            Container.Bind<BannerAd>().FromInstance(adsManager.GetComponent<BannerAd>());
+            Container.Bind<InterstitialAd>().FromInstance(adsManager.GetComponent<InterstitialAd>());
+            Container.Bind<RewardedAd>().FromInstance(adsManager.GetComponent<RewardedAd>());
         }
 
         private void BindStartBoxCountManager()

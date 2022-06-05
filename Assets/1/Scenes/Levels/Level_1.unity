@@ -10365,7 +10365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d8f42c480438e924137ec996af34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonOnFinished: 1
+  balloonOnFinished: 0
   gameplayUI: {fileID: 983108945}
   mainMenuUI: {fileID: 553647595}
   gameOverUI: {fileID: 790782438}
@@ -12302,7 +12302,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9b1c43eda730cf40859f6939b9b5ba6, type: 3}
-    m_FontSize: 128
+    m_FontSize: 96
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -31060,7 +31060,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9b1c43eda730cf40859f6939b9b5ba6, type: 3}
-    m_FontSize: 149
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -32291,7 +32291,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9b1c43eda730cf40859f6939b9b5ba6, type: 3}
-    m_FontSize: 146
+    m_FontSize: 96
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -36284,7 +36284,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9b1c43eda730cf40859f6939b9b5ba6, type: 3}
-    m_FontSize: 149
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -80632,6 +80632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828a7ed1e49b64f4d82e3a391a46b7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DiamondCount: 0
   effect: {fileID: 4210704835721733797, guid: ca844478b7769794dbad3d2a6375fde2, type: 3}
   camera: {fileID: 0}
   uiController: {fileID: 0}

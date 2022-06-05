@@ -16,7 +16,6 @@ namespace DefaultNamespace.Services.AdsManager
         {
             MobileAds.Initialize(initStatus => { });
             
-            
             LoadAds();
         }
         

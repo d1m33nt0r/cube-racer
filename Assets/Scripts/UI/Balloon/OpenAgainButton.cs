@@ -22,13 +22,17 @@ namespace UI.Balloon
         public void ShowReward()
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
-            adsManager.ShowRewarded();
-            
-            RewardedAds.rewardedAd.OnUserEarnedReward += (_sender, _args) =>
+            if (adsManager.RewardedAd.IsRewardedAdAlready)
             {
-                RewardedAds.Initialize();
-                _openBalloonsCounter.HideButtons();
-            };
+                adsManager.ShowRewarded();
+                MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent += HideButtons;
+            }
+        }
+
+        private void HideButtons(string s, MaxSdkBase.Reward reward, MaxSdkBase.AdInfo adInfo)
+        {
+            _openBalloonsCounter.HideButtons();
+            MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent -= HideButtons;
         }
     }
 }

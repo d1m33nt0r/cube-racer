@@ -15,7 +15,7 @@ public class Zapravka : MonoBehaviour
     [SerializeField] private BoxCollider finishBoxCollider;
     
     private const string DIAMOND_COLLECTOR_TAG = "DiamondCollector";
-    
+    private WaitForSeconds waitForSeconds = new WaitForSeconds(1);
     private AdsManager adsManager;
     private bool finish;
     private PlayerMover playerMover;
@@ -28,22 +28,42 @@ public class Zapravka : MonoBehaviour
         adsManager = _adsManager;
     }
 
+    private void ReceivedReward(string s, MaxSdkBase.Reward reward, MaxSdkBase.AdInfo adInfo)
+    {
+        ReleaseReward();
+        MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent -= ReceivedReward;
+        MaxSdkCallbacks.Rewarded.OnAdDisplayFailedEvent -= DisplayFailedEvent;
+    }
+
+    private void DisplayFailedEvent(string s, MaxSdkBase.ErrorInfo errorInfo, MaxSdkBase.AdInfo adInfo)
+    {
+        ReleaseReward();
+        MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent -= ReceivedReward;
+        MaxSdkCallbacks.Rewarded.OnAdDisplayFailedEvent -= DisplayFailedEvent;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(DIAMOND_COLLECTOR_TAG) && !finish)
         {
             if (rewardShowed) return;
-            adsManager.ShowRewarded();
-            rewardShowed = true;
-            RewardedAds.rewardedAd.OnAdClosed += ReleaseReward;
-            RewardedAds.rewardedAd.OnAdFailedToShow += ReleaseReward;
+            if (adsManager.RewardedAd.IsRewardedAdAlready)
+            {
+                MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent += ReceivedReward;
+                MaxSdkCallbacks.Rewarded.OnAdDisplayFailedEvent += DisplayFailedEvent;
+                adsManager.ShowRewarded();
+                
+                rewardShowed = true;
+            }
+            else
+            {
+                ReleaseReward();
+            }
         }
         
         if (other.CompareTag(DIAMOND_COLLECTOR_TAG) && finish)
         {
             pathFollower.Moving -= playerMover.CustomMove;
-            RewardedAds.rewardedAd.OnAdClosed -= ReleaseReward;
-            RewardedAds.rewardedAd.OnAdFailedToShow -= ReleaseReward;
             playerMover.SetCurrentDirection();
             playerMover.EnableMoving();
             playerMover.SubscribeSwipes();
@@ -51,7 +71,7 @@ public class Zapravka : MonoBehaviour
         }
     }
 
-    private void ReleaseReward(object _sender, EventArgs _e) 
+    private void ReleaseReward() 
     {
         playerMover.DisableMoving();
         playerMover.UnsubscribeSwipes();
@@ -66,7 +86,7 @@ public class Zapravka : MonoBehaviour
     
     private IEnumerator Finish()
     {
-        yield return new WaitForSeconds(1);
+        yield return waitForSeconds;
 
         finish = true;
     }

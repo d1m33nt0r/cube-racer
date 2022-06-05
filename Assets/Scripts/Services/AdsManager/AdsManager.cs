@@ -1,22 +1,58 @@
 ﻿using System;
 using System.Collections;
+using DefaultNamespace.Services.AdsManager.AppLovin;
 using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using InterstitialAd = DefaultNamespace.Services.AdsManager.AppLovin.InterstitialAd;
+using RewardedAd = DefaultNamespace.Services.AdsManager.AppLovin.RewardedAd;
 
 namespace DefaultNamespace.Services.AdsManager
 {
+
+    public enum AdsMediation
+    {
+        AppLovin, 
+        AdMob
+    }
+    
     public class AdsManager : MonoBehaviour
     {
+        [SerializeField] private AdsMediation adsMediation;
+
+        public InterstitialAd InterstitialAd => interstitialAd;
+        public BannerAd BannerAd => bannerAd;
+        public RewardedAd RewardedAd => rewardedAd;
+        
+        [SerializeField] private InterstitialAd interstitialAd;
+        [SerializeField] private BannerAd bannerAd;
+        [SerializeField] private RewardedAd rewardedAd;
         
         private void Start()
         {
-         
-            BannerAds.Initialize();
-            InterstitialAds.Initialize();
-            RewardedAds.Initialize();
-            ShowBanner();
-            SceneManager.sceneLoaded += Handle;
+            switch (adsMediation)
+            {
+                case AdsMediation.AppLovin:
+                    MaxSdkCallbacks.OnSdkInitializedEvent += sdkConfiguration => 
+                    {
+                        bannerAd.InitializeBannerAds();
+                        interstitialAd.InitializeInterstitialAds();
+                        rewardedAd.InitializeRewardedAds();
+                        
+                        ShowBanner();
+                    };
+                    
+                    MaxSdk.SetSdkKey("8CzO4IBcwXI7GDNAT_Nwk6Le3ED5bvZMBWDTVtdyiH10RVwoHUsv4TTH8LKGf_VXMGKXlZ7JzPcdkqtoEARAQR");
+                    MaxSdk.InitializeSdk();
+                    break;
+                case AdsMediation.AdMob:
+                    BannerAds.Initialize();
+                    InterstitialAds.Initialize();
+                    RewardedAds.Initialize();
+                    break;
+            }
+            
+            //SceneManager.sceneLoaded += Handle;
         }
 
         private void Handle(Scene _arg0, LoadSceneMode _loadSceneMode)
@@ -40,22 +76,55 @@ namespace DefaultNamespace.Services.AdsManager
 
         private void ShowBanner()
         {
-            BannerAds.Show();
+            switch (adsMediation)
+            {
+                case AdsMediation.AppLovin:
+                    bannerAd.ShowBanner();
+                    break;
+                case AdsMediation.AdMob:
+                    BannerAds.Show();
+                    break;
+            }
         }
 
         private void HideBanner()
         {
-            BannerAds.Hide();
+            switch (adsMediation)
+            {
+                case AdsMediation.AppLovin:
+                    bannerAd.HideBanner();
+                    break;
+                case AdsMediation.AdMob:
+                    BannerAds.Hide();
+                    break;
+            }
         }
 
         public void ShowRewarded()
         {
-            RewardedAds.Show();
+            switch (adsMediation)
+            {
+                case AdsMediation.AppLovin:
+                    if (rewardedAd.IsRewardedAdAlready)
+                        rewardedAd.Show();
+                    break;
+                case AdsMediation.AdMob:
+                    RewardedAds.Show();
+                    break;
+            }
         }
         
         public void ShowInterstitial()
         {
-            InterstitialAds.Show();
+            switch (adsMediation)
+            {
+                case AdsMediation.AppLovin:
+                    interstitialAd.Show();
+                    break;
+                case AdsMediation.AdMob:
+                    InterstitialAds.Show();
+                    break;
+            }
         }
 
         private void DisableCanvas()

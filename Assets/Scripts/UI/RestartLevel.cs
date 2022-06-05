@@ -26,18 +26,18 @@ namespace UI
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
             diamondCountManager.WriteData();
-            if (InterstitialAds.InterstitialAd.IsLoaded())
+            if (adsManager.InterstitialAd.IsAlready)
             {
                 adsManager.ShowInterstitial();
-                InterstitialAds.InterstitialAd.OnAdClosed += HandleOnAdClosed;
+                MaxSdkCallbacks.Interstitial.OnAdHiddenEvent += HandleOnAdClosed;
             }
             else
                 SceneManager.LoadScene("Loader");
         }
 
-        private void HandleOnAdClosed(object sender, EventArgs args)
+        private void HandleOnAdClosed(string adUnitId, MaxSdkBase.AdInfo adInfo)
         {
-            InterstitialAds.InterstitialAd.OnAdClosed -= HandleOnAdClosed;
+            MaxSdkCallbacks.Interstitial.OnAdHiddenEvent -= HandleOnAdClosed;
             SceneManager.LoadScene("Loader");
         }
     }
