@@ -21,7 +21,7 @@ namespace UI.GlobalUI.DiamondCounter
             this.diamondCountManager = diamondCountManager;
             diamondCountManager.AddListener(this);
             m_diamondMultiplierLevelManager = _diamondMultiplierLevelManager;
-            text.text = this.diamondCountManager.GetData().ToString();
+            text.text = this.diamondCountManager.GetDiamondCount().ToString();
         }
 
         public void AddDiamond()
@@ -47,7 +47,7 @@ namespace UI.GlobalUI.DiamondCounter
         
         public void UpdateData()
         {
-            text.text = Convert.ToString(diamondCountManager.GetData());
+            text.text = Convert.ToString(diamondCountManager.GetDiamondCount());
         }
     }
 }

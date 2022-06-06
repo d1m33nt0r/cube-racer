@@ -54,7 +54,7 @@ namespace Services.DiamondCountManager
             PlayerPrefs.SetInt(key, countDiamonds);
         }
 
-        public int GetData()
+        public int GetDiamondCount()
         {
             return countDiamonds;
         }

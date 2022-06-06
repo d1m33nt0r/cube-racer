@@ -39,7 +39,7 @@ namespace UI
             }
             text = Convert.ToString(Int32.Parse(text) + sessionDiamondCount);
             diamondCount.text = text;
-            diamondCountManager.UpdateData(Convert.ToInt32(diamondCount.text) + diamondCountManager.GetData());
+            diamondCountManager.UpdateData(Convert.ToInt32(diamondCount.text) + diamondCountManager.GetDiamondCount());
         }
     }
 }

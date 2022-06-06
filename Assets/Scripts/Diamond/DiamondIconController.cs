@@ -57,7 +57,7 @@ public class DiamondIconController : MonoBehaviour
         
         if (SceneManager.GetActiveScene().name == BALLOON)
         {
-            diamondCountManager.UpdateData(diamondCountManager.GetData() + countDiamonds);
+            diamondCountManager.UpdateData(diamondCountManager.GetDiamondCount() + countDiamonds);
             diamondCountManager.WriteData();
         }
         

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
+using Services.DiamondCountManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,19 +19,24 @@ namespace UI.Shop
 
         [SerializeField] private Sprite selectedSprite;
         [SerializeField] private Sprite notSelectedSprite;
-
+        private DiamondCountManager _diamondCountManager;
+        
         private AudioManager m_audioManager;
         
         [Inject]
-        private void Construct(ThemeManager themeManager, AudioManager _audioManager)
+        private void Construct(ThemeManager themeManager, AudioManager _audioManager, DiamondCountManager _diamondCountManager)
         {
             this.themeManager = themeManager;
             m_audioManager = _audioManager;
+            this._diamondCountManager = _diamondCountManager;
         }
 
         public void ByRandomCube()
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
+            if (_diamondCountManager.GetDiamondCount() < 5000) return;
+            _diamondCountManager.UpdateData(_diamondCountManager.GetDiamondCount() - 5000);
+            _diamondCountManager.WriteData();
             var themeButtons = buttons.Where(button => !button.boxTheme.bought).ToList();
             var randNum = Random.Range(0, themeButtons.Count - 1);
             StartCoroutine(Randomize(themeButtons));

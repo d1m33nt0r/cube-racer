@@ -34,9 +34,9 @@ public class StartBoxCountBuyButton : MonoBehaviour
     public void UpgradeStartBoxCount()
     {
         m_audioManager.uiAudioSource.PlayButtonClickSound();
-        if (price <= diamondCountManager.GetData() && startBoxCountManager.GetData() < 4)
+        if (price <= diamondCountManager.GetDiamondCount() && startBoxCountManager.GetData() < 4)
         {
-            diamondCountManager.UpdateData(diamondCountManager.GetData() - price);
+            diamondCountManager.UpdateData(diamondCountManager.GetDiamondCount() - price);
             startBoxCountManager.UpdateData(startBoxCountManager.GetData() + 1);
             diamondCountManager.WriteData();
             startBoxCountManager.WriteData();

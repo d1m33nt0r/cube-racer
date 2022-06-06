@@ -1,6 +1,5 @@
 ﻿using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.Services.AudioManager;
-using GoogleMobileAds.Api;
 using Services.DiamondCountManager;
 using UnityEngine;
 using Zenject;
@@ -24,13 +23,18 @@ namespace UI.Shop
         public void Get1000Diamonds()
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
-            m_adsManager.ShowRewarded();
-            RewardedAds.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
+            
+            if (m_adsManager.RewardedAd.IsRewardedAdAlready)
+            {
+                m_adsManager.ShowRewarded();
+                MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent += OnAdReceivedRewardEvent;
+            }
         }
         
-        public void HandleUserEarnedReward(object sender, Reward args)
+        private void OnAdReceivedRewardEvent(string s, MaxSdkBase.Reward reward, MaxSdkBase.AdInfo adInfo)
         {
             m_diamondCountManager.AddDiamondsAndSave(1000);
+            MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent -= OnAdReceivedRewardEvent;
         }
     }
 }
