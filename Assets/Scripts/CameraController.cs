@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -41,7 +42,7 @@ public class CameraController : MonoBehaviour
     private Vector3 startRefuellingRotation;
     private float startRefuellingXPosition;
     private float specialIncreaseDuration = 2f;
-    
+
     [Inject]
     private void Construct(BoxController boxController)
     {

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
-using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.Services.AudioManager;
 using DefaultNamespace.ThemeManager;
 using Services.StartBoxCountManager;

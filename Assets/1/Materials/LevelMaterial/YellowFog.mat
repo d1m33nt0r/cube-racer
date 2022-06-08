@@ -78,7 +78,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _IntersectionThresholdMax: 0.01
+    - _IntersectionThresholdMax: 5.65
     - _Invert: 0
     - _Magnitude: 0
     - _MainDistort: 0
@@ -105,6 +105,6 @@ Material:
     - _UseMainDistort: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6234353, g: 0.6981132, b: 0.33917767, a: 1}
+    - _Color: {r: 0, g: 0.65787745, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
