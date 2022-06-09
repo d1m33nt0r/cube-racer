@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using DefaultNamespace.Services.AdsManager.AppLovin;
-using GoogleMobileAds.Api;
+﻿using DefaultNamespace.Services.AdsManager.AppLovin;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using InterstitialAd = DefaultNamespace.Services.AdsManager.AppLovin.InterstitialAd;
