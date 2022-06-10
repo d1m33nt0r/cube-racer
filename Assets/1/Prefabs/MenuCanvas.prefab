@@ -1995,6 +1995,7 @@ GameObject:
   - component: {fileID: 5500675169703994090}
   - component: {fileID: 5500675169703994089}
   - component: {fileID: 5500675169703994088}
+  - component: {fileID: 7143186823593374882}
   m_Layer: 0
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -2117,6 +2118,33 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7143186823593374882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500675169703994094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb2da15da9b450a806908d92c37a823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedLevelColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  currentLevelColor: {r: 0.4198113, g: 0.8522297, b: 1, a: 1}
+  completedLevelColor: {r: 0.25490198, g: 0.91372555, b: 0.3529412, a: 1}
+  levelTexts:
+  - {fileID: 5500675170359352295}
+  - {fileID: 5500675169555326463}
+  - {fileID: 5500675169593932816}
+  - {fileID: 5500675168967385493}
+  - {fileID: 5500675169699196325}
+  levelImages:
+  - {fileID: 5500675168804172763}
+  - {fileID: 5500675169039592812}
+  - {fileID: 5500675169434372058}
+  - {fileID: 5500675169323350195}
+  - {fileID: 5500675168648407261}
 --- !u!1 &5500675169727176404
 GameObject:
   m_ObjectHideFlags: 0

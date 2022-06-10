@@ -23,7 +23,7 @@ namespace UI.Balloon
         public void LoadNextLevel()
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
-            var level = levelProgressManager.GetData();
+            var level = levelProgressManager.GetCurrentLevelString();
             sceneLoader.SetNextScene(level);
             SceneManager.LoadScene("Loader");
         }

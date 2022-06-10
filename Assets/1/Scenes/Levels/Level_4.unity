@@ -12144,6 +12144,7 @@ GameObject:
   - component: {fileID: 746926467}
   - component: {fileID: 746926466}
   - component: {fileID: 746926465}
+  - component: {fileID: 746926468}
   m_Layer: 5
   m_Name: LevelProgressUI
   m_TagString: Untagged
@@ -12234,6 +12235,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &746926468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746926463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e67687e62b4d859bf0f5b63a439078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 1495161729}
 --- !u!1001 &754338722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14524,7 +14538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f2ef54430906348b022b68ba895598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderDepth: 1
+  RenderDepth: 0
 --- !u!4 &968652386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 743795631249577971, guid: 96b492569c2221043924f3bd9b976fe2,
@@ -15634,6 +15648,11 @@ PrefabInstance:
       propertyPath: uiController
       value: 
       objectReference: {fileID: 466276574}
+    - target: {fileID: 4080723180062842645, guid: 133ecf8b306317f47b2854d9cbdf10f5,
+        type: 3}
+      propertyPath: batchingEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5533859022486386576, guid: 133ecf8b306317f47b2854d9cbdf10f5,
         type: 3}
       propertyPath: m_Name

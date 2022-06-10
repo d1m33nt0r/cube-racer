@@ -1,5 +1,3 @@
-
-
 using System;
 using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.Services.AudioManager;
