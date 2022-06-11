@@ -17,6 +17,9 @@ namespace DefaultNamespace.Services.AdsManager
     {
         [SerializeField] private AdsMediation adsMediation;
 
+        private const string removeAds = "removeAds";
+        public bool adsIsDisabled = false;
+        
         public InterstitialAd InterstitialAd => interstitialAd;
         public BannerAd BannerAd => bannerAd;
         public RewardedAd RewardedAd => rewardedAd;
@@ -27,6 +30,22 @@ namespace DefaultNamespace.Services.AdsManager
         
         private void Start()
         {
+            if (PlayerPrefs.HasKey(removeAds))
+            {
+                if (PlayerPrefs.GetInt(removeAds) == 1)
+                {
+                    adsIsDisabled = true;
+                }
+                else
+                {
+                    adsIsDisabled = false;
+                }
+            }
+            else
+            {
+                adsIsDisabled = false;
+            }
+            
             switch (adsMediation)
             {
                 case AdsMediation.AppLovin:
@@ -36,7 +55,7 @@ namespace DefaultNamespace.Services.AdsManager
                         interstitialAd.InitializeInterstitialAds();
                         rewardedAd.InitializeRewardedAds();
                         
-                        ShowBanner();
+                        if (!adsIsDisabled) ShowBanner();
                     };
                     
                     MaxSdk.SetSdkKey("8CzO4IBcwXI7GDNAT_Nwk6Le3ED5bvZMBWDTVtdyiH10RVwoHUsv4TTH8LKGf_VXMGKXlZ7JzPcdkqtoEARAQR");
@@ -52,6 +71,12 @@ namespace DefaultNamespace.Services.AdsManager
             //SceneManager.sceneLoaded += Handle;
         }
 
+        public void DisableAds()
+        {
+            bannerAd.HideBanner();
+            adsIsDisabled = true;
+        }
+        
         private void Handle(Scene _arg0, LoadSceneMode _loadSceneMode)
         {
             /*switch (_arg0.name)

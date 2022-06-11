@@ -36,6 +36,11 @@ namespace UI
         
         public void LoadNextLevel()
         {
+            if (adsManager.adsIsDisabled)
+            {
+                GOtoNextLevel();
+                return;
+            }
             if (!balloon)
             {
                 if (adsManager.InterstitialAd.IsAlready)
