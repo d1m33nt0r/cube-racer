@@ -1995,6 +1995,9 @@ GameObject:
   - component: {fileID: 5500675169703994090}
   - component: {fileID: 5500675169703994089}
   - component: {fileID: 5500675169703994088}
+  - component: {fileID: 7143186823593374882}
+  - component: {fileID: 4774833752430370052}
+  - component: {fileID: 7926082293386326048}
   m_Layer: 0
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -2117,6 +2120,60 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7143186823593374882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500675169703994094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb2da15da9b450a806908d92c37a823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedLevelColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  currentLevelColor: {r: 0.4198113, g: 0.8522297, b: 1, a: 1}
+  completedLevelColor: {r: 0.25490198, g: 0.91372555, b: 0.3529412, a: 1}
+  levelTexts:
+  - {fileID: 5500675170359352295}
+  - {fileID: 5500675169555326463}
+  - {fileID: 5500675169593932816}
+  - {fileID: 5500675168967385493}
+  - {fileID: 5500675169699196325}
+  levelImages:
+  - {fileID: 5500675168804172763}
+  - {fileID: 5500675169039592812}
+  - {fileID: 5500675169434372058}
+  - {fileID: 5500675169323350195}
+  - {fileID: 5500675168648407261}
+--- !u!114 &4774833752430370052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500675169703994094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45dc9dbf8a6c2c41984b2acdde4cdcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 5500675170209493860}
+  text: {fileID: 5500675169172882257}
+  palka: {fileID: 5500675170446307898}
+--- !u!114 &7926082293386326048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500675169703994094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea66376ae604ce1b5cf4852fd965c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5500675169727176404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2719,7 @@ GameObject:
   - component: {fileID: 5500675170209493860}
   - component: {fileID: 5500675170209493787}
   - component: {fileID: 5500675170209493862}
+  - component: {fileID: 5473175077140554204}
   m_Layer: 0
   m_Name: DisableAds_Button
   m_TagString: Untagged
@@ -2794,6 +2852,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c270ff0d5d6e4a8d9440a2ee9a1c8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5473175077140554204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500675170209493785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: com.gamerstash.cuberacer.removeads
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7926082293386326048}
+        m_TargetAssemblyTypeName: DefaultNamespace.Purchaser, Assembly-CSharp
+        m_MethodName: PurchaseDisableAds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &5500675170281750688
 GameObject:
   m_ObjectHideFlags: 0

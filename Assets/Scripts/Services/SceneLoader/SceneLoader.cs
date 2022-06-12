@@ -7,6 +7,8 @@ public class SceneLoader
     private string nextScene = "";
     private LevelProgressManager levelProgressManager;
     
+    
+    
     public SceneLoader(LevelProgressManager levelProgressManager)
     {
         this.levelProgressManager = levelProgressManager;
@@ -21,8 +23,8 @@ public class SceneLoader
             return;
         }
 
-        if (levelProgressManager.GetData() != "")
-            this.nextScene = levelProgressManager.GetData();
+        if (levelProgressManager.GetCurrentLevelString() != "")
+            this.nextScene = levelProgressManager.GetCurrentLevelString();
         else
             this.nextScene = "Level_0";
     }
@@ -32,6 +34,6 @@ public class SceneLoader
         if (!currentScene)
            return SceneManager.LoadSceneAsync(nextScene);
         else
-           return SceneManager.LoadSceneAsync(levelProgressManager.GetData());
+           return SceneManager.LoadSceneAsync(levelProgressManager.GetCurrentLevelString());
     }
 }

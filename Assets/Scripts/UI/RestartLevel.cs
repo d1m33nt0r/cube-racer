@@ -26,6 +26,11 @@ namespace UI
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
             diamondCountManager.WriteData();
+            if (adsManager.adsIsDisabled)
+            {
+                SceneManager.LoadScene("Loader");
+                return;
+            }
             if (adsManager.InterstitialAd.IsAlready)
             {
                 adsManager.ShowInterstitial();

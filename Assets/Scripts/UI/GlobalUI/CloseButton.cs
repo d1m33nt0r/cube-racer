@@ -23,7 +23,7 @@ namespace UI.GlobalUI
         public void SetLoadingParams()
         {
             m_audioManager.uiAudioSource.PlayButtonClickSound();
-            sceneLoader.SetNextScene(levelProgressManager.GetData());
+            sceneLoader.SetNextScene(levelProgressManager.GetCurrentLevelString());
             SceneManager.LoadScene("Loader");
         }
     }

@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using DefaultNamespace.Services.AdsManager;
 using DefaultNamespace.Services.AdsManager.AppLovin;
 using DefaultNamespace.Services.AudioManager;
@@ -59,10 +60,18 @@ namespace Installers
             BindDiamondUI(diamondCountManager);
             //InstantiateFpsCounter(debugParent);
             BindAdsManager();
-
+            SetResolution();
             //InstantiateLunarConsole(debugParent);
         }
 
+        private void SetResolution()
+        {
+            if (Screen.width >= 1080 || Screen.height >= 1080)
+            {
+                Screen.SetResolution(Convert.ToInt32(Screen.width / 2f), Convert.ToInt32(Screen.height / 2f), FullScreenMode.FullScreenWindow);
+            }
+        }
+        
         private void InstantiateLunarConsole(GameObject parent)
         {
             Container.InstantiatePrefab(lunarConsole)
