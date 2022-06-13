@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "2e4d80bc1cbbfe5400fb052778c65bcccc505abd"
     },
+    "com.unity.device-simulator": {
+      "version": "3.0.3-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,

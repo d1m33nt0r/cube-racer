@@ -29,6 +29,7 @@ public class StartBoxCountBuyButton : MonoBehaviour
 
     private void Start()
     {
+        
         isAds = Random.Range(0, 3);
         if (isAds == 1)
         {

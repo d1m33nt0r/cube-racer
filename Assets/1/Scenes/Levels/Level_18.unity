@@ -3823,6 +3823,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1313664334}
     m_Modifications:
+    - target: {fileID: 4535340559439627001, guid: 41ca99cce055dd644833771f45a8eec7,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7253380945728401489, guid: c722bbb5cee487b49b9fa3a31134f9f0,
+        type: 3}
     - target: {fileID: 4535340559439627003, guid: 41ca99cce055dd644833771f45a8eec7,
         type: 3}
       propertyPath: wowsomeCanvas
@@ -21089,6 +21095,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553647596}
     m_Modifications:
+    - target: {fileID: 5500675169172882263, guid: dc52cd5bc53381c41948f9e64c565008,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5500675169703994090, guid: dc52cd5bc53381c41948f9e64c565008,
         type: 3}
       propertyPath: m_Camera
@@ -21203,6 +21214,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5500675170209493785, guid: dc52cd5bc53381c41948f9e64c565008,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5500675170446307896, guid: dc52cd5bc53381c41948f9e64c565008,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc52cd5bc53381c41948f9e64c565008, type: 3}

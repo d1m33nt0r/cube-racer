@@ -68,7 +68,7 @@ namespace Installers
         {
             if (Screen.width >= 1080 || Screen.height >= 1080)
             {
-                Screen.SetResolution(Convert.ToInt32(Screen.width / 2f), Convert.ToInt32(Screen.height / 2f), FullScreenMode.FullScreenWindow);
+                Screen.SetResolution(Convert.ToInt32(Screen.width / 1.5f), Convert.ToInt32(Screen.height / 1.5f), FullScreenMode.FullScreenWindow);
             }
         }
         

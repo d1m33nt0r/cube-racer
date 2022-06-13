@@ -53,7 +53,7 @@ public class DiamondCollectingEffect : MonoBehaviour
             m_audioManager.diamondAudioSource.PlayCollectSound();
             other.GetComponent<BonusEffect>().Play();
             other.transform.parent.GetComponent<BoxController>().AnimateEmission();
-            wowsomeCanvas.SetActive(true);
+            //wowsomeCanvas.SetActive(true);
             //wowsoneParticle.Play();
             diamondCounter.AddDiamond(DiamondCount);
             sessionDiamondCounter.AddDiamond(DiamondCount);

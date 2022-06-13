@@ -13,7 +13,7 @@ namespace DefaultNamespace
         
         private void Start()
         {
-            if (!PlayerPrefs.HasKey(removeAds))
+            /*if (!PlayerPrefs.HasKey(removeAds))
                 PlayerPrefs.SetInt(removeAds, 0);   
             
             var adsPurchased = PlayerPrefs.GetInt(removeAds);
@@ -23,7 +23,11 @@ namespace DefaultNamespace
                 background.gameObject.SetActive(false);
                 text.gameObject.SetActive(false);
                 palka.gameObject.SetActive(false);
-            }
+            }*/
+            
+            /*background.gameObject.SetActive(false);
+            text.gameObject.SetActive(false);
+            palka.gameObject.SetActive(false);*/
         }
     }
 }

@@ -28052,11 +28052,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1313664334}
     m_Modifications:
+    - target: {fileID: 4535340559439627001, guid: 41ca99cce055dd644833771f45a8eec7,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7253380945728401489, guid: c722bbb5cee487b49b9fa3a31134f9f0,
+        type: 3}
     - target: {fileID: 4535340559439627003, guid: 41ca99cce055dd644833771f45a8eec7,
         type: 3}
       propertyPath: wowsomeCanvas
       value: 
       objectReference: {fileID: 287167554}
+    - target: {fileID: 5825559041287974630, guid: 41ca99cce055dd644833771f45a8eec7,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825559041287974630, guid: 41ca99cce055dd644833771f45a8eec7,
+        type: 3}
+      propertyPath: vector.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5963800298526297586, guid: 41ca99cce055dd644833771f45a8eec7,
         type: 3}
       propertyPath: m_LocalPosition.z
