@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,11 +9,12 @@ namespace DefaultNamespace
     {
         private Animator animator;
         private Canvas canvas;
-        
+
         private void Start()
         {
             animator = GetComponent<Animator>();
             canvas = GetComponent<Canvas>();
+            canvas.worldCamera = Camera.main;
             DisableCanvas();
             CheckInternet();
         }

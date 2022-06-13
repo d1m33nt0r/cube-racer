@@ -954,6 +954,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6889339510226437787, guid: f80fedfb329875d42b308d080cca0e35,
+        type: 3}
+      propertyPath: multiplierSpeed
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6889339510226437788, guid: f80fedfb329875d42b308d080cca0e35,
         type: 3}
       propertyPath: m_Name
@@ -1453,6 +1458,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5433557229837562989, guid: ade7dd8561ee4574b9b08bc6db3c8b1e,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 5433557229837562989, guid: ade7dd8561ee4574b9b08bc6db3c8b1e,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ade7dd8561ee4574b9b08bc6db3c8b1e, type: 3}
 --- !u!224 &109820151 stripped
@@ -1650,7 +1665,7 @@ PrefabInstance:
     - target: {fileID: 6889339510226437787, guid: f80fedfb329875d42b308d080cca0e35,
         type: 3}
       propertyPath: multiplierSpeed
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6889339510226437788, guid: f80fedfb329875d42b308d080cca0e35,
         type: 3}
