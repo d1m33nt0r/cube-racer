@@ -10326,6 +10326,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553647596}
     m_Modifications:
+    - target: {fileID: 1398873645832065534, guid: dc52cd5bc53381c41948f9e64c565008,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 168.70001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470817021066408162, guid: dc52cd5bc53381c41948f9e64c565008,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 155.88
+      objectReference: {fileID: 0}
     - target: {fileID: 5500675169703994090, guid: dc52cd5bc53381c41948f9e64c565008,
         type: 3}
       propertyPath: m_Camera
@@ -20609,8 +20619,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.15, y: 3.2469}
-  m_SizeDelta: {x: 69.59592, y: 73.407104}
+  m_AnchoredPosition: {x: -1.3901, y: 3.2469}
+  m_SizeDelta: {x: 106.9167, y: 73.4071}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495161729
 MonoBehaviour:
