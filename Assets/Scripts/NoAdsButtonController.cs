@@ -10,7 +10,8 @@ namespace DefaultNamespace
         [SerializeField] private Image background;
         [SerializeField] private Text text;
         [SerializeField] private Image palka;
-        
+        [SerializeField] private Button _button;
+
         private void Start()
         {
             if (!PlayerPrefs.HasKey(removeAds))
@@ -20,10 +21,19 @@ namespace DefaultNamespace
             
             if (adsPurchased == 1)
             {
-                background.gameObject.SetActive(false);
-                text.gameObject.SetActive(false);
-                palka.gameObject.SetActive(false);
+                background.enabled = false;
+                _button.enabled = false;
+                text.enabled = false;
+                palka.enabled = false;
             }
+        }
+
+        public void DisableButton()
+        {
+            background.enabled = false;
+            _button.enabled = false;
+            text.enabled = false;
+            palka.enabled = false;
         }
     }
 }

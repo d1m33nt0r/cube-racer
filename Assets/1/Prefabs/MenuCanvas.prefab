@@ -2162,6 +2162,7 @@ MonoBehaviour:
   background: {fileID: 5500675170209493860}
   text: {fileID: 5500675169172882257}
   palka: {fileID: 5500675170446307898}
+  _button: {fileID: 5500675170209493787}
 --- !u!114 &7926082293386326048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2873,6 +2874,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7926082293386326048}
         m_TargetAssemblyTypeName: DefaultNamespace.Purchaser, Assembly-CSharp
         m_MethodName: PurchaseDisableAds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4774833752430370052}
+        m_TargetAssemblyTypeName: DefaultNamespace.NoAdsButtonController, Assembly-CSharp
+        m_MethodName: DisableButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

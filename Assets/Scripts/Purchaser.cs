@@ -7,7 +7,7 @@ namespace DefaultNamespace
     public class Purchaser : MonoBehaviour
     {
         private AdsManager adsManager;
-        
+
         [Inject]
         private void Construct(AdsManager adsManager)
         {
